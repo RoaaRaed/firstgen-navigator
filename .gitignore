@@ -218,3 +218,12 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# --- FirstGen Navigator additions ---
+
+# Local vector database (rebuilt by ingest.py)
+chroma_db/
+
+# OS / editor junk
+.DS_Store
+Thumbs.db
