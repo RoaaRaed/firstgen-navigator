@@ -1,7 +1,6 @@
-
-pandas
+pandas 
 pydantic
 python-dotenv
 pyyaml
 pytest
-
+sentence-transformers
