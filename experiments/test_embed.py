@@ -15,3 +15,5 @@ p = model.encode(passages, normalize_embeddings=True)
 scores = p @ q  # similarity: higher = closer in meaning
 for text, score in zip(passages, scores):
     print(round(float(score), 3), text)
+
+    
