@@ -1,0 +1,110 @@
+{
+  "app": {
+    "title": "FirstGen Navigator",
+    "subtitle": "دليلك للجامعة: القبول، والمساعدة المالية، والمواعيد المهمة، وبرامج الدعم.",
+    "choose_language": "اختيار اللغة"
+  },
+  "disclosure": "أنت تتحدث مع مرشد يعمل بالذكاء الاصطناعي. يُجيب اعتماداً على وثائق ويذكر لك مصادره. هو ليس محامياً ولا موظف مساعدات مالية، وإذا لم يعرف الجواب سيقول لك ذلك بصراحة.",
+  "buttons": {
+    "start": "ابدأ",
+    "next": "التالي",
+    "back": "رجوع",
+    "skip": "تخطّي",
+    "clear_answers": "مسح إجاباتي"
+  },
+  "questionnaire": {
+    "title": "بعض الأسئلة السريعة",
+    "intro": "إجاباتك تساعدني على إعطائك نصائح تناسب وضعك. لا يُحفظ أي شيء بعد إغلاق الصفحة، ولن أسألك أبداً عن وضع الإقامة أو الهجرة.",
+    "optional": "اختياري",
+    "choose_up_to": "يمكنك اختيار {max} كحد أقصى",
+    "questions": [
+      {
+        "id": "stage",
+        "type": "single",
+        "text": "أين أنت الآن في رحلتك الجامعية؟",
+        "options": [
+          {"id": "thinking", "label": "أفكّر بالتقديم"},
+          {"id": "applying", "label": "أقدّم طلبي الآن"},
+          {"id": "first_year", "label": "في السنة الأولى من الجامعة"},
+          {"id": "returning", "label": "أكملت سنة أو أكثر في الجامعة"},
+          {"id": "transfer", "label": "أخطّط للانتقال إلى جامعة أخرى"}
+        ]
+      },
+      {
+        "id": "language",
+        "type": "single",
+        "text": "ما اللغة المفضّلة لديك؟",
+        "options": [
+          {"id": "en", "label": "English"},
+          {"id": "ar", "label": "العربية"}
+        ]
+      },
+      {
+        "id": "work_hours",
+        "type": "single",
+        "text": "كم ساعة تعمل في الأسبوع تقريباً (بأجر)؟",
+        "options": [
+          {"id": "none", "label": "لا أعمل"},
+          {"id": "h1_10", "label": "من 1 إلى 10 ساعات"},
+          {"id": "h11_20", "label": "من 11 إلى 20 ساعة"},
+          {"id": "h21_30", "label": "من 21 إلى 30 ساعة"},
+          {"id": "over_30", "label": "أكثر من 30 ساعة"}
+        ]
+      },
+      {
+        "id": "family",
+        "type": "single",
+        "text": "هل عندك مسؤوليات عائلية؟",
+        "options": [
+          {"id": "none", "label": "لا"},
+          {"id": "children", "label": "أعتني بأطفال"},
+          {"id": "parents_siblings", "label": "أعتني بأهلي أو إخوتي"},
+          {"id": "paperwork", "label": "أتولّى أوراق العائلة أو أترجم لهم"},
+          {"id": "other", "label": "شيء آخر"}
+        ]
+      },
+      {
+        "id": "financial_aid",
+        "type": "single",
+        "text": "ماذا عن المساعدة المالية (FAFSA)؟",
+        "options": [
+          {"id": "filed", "label": "قدّمت طلب FAFSA"},
+          {"id": "plan_to_file", "label": "أنوي تقديم طلب FAFSA"},
+          {"id": "not_eligible_or_unsure", "label": "لا يحق لي تقديم FAFSA، أو لا أعرف إن كان يحق لي"},
+          {"id": "not_thought", "label": "لم أفكّر بالموضوع بعد"}
+        ]
+      },
+      {
+        "id": "needs",
+        "type": "multi",
+        "max_choices": 3,
+        "text": "ما أكثر شيء تحتاجه الآن؟",
+        "options": [
+          {"id": "admissions", "label": "فهم خطوات القبول"},
+          {"id": "paying", "label": "تدبير تكاليف الدراسة"},
+          {"id": "deadlines", "label": "عدم تفويت المواعيد المهمة"},
+          {"id": "support", "label": "إيجاد برامج دعم"},
+          {"id": "classes", "label": "اختيار المواد"},
+          {"id": "transfer", "label": "الانتقال إلى جامعة أخرى"}
+        ]
+      },
+      {
+        "id": "contact",
+        "type": "single",
+        "text": "إذا احتجت مساعدة من شخص حقيقي، ما الطريقة الأنسب لك؟",
+        "options": [
+          {"id": "in_person", "label": "وجهاً لوجه"},
+          {"id": "phone", "label": "اتصال هاتفي"},
+          {"id": "email", "label": "بريد إلكتروني"},
+          {"id": "text", "label": "رسالة نصية"},
+          {"id": "not_yet", "label": "لا أريد التحدث مع أحد الآن"}
+        ]
+      },
+      {
+        "id": "notes",
+        "type": "free_text",
+        "text": "هل هناك شيء آخر تحب أن يعرفه المرشد؟"
+      }
+    ]
+  }
+}

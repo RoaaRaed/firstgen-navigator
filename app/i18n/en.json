@@ -1,0 +1,110 @@
+{
+  "app": {
+    "title": "FirstGen Navigator",
+    "subtitle": "Your guide to college: admissions, financial aid, deadlines, and support.",
+    "choose_language": "Choose your language"
+  },
+  "disclosure": "You are talking to an AI advisor. It answers using documents and shows its sources. It is not an attorney or a financial aid officer, and it will tell you when it does not know the answer.",
+  "buttons": {
+    "start": "Start",
+    "next": "Next",
+    "back": "Back",
+    "skip": "Skip",
+    "clear_answers": "Clear my answers"
+  },
+  "questionnaire": {
+    "title": "A few quick questions",
+    "intro": "Your answers help me give advice that fits your life. Nothing is saved after you close this page, and I will never ask about immigration status.",
+    "optional": "Optional",
+    "choose_up_to": "Choose up to {max}",
+    "questions": [
+      {
+        "id": "stage",
+        "type": "single",
+        "text": "Where are you right now?",
+        "options": [
+          {"id": "thinking", "label": "Thinking about applying"},
+          {"id": "applying", "label": "Applying now"},
+          {"id": "first_year", "label": "Enrolled, first year"},
+          {"id": "returning", "label": "Enrolled, returning"},
+          {"id": "transfer", "label": "Planning to transfer"}
+        ]
+      },
+      {
+        "id": "language",
+        "type": "single",
+        "text": "Which language do you prefer?",
+        "options": [
+          {"id": "en", "label": "English"},
+          {"id": "ar", "label": "العربية"}
+        ]
+      },
+      {
+        "id": "work_hours",
+        "type": "single",
+        "text": "About how many hours a week do you work for pay?",
+        "options": [
+          {"id": "none", "label": "None"},
+          {"id": "h1_10", "label": "1 to 10"},
+          {"id": "h11_20", "label": "11 to 20"},
+          {"id": "h21_30", "label": "21 to 30"},
+          {"id": "over_30", "label": "More than 30"}
+        ]
+      },
+      {
+        "id": "family",
+        "type": "single",
+        "text": "Do you have family responsibilities?",
+        "options": [
+          {"id": "none", "label": "No"},
+          {"id": "children", "label": "Caring for children"},
+          {"id": "parents_siblings", "label": "Caring for parents or siblings"},
+          {"id": "paperwork", "label": "Handling paperwork or translating for my family"},
+          {"id": "other", "label": "Other"}
+        ]
+      },
+      {
+        "id": "financial_aid",
+        "type": "single",
+        "text": "How does financial aid apply to you?",
+        "options": [
+          {"id": "filed", "label": "I have filed the FAFSA"},
+          {"id": "plan_to_file", "label": "I plan to file the FAFSA"},
+          {"id": "not_eligible_or_unsure", "label": "I am not eligible for the FAFSA or I am not sure"},
+          {"id": "not_thought", "label": "I have not thought about this yet"}
+        ]
+      },
+      {
+        "id": "needs",
+        "type": "multi",
+        "max_choices": 3,
+        "text": "What do you need most right now?",
+        "options": [
+          {"id": "admissions", "label": "Understanding admissions steps"},
+          {"id": "paying", "label": "Paying for college"},
+          {"id": "deadlines", "label": "Not missing deadlines"},
+          {"id": "support", "label": "Finding support programs"},
+          {"id": "classes", "label": "Choosing classes"},
+          {"id": "transfer", "label": "Transferring"}
+        ]
+      },
+      {
+        "id": "contact",
+        "type": "single",
+        "text": "When you need help from a person, what works best?",
+        "options": [
+          {"id": "in_person", "label": "In person"},
+          {"id": "phone", "label": "Phone"},
+          {"id": "email", "label": "Email"},
+          {"id": "text", "label": "Text"},
+          {"id": "not_yet", "label": "I would rather not talk to someone yet"}
+        ]
+      },
+      {
+        "id": "notes",
+        "type": "free_text",
+        "text": "Anything else you want the advisor to know?"
+      }
+    ]
+  }
+}
