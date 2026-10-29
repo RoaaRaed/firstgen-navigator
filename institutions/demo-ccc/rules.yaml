@@ -1,0 +1,137 @@
+# rules.yaml v0: five personalization rules for the demo institution (City Colleges of Chicago).
+#
+# How it works: the questionnaire answers become a small profile. For every rule whose
+# conditions match the profile, the advisor adds that rule's next steps, boosts the listed
+# documents, program categories and deadline audiences, and shows the hand-off if there is one.
+#
+# Advisors can edit this file without touching code. Rules:
+#   - match on question ids and option ids from app/i18n/en.json (never on label text);
+#   - never state facts. A fact must come from a cited document, so next steps are prompts to
+#     check or ask, and "search_hints" tell the advisor what to look up;
+#   - never ask about immigration status.
+#
+# Run `python -m core.rules` to validate this file.
+
+version: 0
+
+rules:
+
+  - id: working_over_20
+    description: Students working more than 20 hours a week need part-time enrollment, aid implications, and evening-hours office guidance.
+    conditions:
+      - question: work_hours
+        any_of: [h21_30, over_30]
+    priority: 2
+    add_profile_tags: [working_20plus]
+    prefer_documents: [institution-ccc-registration, federal-pell-grants, federal-work-study, institution-ccc-tuition]
+    prefer_program_categories: [academic, financial]
+    prefer_deadline_audiences: [enrolled]
+    search_hints:
+      - part-time enrollment and financial aid
+      - how enrollment status affects aid
+      - evening or weekend office hours
+    next_steps:
+      - en: Ask your financial aid office how part-time enrollment would change your aid before you drop any class.
+        ar: اسأل مكتب المساعدات المالية كيف يؤثر التسجيل بنظام الدوام الجزئي على مساعدتك، قبل ما تسحب أي مادة.
+      - en: Check when the offices you need are open in the evening, or whether you can use them online.
+        ar: شوف متى بتفتح المكاتب اللي بتحتاجها بالمساء، أو إذا بتقدر تتعامل معها أونلاين.
+    handoff: null
+
+  - id: caregiver
+    description: Students who care for children, parents, or siblings need childcare, flexible scheduling, and emergency aid options.
+    conditions:
+      - question: family
+        any_of: [children, parents_siblings]
+    priority: 2
+    add_profile_tags: [caregiver]
+    prefer_documents: [institution-ccc-student-resources, institution-ccc-registration, institution-ccc-food-access-snap]
+    prefer_program_categories: [childcare, food, financial, wellness]
+    prefer_deadline_audiences: [enrolled]
+    search_hints:
+      - child care for students
+      - flexible class schedules online or evening classes
+      - emergency aid and food assistance
+    next_steps:
+      - en: Look at childcare, food, and emergency support options your college offers.
+        ar: شوف خيارات رعاية الأطفال والأكل والدعم الطارئ اللي بتقدمها كليتك.
+      - en: When you pick classes, compare class times and online options so they fit your family schedule.
+        ar: لما تختار موادك، قارن أوقات المحاضرات وخيارات الأونلاين عشان تناسب جدول عيلتك.
+    handoff: null
+
+  - id: financial_aid_unsure
+    description: Students who are not eligible for the FAFSA or are not sure are shown both the federal path and the Illinois Alternative Application path, with a human hand-off and no question about status.
+    conditions:
+      - question: financial_aid
+        any_of: [not_eligible_or_unsure]
+    priority: 1
+    add_profile_tags: [fafsa_ineligible_or_unsure]
+    prefer_documents:
+      - federal-fafsa-student-steps
+      - federal-fafsa-parent-steps
+      - state-isac-alternative-application
+      - state-isac-alternative-application-faqs
+      - state-isac-student-family-faqs-2026-27
+      - institution-ccc-undocumented-student-services
+    prefer_program_categories: [financial, immigrant_services]
+    prefer_deadline_audiences: [applying, all]
+    search_hints:
+      - FAFSA eligibility and what to do if unsure
+      - Illinois Alternative Application
+      - Undocumented Student Resource Liaison
+    next_steps:
+      - en: Read how the FAFSA works and the Illinois Alternative Application. The right path depends on your own situation, so talk to your college's financial aid office or an Undocumented Student Resource Liaison. You do not have to share more than you want to.
+        ar: اقرأ كيف بيشتغل الـ FAFSA والـ Illinois Alternative Application. المسار الصحيح بيعتمد على وضعك أنت، فتحدّث مع مكتب المساعدات المالية بكليتك أو مع منسّق خدمات الطلاب غير الموثقين. مش لازم تشارك أكتر من اللي بدك.
+    handoff:
+      topic: financial_aid_eligibility
+      gentle: true
+    must_not:
+      - ask about immigration status
+      - give legal advice
+    notes: >
+      State aid rules for undocumented students changed after the July 24, 2026 court ruling
+      (see state-isac-student-family-faqs-2026-27). The advisor must cite the document and its
+      date, and hand off instead of deciding eligibility.
+
+  - id: transfer_student
+    description: Students planning to transfer see transfer services, partner universities, and transfer deadlines first.
+    match: any
+    conditions:
+      - question: stage
+        any_of: [transfer]
+      - question: needs
+        any_of: [transfer]
+    priority: 2
+    add_profile_tags: [transfer]
+    prefer_documents: [institution-ccc-transfer-services, institution-ccc-star-scholarship, institution-ccc-admissions]
+    prefer_program_categories: [transfer, academic]
+    prefer_deadline_audiences: [transfer]
+    search_hints:
+      - transfer center and transfer advising
+      - guaranteed admission and partner universities
+      - Star Scholarship transfer partners
+    next_steps:
+      - en: Contact the Transfer Center at your college and ask which university partners match your major.
+        ar: تواصل مع مركز التحويل (Transfer Center) بكليتك واسأل أي جامعات شريكة بتناسب تخصصك.
+    handoff: null
+
+  - id: deadlines_first
+    description: Students still deciding or applying, or who said missing deadlines is a top need, see deadlines and admission steps first.
+    match: any
+    conditions:
+      - question: stage
+        any_of: [thinking, applying]
+      - question: needs
+        any_of: [deadlines]
+    priority: 3
+    add_profile_tags: []
+    prefer_documents: [institution-ccc-admissions, federal-fafsa-deadlines, institution-ccc-academic-calendar, federal-fafsa-checklist]
+    prefer_program_categories: [financial]
+    prefer_deadline_audiences: [applying, all]
+    search_hints:
+      - application and FAFSA deadlines
+      - admissions steps
+      - priority dates
+    next_steps:
+      - en: Write down the deadlines that apply to you and check each one against its source page.
+        ar: سجّل المواعيد اللي بتنطبق عليك، وتأكد من كل موعد من صفحة مصدره.
+    handoff: null
