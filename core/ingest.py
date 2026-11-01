@@ -1,10 +1,9 @@
-"""Step 1 of ingestion: load every KB document and split it into chunks.
+"""Ingestion: load -> split by heading -> attach metadata -> hash -> embed -> Chroma.
 
-Embedding and Chroma are added in the next step. This file only does the part
-that needs no model: load -> split by heading -> attach metadata -> hash.
-
-    python -m core.ingest                       # summary for demo-ccc
-    python -m core.ingest --kb path/to/kb       # another institution
+    python -m core.ingest                 # index demo-ccc (only changed files are re-embedded)
+    python -m core.ingest --dry-run       # only show the chunk summary, no model, no database
+    python -m core.ingest --rebuild       # throw the index away and build it again
+    python -m core.ingest --kb path/to/kb # another institution (one collection each)
 """
 from __future__ import annotations
 
@@ -15,6 +14,7 @@ import sys
 from dataclasses import dataclass, field
 from pathlib import Path
 
+from core.embeddings import Embedder, get_embedder
 from core.kb import load_doc
 
 MAX_CHARS = 1800  # a section longer than this is split into several chunks
@@ -170,22 +170,102 @@ def load_chunks(kb_dir: Path) -> list[Chunk]:
     return chunks
 
 
-def main(argv=None) -> int:
-    if hasattr(sys.stdout, "reconfigure"):
-        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-    ap = argparse.ArgumentParser(description="Split the KB into chunks (no embedding yet).")
-    ap.add_argument("--kb", default="institutions/demo-ccc/kb")
-    args = ap.parse_args(argv)
-    chunks = load_chunks(Path(args.kb))
+def open_collection(client, name: str, embedder: Embedder, rebuild: bool = False):
+    """Get this institution's collection. A different embedding model means a rebuild."""
+    if rebuild:
+        try:
+            client.delete_collection(name)
+        except Exception:
+            pass  # nothing to delete
+    col = client.get_or_create_collection(
+        name, metadata={"hnsw:space": "cosine", "embedder": embedder.name}
+    )
+    if (col.metadata or {}).get("embedder") != embedder.name:
+        client.delete_collection(name)
+        col = client.get_or_create_collection(
+            name, metadata={"hnsw:space": "cosine", "embedder": embedder.name}
+        )
+    return col
+
+
+def sync_index(chunks: list[Chunk], collection, embedder: Embedder, batch: int = 64) -> dict:
+    """Make the collection match the chunks. Only new or changed files are embedded."""
     by_doc: dict[str, list[Chunk]] = {}
     for c in chunks:
         by_doc.setdefault(c.doc_id, []).append(c)
-    print(f"{'document':58} {'chunks':>6} {'longest':>8}")
-    for doc, cs in by_doc.items():
-        print(f"{doc:58} {len(cs):>6} {max(len(c.text) for c in cs):>8}")
+
+    stored_hash: dict[str, str] = {}
+    stored_count: dict[str, int] = {}
+    for m in (collection.get(include=["metadatas"])["metadatas"] or []):
+        stored_hash[m["doc_id"]] = m["file_hash"]
+        stored_count[m["doc_id"]] = stored_count.get(m["doc_id"], 0) + 1
+
+    stats = {"added": 0, "updated": 0, "unchanged": 0, "removed": 0, "chunks_embedded": 0}
+
+    for doc_id in sorted(stored_hash.keys() - by_doc.keys()):  # file was deleted
+        collection.delete(where={"doc_id": doc_id})
+        stats["removed"] += 1
+
+    for doc_id, cs in by_doc.items():
+        same_hash = stored_hash.get(doc_id) == cs[0].metadata["file_hash"]
+        complete = stored_count.get(doc_id) == len(cs)  # a crash may leave half a document
+        if same_hash and complete:
+            stats["unchanged"] += 1
+            continue
+        if doc_id in stored_hash:
+            collection.delete(where={"doc_id": doc_id})
+            stats["updated"] += 1
+        else:
+            stats["added"] += 1
+        for i in range(0, len(cs), batch):
+            part = cs[i:i + batch]
+            collection.add(
+                ids=[c.chunk_id for c in part],
+                documents=[c.text for c in part],
+                embeddings=embedder.embed_passages([c.embed_text for c in part]),
+                metadatas=[c.metadata for c in part],
+            )
+        stats["chunks_embedded"] += len(cs)
+    return stats
+
+
+def main(argv=None) -> int:
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    ap = argparse.ArgumentParser(description="Index the knowledge base into Chroma.")
+    ap.add_argument("--kb", default="institutions/demo-ccc/kb")
+    ap.add_argument("--db", default="chroma_db", help="folder of the Chroma database")
+    ap.add_argument("--dry-run", action="store_true", help="only split, do not embed or store")
+    ap.add_argument("--rebuild", action="store_true", help="delete the index and rebuild it")
+    args = ap.parse_args(argv)
+
+    kb = Path(args.kb)
+    chunks = load_chunks(kb)
+    by_doc: dict[str, list[Chunk]] = {}
+    for c in chunks:
+        by_doc.setdefault(c.doc_id, []).append(c)
     sizes = sorted(len(c.text) for c in chunks)
-    print(f"\nOK: {len(by_doc)} documents -> {len(chunks)} chunks "
+    print(f"{len(by_doc)} documents -> {len(chunks)} chunks "
           f"(median {sizes[len(sizes) // 2]} chars, max {sizes[-1]}, min {sizes[0]})")
+    if args.dry_run:
+        for doc, cs in by_doc.items():
+            print(f"  {doc:58} {len(cs):>4} chunks, longest {max(len(c.text) for c in cs)}")
+        return 0
+
+    import time
+
+    import chromadb
+
+    t0 = time.time()
+    embedder = get_embedder()
+    client = chromadb.PersistentClient(path=args.db)
+    name = kb.resolve().parent.name  # "demo-ccc": one collection per institution
+    collection = open_collection(client, name, embedder, rebuild=args.rebuild)
+    stats = sync_index(chunks, collection, embedder)
+    print(f"Index '{name}': added {stats['added']}, updated {stats['updated']}, "
+          f"unchanged {stats['unchanged']}, removed {stats['removed']} documents "
+          f"({stats['chunks_embedded']} chunks embedded in {time.time() - t0:.0f}s)")
+    print(f"OK: collection '{name}' now holds {collection.count()} chunks")
     return 0
 
 
