@@ -127,8 +127,15 @@ def _pct(a: int, b: int) -> str:
     return f"{a}/{b} = {100 * a / b:.0f}%" if b else "n/a"
 
 
+def _near_miss_line(results: list[Result], k: int, depth: int = 10) -> str:
+    en, ar = hit_rate(results, "en", depth), hit_rate(results, "ar", depth)
+    return (f"Looking deeper: if the top {depth} chunks were used instead of the top {k}, "
+            f"English would reach {_pct(*en)} and Arabic {_pct(*ar)}.")
+
+
 def render_report(results: list[Result], embedder_name: str, k: int = 5,
-                  chunk_info: str = "", strategy: str = "plain") -> str:
+                  chunk_info: str = "", strategy: str = "plain",
+                  notes: str = "") -> str:
     v = gate_verdict(results, k)
     skipped = [r for r in results if r.behavior in ANSWERABLE and not r.expected]
     lines = [
@@ -140,6 +147,8 @@ def render_report(results: list[Result], embedder_name: str, k: int = 5,
         f"**Gate 1 {'PASS' if v['pass'] else 'NOT YET'}**: "
         f"English {_pct(v['en']['hits'], v['en']['n'])} (need {GATE_EN:.0%}), "
         f"Arabic {_pct(v['ar']['hits'], v['ar']['n'])} (need {GATE_AR:.0%}).",
+        "",
+        _near_miss_line(results, k),
         "",
         "A question counts as a hit when at least one of the top-5 chunks comes from a document "
         "listed in `expected_source_ids` of `golden_questions.csv`. Only knowledge-base documents "
@@ -181,6 +190,8 @@ def render_report(results: list[Result], embedder_name: str, k: int = 5,
     if skipped:
         lines.append("- Not scored (answered from tables only): " + ", ".join(r.qid for r in skipped) + ".")
     lines.append("- Arabic has few questions (10), so one question moves the rate by 10 points.")
+    if notes.strip():
+        lines += ["", "## Findings and decisions", "", notes.strip()]
     return "\n".join(lines) + "\n"
 
 
@@ -193,6 +204,8 @@ def main(argv=None) -> int:
     ap.add_argument("--db", default="chroma_db")
     ap.add_argument("--k", type=int, default=5)
     ap.add_argument("--out", default="evals/retrieval_report.md")
+    ap.add_argument("--notes", default="evals/retrieval_notes.md",
+                    help="hand-written findings appended to the report (optional)")
     ap.add_argument("--strategy", choices=("plain", "layered"), default="plain",
                     help="plain = one search; layered = best chunk of each layer first")
     args = ap.parse_args(argv)
@@ -203,8 +216,11 @@ def main(argv=None) -> int:
     retriever = load_retriever(args.institution, args.db)
     searcher = LayeredRetriever(retriever) if args.strategy == "layered" else retriever
     results = evaluate(load_golden(args.golden), searcher, k=args.k)
+    notes_file = Path(args.notes)
+    notes = notes_file.read_text(encoding="utf-8") if notes_file.exists() else ""
     report = render_report(results, retriever.embedder.name, args.k,
-                           chunk_info=f"chunks {MIN_CHARS}-{MAX_CHARS} chars", strategy=args.strategy)
+                           chunk_info=f"chunks {MIN_CHARS}-{MAX_CHARS} chars",
+                           strategy=args.strategy, notes=notes)
     Path(args.out).write_text(report, encoding="utf-8")
 
     v = gate_verdict(results, args.k)

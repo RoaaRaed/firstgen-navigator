@@ -1,0 +1,13 @@
+**1. Gate 1 passed on the first measurement.** English 23/25 (92%) and Arabic 8/10 (80%) against targets of 80% and 70%. The golden set is v0: 25 scored English questions and 10 Arabic questions. The Arabic questions are translations of English ones with the same expected sources (a parity test), so they are not independent samples.
+
+**2. The four misses (g002, g018, g032, g033) are near misses.** In g002 and its Arabic twin g032, the word "FAFSA" pulls in the federal FAFSA documents, which crowd out the state Alternative Application documents. The expected document is in the top 10 for g018 (rank 8), g032 (rank 10) and g033 (rank 7). g002 is not in the top 10. The advisor should therefore retrieve about 8 chunks instead of 5; we will build that into the agent in Week 3.
+
+**3. Layered retrieval did not help.** We tried guaranteeing the best chunk of each layer (federal, state, institution) a place at the top. Hit rates were identical (92% and 80%), and the near misses moved slightly deeper (g018 from rank 8 to 9, g033 from 7 to 9). The best state chunk for g002 comes from `state-isac-non-eligible-noncitizens`, not from the Alternative Application page. The default strategy stays plain. Report: `retrieval_report_layered.md`.
+
+**4. A similarity threshold cannot detect "Not found" on its own yet.** Arabic scores are lower than English ones (Arabic hits score about 0.79 to 0.86, English about 0.82 to 0.92), so one global threshold hurts Arabic: at 0.80 Arabic falls to 60%. Questions that should be refused or answered "Not found" score 0.79 to 0.88, which overlaps with answerable questions. The threshold stays at 0.0 for now. Not-found and refusal behavior will come from the agent prompt and structured output, and the threshold will be calibrated per language in Week 5 using the 10 out-of-scope questions.
+
+**5. A stale page ranks high.** `state-isac-non-eligible-noncitizens` has no `effective_term` and conflicts with the July 24, 2026 court ruling and the 2027-28 pages. It is in the top 3 results for 7 questions (g005, g018, g023, g024, g029, g032, g037). The agent must prefer newer documents, say when sources conflict, and hand off. This is tested by golden questions g019 and g028.
+
+**6. BM25 hybrid retrieval was not added.** The brief says to add it only if Arabic falls short, and Arabic is above target.
+
+**7. Limits of this measurement.** The golden set was written by the builder, not by advisors. A question can be answered by a document we did not list, so the hit rate may be understated. Benjamin's feedback on the question mix is pending. Questions that are answered from tables (for example g008, spring dates) are not scored here.

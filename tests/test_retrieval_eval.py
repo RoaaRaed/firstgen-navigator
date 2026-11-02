@@ -119,3 +119,11 @@ def test_layered_search_gives_every_layer_a_slot():
 def test_layered_search_respects_threshold():
     docs = [h.doc_id for h in LayeredRetriever(LayerFake()).search("q", k=5, threshold=0.85)]
     assert docs == ["fed1", "fed2", "fed3"]
+
+
+def test_report_shows_deeper_hit_rate_and_notes():
+    rows = [row("g1", "en", "grounded", ["a"], "q1")]
+    fr = FakeRetriever({"q1": [("x", .9)] * 7 + [("a", .5)]})  # rank 8: miss at 5, hit at 10
+    text = render_report(evaluate(rows, fr), "fake", notes="My finding.")
+    assert "top 10 chunks" in text and "English would reach 1/1 = 100%" in text
+    assert "## Findings and decisions" in text and "My finding." in text
