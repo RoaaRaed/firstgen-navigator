@@ -3,6 +3,7 @@ from pathlib import Path
 
 from core.retriever import Hit
 from evals.retrieval_eval import (
+    LayeredRetriever,
     evaluate,
     gate_verdict,
     hit_rate,
@@ -89,3 +90,32 @@ def test_golden_file_matches_real_kb():
     stems = {p.stem for p in KB.glob("*.md")}
     for r in rows:
         assert kb_ids(r) <= stems, f"{r['id']} expects a document that does not exist"
+
+
+class LayerFake:
+    """Fake retriever that honours the layer filter. Rows: (doc_id, layer, score)."""
+
+    ROWS = [("fed1", "federal", .90), ("fed2", "federal", .89), ("fed3", "federal", .88),
+            ("st1", "state", .80), ("st2", "state", .79), ("in1", "institution", .70)]
+
+    def search(self, query, k=5, layer=None, threshold=None, **kw):
+        rows = [r for r in self.ROWS if layer is None or r[1] == layer]
+        rows.sort(key=lambda r: -r[2])
+        return [Hit(f"{d}::00", d, s, "t", {"doc_id": d, "layer": L}) for d, L, s in rows[:k]]
+
+
+def test_plain_search_lets_one_layer_crowd_out_the_others():
+    docs = [h.doc_id for h in LayerFake().search("q", k=3)]
+    assert docs == ["fed1", "fed2", "fed3"]
+
+
+def test_layered_search_gives_every_layer_a_slot():
+    docs = [h.doc_id for h in LayeredRetriever(LayerFake()).search("q", k=5)]
+    assert docs[:3] == ["fed1", "st1", "in1"]      # best of each layer, ordered by score
+    assert docs[3:] == ["fed2", "fed3"] or docs[3:] == ["fed2", "st2"]
+    assert len(docs) == 5 and len(set(docs)) == 5
+
+
+def test_layered_search_respects_threshold():
+    docs = [h.doc_id for h in LayeredRetriever(LayerFake()).search("q", k=5, threshold=0.85)]
+    assert docs == ["fed1", "fed2", "fed3"]

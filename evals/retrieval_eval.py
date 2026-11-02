@@ -50,6 +50,32 @@ def kb_ids(row: dict) -> set:
     return {i.strip() for i in ids if i.strip() and ":" not in i}
 
 
+class LayeredRetriever:
+    """Strategy 'layered': guarantee the best chunk of each layer a place at the top.
+
+    A question like "I cannot file the FAFSA, is there state aid?" shares many words with
+    federal documents, so they can crowd out the state documents. Here the best federal,
+    state and institution chunk come first (ordered by score), then everything else by score.
+    """
+
+    LAYERS = ("federal", "state", "institution")
+
+    def __init__(self, inner):
+        self.inner = inner
+
+    def search(self, query, k=5, threshold=None, **kw):
+        per_layer = {L: self.inner.search(query, k=k, layer=L, threshold=0.0) for L in self.LAYERS}
+        firsts = [hits[0] for hits in per_layer.values() if hits]
+        firsts.sort(key=lambda h: -h.score)
+        seen = {h.chunk_id for h in firsts}
+        rest = sorted((h for hits in per_layer.values() for h in hits if h.chunk_id not in seen),
+                      key=lambda h: -h.score)
+        merged = firsts + rest
+        if threshold:
+            merged = [h for h in merged if h.score >= threshold]
+        return merged[:k]
+
+
 def evaluate(rows: list[dict], retriever, k: int = 5, depth: int = 10) -> list[Result]:
     """Search `depth` chunks per question so near misses (rank 6-10) are visible too."""
     results = []
@@ -102,14 +128,14 @@ def _pct(a: int, b: int) -> str:
 
 
 def render_report(results: list[Result], embedder_name: str, k: int = 5,
-                  chunk_info: str = "") -> str:
+                  chunk_info: str = "", strategy: str = "plain") -> str:
     v = gate_verdict(results, k)
     skipped = [r for r in results if r.behavior in ANSWERABLE and not r.expected]
     lines = [
         "# Retrieval report (Gate 1)",
         "",
         f"Generated: {dt.date.today().isoformat()} | Embedding model: `{embedder_name}` | "
-        f"Top-{k} chunks, no threshold, no filters" + (f" | {chunk_info}" if chunk_info else ""),
+        f"Top-{k} chunks, no threshold, strategy: {strategy}" + (f" | {chunk_info}" if chunk_info else ""),
         "",
         f"**Gate 1 {'PASS' if v['pass'] else 'NOT YET'}**: "
         f"English {_pct(v['en']['hits'], v['en']['n'])} (need {GATE_EN:.0%}), "
@@ -167,15 +193,18 @@ def main(argv=None) -> int:
     ap.add_argument("--db", default="chroma_db")
     ap.add_argument("--k", type=int, default=5)
     ap.add_argument("--out", default="evals/retrieval_report.md")
+    ap.add_argument("--strategy", choices=("plain", "layered"), default="plain",
+                    help="plain = one search; layered = best chunk of each layer first")
     args = ap.parse_args(argv)
 
     from core.ingest import MAX_CHARS, MIN_CHARS
     from core.retriever import load_retriever
 
     retriever = load_retriever(args.institution, args.db)
-    results = evaluate(load_golden(args.golden), retriever, k=args.k)
+    searcher = LayeredRetriever(retriever) if args.strategy == "layered" else retriever
+    results = evaluate(load_golden(args.golden), searcher, k=args.k)
     report = render_report(results, retriever.embedder.name, args.k,
-                           chunk_info=f"chunks {MIN_CHARS}-{MAX_CHARS} chars")
+                           chunk_info=f"chunks {MIN_CHARS}-{MAX_CHARS} chars", strategy=args.strategy)
     Path(args.out).write_text(report, encoding="utf-8")
 
     v = gate_verdict(results, args.k)
@@ -185,6 +214,7 @@ def main(argv=None) -> int:
               f"{'PASS' if g['pass'] else 'below target'}")
     misses = [r.qid for r in results if r.scored and (r.rank is None or r.rank > args.k)]
     print("Misses:", ", ".join(misses) or "none")
+    print(f"Strategy: {args.strategy}")
     print(f"Gate 1: {'PASS' if v['pass'] else 'NOT YET'}   report -> {args.out}")
     return 0
 
