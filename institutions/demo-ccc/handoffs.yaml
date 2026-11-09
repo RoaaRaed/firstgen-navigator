@@ -1,0 +1,59 @@
+# handoffs.yaml: who a student is sent to when the advisor should not answer alone.
+#
+# Each topic points to a row in programs.csv, so the office name, link and phone shown
+# to the student always come from a cited table row (never typed by the model).
+# Advisors can edit this file without touching code. Run `pytest` after editing.
+#
+#   program:   id of the row in programs.csv that holds the contact details
+#   also:      optional second row (for example a state agency)
+#   aliases:   other words the advisor may use for this topic
+#   sensitive: true -> the advisor uses a gentle tone and never asks about status
+
+version: 0
+
+topics:
+  financial_aid:
+    program: ccc-financial-aid-offices
+    aliases: [financial_aid_eligibility, fafsa, verification, aid, pell, loans, work_study, dependency]
+    sensitive: false
+  state_aid:
+    program: ccc-financial-aid-offices
+    also: il-map-grant
+    aliases: [map, map_grant, isac, alternative_application]
+    sensitive: false
+  immigration:
+    program: ccc-undocumented-student-services
+    also: il-non-eligible-noncitizen-resources
+    aliases: [undocumented, daca, immigration_status, legal, visa]
+    sensitive: true
+  academic:
+    program: ccc-academic-advising
+    aliases: [advising, classes, courses, registration, schedule, graduation, major]
+    sensitive: false
+  transfer:
+    program: ccc-transfer-centers
+    aliases: [transfer_credit, four_year, university]
+    sensitive: false
+  wellness:
+    program: ccc-wellness-centers
+    aliases: [mental_health, counseling, housing, homeless, crisis, stress]
+    sensitive: true
+  food:
+    program: ccc-food-pantries
+    aliases: [food_pantry, hunger, groceries]
+    sensitive: true
+  snap:
+    program: ccc-snap-work-requirement-help
+    aliases: [snap_benefits, link_card, idhs]
+    sensitive: false
+  childcare:
+    program: ccc-child-care-referrals
+    aliases: [child_care, children, kids, daycare]
+    sensitive: false
+  disability:
+    program: ccc-disability-access-centers
+    aliases: [accommodations, accessibility, dac]
+    sensitive: false
+
+# Used when the topic is unknown.
+default: academic
