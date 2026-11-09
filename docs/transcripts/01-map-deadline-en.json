@@ -1,0 +1,40 @@
+{
+  "question": "What is the Illinois MAP grant and is there a deadline I should know about?",
+  "language": "en",
+  "confidence": "High",
+  "answer": "The Monetary Award Program (MAP) is a need‑based grant for Illinois‑resident students who attend an approved Illinois college. It is awarded based on financial need shown on the FAFSA or the Illinois Alternative Application and does **not** have to be repaid. No high‑school grades or test scores are required, and the money can be used only for tuition and mandatory fees. \n\nFor the 2026‑27 award year, the deadline to submit a FAFSA or Alternative Application for MAP was **Thursday, April 23, 2026**. ISAC updates the deadline each year, so you should check the MAP page for the current year’s date.\n\n**Next steps**\n1. Complete the FAFSA (or the Illinois Alternative Application if you qualify) as soon as possible.\n2. Verify that your college is on the ISAC‑approved list; eligibility will be determined automatically.\n3. Mark the deadline on your calendar and submit the application before it passes. Check the ISAC MAP website each year for any new deadline updates.",
+  "citations": [
+    {
+      "source_id": "state-isac-map::02",
+      "label": "Program Description"
+    },
+    {
+      "source_id": "state-isac-map::09",
+      "label": "Award Amount (tuition/fees only)"
+    },
+    {
+      "source_id": "state-isac-map::13",
+      "label": "Processing Updates – 2026‑27 deadline"
+    },
+    {
+      "source_id": "state-isac-map::05",
+      "label": "How to Apply – eligibility auto‑determined"
+    }
+  ],
+  "next_steps": [
+    "Complete the FAFSA or Illinois Alternative Application.",
+    "Confirm your college is on the approved list in the application.",
+    "Submit the application before the deadline (April 23 2026 for 2026‑27) and check the ISAC MAP page each year for updates."
+  ],
+  "human_contact": null,
+  "tool_calls": [
+    {
+      "name": "search_knowledge_base",
+      "args": {
+        "language": "en",
+        "query": "Illinois MAP grant"
+      }
+    }
+  ],
+  "seconds": 119.6
+}

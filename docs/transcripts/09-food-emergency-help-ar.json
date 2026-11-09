@@ -1,0 +1,39 @@
+{
+  "question": "أين أجد مساعدة في الطعام أو في التكاليف الطارئة داخل الجامعة؟",
+  "language": "ar",
+  "confidence": "High",
+  "answer": "يمكنك الحصول على مساعدة في الطعام أو في النفقات الطارئة من خلال الجهتين داخل كل كلية من كليات City Colleges of Chicago:\n\n1. **مركز العافية (Wellness Center)** – يدير مخازن الطعام في جميع الكليات. توجد مخازن طعام مجانية ويمكنك أخذ وجبات خفيفة أو وجبات جاهزة للمنزل. تواصل مع مركز العافية في كليتك لمعرفة الموقع وساعات العمل.【source_id: programs:ccc-food-pantries】\n\n2. **مكتب المساعدات المالية (Financial Aid Office)** – يقدم منحًا، قروضًا، أو فرص عمل‑دراسة (Federal Work‑Study) لتغطية النفقات الطارئة. يمكنك حجز موعد مع المكتب للحصول على استشارة حول المساعدة المالية المتاحة.【source_id: programs:ccc-financial-aid-offices】\n\nإذا كنت تواجه متطلبات عمل لبرنامج SNAP، يمكن لأعضاء AmeriCorps VISTA في الكلية توجيهك إلى فرص تطوع تلبي هذه المتطلبات.【source_id: programs:ccc-snap-work-requirement-help】",
+  "citations": [
+    {
+      "source_id": "programs:ccc-food-pantries",
+      "label": "Food pantries at every college"
+    },
+    {
+      "source_id": "programs:ccc-financial-aid-offices",
+      "label": "Financial Aid Offices"
+    },
+    {
+      "source_id": "programs:ccc-snap-work-requirement-help",
+      "label": "Help with SNAP work requirements"
+    }
+  ],
+  "next_steps": [
+    "اتصل بمركز العافية في كليتك لتحديد موقع مخزن الطعام وساعات العمل.",
+    "احجز موعدًا مع مكتب المساعدات المالية لتقديم طلب مساعدة طارئة أو استشارة حول الخيارات المتاحة.",
+    "إذا كان لديك متطلبات عمل لبرنامج SNAP، تواصل مع أعضاء AmeriCorps VISTA في الكلية للحصول على فرص تطوع تلبي المتطلبات."
+  ],
+  "human_contact": null,
+  "tool_calls": [
+    {
+      "name": "match_programs",
+      "args": {
+        "categories": [
+          "food",
+          "financial"
+        ],
+        "keywords": "food assistance emergency expenses"
+      }
+    }
+  ],
+  "seconds": 44.1
+}

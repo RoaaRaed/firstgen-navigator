@@ -1,0 +1,56 @@
+{
+  "question": "لا أستطيع تعبئة طلب FAFSA. هل هناك مساعدات من الولاية يمكنني التقديم عليها؟",
+  "language": "ar",
+  "confidence": "High",
+  "answer": "إذا لم تستطع تعبئة طلب FAFSA، يمكنك التقديم عبر **البديل لتطبيق المساعدة المالية لولاية إلينوي (Alternative Application)**. هذا النموذج مخصص للطلاب غير المؤهلين للمساعدات الفدرالية (مثل غير المواطنين أو الذين لا يستطيعون إكمال FAFSA).\n\n1. **ابدأ بالاستبيان المسبق** الموجود في بداية النموذج لتحديد ما إذا كنت تحتاج إلى البديل أو القسم الإضافي. [ state-isac-alternative-application-faqs::03 ]\n2. إذا كان الاستبيان يوضح أنك غير مؤهل للـ FAFSA، أكمل **نموذج البديل** عبر موقع ISAC. [ state-isac-alternative-application-faqs::02 ]\n3. للحصول على مساعدة شخصية، تواصل مع **مكتب المساعدة المالية في كليتك** أو مع **Illinois Student Assistance Commission (ISAC)**. [ programs:il-alternative-application ], [ programs:ccc-financial-aid-offices ]\n4. قد تكون مؤهلاً لمنح إضافية مثل **منحة Chicago Star** التي تغطي الرسوم والكتب. [ programs:ccc-star-scholarship ]\n\n**خطوات مقترحة الآن**:\n- زر صفحة البديل على موقع ISAC وابدأ الاستبيان المسبق.\n- إذا أظهر الاستبيان أنك غير مؤهل للـ FAFSA، أكمل النموذج الإلكتروني وأرسله.\n- اتصل أو زر مكتب المساعدة المالية في كليتك للحصول على إرشاد مباشر حول النموذج والمنح المتاحة.",
+  "citations": [
+    {
+      "source_id": "state-isac-alternative-application-faqs::03",
+      "label": "Alternative Application FAQ – استبيان الفحص المسبق"
+    },
+    {
+      "source_id": "state-isac-alternative-application-faqs::02",
+      "label": "Alternative Application FAQ – متى تستخدم النموذج"
+    },
+    {
+      "source_id": "programs:il-alternative-application",
+      "label": "Alternative Application – ISAC program page"
+    },
+    {
+      "source_id": "programs:ccc-financial-aid-offices",
+      "label": "مكاتب المساعدة المالية في City Colleges"
+    },
+    {
+      "source_id": "programs:ccc-star-scholarship",
+      "label": "منحة Chicago Star"
+    }
+  ],
+  "next_steps": [
+    "زيارة صفحة البديل على موقع ISAC وملء استبيان الفحص المسبق.",
+    "إكمال نموذج البديل إذا كان مناسبًا وإرساله إلى ISAC.",
+    "الاتصال بمكتب المساعدة المالية في كليتك للحصول على إرشاد شخصي."
+  ],
+  "human_contact": null,
+  "tool_calls": [
+    {
+      "name": "search_knowledge_base",
+      "args": {
+        "language": "en",
+        "layer": "state",
+        "query": "Illinois state financial aid programs for students who cannot complete FAFSA"
+      }
+    },
+    {
+      "name": "match_programs",
+      "args": {
+        "categories": [
+          "financial"
+        ],
+        "tags": [
+          "fafsa_ineligible_or_unsure"
+        ]
+      }
+    }
+  ],
+  "seconds": 107.7
+}

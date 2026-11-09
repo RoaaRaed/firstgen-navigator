@@ -1,0 +1,51 @@
+{
+  "question": "ما هي منحة MAP ومتى الموعد النهائي للتقديم؟",
+  "language": "ar",
+  "confidence": "High",
+  "answer": "منحة MAP (Monetary Award Program) هي منحة مالية غير مستردة تُقدَّم للطلاب المقيمين في إلينوي الذين يدرسون في كليات أو جامعات إلينوي المعتمدة وتظهر حاجتهم المالية بناءً على معلومات FAFSA أو طلب بديل للمنح. لا تحتاج إلى تقديم درجات الثانوية أو نتائج اختبار لتأهلها، وتُصرف لتغطية الرسوم الدراسية والرسوم الإلزامية فقط. يمكن أن تصل قيمة المنحة إلى 8,400 دولار للعام الدراسي 2023‑24 وما بعده، ويُحدَّد مقدارها بناءً على تحليل الظروف المالية للطالب أو الحد الأقصى المسموح به من قبل ISAC.\n\n**الموعد النهائي للتقديم للعام الدراسي 2026‑27**\n- 1 مارس 2026 هو تاريخ الأولوية للطلاب الذين سبق لهم الحصول على MAP في العام السابق؛ تقديم الطلب قبل هذا التاريخ يمنح أولوية في الحصول على الأموال.\n- 23 أبريل 2026 هو آخر يوم لتقديم طلب MAP للعام الدراسي 2026‑27؛ الطلبات التي تُستلم بعد هذا التاريخ تُوضع في “قائمة الانتظار” ولا تُمنح أموال MAP إلا إذا توفرت تمويلات إضافية.\n\n**خطوات عملية للتقديم**\n1. قدِّم طلب FAFSA أو طلب بديل للمنح (Alternative Application) وتأكد من أن الكلية التي تنوي الالتحاق بها مُدرجة في الطلب.\n2. راجع موقع ISAC أو مكتب المساعدة المالية في City Colleges of Chicago لتأكيد أن طلبك وصل قبل 23 أبريل 2026.\n3. إذا كنت طالبًا عائدًا (مستفيد سابق من MAP)، قدِّم طلبك قبل 1 مارس 2026 للحصول على أولوية.",
+  "citations": [
+    {
+      "source_id": "state-isac-map::02",
+      "label": "Program Description"
+    },
+    {
+      "source_id": "state-isac-map::10",
+      "label": "Award Amount"
+    },
+    {
+      "source_id": "deadlines:state-map-priority-2026-27",
+      "label": "Priority access date for returning MAP recipients (2026-27)"
+    },
+    {
+      "source_id": "deadlines:state-map-suspension-2026-27",
+      "label": "Last day to apply for 2026-27 MAP before awards go into suspense"
+    },
+    {
+      "source_id": "state-isac-map::05",
+      "label": "How to Apply"
+    }
+  ],
+  "next_steps": [
+    "قدِّم طلب FAFSA أو طلب بديل للمنح (Alternative Application).",
+    "تحقق من أن طلبك وصل إلى ISAC قبل 23 أبريل 2026.",
+    "إذا كنت مستفيدًا سابقًا من MAP، قدم طلبك قبل 1 مارس 2026 للحصول على أولوية."
+  ],
+  "human_contact": null,
+  "tool_calls": [
+    {
+      "name": "search_knowledge_base",
+      "args": {
+        "language": "ar",
+        "query": "ما هي منحة MAP في City Colleges of Chicago"
+      }
+    },
+    {
+      "name": "lookup_deadlines",
+      "args": {
+        "term": "2026-27",
+        "topic": "MAP"
+      }
+    }
+  ],
+  "seconds": 98.5
+}

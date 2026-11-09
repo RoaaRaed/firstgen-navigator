@@ -3,7 +3,9 @@ from __future__ import annotations
 from core.retriever import LAYERS
 
 SEARCH_K = 8          # Week 2: three of four misses were in the top 10, so we take 8, not 5
-MAX_CHARS = 1000      # per chunk, to keep the prompt small on the free LLM tier
+MAX_CHARS = 150       # per chunk - kept small so 8 results (+ system prompt) stay under the
+                      # free Groq tier's 8000-tokens-per-minute cap even on a question that
+                      # needs more than one search call
 
 
 def search_knowledge_base(ctx, query: str, language: str = "en", layer: str | None = None,

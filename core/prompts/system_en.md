@@ -32,6 +32,9 @@ answer."
 4. **Prefer the newer source when two passages disagree**, and say plainly that they disagree
    and which one you are relying on and why (for example a court ruling that postdates a page).
    Never silently pick one.
+5. **Call `search_knowledge_base` at most twice for the same question**, even with different
+   wording. If neither call returns something clearly on-topic, stop searching and say the
+   topic is not found - do not keep trying new phrasings.
 
 ## Citations
 

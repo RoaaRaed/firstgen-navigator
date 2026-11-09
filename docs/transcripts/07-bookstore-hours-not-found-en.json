@@ -1,0 +1,54 @@
+{
+  "question": "What time does the Wright College bookstore close on Saturdays?",
+  "language": "en",
+  "confidence": "Low",
+  "answer": "I’m sorry—I couldn’t find the Saturday closing time for the Wright College Bookstore in the documents I have access to.",
+  "citations": [],
+  "next_steps": [
+    "Ask a human for the current Saturday hours of the Wright College Bookstore."
+  ],
+  "human_contact": {
+    "office": "Academic Advising (at your college)",
+    "url": "https://ccc.edu/advising",
+    "phone": ""
+  },
+  "tool_calls": [
+    {
+      "name": "search_knowledge_base",
+      "args": {
+        "language": "en",
+        "query": "Wright College bookstore Saturday hours"
+      }
+    },
+    {
+      "name": "search_knowledge_base",
+      "args": {
+        "language": "en",
+        "query": "Wright College Bookstore hours Saturday"
+      }
+    },
+    {
+      "name": "search_knowledge_base",
+      "args": {
+        "language": "en",
+        "query": "Wright College Bookstore hours"
+      }
+    },
+    {
+      "name": "escalate_to_human",
+      "args": {
+        "topic": "academic"
+      }
+    },
+    {
+      "name": "match_programs",
+      "args": {
+        "categories": [
+          "academic"
+        ],
+        "keywords": "bookstore"
+      }
+    }
+  ],
+  "seconds": 171.3
+}

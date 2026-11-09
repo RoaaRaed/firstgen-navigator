@@ -1,0 +1,39 @@
+{
+  "question": "When does the spring semester start and when is the last day to drop a class?",
+  "language": "en",
+  "confidence": "High",
+  "answer": "The regular Spring 2027 semester begins on January 11 2027. The last day to drop (student‑initiated withdrawal) a 16‑week Spring 2027 class is April 8 2027.",
+  "citations": [
+    {
+      "source_id": "deadlines:ccc-spring27-first-day-16wk",
+      "label": "First day of class (Regular 16‑week session)"
+    },
+    {
+      "source_id": "deadlines:ccc-spring27-withdrawal-16wk",
+      "label": "Last day for student‑initiated withdrawal (Regular 16‑week session)"
+    }
+  ],
+  "next_steps": [
+    "Mark the start date (Jan 11 2027) and drop deadline (Apr 8 2027) on your calendar.",
+    "Check the CCC academic calendar online for any updates before the semester begins.",
+    "If you anticipate needing to drop a class, contact the Registrar’s Office early to confirm the withdrawal process."
+  ],
+  "human_contact": null,
+  "tool_calls": [
+    {
+      "name": "lookup_deadlines",
+      "args": {
+        "term": "",
+        "topic": "first day"
+      }
+    },
+    {
+      "name": "lookup_deadlines",
+      "args": {
+        "term": "",
+        "topic": "drop"
+      }
+    }
+  ],
+  "seconds": 62.8
+}

@@ -1,0 +1,38 @@
+{
+  "question": "Where can I get help with food or emergency costs on campus?",
+  "language": "en",
+  "confidence": "High",
+  "answer": "You can get help with food and emergency costs on campus through these resources:\n\n1. **Food pantry** – Every City College has a food pantry that provides free groceries and grab‑and‑go snacks. Contact your college’s Wellness Center for hours and location. \n2. **Food Security for Life Initiative** – The Wellness Center also runs free meals and an on‑campus market (planned at all seven colleges). Ask the Wellness Center what is currently available at your campus.\n3. **Emergency financial assistance** – The Financial Aid Office can provide short‑term grants, loans, or scholarship help for unexpected expenses. Visit or call the office to discuss your situation.\n\n**Next steps**\n- Go to your college’s Wellness Center (or call) to learn pantry hours and any meal‑distribution sites.\n- If you need extra cash for emergency costs, schedule a meeting with the Financial Aid Office to explore emergency grants or short‑term aid.",
+  "citations": [
+    {
+      "source_id": "programs:ccc-food-pantries",
+      "label": "Food pantries at every college"
+    },
+    {
+      "source_id": "programs:ccc-food-security-initiative",
+      "label": "Food Security for Life Initiative"
+    },
+    {
+      "source_id": "programs:ccc-financial-aid-offices",
+      "label": "Financial Aid Offices"
+    }
+  ],
+  "next_steps": [
+    "Contact your college’s Wellness Center for pantry hours and meal‑distribution details.",
+    "Schedule a meeting with the Financial Aid Office to discuss emergency financial assistance."
+  ],
+  "human_contact": null,
+  "tool_calls": [
+    {
+      "name": "match_programs",
+      "args": {
+        "categories": [
+          "food",
+          "financial"
+        ],
+        "keywords": "emergency costs"
+      }
+    }
+  ],
+  "seconds": 30.0
+}

@@ -165,8 +165,16 @@ def run_agent(agent: Agent, question: str, language: str = "en") -> AgentResult:
     structured-output call turns that conversation into an AdvisorAnswer. Two calls, not one,
     so the free-form tool loop (well supported) and the strict output schema (brief
     requirement) do not have to be the same LLM call."""
-    result = agent.runnable.invoke({"messages": [{"role": "user", "content": question}]})
-    messages = result["messages"]
+    try:
+        result = agent.runnable.invoke({"messages": [{"role": "user", "content": question}]})
+        messages = result["messages"]
+    except Exception as e:
+        # The tool-calling phase itself failed (e.g. the free tier's per-minute token limit
+        # was hit on a hard question) - return a safe low-confidence answer instead of
+        # crashing the whole run; a human should answer this one.
+        return AgentResult(answer=_safe_fallback(f"{type(e).__name__}: {e}"),
+                           tool_calls=[], raw_text="")
+
     tool_calls = _extract_tool_calls(messages)
     raw_text = next((m.content for m in reversed(messages)
                      if getattr(m, "type", None) == "ai" and m.content), "")

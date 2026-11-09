@@ -1,0 +1,40 @@
+{
+  "question": "I cannot file the FAFSA. Is there any state aid I can apply for?",
+  "language": "en",
+  "confidence": "Medium",
+  "answer": "If you cannot file the FAFSA, Illinois offers an **Alternative Application for Illinois Financial Aid**. This application is for students who are not eligible for federal aid (including undocumented students) and therefore will not complete the FAFSA. It lets you apply for any state‑aid programs that accept the alternative form. \n\n**Key points**\n1. **Alternative Application** – Managed by the Illinois Student Assistance Commission (ISAC). It is the only statewide route for students who cannot use the FAFSA. (source_id: state-isac-alternative-application::02)\n2. **Eligibility check** – The application begins with a prescreening questionnaire that tells you whether you should use the Alternative Application or the FAFSA. (source_id: state-isac-alternative-application-faqs::03)\n3. **Recent court ruling** – A July 24 2026 federal court decision barred undocumented students from receiving any ISAC state aid for the 2026‑27 year. If you are undocumented, the Alternative Application will not provide aid for that academic year. (source_id: state-isac-alternative-application-faqs::01)\n4. **Other state programs** – Most Illinois state‑aid programs (e.g., MAP) require a FAFSA, so they are not available if you cannot file the FAFSA. The Alternative Application is the only option for non‑FAFSA‑eligible students. (source_id: state-isac-alternative-application::00)\n\n**Next steps**\n1. Visit the ISAC website and start the **Alternative Application**; complete the prescreening questionnaire to confirm you should use this form. \n2. If you are undocumented, verify with your college’s financial‑aid office whether any college‑specific scholarships or private aid are still available. \n3. Contact your college’s financial‑aid office for personalized guidance and help completing the Alternative Application.\n",
+  "citations": [
+    {
+      "source_id": "state-isac-alternative-application::02",
+      "label": "Alternative Application for Illinois Financial Aid – What is it?"
+    },
+    {
+      "source_id": "state-isac-alternative-application-faqs::03",
+      "label": "Alternative Application FAQs – Prescreening questionnaire"
+    },
+    {
+      "source_id": "state-isac-alternative-application-faqs::01",
+      "label": "Important news – Undocumented students not eligible 2026‑27"
+    },
+    {
+      "source_id": "state-isac-alternative-application::00",
+      "label": "Alternative Application – General info"
+    }
+  ],
+  "next_steps": [
+    "Start the Alternative Application on the ISAC website and complete the prescreening questionnaire.",
+    "If undocumented, speak with your college’s financial‑aid office about any college‑specific aid or private scholarships.",
+    "Ask the financial‑aid office for help completing the Alternative Application."
+  ],
+  "human_contact": null,
+  "tool_calls": [
+    {
+      "name": "search_knowledge_base",
+      "args": {
+        "language": "en",
+        "query": "state aid options for students who cannot file FAFSA Illinois"
+      }
+    }
+  ],
+  "seconds": 55.9
+}

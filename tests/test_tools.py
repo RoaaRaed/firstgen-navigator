@@ -36,7 +36,7 @@ def test_search_returns_citable_source_ids_and_metadata(ctx):
     r = out["results"][0]
     assert out["found"] and r["source_id"] == "state-isac-map::03"
     assert r["source_url"] and r["retrieved_date"] and r["effective_term"] == "not stated"
-    assert len(r["text"]) <= 1004  # long chunks are shortened
+    assert len(r["text"]) <= 154  # long chunks are shortened
 
 
 def test_search_uses_8_results_and_passes_layer(ctx):

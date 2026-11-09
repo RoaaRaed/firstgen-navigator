@@ -1,0 +1,14 @@
+{
+  "question": "What is the best college in Chicago?",
+  "language": "en",
+  "confidence": "Low",
+  "answer": "I’m sorry, but I could not find information about the best college in Chicago in the available documents.",
+  "citations": [],
+  "next_steps": [
+    "Contact a City Colleges of Chicago advisor for guidance on selecting a college.",
+    "Visit the City Colleges of Chicago website for program comparisons."
+  ],
+  "human_contact": null,
+  "tool_calls": [],
+  "seconds": 14.3
+}

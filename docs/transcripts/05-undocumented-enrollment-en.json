@@ -1,0 +1,48 @@
+{
+  "question": "Does being undocumented affect whether I can enroll at City Colleges?",
+  "language": "en",
+  "confidence": "High",
+  "answer": "No, being undocumented does not prevent you from enrolling at City Colleges of Chicago. The college’s Undocumented Student Services states that “All Are Welcome at City Colleges” and that the campus is committed to supporting anyone who wants to pursue an education, including undocumented students. While you won’t qualify for federal financial‑aid programs that require a Social Security number, you can still enroll in credit or non‑credit courses (such as free ESL classes and high‑school diploma programs) and you can work with the Undocumented Student Services office to explore tuition‑payment options, scholarships, and other resources.\n\n**Next steps**\n1. Visit the Undocumented Student Services page or call the office to set up an appointment.\n2. Meet with an Admissions counselor to start your enrollment application and learn what identification (e.g., state ID) is needed.\n3. Contact the Financial Aid Office to discuss state‑aid, institutional scholarships, and payment‑plan options that do not require federal eligibility.",
+  "citations": [
+    {
+      "source_id": "institution-ccc-undocumented-student-services::00",
+      "label": "All Are Welcome at City Colleges"
+    },
+    {
+      "source_id": "institution-ccc-undocumented-student-services::03",
+      "label": "Free ESL classes"
+    },
+    {
+      "source_id": "institution-ccc-undocumented-student-services::04",
+      "label": "Earn Your High School Diploma"
+    },
+    {
+      "source_id": "institution-ccc-undocumented-student-services::07",
+      "label": "Financial aid and tuition help"
+    },
+    {
+      "source_id": "institution-ccc-undocumented-student-services::16",
+      "label": "Contact Undocumented Student Services"
+    },
+    {
+      "source_id": "institution-ccc-undocumented-student-services::02",
+      "label": "Additional resources for undocumented students"
+    }
+  ],
+  "next_steps": [
+    "Visit the Undocumented Student Services page or call the office to set up an appointment.",
+    "Meet with an Admissions counselor to start your enrollment application.",
+    "Contact the Financial Aid Office to explore tuition‑payment options and scholarships."
+  ],
+  "human_contact": null,
+  "tool_calls": [
+    {
+      "name": "search_knowledge_base",
+      "args": {
+        "language": "en",
+        "query": "undocumented student enrollment City Colleges of Chicago"
+      }
+    }
+  ],
+  "seconds": 47.1
+}

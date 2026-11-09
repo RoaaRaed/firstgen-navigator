@@ -226,3 +226,23 @@ def test_run_agent_accepts_a_plain_dict_from_with_structured_output():
 
     assert isinstance(result.answer, AdvisorAnswer)
     assert result.answer.citations[0].source_id == "deadlines:state-map-priority-2027-28"
+
+
+def test_run_agent_falls_back_safely_when_the_tool_calling_call_itself_fails():
+    """If the tool-calling phase raises (e.g. the free Groq tier's per-minute token limit),
+    run_agent must not crash the whole batch - it should return a safe Low-confidence answer,
+    exactly like it already does when the later structured-output call fails."""
+    record = install()
+    a = agent.build_agent(ctx(), llm=record["llm"])
+
+    def boom(_input):
+        raise RuntimeError("Error code: 413 - tokens per minute rate_limit_exceeded")
+
+    a.runnable.invoke = boom
+    result = agent.run_agent(a, "What time does the bookstore close on Saturdays?")
+
+    assert result.answer.confidence == "Low"
+    assert result.answer.citations == []
+    assert result.tool_calls == []
+    assert result.raw_text == ""
+    assert "rate_limit_exceeded" in result.answer.answer or "RuntimeError" in result.answer.answer
