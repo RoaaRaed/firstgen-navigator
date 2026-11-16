@@ -1,4 +1,5 @@
 """FirstGen Navigator - Streamlit entry point.  Run:  streamlit run app/main.py"""
+import os
 import sys
 from pathlib import Path
 
@@ -9,9 +10,16 @@ ROOT = Path(__file__).resolve().parent.parent
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
+# Debug aid: FGN_DEBUG_HANG=1 prints what every thread is doing every 60 seconds, so a question
+# that never finishes shows exactly where it is stuck.
+if os.environ.get("FGN_DEBUG_HANG"):
+    import faulthandler
+
+    faulthandler.dump_traceback_later(60, repeat=True)
+
 import streamlit as st  # noqa: E402
 
-from app import chat_page, questionnaire, wizard  # noqa: E402
+from app import chat_page, plan_page, questionnaire, wizard  # noqa: E402
 from app.strings import LANGUAGES, load_strings, normalize, page_css, t  # noqa: E402
 
 st.set_page_config(page_title="FirstGen Navigator", page_icon="🧭", layout="centered")
@@ -45,5 +53,7 @@ if page == "home":
     st.button(t(strings, "buttons.start"), type="primary", on_click=wizard.start, args=(st.session_state,))
 elif page == "questionnaire":
     questionnaire.render(strings, lang)
+elif page == "plan":
+    plan_page.render_page(strings, lang)
 else:  # "chat": the questionnaire is finished
     chat_page.render_page(strings, lang)

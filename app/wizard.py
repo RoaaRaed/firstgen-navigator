@@ -7,7 +7,7 @@ from __future__ import annotations
 from app.profile import set_answer
 from app.strings import LANGUAGES
 
-PAGES = ("home", "questionnaire", "chat")
+PAGES = ("home", "questionnaire", "chat", "plan")
 
 
 def widget_key(question_id: str, lang: str = "en") -> str:
@@ -74,6 +74,14 @@ def back(state, questions: list[dict]) -> None:
     if state["q_index"] > 0:
         state["q_index"] -= 1
     state["page"] = "questionnaire"
+
+
+def open_plan(state) -> None:
+    state["page"] = "plan"
+
+
+def open_chat(state) -> None:
+    state["page"] = "chat"
 
 
 def clear_answers(state, questions: list[dict]) -> None:

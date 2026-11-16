@@ -8,3 +8,7 @@ chromadb
 langchain-groq
 langchain
 streamlit
+reportlab
+arabic-reshaper
+python-bidi
+pypdf

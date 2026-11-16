@@ -37,6 +37,17 @@ def auto_dir_html(text: str, bold: bool = False, muted: bool = False) -> str:
     return f'<div dir="auto" style="{style}">{inner}</div>'
 
 
+def link_html(url: str) -> str:
+    """A clickable link that always reads left to right. A URL shown inside a right-to-left page
+    otherwise gets its slashes moved to the wrong end. Returns '' for anything that is not http(s)."""
+    url = safe_url(url)
+    if not url:
+        return ""
+    shown, href = html.escape(url), html.escape(url, quote=True)
+    return (f'<div dir="ltr" style="text-align:left;word-break:break-all">'
+            f'<a href="{href}" target="_blank" rel="noopener noreferrer">{shown}</a></div>')
+
+
 def isolate_ltr(text: str) -> str:
     """Keep a date or number in its normal left-to-right order inside right-to-left text."""
     return f"\u2066{text}\u2069" if text else ""

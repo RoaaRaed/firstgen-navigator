@@ -117,3 +117,29 @@ def test_page_warm_up_hands_the_context_to_advisor(load_page, monkeypatch):
     monkeypatch.setattr(page.advisor, "warm_up", lambda ctx: got.append(ctx))
     page.warm_up()
     assert got == ["the-context"]
+
+
+def _example_buttons(st):
+    return [c for c in st.button.call_args_list if str(c.kwargs.get("key", "")).startswith("example_")]
+
+
+def test_examples_are_hidden_while_a_question_is_being_answered(load_page, monkeypatch):
+    state = base_state()
+    page, st = load_page(state, typed="hello")
+    monkeypatch.setattr(page.advisor, "answer", lambda agent, q, lang: (good_result(), 1.0))
+    monkeypatch.setattr(page, "_agent", lambda lang: object())
+    page.render_page(strings.load_strings("en"), "en")
+    assert _example_buttons(st) == []
+
+
+def test_examples_are_shown_on_an_empty_idle_chat(load_page):
+    page, st = load_page(base_state())
+    page.render_page(strings.load_strings("en"), "en")
+    assert len(_example_buttons(st)) == 3
+
+
+def test_chat_page_has_a_my_plan_button(load_page):
+    page, st = load_page(base_state())
+    page.render_page(strings.load_strings("en"), "en")
+    keys = [c.kwargs.get("key") for c in st.button.call_args_list]
+    assert "open_plan_btn" in keys

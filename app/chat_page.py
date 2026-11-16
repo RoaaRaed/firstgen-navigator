@@ -96,6 +96,7 @@ def render_page(strings: dict, lang: str) -> None:
     questions = strings["questionnaire"]["questions"]
 
     st.subheader(t(strings, "chat.title"))
+    st.button(t(strings, "plan.open"), key="open_plan_btn", on_click=wizard.open_plan, args=(state,))
 
     with st.expander(t(strings, "chat.your_answers")):
         for question_text, shown in describe_answers(strings, state["answers"]):

@@ -125,3 +125,10 @@ def test_auto_dir_html_follows_the_text_and_escapes_it():
 def test_isolate_ltr_wraps_a_date_and_leaves_empty_alone():
     assert render.isolate_ltr("2026-10-29") == "⁦2026-10-29⁩"
     assert render.isolate_ltr("") == ""
+
+
+def test_link_html_reads_left_to_right_escapes_and_refuses_bad_urls():
+    out = render.link_html('https://a.b/c?x=1&y="2"')
+    assert 'dir="ltr"' in out and "&amp;" in out and "&quot;" in out and 'rel="noopener noreferrer"' in out
+    for bad in ("javascript:alert(1)", "", None, "file:///x"):
+        assert render.link_html(bad) == ""

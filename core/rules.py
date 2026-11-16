@@ -84,6 +84,29 @@ def load_rules(path) -> RuleSet:
         raise ValueError(f"{path.name}: {problems}") from err
 
 
+def _as_list(value) -> list[str]:
+    if value is None:
+        return []
+    return list(value) if isinstance(value, (list, tuple)) else [value]
+
+
+def rule_matches(rule: Rule, answers: dict) -> bool:
+    """True when the student's answers satisfy the rule.
+
+    A condition holds if any of the student's picks for that question is in `any_of`
+    (a single-choice answer is one pick, a multi-choice answer is several).
+    `match: all` needs every condition, `match: any` needs at least one."""
+    results = [bool(set(_as_list(answers.get(c.question))) & set(c.any_of)) for c in rule.conditions]
+    return all(results) if rule.match == "all" else any(results)
+
+
+def match_rules(ruleset: RuleSet, answers: dict) -> list[Rule]:
+    """The rules that apply to these answers, most important first (priority 1 before 3).
+    Rules with the same priority keep the order they have in rules.yaml."""
+    hits = [(r.priority, i, r) for i, r in enumerate(ruleset.rules) if rule_matches(r, answers)]
+    return [r for _, _, r in sorted(hits, key=lambda x: (x[0], x[1]))]
+
+
 def questionnaire_ids(en_json_path) -> dict[str, set[str]]:
     """Map each question id to its set of option ids (free-text questions map to an empty set)."""
     data = json.loads(Path(en_json_path).read_text(encoding="utf-8"))

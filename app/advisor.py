@@ -8,6 +8,7 @@ import threading
 import time
 
 INSTITUTION = "demo-ccc"
+INSTITUTION_NAME = "City Colleges of Chicago"  # same text as core.agent.DEFAULT_INSTITUTION_NAME
 
 _warm_lock = threading.Lock()
 _warm_thread: threading.Thread | None = None
@@ -17,6 +18,13 @@ def get_context(institution: str = INSTITUTION):
     from core.tools import load_context
 
     return load_context(institution)
+
+
+def get_ruleset(ctx):
+    """The personalization rules (institutions/<name>/rules.yaml), validated on load."""
+    from core.rules import load_rules
+
+    return load_rules(ctx.root / "rules.yaml")
 
 
 def warm_up(ctx) -> None:

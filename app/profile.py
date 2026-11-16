@@ -53,19 +53,26 @@ def answered_count(answers: dict) -> int:
     return len(answers)
 
 
+def _shown(question: dict, value) -> str:
+    if question["type"] == "free_text":
+        return value
+    labels = {o["id"]: o["label"] for o in question["options"]}
+    ids = value if isinstance(value, list) else [value]
+    return ", ".join(labels.get(i, i) for i in ids)
+
+
+def answered_rows(strings: dict, answers: dict) -> list[tuple[str, str]]:
+    """(question text, readable answer) for the questions the student answered, in order."""
+    return [(q["text"], _shown(q, answers[q["id"]]))
+            for q in strings["questionnaire"]["questions"] if q["id"] in answers]
+
+
 def describe_answers(strings: dict, answers: dict) -> list[tuple[str, str]]:
     """(question text, readable answer) for every question, in order. Skipped ones say so."""
     q = strings["questionnaire"]
     out = []
     for question in q["questions"]:
         value = answers.get(question["id"])
-        if value is None:
-            shown = q["skipped"]
-        elif question["type"] == "free_text":
-            shown = value
-        else:
-            labels = {o["id"]: o["label"] for o in question["options"]}
-            ids = value if isinstance(value, list) else [value]
-            shown = ", ".join(labels.get(i, i) for i in ids)
+        shown = q["skipped"] if value is None else _shown(question, value)
         out.append((question["text"], shown))
     return out
