@@ -74,3 +74,8 @@ def test_t_returns_the_key_when_missing_and_fills_placeholders():
     assert strings.t(en, "no.such.key") == "no.such.key"
     assert strings.t(en, "questionnaire.choose_up_to", max=3) == "Choose up to 3"
     assert strings.t(strings.load_strings("ar"), "questionnaire.choose_up_to", max=3).count("3") == 1
+
+
+def test_page_css_does_not_reverse_columns_a_second_time():
+    # direction: rtl already puts the first button on the right; row-reverse would undo it.
+    assert "row-reverse" not in strings.page_css("ar")

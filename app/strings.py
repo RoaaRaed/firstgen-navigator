@@ -58,5 +58,4 @@ html, body, [data-testid="stAppViewContainer"], [data-testid="stMain"], .stApp {
     text-align: right;
     direction: rtl;
 }
-[data-testid="stHorizontalBlock"] { flex-direction: row-reverse; }
 """

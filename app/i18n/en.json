@@ -10,6 +10,7 @@
     "next": "Next",
     "back": "Back",
     "skip": "Skip",
+    "finish": "Finish",
     "clear_answers": "Clear my answers"
   },
   "questionnaire": {
@@ -17,6 +18,11 @@
     "intro": "Your answers help me give advice that fits your life. Nothing is saved after you close this page, and I will never ask about immigration status.",
     "optional": "Optional",
     "choose_up_to": "Choose up to {max}",
+    "progress": "Question {n} of {total}",
+    "notes_hint": "Optional. Please do not write your immigration status or any ID numbers.",
+    "done_title": "Thank you! Your answers are ready",
+    "done_text": "The chat arrives in the next step. This is what the advisor will know about you:",
+    "skipped": "Skipped",
     "questions": [
       {
         "id": "stage",
