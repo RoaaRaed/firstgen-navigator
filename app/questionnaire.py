@@ -3,7 +3,7 @@ the logic lives in app/wizard.py and app/profile.py (those are the tested parts)
 import streamlit as st
 
 from app import wizard
-from app.profile import NOTES_MAX_CHARS, describe_answers
+from app.profile import NOTES_MAX_CHARS
 from app.strings import t
 
 
@@ -91,16 +91,3 @@ def render(strings: dict, ui_lang: str) -> None:
     )
     _clear_button(strings)
 
-
-def render_done(strings: dict) -> None:
-    """Shown after the last question. Placeholder until the chat page arrives (next step)."""
-    st.success(t(strings, "questionnaire.done_title"))
-    st.write(t(strings, "questionnaire.done_text"))
-    for question_text, answer in describe_answers(strings, st.session_state["answers"]):
-        st.markdown(f"- **{question_text}** {answer}")
-    questions = strings["questionnaire"]["questions"]
-    st.button(
-        t(strings, "buttons.back"), key="done_back_btn",
-        on_click=wizard.back, args=(st.session_state, questions),
-    )
-    _clear_button(strings)

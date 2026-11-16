@@ -13,6 +13,49 @@
     "finish": "Finish",
     "clear_answers": "Clear my answers"
   },
+  "chat": {
+    "title": "Ask the advisor",
+    "placeholder": "Type your question here...",
+    "thinking": "Looking through the documents...",
+    "your_answers": "Your answers",
+    "edit_answers": "Edit my answers",
+    "new_conversation": "New conversation",
+    "examples_title": "Not sure what to ask? Try one of these:",
+    "examples": [
+      "What is the Illinois MAP grant and is there a deadline I should know about?",
+      "Where can I get help with food or emergency costs on campus?",
+      "When does the spring semester start and when is the last day to drop a class?"
+    ],
+    "confidence": {
+      "High": {
+        "label": "High confidence",
+        "hint": "Clear, recent sources that answer your question."
+      },
+      "Medium": {
+        "label": "Medium confidence",
+        "hint": "The sources answer part of it, or may be out of date."
+      },
+      "Low": {
+        "label": "Low confidence",
+        "hint": "Weak sources or nothing found. Please check with a person."
+      }
+    },
+    "sources": "Sources",
+    "no_sources": "No source found for this answer.",
+    "next_steps": "Next steps",
+    "contact": "Talk to a person",
+    "open_source": "Open the source",
+    "retrieved": "Retrieved {date}",
+    "kinds": {
+      "doc": "Document",
+      "deadline": "Deadline",
+      "program": "Support program",
+      "unknown": "Source"
+    },
+    "hours": "Hours: {hours}",
+    "busy": "The advisor could not answer right now. This usually clears up after a minute. Please try again, or ask a human advisor.",
+    "error": "Something went wrong: {error}"
+  },
   "questionnaire": {
     "title": "A few quick questions",
     "intro": "Your answers help me give advice that fits your life. Nothing is saved after you close this page, and I will never ask about immigration status.",
@@ -20,8 +63,6 @@
     "choose_up_to": "Choose up to {max}",
     "progress": "Question {n} of {total}",
     "notes_hint": "Optional. Please do not write your immigration status or any ID numbers.",
-    "done_title": "Thank you! Your answers are ready",
-    "done_text": "The chat arrives in the next step. This is what the advisor will know about you:",
     "skipped": "Skipped",
     "questions": [
       {

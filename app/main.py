@@ -11,12 +11,13 @@ if str(ROOT) not in sys.path:
 
 import streamlit as st  # noqa: E402
 
-from app import questionnaire, wizard  # noqa: E402
+from app import chat_page, questionnaire, wizard  # noqa: E402
 from app.strings import LANGUAGES, load_strings, normalize, page_css, t  # noqa: E402
 
 st.set_page_config(page_title="FirstGen Navigator", page_icon="🧭", layout="centered")
 
 wizard.init_state(st.session_state)
+chat_page.warm_up()  # load the search model in the background while the student answers questions
 
 # Language toggle. key="lang" stores the choice in session state, so it survives reruns.
 st.session_state.setdefault("lang", "en")
@@ -44,5 +45,5 @@ if page == "home":
     st.button(t(strings, "buttons.start"), type="primary", on_click=wizard.start, args=(st.session_state,))
 elif page == "questionnaire":
     questionnaire.render(strings, lang)
-else:  # "chat": the questionnaire is finished; the real chat page arrives in the next step
-    questionnaire.render_done(strings)
+else:  # "chat": the questionnaire is finished
+    chat_page.render_page(strings, lang)
