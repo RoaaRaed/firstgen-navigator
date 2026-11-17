@@ -279,7 +279,7 @@ class _RateLimit(Exception):
 def test_rate_limit_wait_reads_the_time_groq_asks_for():
     e = _RateLimit("Error code: 429 - Rate limit reached ... Please try again in 8.5s. Need more")
     assert agent._rate_limit_wait(e) == 9.5
-    assert agent._rate_limit_wait(_RateLimit("429 ... try again in 2m3.5s.")) == 65.0  # capped
+    assert agent._rate_limit_wait(_RateLimit("429 ... try again in 1m3.5s.")) == 64.5
     assert agent._rate_limit_wait(_RateLimit("429 ... try again in 340ms")) == 6.0     # at least 5s
     assert agent._rate_limit_wait(_RateLimit("429 without a time")) == 6.0
     assert agent._rate_limit_wait(ValueError("bad schema")) is None
@@ -339,3 +339,17 @@ def test_run_agent_waits_and_retries_the_tool_loop_on_a_rate_limit(monkeypatch):
     result = agent.run_agent(a, "What is MAP?")
     assert len(tries) == 2 and slept == [8.0]
     assert result.answer.answer == "ok"
+
+
+def test_a_long_wait_such_as_the_daily_limit_is_not_slept_through():
+    daily = _RateLimit("Error code: 429 - Rate limit reached ... on tokens per day (TPD): Limit 200000, "
+                       "Used 199159. Please try again in 19m38.928s.")
+    assert agent._rate_limit_wait(daily) is None
+    assert agent.is_daily_limit_error(str(daily)) is True
+    assert agent.is_daily_limit_error("429 tokens per minute (TPM)") is False
+    slept = []
+    import pytest
+
+    with pytest.raises(_RateLimit):
+        agent._call_with_rate_limit_retry(lambda: (_ for _ in ()).throw(daily), sleep=slept.append)
+    assert slept == []

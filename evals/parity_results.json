@@ -1,0 +1,149 @@
+{
+ "p01:en": {
+  "sources": [
+   "state-isac-map",
+   "state-isac-alternative-application",
+   "deadlines:state-map-priority-2027-28",
+   "deadlines:state-map-priority-2026-27",
+   "deadlines:state-map-suspension-2026-27"
+  ],
+  "fallback": false,
+  "seconds": 32.3,
+  "confidence": "High",
+  "answer": "The Illinois Monetary Award Program (MAP) is a state‑funded grant for eligible Illinois residents who attend an approved Illinois college. The grant does not need to be repaid and can be used only for tuition and mandatory fees. Eligibility is determined automatically when you submit the FAFSA or th"
+ },
+ "p01:ar": {
+  "sources": [
+   "state-isac-map"
+  ],
+  "fallback": false,
+  "seconds": 90.7,
+  "confidence": "High",
+  "answer": "منحة **Monetary Award Program (MAP)** هي منحة مالية غير مستردة تُقدَّم للمقيمين في إلينوي الذين يدرسون في كليات إلينوي المعتمدة (مثل City Colleges of Chicago). تُستخدم المنحة فقط لتغطية الرسوم الدراسية والرسوم الإلزامية للكلية. الموعد النهائي لتقديم طلب المنحة للعام الدراسي 2026‑27 هو **23 أبريل 202"
+ },
+ "p02:en": {
+  "sources": [
+   "state-isac-alternative-application",
+   "state-isac-alternative-application-faqs",
+   "state-isac-non-eligible-noncitizens"
+  ],
+  "fallback": false,
+  "seconds": 49.2,
+  "confidence": "High",
+  "answer": "You may be able to apply for Illinois state aid through the **Alternative Application** offered by the Illinois Student Assistance Commission (ISAC). This application is designed for students who are **not eligible for federal student aid** and therefore cannot complete the FAFSA. If you meet that c"
+ },
+ "p02:ar": {
+  "sources": [
+   "state-isac-alternative-application-faqs",
+   "state-isac-alternative-application",
+   "state-isac-non-eligible-noncitizens"
+  ],
+  "fallback": false,
+  "seconds": 62.5,
+  "confidence": "High",
+  "answer": "نعم، إلينوي تقدم نموذجًا بديلاً للطلب المالي يُسمى **Alternative Application** للطلاب الذين لا يستطيعون إكمال FAFSA لأنهم غير مؤهلين للمساعدة الفدرالية. هذا النموذج يتيح لك التقدم للحصول على منح ومساعدات مالية من الولاية مثل برنامج Illinois Monetary Award Program (MAP) وغيرها. \n\n**من يمكنه الاستفادة"
+ },
+ "p03:en": {
+  "sources": [
+   "institution-ccc-registration",
+   "institution-ccc-admissions"
+  ],
+  "fallback": false,
+  "seconds": 76.0,
+  "confidence": "High",
+  "answer": "To apply to City Colleges of Chicago you should:\n1. **Complete the online application** – go to ccc.edu/apply and fill out the electronic admission form. This is the first step before you can register for classes.\n2. **Create a student‑portal account** – after submitting the application you’ll recei"
+ },
+ "p04:en": {
+  "sources": [
+   "institution-ccc-star-scholarship"
+  ],
+  "fallback": false,
+  "seconds": 7.2,
+  "confidence": "High",
+  "answer": "The Chicago Star Scholarship is a City Colleges of Chicago program that provides tuition‑free education (including books) for eligible students and offers pathways to transfer scholarships at four‑year universities. To qualify, you must be a graduating senior from a Chicago Public High School or fro"
+ },
+ "p04:ar": {
+  "sources": [
+   "institution-ccc-star-scholarship"
+  ],
+  "fallback": false,
+  "seconds": 41.5,
+  "confidence": "High",
+  "answer": "منحة Star Scholarship (منحة نجمة شيكاغو) هي منحة تغطي الرسوم الدراسية والكتب للطلاب الذين يحصلون على شهادة associate أو شهادة مهنية في أحد كليات City Colleges of Chicago. لا تُعتمد على الحاجة المالية؛ أي أن الطالب لا يحتاج أن يكون من ذوي الدخل المنخفض لتأهيله. تُمنح للخريجين من المدارس الثانوية الذي"
+ },
+ "p05:en": {
+  "sources": [
+   "federal-fafsa-submission-summary",
+   "institution-ccc-apply-financial-aid",
+   "institution-ccc-registration"
+  ],
+  "fallback": false,
+  "seconds": 64.5,
+  "confidence": "High",
+  "answer": "Verification means the college needs to confirm the information you reported on your FAFSA (or Illinois FAFSA). The school will ask you to provide supporting documents—usually tax returns, W‑2s, and any other income records—so it can verify that the data you entered is correct. Until you finish veri"
+ },
+ "p06:en": {
+  "sources": [
+   "programs:ccc-food-pantries",
+   "programs:ccc-food-security-initiative",
+   "programs:ccc-wellness-centers"
+  ],
+  "fallback": false,
+  "seconds": 34.6,
+  "confidence": "High",
+  "answer": "You can get food and emergency‑cost assistance through the Wellness Center at your City College. Every college has a food pantry you can walk into for groceries or free grab‑and‑go snacks, and the Food Security for Life Initiative adds ready‑to‑take‑home meals and market options. The Wellness Center"
+ },
+ "p06:ar": {
+  "sources": [
+   "programs:ccc-food-pantries",
+   "programs:ccc-food-security-initiative",
+   "programs:ccc-snap-work-requirement-help",
+   "programs:ccc-financial-aid-offices",
+   "programs:ccc-star-scholarship"
+  ],
+  "fallback": false,
+  "seconds": 35.0,
+  "confidence": "High",
+  "answer": "**مساعدة الطعام**\n1. كل كلية من كليات City Colleges of Chicago لديها مخزن طعام (Food Pantry). يمكنك زيارة مركز العافية (Wellness Center) في كليتك للحصول على تفاصيل الساعات والموقع. 【programs:ccc-food-pantries】\n2. مبادرة *Food Security for Life* توفّر وجبات جاهزة للمنزل في كليات Malcolm X، Kennedy‑Ki"
+ },
+ "p07:en": {
+  "sources": [
+   "state-isac-non-eligible-noncitizens",
+   "federal-fafsa-checklist",
+   "federal-fafsa-parent-steps",
+   "institution-ccc-apply-financial-aid"
+  ],
+  "fallback": false,
+  "seconds": 86.7,
+  "confidence": "High",
+  "answer": "Yes. You can still complete the FAFSA even if your parents do not have Social Security numbers. The FAFSA allows a parent to enter an Individual Taxpayer Identification Number (ITIN) in place of an SSN, so a missing SSN does not prevent you from filing. Gather any ITINs your parents have (or be prep"
+ },
+ "p07:ar": {
+  "sources": [
+   "federal-fafsa-parent-steps",
+   "federal-fafsa-checklist",
+   "federal-fafsa-student-steps",
+   "federal-dependency-status"
+  ],
+  "fallback": false,
+  "seconds": 113.3,
+  "confidence": "High",
+  "answer": "نعم، يمكنك تعبئة نموذج FAFSA حتى إذا لم يكن لدى والديك رقم ضمان اجتماعي. يسمح نظام FAFSA بإدخال الرقم 000‑00‑0000 كبديل عندما لا يتوفر رقم الضمان الاجتماعي للوالد/الوالدة. \n\nخطوات سريعة:\n1. أنشئ حسابًا على StudentAid.gov وابدأ نموذج FAFSA للعام الدراسي المطلوب. \n2. عندما يُطلب رقم الضمان الاجتماعي ل"
+ },
+ "p08:en": {
+  "sources": [
+   "institution-ccc-tuition"
+  ],
+  "fallback": false,
+  "seconds": 27.1,
+  "confidence": "High",
+  "answer": "For students who live in Chicago (in‑district), tuition is $163 per credit hour for the FY 2027 academic year. The pre‑credit (half‑hour) rate is $82 per credit hour."
+ },
+ "p08:ar": {
+  "sources": [],
+  "fallback": false,
+  "seconds": 3.3,
+  "confidence": "Low",
+  "answer": "لم أتمكن من العثور على معلومات حول كلفة الساعة المعتمدة في شيكاغو في المستندات المتاحة."
+ }
+}

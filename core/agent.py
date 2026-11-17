@@ -168,8 +168,10 @@ RATE_LIMIT_RETRIES = 2
 
 
 def _rate_limit_wait(exc) -> float | None:
-    """If `exc` is a "too many requests / tokens per minute" error, the seconds Groq asks us to
-    wait (parsed from "Please try again in 8.5s" / "1m3.5s" / "340ms"), else None."""
+    """If `exc` is a "too many requests / tokens per minute" error that a short wait will clear,
+    the seconds Groq asks us to wait (parsed from "Please try again in 8.5s" / "1m3.5s" /
+    "340ms"), else None. A wait longer than MAX_RATE_LIMIT_WAIT (for example the daily token
+    limit: "try again in 19m38s") returns None: sleeping that long inside a chat answer is no use."""
     text = str(exc)
     if "429" not in text and "rate limit" not in text.lower() and type(exc).__name__ != "RateLimitError":
         return None
@@ -178,7 +180,13 @@ def _rate_limit_wait(exc) -> float | None:
     if m:
         for num, unit in re.findall(r"(\d+(?:\.\d+)?)(ms|m|s)", m.group(1)):
             seconds += float(num) * {"ms": 0.001, "s": 1, "m": 60}[unit]
-    return min(max(seconds, 5.0) + 1.0, MAX_RATE_LIMIT_WAIT)
+    wait = max(seconds, 5.0) + 1.0
+    return wait if wait <= MAX_RATE_LIMIT_WAIT else None
+
+
+def is_daily_limit_error(text: str) -> bool:
+    """True for Groq's "tokens per day (TPD)" error, which only time (not a retry) can clear."""
+    return "tokens per day" in text or "(TPD)" in text
 
 
 def _call_with_rate_limit_retry(fn, sleep=None):
