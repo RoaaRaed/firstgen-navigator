@@ -1,0 +1,7 @@
+[server]
+# Do not watch installed packages for changes: the watcher walks torch/transformers modules
+# and prints noisy errors (and wastes time) on every start.
+fileWatcherType = "none"
+
+[browser]
+gatherUsageStats = false

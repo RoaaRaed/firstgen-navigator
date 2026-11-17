@@ -4,7 +4,7 @@
 """
 from __future__ import annotations
 
-from app.profile import set_answer
+from app.student_answers import set_answer
 from app.strings import LANGUAGES
 
 PAGES = ("home", "questionnaire", "chat", "plan")

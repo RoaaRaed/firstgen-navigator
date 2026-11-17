@@ -275,6 +275,7 @@ class _Writer:
         self._need(40 * mm)  # a heading never sits alone at the bottom of a page
         self.y -= 5 * mm
         self.text(s, size=13, bold=True, color=ACCENT, after=1)
+        self.y -= 1.2 * mm  # a little room, so Arabic letters that drop below the line do not touch the rule
         self.c.setStrokeColor(ACCENT); self.c.setLineWidth(0.8)
         self.c.line(self.m, self.y, self.w - self.m, self.y)
         self.y -= 2 * mm

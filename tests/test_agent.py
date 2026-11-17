@@ -246,3 +246,96 @@ def test_run_agent_falls_back_safely_when_the_tool_calling_call_itself_fails():
     assert result.tool_calls == []
     assert result.raw_text == ""
     assert "rate_limit_exceeded" in result.answer.answer or "RuntimeError" in result.answer.answer
+
+
+def _answer():
+    return AdvisorAnswer(answer="ok", citations=[], confidence="Low", next_steps=[])
+
+
+def test_run_agent_without_profile_sends_the_question_unchanged():
+    record = install(agent_trace=[FakeMsg("ai", "ok")], structured_answer=_answer())
+    a = agent.build_agent(ctx(), llm=record["llm"])
+    agent.run_agent(a, "What is MAP?")
+    assert record["invoke_input"]["messages"][0]["content"] == "What is MAP?"
+
+
+def test_run_agent_puts_the_profile_before_the_question_in_one_user_message():
+    record = install(agent_trace=[FakeMsg("ai", "ok")], structured_answer=_answer())
+    a = agent.build_agent(ctx(), llm=record["llm"])
+    agent.run_agent(a, "What is MAP?", profile="[STUDENT PROFILE]\n- stage: Applying\n[END STUDENT PROFILE]")
+    msgs = record["invoke_input"]["messages"]
+    assert len(msgs) == 1 and msgs[0]["role"] == "user"
+    text = msgs[0]["content"]
+    assert text.startswith("[STUDENT PROFILE]")
+    assert text.endswith("Student's question:\nWhat is MAP?")
+
+
+# ---- rate limit (the free Groq tier: tokens per minute) ----
+
+class _RateLimit(Exception):
+    pass
+
+
+def test_rate_limit_wait_reads_the_time_groq_asks_for():
+    e = _RateLimit("Error code: 429 - Rate limit reached ... Please try again in 8.5s. Need more")
+    assert agent._rate_limit_wait(e) == 9.5
+    assert agent._rate_limit_wait(_RateLimit("429 ... try again in 2m3.5s.")) == 65.0  # capped
+    assert agent._rate_limit_wait(_RateLimit("429 ... try again in 340ms")) == 6.0     # at least 5s
+    assert agent._rate_limit_wait(_RateLimit("429 without a time")) == 6.0
+    assert agent._rate_limit_wait(ValueError("bad schema")) is None
+
+
+def test_call_retries_after_a_rate_limit_then_succeeds():
+    calls, slept = [], []
+
+    def fn():
+        calls.append(1)
+        if len(calls) < 3:
+            raise _RateLimit("429 Rate limit reached. Please try again in 10s.")
+        return "ok"
+
+    assert agent._call_with_rate_limit_retry(fn, sleep=slept.append) == "ok"
+    assert len(calls) == 3 and slept == [11.0, 11.0]
+
+
+def test_call_gives_up_after_the_retries_and_does_not_retry_other_errors():
+    import pytest
+
+    n = []
+
+    def always():
+        n.append(1)
+        raise _RateLimit("429 Rate limit")
+
+    with pytest.raises(_RateLimit):
+        agent._call_with_rate_limit_retry(always, sleep=lambda s: None)
+    assert len(n) == agent.RATE_LIMIT_RETRIES + 1
+
+    other = []
+
+    def bad():
+        other.append(1)
+        raise ValueError("boom")
+
+    with pytest.raises(ValueError):
+        agent._call_with_rate_limit_retry(bad, sleep=lambda s: None)
+    assert len(other) == 1
+
+
+def test_run_agent_waits_and_retries_the_tool_loop_on_a_rate_limit(monkeypatch):
+    record = install(agent_trace=[FakeMsg("ai", "ok")], structured_answer=_answer())
+    a = agent.build_agent(ctx(), llm=record["llm"])
+    real, tries = a.runnable.invoke, []
+
+    def flaky(payload):
+        tries.append(1)
+        if len(tries) == 1:
+            raise _RateLimit("429 Please try again in 7s")
+        return real(payload)
+
+    a.runnable.invoke = flaky
+    slept = []
+    monkeypatch.setattr(agent.time, "sleep", slept.append)
+    result = agent.run_agent(a, "What is MAP?")
+    assert len(tries) == 2 and slept == [8.0]
+    assert result.answer.answer == "ok"

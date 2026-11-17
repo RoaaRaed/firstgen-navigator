@@ -17,6 +17,7 @@
     "title": "Ask the advisor",
     "placeholder": "Type your question here...",
     "thinking": "Looking through the documents...",
+    "tailored": "Answers are tailored using your questionnaire. Change them below any time.",
     "your_answers": "Your answers",
     "edit_answers": "Edit my answers",
     "new_conversation": "New conversation",

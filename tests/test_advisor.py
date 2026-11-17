@@ -67,6 +67,6 @@ def test_answer_waits_for_the_warm_up_before_asking(monkeypatch):
 
     order = []
     advisor.warm_up(fake_ctx(order, delay=0.3))
-    monkeypatch.setattr(agent_mod, "run_agent", lambda a, q, language="en": order.append("asked") or "result")
+    monkeypatch.setattr(agent_mod, "run_agent", lambda a, q, language="en", profile="": order.append("asked") or "result")
     advisor.answer(object(), "hi", "en")
     assert [o[0] if isinstance(o, tuple) else o for o in order] == ["warm up", "asked"]

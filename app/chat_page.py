@@ -3,7 +3,7 @@ Streamlit UI only; the logic is in app/render.py and app/advisor.py (the tested 
 import streamlit as st
 
 from app import advisor, render, wizard
-from app.profile import describe_answers
+from app.student_answers import describe_answers
 from app.strings import t
 
 
@@ -96,6 +96,8 @@ def render_page(strings: dict, lang: str) -> None:
     questions = strings["questionnaire"]["questions"]
 
     st.subheader(t(strings, "chat.title"))
+    if state["answers"]:
+        st.caption(t(strings, "chat.tailored"))
     st.button(t(strings, "plan.open"), key="open_plan_btn", on_click=wizard.open_plan, args=(state,))
 
     with st.expander(t(strings, "chat.your_answers")):
@@ -127,10 +129,13 @@ def render_page(strings: dict, lang: str) -> None:
     with st.chat_message("assistant"):
         try:
             with st.spinner(t(strings, "chat.thinking")):
-                result, seconds = advisor.answer(_agent(lang), question, lang)
+                profile = advisor.profile_for(_context(), state["answers"], lang)
+                result, seconds = advisor.answer(_agent(lang), question, lang, profile=profile)
             reply = render.assistant_message(result, seconds)
         except Exception as e:  # e.g. GROQ_API_KEY missing, or the index is not built
             st.error(t(strings, "chat.error", error=f"{type(e).__name__}: {e}"))
             return
+        if reply["fallback"]:  # the page shows a friendly message; the real reason goes to the terminal
+            print(f"[advisor fallback] {result.answer.answer}", flush=True)
         _show_assistant(strings, reply)
     state["messages"] += [user_msg, reply]

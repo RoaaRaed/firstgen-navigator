@@ -1,9 +1,9 @@
 """The questionnaire page: one question at a time with Back / Skip / Next. Streamlit UI only;
-the logic lives in app/wizard.py and app/profile.py (those are the tested parts)."""
+the logic lives in app/wizard.py and app/student_answers.py (those are the tested parts)."""
 import streamlit as st
 
 from app import wizard
-from app.profile import NOTES_MAX_CHARS
+from app.student_answers import NOTES_MAX_CHARS
 from app.strings import t
 
 

@@ -14,6 +14,9 @@ touching anything else (the brief: swappable by environment variable).
 from __future__ import annotations
 
 import os
+import re
+import time
+import traceback
 from dataclasses import dataclass, field
 
 from langchain_core.tools import tool
@@ -160,15 +163,55 @@ def _safe_fallback(reason: str) -> AdvisorAnswer:
     )
 
 
-def run_agent(agent: Agent, question: str, language: str = "en") -> AgentResult:
+MAX_RATE_LIMIT_WAIT = 65.0   # seconds; the free tier's limit is per minute, so one minute is enough
+RATE_LIMIT_RETRIES = 2
+
+
+def _rate_limit_wait(exc) -> float | None:
+    """If `exc` is a "too many requests / tokens per minute" error, the seconds Groq asks us to
+    wait (parsed from "Please try again in 8.5s" / "1m3.5s" / "340ms"), else None."""
+    text = str(exc)
+    if "429" not in text and "rate limit" not in text.lower() and type(exc).__name__ != "RateLimitError":
+        return None
+    m = re.search(r"try again in ((?:\d+(?:\.\d+)?(?:ms|m|s))+)", text)
+    seconds = 0.0
+    if m:
+        for num, unit in re.findall(r"(\d+(?:\.\d+)?)(ms|m|s)", m.group(1)):
+            seconds += float(num) * {"ms": 0.001, "s": 1, "m": 60}[unit]
+    return min(max(seconds, 5.0) + 1.0, MAX_RATE_LIMIT_WAIT)
+
+
+def _call_with_rate_limit_retry(fn, sleep=None):
+    """Run fn(); if the free tier's per-minute limit is hit, wait as long as Groq asks and try
+    again (up to RATE_LIMIT_RETRIES times). Any other error is raised unchanged."""
+    for attempt in range(RATE_LIMIT_RETRIES + 1):
+        try:
+            return fn()
+        except Exception as e:
+            wait = _rate_limit_wait(e)
+            if wait is None or attempt == RATE_LIMIT_RETRIES:
+                raise
+            (sleep or time.sleep)(wait)
+
+
+def _with_profile(question: str, profile: str) -> str:
+    return f"{profile}\n\nStudent's question:\n{question}" if profile else question
+
+
+def run_agent(agent: Agent, question: str, language: str = "en", profile: str = "") -> AgentResult:
     """Run one turn: the tool-calling loop first (it may call several tools), then a second,
     structured-output call turns that conversation into an AdvisorAnswer. Two calls, not one,
     so the free-form tool loop (well supported) and the strict output schema (brief
-    requirement) do not have to be the same LLM call."""
+    requirement) do not have to be the same LLM call.
+
+    `profile` is an optional block of background about the student (see app/profile_block.py).
+    It goes in front of the question inside the same user message, so the second call sees it too."""
     try:
-        result = agent.runnable.invoke({"messages": [{"role": "user", "content": question}]})
+        payload = {"messages": [{"role": "user", "content": _with_profile(question, profile)}]}
+        result = _call_with_rate_limit_retry(lambda: agent.runnable.invoke(payload))
         messages = result["messages"]
     except Exception as e:
+        traceback.print_exc()  # the page only shows a friendly message; the terminal gets the real error
         # The tool-calling phase itself failed (e.g. the free tier's per-minute token limit
         # was hit on a hard question) - return a safe low-confidence answer instead of
         # crashing the whole run; a human should answer this one.
@@ -181,9 +224,11 @@ def run_agent(agent: Agent, question: str, language: str = "en") -> AgentResult:
 
     finalize = list(messages) + [{"role": "user", "content": FINALIZE_INSTRUCTIONS}]
     try:
-        structured = agent.llm.with_structured_output(AdvisorAnswer).invoke(finalize)
+        structured = _call_with_rate_limit_retry(
+            lambda: agent.llm.with_structured_output(AdvisorAnswer).invoke(finalize))
         answer = structured if isinstance(structured, AdvisorAnswer) \
             else AdvisorAnswer.model_validate(structured)
     except Exception as e:
+        traceback.print_exc()
         answer = _safe_fallback(f"{type(e).__name__}: {e}")
     return AgentResult(answer=answer, tool_calls=tool_calls, raw_text=raw_text)

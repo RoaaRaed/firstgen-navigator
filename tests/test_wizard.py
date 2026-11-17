@@ -1,7 +1,7 @@
-"""Tests for app/profile.py and app/wizard.py (questionnaire logic, no Streamlit)."""
+"""Tests for app/student_answers.py and app/wizard.py (questionnaire logic, no Streamlit)."""
 import pytest
 
-from app import profile, strings, wizard
+from app import student_answers as profile, strings, wizard
 
 
 @pytest.fixture

@@ -32,8 +32,8 @@ def warm_up(ctx) -> None:
 
     The first search takes about 30 seconds (it loads the model). Starting that while the
     student is still filling in the questionnaire means their first question is not slow.
-    A failure here is ignored on purpose: the first real search will raise it where the page
-    can show it."""
+    A failure here is not fatal (the first real search will raise it where the page can show
+    it), but it is printed to the terminal."""
     global _warm_thread
     with _warm_lock:
         if _warm_thread is not None:
@@ -43,7 +43,9 @@ def warm_up(ctx) -> None:
             try:
                 ctx.retriever.search("warm up", k=1)
             except Exception:
-                pass
+                import traceback
+
+                traceback.print_exc()  # not fatal here, but the terminal should show why
 
         _warm_thread = threading.Thread(target=work, name="warm-up", daemon=True)
         _warm_thread.start()
@@ -62,11 +64,26 @@ def get_agent(ctx, language: str):
     return build_agent(ctx, language=language)
 
 
-def answer(agent, question: str, language: str):
-    """Run one question. Returns (AgentResult, seconds)."""
+def profile_for(ctx, answers: dict, language: str) -> str:
+    """The background block about the student, built from their questionnaire answers and
+    rules.yaml. "" if there are no answers. If the rules cannot be loaded the chat must still
+    work, so any failure here gives "" (the student just gets an untailored answer)."""
+    if not answers:
+        return ""
+    try:
+        from app.profile_block import build_profile_block
+        from app.strings import load_strings
+
+        return build_profile_block(get_ruleset(ctx), load_strings("en"), answers, language)
+    except Exception:
+        return ""
+
+
+def answer(agent, question: str, language: str, profile: str = ""):
+    """Run one question. Returns (AgentResult, seconds). `profile` is the block from profile_for."""
     from core.agent import run_agent
 
     wait_for_warm_up()
     t0 = time.time()
-    result = run_agent(agent, question, language=language)
+    result = run_agent(agent, question, language=language, profile=profile)
     return result, time.time() - t0

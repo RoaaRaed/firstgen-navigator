@@ -63,7 +63,7 @@ def test_empty_chat_shows_examples_and_no_error(load_page, lang):
 def test_a_question_is_answered_and_stored(load_page, monkeypatch):
     state = base_state()
     page, st = load_page(state, typed="When is the MAP deadline?")
-    monkeypatch.setattr(page.advisor, "answer", lambda agent, q, lang: (good_result(), 2.0))
+    monkeypatch.setattr(page.advisor, "answer", lambda agent, q, lang, profile="": (good_result(), 2.0))
     monkeypatch.setattr(page, "_agent", lambda lang: object())
     page.render_page(strings.load_strings("en"), "en")
     assert [m["role"] for m in state["messages"]] == ["user", "assistant"]
@@ -75,7 +75,7 @@ def test_an_example_button_becomes_the_question(load_page, monkeypatch):
     state = base_state(pending_question="Where can I get help with food?")
     page, st = load_page(state, typed=None)
     seen = []
-    monkeypatch.setattr(page.advisor, "answer", lambda agent, q, lang: (seen.append(q) or good_result(), 1.0))
+    monkeypatch.setattr(page.advisor, "answer", lambda agent, q, lang, profile="": (seen.append(q) or good_result(), 1.0))
     monkeypatch.setattr(page, "_agent", lambda lang: object())
     page.render_page(strings.load_strings("en"), "en")
     assert seen == ["Where can I get help with food?"] and "pending_question" not in state
@@ -85,7 +85,7 @@ def test_a_crash_shows_an_error_and_keeps_the_history_clean(load_page, monkeypat
     state = base_state()
     page, st = load_page(state, typed="hi")
 
-    def boom(*a):
+    def boom(*a, **kw):
         raise RuntimeError("GROQ_API_KEY is not set")
 
     monkeypatch.setattr(page.advisor, "answer", boom)
@@ -126,7 +126,7 @@ def _example_buttons(st):
 def test_examples_are_hidden_while_a_question_is_being_answered(load_page, monkeypatch):
     state = base_state()
     page, st = load_page(state, typed="hello")
-    monkeypatch.setattr(page.advisor, "answer", lambda agent, q, lang: (good_result(), 1.0))
+    monkeypatch.setattr(page.advisor, "answer", lambda agent, q, lang, profile="": (good_result(), 1.0))
     monkeypatch.setattr(page, "_agent", lambda lang: object())
     page.render_page(strings.load_strings("en"), "en")
     assert _example_buttons(st) == []
@@ -143,3 +143,26 @@ def test_chat_page_has_a_my_plan_button(load_page):
     page.render_page(strings.load_strings("en"), "en")
     keys = [c.kwargs.get("key") for c in st.button.call_args_list]
     assert "open_plan_btn" in keys
+
+
+def test_question_is_answered_with_the_students_profile(load_page, monkeypatch):
+    page, st = load_page(base_state(), typed="What is MAP?")
+    seen = {}
+    monkeypatch.setattr(page, "_context", lambda: "ctx")
+    monkeypatch.setattr(page.advisor, "profile_for", lambda ctx, answers, lang: seen.update(p=(ctx, dict(answers), lang)) or "PROFILE")
+    monkeypatch.setattr(page.advisor, "answer", lambda agent, q, lang, profile="": (seen.update(profile=profile) or good_result(), 1.0))
+    monkeypatch.setattr(page, "_agent", lambda lang: object())
+    page.render_page(strings.load_strings("en"), "en")
+    assert seen["p"] == ("ctx", {"stage": "applying"}, "en")
+    assert seen["profile"] == "PROFILE"
+
+
+def test_tailored_caption_only_when_there_are_answers(load_page):
+    page, st = load_page(base_state(answers={}))
+    page.render_page(strings.load_strings("en"), "en")
+    captions = [c.args[0] for c in st.caption.call_args_list]
+    assert strings.load_strings("en")["chat"]["tailored"] not in captions
+    page, st = load_page(base_state())
+    page.render_page(strings.load_strings("en"), "en")
+    captions = [c.args[0] for c in st.caption.call_args_list]
+    assert strings.load_strings("en")["chat"]["tailored"] in captions

@@ -9,7 +9,7 @@ from __future__ import annotations
 import datetime as dt
 from dataclasses import dataclass, field
 
-from app.profile import answered_rows
+from app.student_answers import answered_rows
 from core.rules import match_rules
 from core.tools.escalate import escalate_to_human
 from core.tools.programs import match_programs
