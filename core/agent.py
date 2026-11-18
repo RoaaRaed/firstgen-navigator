@@ -22,6 +22,7 @@ from dataclasses import dataclass, field
 from langchain_core.tools import tool
 from langchain_groq import ChatGroq
 
+from core.compact import for_model
 from core.prompts import load_system_prompt
 from core.schema import AdvisorAnswer
 from core.tools import escalate_to_human as _escalate_to_human
@@ -40,7 +41,12 @@ FINALIZE_INSTRUCTIONS = (
 )
 
 
-def get_llm(model: str | None = None, temperature: float = 0.0):
+LOOP_MAX_TOKENS = 1200  # the tool-calling phase writes tool calls and a short draft, not the final answer
+LEAN_SEARCH_K = 4       # "lean" retry after a 413 "request too large": half the passages per search
+LEAN_ROWS = 3           # ... and at most this many rows of deadlines / programs shown to the model
+
+
+def get_llm(model: str | None = None, temperature: float = 0.0, max_tokens: int = 2000):
     """The one place that knows which LLM we use (Groq free tier for development)."""
     from dotenv import load_dotenv
 
@@ -49,19 +55,31 @@ def get_llm(model: str | None = None, temperature: float = 0.0):
     api_key = os.getenv("GROQ_API_KEY")
     if not api_key:
         raise RuntimeError("GROQ_API_KEY is not set. Add it to .env (see .env.example).")
-    return ChatGroq(model=model, api_key=api_key, temperature=temperature, max_tokens=2000)
+    return ChatGroq(model=model, api_key=api_key, temperature=temperature, max_tokens=max_tokens)
 
 
-def build_langchain_tools(ctx) -> list:
+def _trim_rows(out: dict, n: int) -> dict:
+    """The same result with at most n rows (only what the MODEL reads is trimmed in lean mode)."""
+    rows = out.get("results") if isinstance(out, dict) else None
+    return {**out, "results": rows[:n]} if isinstance(rows, list) else out
+
+
+def build_langchain_tools(ctx, lean: dict | None = None) -> list:
     """Wrap the four tools so the model only sees the arguments it should fill in.
     `ctx` (the loaded institution data) is bound in this closure - the model never sees it
-    and cannot change it."""
+    and cannot change it.
+
+    `lean` is a shared switch ({"on": bool}). run_agent turns it on for one retry when Groq says
+    the request was too large (413): the model then reads fewer passages and rows."""
+    lean = lean if lean is not None else {"on": False}
 
     # Tool names must exactly match what the system prompt calls them (Groq rejects a tool
     # call whose name is not in the request's tool list, so the wrapper and the prompt text
     # must agree character for character - hence the plain names here, not "..._tool").
-    @tool
-    def search_knowledge_base(query: str, language: str = "en", layer: str = "") -> dict:
+    # response_format="content_and_artifact": the model reads a short text (core/compact.py), the
+    # page still gets the full dict (links, dates, hours) from the tool message's artifact.
+    @tool(response_format="content_and_artifact")
+    def search_knowledge_base(query: str, language: str = "en", layer: str = ""):
         """Search the official documents (federal, Illinois state, and college pages) for
         passages that answer the student's question. Use for how something works, who is
         eligible, what steps to take, or what a term means.
@@ -71,10 +89,12 @@ def build_langchain_tools(ctx) -> list:
             language: "en" or "ar" - the language of the student's question.
             layer: optional: "federal", "state" or "institution". Leave empty otherwise.
         """
-        return _search_knowledge_base(ctx, query, language=language, layer=layer or None)
+        extra = {"k": LEAN_SEARCH_K} if lean["on"] else {}
+        out = _search_knowledge_base(ctx, query, language=language, layer=layer or None, **extra)
+        return for_model("search_knowledge_base", out), out
 
-    @tool
-    def lookup_deadlines(term: str = "", topic: str = "") -> dict:
+    @tool(response_format="content_and_artifact")
+    def lookup_deadlines(term: str = "", topic: str = ""):
         """Look up exact dates from the official deadlines table (FAFSA, MAP, Alternative
         Application, registration, withdrawal, term dates). Use for any "when" question.
 
@@ -82,11 +102,13 @@ def build_langchain_tools(ctx) -> list:
             term: optional term or aid year, e.g. "Spring 2027", "2026-27".
             topic: optional English words, e.g. "withdrawal", "first day", "FAFSA".
         """
-        return _lookup_deadlines(ctx, term=term, topic=topic)
+        out = _lookup_deadlines(ctx, term=term, topic=topic)
+        shown = _trim_rows(out, LEAN_ROWS + 1) if lean["on"] else out
+        return for_model("lookup_deadlines", shown), out
 
-    @tool
+    @tool(response_format="content_and_artifact")
     def match_programs(tags: list[str] | None = None, categories: list[str] | None = None,
-                       keywords: str = "") -> dict:
+                       keywords: str = ""):
         """Find support programs and offices for the student's situation (aid, food, child
         care, immigrant services, ESL, transfer, wellness, disability, academic help).
 
@@ -97,10 +119,12 @@ def build_langchain_tools(ctx) -> list:
                 childcare, food, disability.
             keywords: optional English words.
         """
-        return _match_programs(ctx, tags=tags or [], categories=categories or [], keywords=keywords)
+        out = _match_programs(ctx, tags=tags or [], categories=categories or [], keywords=keywords)
+        shown = _trim_rows(out, LEAN_ROWS) if lean["on"] else out
+        return for_model("match_programs", shown), out
 
-    @tool
-    def escalate_to_human(topic: str) -> dict:
+    @tool(response_format="content_and_artifact")
+    def escalate_to_human(topic: str):
         """Get the named office a student should talk to for something the documents cannot
         decide alone: eligibility decisions, immigration, verification, a crisis. Never give
         legal advice and never ask about immigration status.
@@ -109,7 +133,8 @@ def build_langchain_tools(ctx) -> list:
             topic: financial_aid, state_aid, immigration, academic, transfer, wellness, food,
                 snap, childcare, disability (other words are matched to the closest topic).
         """
-        return _escalate_to_human(ctx, topic)
+        out = _escalate_to_human(ctx, topic)
+        return for_model("escalate_to_human", out), out
 
     return [search_knowledge_base, lookup_deadlines, match_programs, escalate_to_human]
 
@@ -120,17 +145,22 @@ class Agent:
     runnable: object
     llm: object
     tools: list = field(default_factory=list)
+    lean: dict = field(default_factory=lambda: {"on": False})   # shared with the tools, see run_agent
 
 
 def build_agent(ctx, language: str = "en", institution_name: str = DEFAULT_INSTITUTION_NAME,
                 llm=None) -> Agent:
     from langchain.agents import create_agent
 
+    # Groq counts the room reserved for the reply (max_tokens) as part of each request. The tool
+    # loop needs little, so it gets a smaller reserve; the final structured answer keeps 2000.
+    loop_llm = llm or get_llm(max_tokens=LOOP_MAX_TOKENS)
     llm = llm or get_llm()
-    tools = build_langchain_tools(ctx)
+    lean = {"on": False}
+    tools = build_langchain_tools(ctx, lean)
     system_prompt = load_system_prompt(language, institution_name=institution_name)
-    runnable = create_agent(model=llm, tools=tools, system_prompt=system_prompt)
-    return Agent(runnable=runnable, llm=llm, tools=tools)
+    runnable = create_agent(model=loop_llm, tools=tools, system_prompt=system_prompt)
+    return Agent(runnable=runnable, llm=llm, tools=tools, lean=lean)
 
 
 @dataclass
@@ -150,7 +180,8 @@ def _extract_tool_calls(messages) -> list:
         elif getattr(msg, "type", None) == "tool":
             entry = pending.pop(getattr(msg, "tool_call_id", None),
                                 {"name": getattr(msg, "name", "?"), "args": {}})
-            entry["result"] = msg.content
+            artifact = getattr(msg, "artifact", None)  # the full dict, when the tool kept one
+            entry["result"] = artifact if artifact is not None else msg.content
             calls.append(entry)
     return calls
 
@@ -206,6 +237,50 @@ def _with_profile(question: str, profile: str) -> str:
     return f"{profile}\n\nStudent's question:\n{question}" if profile else question
 
 
+def is_too_large_error(exc) -> bool:
+    """Groq's 413 "Request too large for model ... tokens per minute": the single request is over
+    the cap, so waiting does not help, but a smaller request does."""
+    text = str(exc)
+    return "413" in text or "Request too large" in text
+
+
+def _invoke_loop(agent: Agent, payload: dict):
+    """The tool loop, with the rate-limit wait. If the request is too large, try once more in lean mode."""
+    try:
+        return _call_with_rate_limit_retry(lambda: agent.runnable.invoke(payload))
+    except Exception as e:
+        lean = getattr(agent, "lean", None)
+        if not is_too_large_error(e) or lean is None:
+            raise
+        print("[advisor] request too large for the free tier; retrying with fewer search results")
+        lean["on"] = True
+        try:
+            return _call_with_rate_limit_retry(lambda: agent.runnable.invoke(payload))
+        finally:
+            lean["on"] = False
+
+
+def _without_draft(messages: list) -> list:
+    """The conversation minus the loop's last free-text draft (the structured pass can write the
+    answer from the tool results alone). Used to shrink a finalize request that was too large."""
+    msgs = list(messages)
+    for i in range(len(msgs) - 1, -1, -1):
+        m = msgs[i]
+        if getattr(m, "type", None) == "ai" and not getattr(m, "tool_calls", None):
+            return msgs[:i] + msgs[i + 1:]
+    return msgs
+
+
+def _print_usage(messages) -> None:
+    """One terminal line per model call with the tokens Groq counted - shows where a 413 comes from."""
+    n = 0
+    for m in messages:
+        usage = getattr(m, "usage_metadata", None)
+        if getattr(m, "type", None) == "ai" and isinstance(usage, dict):
+            n += 1
+            print(f"[tokens] model call {n}: input {usage.get('input_tokens')}, output {usage.get('output_tokens')}")
+
+
 def run_agent(agent: Agent, question: str, language: str = "en", profile: str = "") -> AgentResult:
     """Run one turn: the tool-calling loop first (it may call several tools), then a second,
     structured-output call turns that conversation into an AdvisorAnswer. Two calls, not one,
@@ -216,8 +291,9 @@ def run_agent(agent: Agent, question: str, language: str = "en", profile: str = 
     It goes in front of the question inside the same user message, so the second call sees it too."""
     try:
         payload = {"messages": [{"role": "user", "content": _with_profile(question, profile)}]}
-        result = _call_with_rate_limit_retry(lambda: agent.runnable.invoke(payload))
+        result = _invoke_loop(agent, payload)
         messages = result["messages"]
+        _print_usage(messages)
     except Exception as e:
         traceback.print_exc()  # the page only shows a friendly message; the terminal gets the real error
         # The tool-calling phase itself failed (e.g. the free tier's per-minute token limit
@@ -231,9 +307,19 @@ def run_agent(agent: Agent, question: str, language: str = "en", profile: str = 
                      if getattr(m, "type", None) == "ai" and m.content), "")
 
     finalize = list(messages) + [{"role": "user", "content": FINALIZE_INSTRUCTIONS}]
+    def finalize_call(msgs):
+        return _call_with_rate_limit_retry(
+            lambda: agent.llm.with_structured_output(AdvisorAnswer).invoke(msgs))
+
     try:
-        structured = _call_with_rate_limit_retry(
-            lambda: agent.llm.with_structured_output(AdvisorAnswer).invoke(finalize))
+        try:
+            structured = finalize_call(finalize)
+        except Exception as e:
+            if not is_too_large_error(e):
+                raise
+            print("[advisor] final request too large; retrying without the draft text")
+            structured = finalize_call(_without_draft(messages) +
+                                       [{"role": "user", "content": FINALIZE_INSTRUCTIONS}])
         answer = structured if isinstance(structured, AdvisorAnswer) \
             else AdvisorAnswer.model_validate(structured)
     except Exception as e:

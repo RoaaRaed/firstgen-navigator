@@ -145,5 +145,72 @@
   "seconds": 3.3,
   "confidence": "Low",
   "answer": "لم أتمكن من العثور على معلومات حول كلفة الساعة المعتمدة في شيكاغو في المستندات المتاحة."
+ },
+ "p09:en": {
+  "sources": [
+   "institution-ccc-student-resources",
+   "institution-ccc-transfer-services"
+  ],
+  "fallback": false,
+  "seconds": 43.3,
+  "confidence": "High",
+  "answer": "Transferring from City Colleges of Chicago (CCC) to a four‑year university follows a set of steps that the CCC Transfer Centers help you plan and complete.\n\n1. **Meet with a Transfer Center advisor** – The Transfer Centers will work with you to choose possible four‑year schools, review your academic record, and map out the courses you need. 【institution-ccc-student-resources::01】\n2. **Earn an associate degree or complete the required coursework** – Most universities require a completed associate degree (often an AA or AS) and a minimum GPA (usually 2.5 or higher) before they will accept transf"
+ },
+ "p09:ar": {
+  "sources": [
+   "institution-ccc-student-resources",
+   "institution-ccc-transfer-services"
+  ],
+  "fallback": false,
+  "seconds": 54.1,
+  "confidence": "High",
+  "answer": "**خطوات الانتقال من كليات المدينة إلى جامعة أربع سنوات**\n\n1. **زيارة مركز النقل (Transfer Center).**\n   - يساعدك المركز في اختيار الجامعة المناسبة، يوضح المتطلبات الأكاديمية، ويقدم ورش عمل وإرشادات حول عملية النقل. 【institution-ccc-student-resources::01】\n\n2. **التحقق من متطلبات القبول للجامعة المستهدفة.**\n   - عادةً تحتاج إلى إكمال حوالي 60–64 ساعة دراسية مع معدل GPA لا يقل عن 2.5 (أو حسب الجامعة). 【institution-ccc-transfer-services::14】\n   - تأكد من إكمال المقررات الأساسية المطلوبة (رياضيات، علوم، لغة إنجليزية). 【institution-ccc-transfer-services::00】\n\n3. **الاستفادة من برنامج “Transfer Admis"
+ },
+ "p10:en": {
+  "sources": [
+   "federal-pell-grants",
+   "federal-financial-aid-glossary"
+  ],
+  "fallback": false,
+  "seconds": 44.0,
+  "confidence": "High",
+  "answer": "A Federal Pell Grant is a need‑based grant that provides money to help undergraduate students cover college‑related costs such as tuition, fees, books, and supplies. The grant does not have to be repaid. Eligibility is limited to undergraduate students who have not yet earned a bachelor’s, graduate, or professional degree and who demonstrate financial need as calculated by the FAFSA (Expected Family Contribution and other criteria). Age does not affect eligibility.\n\n**Next steps**\n1. Complete the FAFSA for the 2026‑27 award year as soon as it opens; the FAFSA determines your EFC and Pell Grant"
+ },
+ "p10:ar": {
+  "sources": [
+   "federal-pell-grants"
+  ],
+  "fallback": false,
+  "seconds": 152.1,
+  "confidence": "High",
+  "answer": "منحة Pell الفدرالية هي منحة مالية غير مستردة تُمنح للطلاب الجامعيين ذوي الحاجة المالية لتغطية تكاليف التعليم العالي. يمكن لأي طالب جامعي لم يحصل بعد على درجة البكالوريوس أو أي درجة دراسات عليا أو مهنية، ويكون مواطنًا أمريكيًا أو غير أمريكي مؤهلاً، ويُظهر حاجة مالية من خلال إكمال نموذج FAFSA، ويسجل في برنامج دراسي مؤهل في مؤسسة معتمدة، ويحافظ على التقدم الأكاديمي المرضي، أن يحصل على هذه المنحة."
+ },
+ "p11:en": {
+  "sources": [],
+  "fallback": false,
+  "seconds": 199.5,
+  "confidence": "Low",
+  "answer": "I wasn’t able to locate a specific rule in the documents about whether working 35 hours a week will affect your ability to remain a full‑time student and keep your financial aid. The federal work‑study program is limited to part‑time jobs, but that guidance does not cover other employment. To get a definitive answer, you should speak directly with your college’s Financial Aid Office."
+ },
+ "p12:en": {
+  "sources": [
+   "deadlines:ccc-spring27-first-day-16wk",
+   "deadlines:ccc-spring27-withdrawal-16wk"
+  ],
+  "fallback": false,
+  "seconds": 28.3,
+  "confidence": "High",
+  "answer": "The Spring 2027 semester begins on January 11 2027 (first day of the regular 16‑week session). The last day you can drop (student‑initiated withdrawal) a regular 16‑week class is April 8 2027."
+ },
+ "p12:ar": {
+  "sources": [
+   "deadlines:ccc-spring27-first-day-16wk",
+   "deadlines:ccc-spring27-first-day-12wk",
+   "institution-ccc-academic-calendar"
+  ],
+  "fallback": false,
+  "seconds": 65.9,
+  "confidence": "High",
+  "answer": "يبدأ الفصل الربيعي 2027 في ثلاثة تواريخ حسب الجلسة التي تسجل فيها:\n- الجلسة العادية (16 أسبوع) وجلسة الـ 8 أسابيع الأولى يبدأان في **11 يناير 2027**.\n- الجلسة الـ 12 أسبوعاً تبدأ في **8 فبراير 2027**.\n\nآخر يوم لسحب مادة (الانسحاب الطالب‑مبادَر) هو:\n- جلسة الـ 8 أسابيع الأولى: **21 فبراير 2027 (الأحد)**.\n- الجلسة العادية (16 أسبوع): **8 أبريل 2027 (الخميس)**.\n- جلسة الـ 12 أسبوعاً: التاريخ المحدد للانسحاب موجود في نفس التقويم الرسمي (انظر المصدر) ويقع بعد 8 فبراير.\n\n**ما يجب فعله**\n1. تحقق من الجلسة التي سجلت فيها عبر بوابة الطالب.\n2. إذا قررت الانسحاب، قدّم طلب السحب عبر نظام التسجيل قبل تاريخ"
  }
 }

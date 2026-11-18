@@ -76,16 +76,16 @@ def test_build_langchain_tools_exposes_exactly_the_four_tools_bound_to_ctx():
 def test_each_wrapped_tool_calls_the_right_underlying_function_with_ctx_bound():
     search_t, deadlines_t, programs_t, escalate_t = agent.build_langchain_tools(ctx())
 
-    out = search_t(query="MAP grant")
+    text, out = search_t(query="MAP grant")
     assert out["found"] and out["results"][0]["source_id"] == "state-isac-map::03"
 
-    out = deadlines_t(term="Spring 2027", topic="drop")
+    text, out = deadlines_t(term="Spring 2027", topic="drop")
     assert out["results"][0]["source_id"] == "deadlines:ccc-spring27-withdrawal-16wk"
 
-    out = programs_t(tags=["caregiver"])
+    text, out = programs_t(tags=["caregiver"])
     assert out["found"]
 
-    out = escalate_t(topic="DACA")
+    text, out = escalate_t(topic="DACA")
     assert out["topic"] == "immigration" and out["sensitive"] is True
 
 
@@ -155,16 +155,16 @@ def test_run_agent_accepts_a_plain_dict_from_with_structured_output():
 def test_each_wrapped_tool_calls_the_right_underlying_function_with_ctx_bound():
     search_t, deadlines_t, programs_t, escalate_t = agent.build_langchain_tools(ctx())
 
-    out = search_t(query="MAP grant")
+    text, out = search_t(query="MAP grant")
     assert out["found"] and out["results"][0]["source_id"] == "state-isac-map::03"
 
-    out = deadlines_t(term="Spring 2027", topic="drop")
+    text, out = deadlines_t(term="Spring 2027", topic="drop")
     assert out["results"][0]["source_id"] == "deadlines:ccc-spring27-withdrawal-16wk"
 
-    out = programs_t(tags=["caregiver"])
+    text, out = programs_t(tags=["caregiver"])
     assert out["found"]
 
-    out = escalate_t(topic="DACA")
+    text, out = escalate_t(topic="DACA")
     assert out["topic"] == "immigration" and out["sensitive"] is True
 
 
@@ -353,3 +353,133 @@ def test_a_long_wait_such_as_the_daily_limit_is_not_slept_through():
     with pytest.raises(_RateLimit):
         agent._call_with_rate_limit_retry(lambda: (_ for _ in ()).throw(daily), sleep=slept.append)
     assert slept == []
+
+
+# ---- the model reads compact text, the page keeps the full result ----
+
+def test_tools_return_compact_text_for_the_model_and_the_full_dict_as_artifact():
+    search_t, deadlines_t, programs_t, escalate_t = agent.build_langchain_tools(ctx())
+    assert all(t.response_format == "content_and_artifact" for t in (search_t, deadlines_t, programs_t, escalate_t))
+
+    text, full = search_t(query="MAP grant")
+    assert text.startswith("[state-isac-map::03]") and "http" not in text
+    assert full["results"][0]["source_url"] == "https://www.isac.org/map"   # the cards still get the link
+
+    text, full = deadlines_t(term="Spring 2027", topic="drop")
+    assert text.startswith("today: 2026-11-09") and "deadlines:" in text and "http" not in text
+    assert full["results"][0]["source_url"].startswith("http")
+
+    text, full = programs_t(tags=["caregiver"])
+    assert "[programs:" in text and "http" not in text and full["results"][0]["source_url"]
+
+    text, full = escalate_t(topic="DACA")
+    assert text.startswith("topic: ") and "[programs:" in text
+
+
+def test_extract_tool_calls_prefers_the_artifact_over_the_compact_text():
+    from tests.fake_langchain import FakeMsg
+
+    full = {"found": True, "results": [{"source_id": "x::01", "source_url": "https://x.org"}]}
+    msgs = [FakeMsg("ai", "", tool_calls=[{"id": "1", "name": "search_knowledge_base", "args": {"query": "q"}},
+                                          {"id": "2", "name": "lookup_deadlines", "args": {}}]),
+            FakeMsg("tool", "[x::01] compact text", tool_call_id="1", artifact=full),
+            FakeMsg("tool", "plain content only", tool_call_id="2")]
+    calls = agent._extract_tool_calls(msgs)
+    assert calls[0]["result"] == full                       # the full dict, for the source cards
+    assert calls[1]["result"] == "plain content only"       # no artifact: the content, as before
+
+
+def test_the_tool_loop_reserves_less_room_than_the_final_answer(monkeypatch):
+    from types import SimpleNamespace
+
+    record = install(agent_trace=[FakeMsg("ai", "ok")], structured_answer=_answer())
+    made = []
+    monkeypatch.setattr(agent, "get_llm", lambda model=None, temperature=0.0, max_tokens=2000:
+                        made.append(max_tokens) or SimpleNamespace(max_tokens=max_tokens))
+    a = agent.build_agent(ctx())
+    assert record["build_agent_kwargs"]["model"].max_tokens == agent.LOOP_MAX_TOKENS == 1200
+    assert a.llm.max_tokens == 2000                       # the structured answer keeps its room
+
+
+# ---- 413 "request too large": retry smaller instead of failing ----
+
+def test_is_too_large_error_matches_groqs_413_only():
+    assert agent.is_too_large_error(RuntimeError("Error code: 413 - Request too large for model x"))
+    assert not agent.is_too_large_error(RuntimeError("Error code: 429 - tokens per day (TPD)"))
+
+
+def test_a_413_in_the_tool_loop_is_retried_once_in_lean_mode(monkeypatch):
+    record = install(agent_trace=[FakeMsg("ai", "ok")], structured_answer=_answer())
+    a = agent.build_agent(ctx(), llm=record["llm"])
+    real, modes = a.runnable.invoke, []
+
+    def too_big_first(payload):
+        modes.append(a.lean["on"])
+        if len(modes) == 1:
+            raise RuntimeError("Error code: 413 - Request too large ... Limit 8000, Requested 8071")
+        return real(payload)
+
+    a.runnable.invoke = too_big_first
+    monkeypatch.setattr(agent.time, "sleep", lambda s: None)
+    result = agent.run_agent(a, "How do I apply?")
+    assert modes == [False, True]            # first normal, then lean
+    assert a.lean["on"] is False              # switched off again afterwards
+    assert result.answer.answer == "ok"
+
+
+def test_lean_mode_shows_the_model_fewer_search_results_but_the_page_keeps_the_full_ones():
+    seen = []
+
+    class Many(FakeRetriever):
+        def search(self, query, k=5, layer=None, **kw):
+            seen.append(k)
+            return super().search(query, k=k, layer=layer) * k
+
+    lean = {"on": False}
+    c = load_context("demo-ccc", retriever=Many(), today=dt.date(2026, 11, 9))
+    search_t, deadlines_t, programs_t, _ = agent.build_langchain_tools(c, lean)
+    search_t(query="MAP")
+    lean["on"] = True
+    search_t(query="MAP")
+    assert seen == [8, agent.LEAN_SEARCH_K]
+    cats = ["financial", "academic", "wellness", "transfer", "childcare", "food", "disability"]
+    text_lean, full_lean = programs_t(categories=cats)
+    lean["on"] = False
+    text_normal, full_normal = programs_t(categories=cats)
+    assert len(text_lean.splitlines()) <= agent.LEAN_ROWS < len(text_normal.splitlines())
+    assert len(full_lean["results"]) == len(full_normal["results"])   # the cards keep every row
+
+
+def test_a_413_in_the_final_call_is_retried_without_the_draft_text():
+    calls = []
+    trace = [FakeMsg("ai", "", tool_calls=[{"id": "1", "name": "lookup_deadlines", "args": {}}]),
+             FakeMsg("tool", "[d::1] 2026-12-01", tool_call_id="1"),
+             FakeMsg("ai", "a long draft answer")]
+    record = install(agent_trace=trace, structured_answer=_answer())
+    a = agent.build_agent(ctx(), llm=record["llm"])
+
+    class Llm:
+        def with_structured_output(self, schema):
+            return self
+
+        def invoke(self, msgs):
+            calls.append(msgs)
+            if len(calls) == 1:
+                raise RuntimeError("Error code: 413 - Request too large")
+            return _answer()
+
+    a.llm = Llm()
+    result = agent.run_agent(a, "When is it?")
+    assert len(calls) == 2
+    assert any(getattr(m, "content", "") == "a long draft answer" for m in calls[0])
+    assert not any(getattr(m, "content", "") == "a long draft answer" for m in calls[1])
+    assert result.answer.confidence != "Low" or result.answer.answer == "ok"
+
+
+def test_token_usage_is_printed_for_each_model_call(capsys):
+    msgs = [FakeMsg("ai", ""), FakeMsg("ai", "x")]
+    msgs[0].usage_metadata = {"input_tokens": 5000, "output_tokens": 40}
+    msgs[1].usage_metadata = {"input_tokens": 6200, "output_tokens": 300}
+    agent._print_usage(msgs)
+    out = capsys.readouterr().out
+    assert "model call 1: input 5000, output 40" in out and "model call 2: input 6200, output 300" in out

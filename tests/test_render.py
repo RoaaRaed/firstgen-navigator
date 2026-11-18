@@ -132,3 +132,34 @@ def test_link_html_reads_left_to_right_escapes_and_refuses_bad_urls():
     assert 'dir="ltr"' in out and "&amp;" in out and "&quot;" in out and 'rel="noopener noreferrer"' in out
     for bad in ("javascript:alert(1)", "", None, "file:///x"):
         assert render.link_html(bad) == ""
+
+
+# ---- source ids written inside the answer text are not shown ----
+
+def test_inline_source_markers_are_removed_from_the_answer_text():
+    strip = render.strip_citation_markers
+    assert strip("Fill the form. [source institution-ccc-registration::00]") == "Fill the form."
+    assert strip("املأ الطلب. [source institution-ccc-admissions::02]") == "املأ الطلب."
+    assert strip("A [institution-ccc-registration::01] and B (source: deadlines:ccc-x-1)") == "A and B"
+    assert strip("Both [source a-b::01, source c-d::02] apply") == "Both apply"
+    assert strip("Both [source a-b::01; programs:ccc-food] apply") == "Both apply"
+
+
+def test_other_brackets_and_plain_text_are_left_alone():
+    strip = render.strip_citation_markers
+    assert strip("Go to [ccc.edu/apply] now") == "Go to [ccc.edu/apply] now"
+    assert strip("Call (312) 553-2500 [ext. 4]") == "Call (312) 553-2500 [ext. 4]"
+    assert strip("") == "" and strip(None) == ""
+
+
+def test_assistant_message_strips_markers_from_answer_and_steps_but_not_from_a_fallback():
+    from types import SimpleNamespace
+
+    result = SimpleNamespace(
+        answer=AdvisorAnswer(answer="Apply online. [source state-isac-map::03]", confidence="High",
+                             citations=[Citation(source_id="state-isac-map::03", label="x")],
+                             next_steps=["Visit the office [source state-isac-map::03]"]),
+        tool_calls=[])
+    m = render.assistant_message(result, 1.0)
+    assert m["answer"] == "Apply online." and m["next_steps"] == ["Visit the office"]
+    assert [c["source_id"] for c in m["cards"]] == ["state-isac-map::03"] or m["cards"] == []

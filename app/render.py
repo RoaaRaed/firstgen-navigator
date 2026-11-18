@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import html
 import json
+import re
 
 CONFIDENCE_COLORS = {  # (text, background)
     "High": ("#3E4B24", "#E1E8CC"),
@@ -131,6 +132,20 @@ def build_cards(answer, tool_calls) -> list[dict]:
     return cards
 
 
+# The model sometimes writes its source ids inside the answer text, e.g. "[source institution-ccc-registration::00]".
+# The ids belong on the source cards (answer.citations), so they are removed from the text that is shown.
+_ID = r"(?:[A-Za-z0-9_.\-]+::\d+|(?:deadlines|programs|handoffs):[A-Za-z0-9_.\-]+)"
+_MARK = (r"\s*[\[\(\u3010\uFF08]\s*(?:(?:sources?|src|\u0627\u0644\u0645\u0635\u062f\u0631|\u0627\u0644\u0645\u0635\u0627\u062f\u0631)\s*:?\s*)?"
+         + _ID + r"(?:\s*[,;\u060c\u061b]\s*(?:(?:sources?)\s*:?\s*)?" + _ID + r")*\s*[\]\)\u3011\uFF09]")
+CITATION_MARKERS = re.compile(_MARK, re.IGNORECASE)
+
+
+def strip_citation_markers(text: str) -> str:
+    """The text without inline source-id markers. Other bracketed text (a link label such as
+    "[ccc.edu/apply]") is left alone, because only ids shaped like a source_id match."""
+    return CITATION_MARKERS.sub("", text or "")
+
+
 def is_daily_limit_fallback(answer) -> bool:
     """The fallback caused by Groq's daily token limit (a retry in a minute will not help)."""
     return is_system_fallback(answer) and "tokens per day" in answer.answer
@@ -143,10 +158,10 @@ def assistant_message(result, seconds: float) -> dict:
         "role": "assistant",
         "fallback": is_system_fallback(a),
         "daily_limit": is_daily_limit_fallback(a),
-        "answer": a.answer,
+        "answer": a.answer if is_system_fallback(a) else strip_citation_markers(a.answer),
         "confidence": a.confidence,
         "cards": build_cards(a, result.tool_calls),
-        "next_steps": list(a.next_steps),
+        "next_steps": [strip_citation_markers(step) for step in a.next_steps],
         "contact": a.human_contact.model_dump() if a.human_contact else None,
         "seconds": round(seconds, 1),
     }

@@ -11,7 +11,8 @@ import types
 
 
 class FakeMsg:
-    def __init__(self, type, content="", tool_calls=None, tool_call_id=None, name=None):
+    def __init__(self, type, content="", tool_calls=None, tool_call_id=None, name=None, artifact=None):
+        self.artifact = artifact
         self.type = type
         self.content = content
         self.tool_calls = tool_calls
@@ -64,15 +65,22 @@ def install(agent_trace=None, structured_answer=None, structured_error=None, rec
     lc_core_tools = types.ModuleType("langchain_core.tools")
 
     class FakeTool:
-        def __init__(self, func):
+        def __init__(self, func, response_format="content"):
             self.func = func
+            self.response_format = response_format
             self.name = func.__name__
             self.description = func.__doc__
 
         def __call__(self, *a, **kw):
             return self.func(*a, **kw)
 
-    lc_core_tools.tool = FakeTool
+    def fake_tool(*args, **kw):
+        """Works as @tool and as @tool(response_format=...), like the real decorator."""
+        if args and callable(args[0]):
+            return FakeTool(args[0], **kw)
+        return lambda func: FakeTool(func, **kw)
+
+    lc_core_tools.tool = fake_tool
     lc_core = types.ModuleType("langchain_core")
     lc_core.tools = lc_core_tools
 
