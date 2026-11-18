@@ -48,11 +48,14 @@ def page_css(lang: str) -> str:
     if not is_rtl(lang):
         return ""
     return """
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;600;700&family=Noto+Naskh+Arabic:wght@500;600&display=swap');
 html, body, [data-testid="stAppViewContainer"], [data-testid="stMain"], .stApp {
     direction: rtl;
     font-family: 'Noto Sans Arabic', 'Segoe UI', Tahoma, sans-serif;
 }
+h1, h2, h3 { font-family: 'Noto Naskh Arabic', 'Noto Sans Arabic', serif; letter-spacing: 0; }
+h4 { letter-spacing: 0; text-transform: none; }
+[data-testid="stProgress"] { transform: scaleX(-1); }  /* the bar fills from the right */
 .stMarkdown, .stMarkdown p, h1, h2, h3, label, p, li,
 [data-testid="stAlert"], [data-testid="stWidgetLabel"] {
     text-align: right;

@@ -28,7 +28,7 @@ from reportlab.pdfgen import canvas
 
 FONT_DIR = Path(__file__).parent / "assets" / "fonts"
 REG, BOLD = "FGN-Sans", "FGN-Sans-Bold"
-INK, MUTED, ACCENT, LINK = HexColor("#181c2b"), HexColor("#555c74"), HexColor("#09707f"), HexColor("#1f5fd1")
+INK, MUTED, ACCENT, LINK = HexColor("#26261F"), HexColor("#6B6A5C"), HexColor("#5B6B3A"), HexColor("#4A5A2C")
 _ARABIC = re.compile(r"[؀-ۿݐ-ݿﭐ-﷿ﹰ-﻿]")
 FOOTER_H = 20 * mm
 

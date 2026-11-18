@@ -6,10 +6,11 @@ import html
 import json
 
 CONFIDENCE_COLORS = {  # (text, background)
-    "High": ("#0f7a52", "#dbf4e8"),
-    "Medium": ("#965700", "#fcecd0"),
-    "Low": ("#c13030", "#fde6e6"),
+    "High": ("#3E4B24", "#E1E8CC"),
+    "Medium": ("#7A5710", "#F3E6BF"),
+    "Low": ("#8A3B2A", "#F2DAD2"),
 }
+HOURS_UNKNOWN = "not listed; check the page"  # core/tools/programs.py, when a program has no hours
 SNIPPET_MAX = 220
 FALLBACK_PREFIX = "Something went wrong producing a structured answer"  # core/agent.py _safe_fallback
 

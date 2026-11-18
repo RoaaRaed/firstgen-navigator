@@ -57,7 +57,8 @@ def _show_assistant(strings: dict, msg: dict) -> None:
             if card["snippet"]:
                 _auto(card["snippet"])
             if card["hours"]:
-                st.caption(t(strings, "chat.hours", hours=card["hours"]))
+                shown = t(strings, "chat.hours_unknown") if card["hours"] == render.HOURS_UNKNOWN else card["hours"]
+                st.caption(t(strings, "chat.hours", hours=shown))
             bits = []
             if card["url"]:
                 bits.append(f"[{t(strings, 'chat.open_source')}]({card['url']})")

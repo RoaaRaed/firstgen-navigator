@@ -22,6 +22,7 @@ import streamlit as st  # noqa: E402
 from app import chat_page, plan_page, questionnaire, wizard  # noqa: E402
 from app.secrets_env import export_secrets  # noqa: E402
 from app.strings import LANGUAGES, load_strings, normalize, page_css, t  # noqa: E402
+from app.theme import theme_css  # noqa: E402
 
 st.set_page_config(page_title="FirstGen Navigator", page_icon="🧭", layout="centered")
 
@@ -43,7 +44,8 @@ lang = normalize(
 )
 strings = load_strings(lang)
 
-css = page_css(lang)
+st.markdown(f"<style>{theme_css()}</style>", unsafe_allow_html=True)
+css = page_css(lang)  # right-to-left rules for Arabic; its own <style> block so its @import works
 if css:
     st.markdown(f"<style>{css}</style>", unsafe_allow_html=True)
 

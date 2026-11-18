@@ -5,3 +5,19 @@ fileWatcherType = "none"
 
 [browser]
 gatherUsageStats = false
+
+[client]
+toolbarMode = "minimal"
+
+# Linen and olive. Keep these in step with app/theme.py (tests/test_theme.py checks it).
+[theme]
+base = "light"
+primaryColor = "#5B6B3A"
+backgroundColor = "#F4F0E6"
+secondaryBackgroundColor = "#EDE7D8"
+textColor = "#26261F"
+linkColor = "#5B6B3A"
+borderColor = "#DDD7C3"
+codeTextColor = "#5B6B3A"
+codeBackgroundColor = "#EDE7D8"
+baseRadius = "medium"

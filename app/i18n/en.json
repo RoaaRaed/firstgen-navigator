@@ -53,6 +53,7 @@
       "program": "Support program",
       "unknown": "Source"
     },
+    "hours_unknown": "not listed, check the page",
     "hours": "Hours: {hours}",
     "daily_limit": "The demo has used up its daily allowance of AI usage. Please try again tomorrow, or ask a human advisor.",
     "busy": "The advisor could not answer right now. This usually clears up after a minute. Please try again, or ask a human advisor.",
