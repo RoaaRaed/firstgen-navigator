@@ -36,7 +36,7 @@ def _auto(text: str, **kw) -> None:
 
 def _show_assistant(strings: dict, msg: dict) -> None:
     if msg["fallback"]:
-        st.warning(t(strings, "chat.busy"))
+        st.warning(t(strings, "chat.daily_limit" if msg.get("daily_limit") else "chat.busy"))
         return
 
     level = msg["confidence"]

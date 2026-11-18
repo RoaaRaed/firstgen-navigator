@@ -20,9 +20,12 @@ if os.environ.get("FGN_DEBUG_HANG"):
 import streamlit as st  # noqa: E402
 
 from app import chat_page, plan_page, questionnaire, wizard  # noqa: E402
+from app.secrets_env import export_secrets  # noqa: E402
 from app.strings import LANGUAGES, load_strings, normalize, page_css, t  # noqa: E402
 
 st.set_page_config(page_title="FirstGen Navigator", page_icon="🧭", layout="centered")
+
+export_secrets(st.secrets)  # Streamlit Cloud keeps the Groq key in Secrets; local runs use .env
 
 wizard.init_state(st.session_state)
 chat_page.warm_up()  # load the search model in the background while the student answers questions

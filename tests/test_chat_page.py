@@ -166,3 +166,14 @@ def test_tailored_caption_only_when_there_are_answers(load_page):
     page.render_page(strings.load_strings("en"), "en")
     captions = [c.args[0] for c in st.caption.call_args_list]
     assert strings.load_strings("en")["chat"]["tailored"] in captions
+
+
+def test_the_daily_limit_shows_its_own_message(load_page):
+    msg = {"role": "assistant", "fallback": True, "daily_limit": True}
+    page, st = load_page(base_state(messages=[msg]))
+    s = strings.load_strings("en")
+    page._show_assistant(s, msg)
+    st.warning.assert_called_with(s["chat"]["daily_limit"])
+    msg2 = {"role": "assistant", "fallback": True, "daily_limit": False}
+    page._show_assistant(s, msg2)
+    st.warning.assert_called_with(s["chat"]["busy"])

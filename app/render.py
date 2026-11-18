@@ -130,12 +130,18 @@ def build_cards(answer, tool_calls) -> list[dict]:
     return cards
 
 
+def is_daily_limit_fallback(answer) -> bool:
+    """The fallback caused by Groq's daily token limit (a retry in a minute will not help)."""
+    return is_system_fallback(answer) and "tokens per day" in answer.answer
+
+
 def assistant_message(result, seconds: float) -> dict:
     """The stored form of one advisor turn (plain data, so it survives Streamlit reruns)."""
     a = result.answer
     return {
         "role": "assistant",
         "fallback": is_system_fallback(a),
+        "daily_limit": is_daily_limit_fallback(a),
         "answer": a.answer,
         "confidence": a.confidence,
         "cards": build_cards(a, result.tool_calls),

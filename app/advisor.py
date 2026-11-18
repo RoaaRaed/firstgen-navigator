@@ -27,6 +27,24 @@ def get_ruleset(ctx):
     return load_rules(ctx.root / "rules.yaml")
 
 
+def ensure_index(ctx) -> bool:
+    """Build the Chroma index if this machine has none; True if it had to.
+
+    chroma_db/ is not in git (it is a build product), so a fresh machine such as Streamlit
+    Community Cloud starts without it. Building takes about a minute: it embeds the knowledge
+    base once, and the model it loads is the one the search needs anyway."""
+    try:
+        ctx.retriever  # loads the existing index
+        return False
+    except RuntimeError:
+        pass
+    from core import ingest
+
+    ingest.main(["--kb", str(ctx.root / "kb"), "--db", ctx.db])
+    ctx.retriever  # raises here if the build did not work
+    return True
+
+
 def warm_up(ctx) -> None:
     """Load the embedding model and the Chroma index in a background thread, once.
 
@@ -41,6 +59,7 @@ def warm_up(ctx) -> None:
 
         def work():
             try:
+                ensure_index(ctx)
                 ctx.retriever.search("warm up", k=1)
             except Exception:
                 import traceback
