@@ -244,11 +244,39 @@ def is_too_large_error(exc) -> bool:
     return "413" in text or "Request too large" in text
 
 
+TOOL_USE_RETRIES = 2
+TOOL_REMINDER = ("\n\n(Call only these tools: search_knowledge_base, lookup_deadlines, match_programs, "
+                 "escalate_to_human. There is no tool that opens files; a source_id is only for citations.)")
+
+
+def is_tool_use_error(exc) -> bool:
+    """Groq's 400 "tool_use_failed": the model called a tool that does not exist (it once tried
+    "open_file") or wrote a malformed call. It is random, so trying again almost always works."""
+    text = str(exc)
+    return "tool_use_failed" in text or "Tool call validation failed" in text
+
+
+def _remind_tools(payload: dict) -> dict:
+    """The same payload with the list of real tool names added to the last user message."""
+    msgs = [dict(m) for m in payload["messages"]]
+    msgs[-1]["content"] = f"{msgs[-1]['content']}{TOOL_REMINDER}"
+    return {**payload, "messages": msgs}
+
+
 def _invoke_loop(agent: Agent, payload: dict):
-    """The tool loop, with the rate-limit wait. If the request is too large, try once more in lean mode."""
+    """The tool loop, with the rate-limit wait. A made-up tool name is retried with a reminder of the
+    real tool names; a request that is too large is retried once in lean mode."""
     try:
         return _call_with_rate_limit_retry(lambda: agent.runnable.invoke(payload))
     except Exception as e:
+        if is_tool_use_error(e):
+            print("[advisor] the model called a tool that does not exist; retrying")
+            for attempt in range(TOOL_USE_RETRIES):
+                try:
+                    return _call_with_rate_limit_retry(lambda: agent.runnable.invoke(_remind_tools(payload)))
+                except Exception as again:
+                    if not is_tool_use_error(again) or attempt == TOOL_USE_RETRIES - 1:
+                        raise
         lean = getattr(agent, "lean", None)
         if not is_too_large_error(e) or lean is None:
             raise
@@ -308,8 +336,13 @@ def run_agent(agent: Agent, question: str, language: str = "en", profile: str = 
 
     finalize = list(messages) + [{"role": "user", "content": FINALIZE_INSTRUCTIONS}]
     def finalize_call(msgs):
-        return _call_with_rate_limit_retry(
-            lambda: agent.llm.with_structured_output(AdvisorAnswer).invoke(msgs))
+        for attempt in range(TOOL_USE_RETRIES):
+            try:
+                return _call_with_rate_limit_retry(
+                    lambda: agent.llm.with_structured_output(AdvisorAnswer).invoke(msgs))
+            except Exception as e:
+                if not is_tool_use_error(e) or attempt == TOOL_USE_RETRIES - 1:
+                    raise
 
     try:
         try:

@@ -483,3 +483,67 @@ def test_token_usage_is_printed_for_each_model_call(capsys):
     agent._print_usage(msgs)
     out = capsys.readouterr().out
     assert "model call 1: input 5000, output 40" in out and "model call 2: input 6200, output 300" in out
+
+
+# ---- the model calls a tool that does not exist (Groq 400 tool_use_failed) ----
+
+BAD_TOOL = ("Error code: 400 - {'error': {'message': \"Tool call validation failed: attempted to call tool "
+            "'open_file' which was not in request.tools\", 'code': 'tool_use_failed'}}")
+
+
+def test_is_tool_use_error_matches_the_made_up_tool_error_only():
+    assert agent.is_tool_use_error(RuntimeError(BAD_TOOL))
+    assert not agent.is_tool_use_error(RuntimeError("Error code: 413 - Request too large"))
+
+
+def test_a_made_up_tool_is_retried_with_a_reminder_of_the_real_tools():
+    record = install(agent_trace=[FakeMsg("ai", "ok")], structured_answer=_answer())
+    a = agent.build_agent(ctx(), llm=record["llm"])
+    real, sent = a.runnable.invoke, []
+
+    def flaky(payload):
+        sent.append(payload["messages"][-1]["content"])
+        if len(sent) == 1:
+            raise RuntimeError(BAD_TOOL)
+        return real(payload)
+
+    a.runnable.invoke = flaky
+    result = agent.run_agent(a, "How do I apply?")
+    assert len(sent) == 2
+    assert "search_knowledge_base" not in sent[0] and "search_knowledge_base" in sent[1]
+    assert result.answer.answer == "ok"
+
+
+def test_a_made_up_tool_that_keeps_happening_ends_in_the_safe_fallback():
+    record = install(agent_trace=[FakeMsg("ai", "ok")], structured_answer=_answer())
+    a = agent.build_agent(ctx(), llm=record["llm"])
+    tries = []
+
+    def always(payload):
+        tries.append(1)
+        raise RuntimeError(BAD_TOOL)
+
+    a.runnable.invoke = always
+    result = agent.run_agent(a, "How do I apply?")
+    assert len(tries) == 1 + agent.TOOL_USE_RETRIES
+    assert result.answer.confidence == "Low"
+
+
+def test_a_made_up_tool_in_the_final_call_is_retried():
+    record = install(agent_trace=[FakeMsg("ai", "draft")], structured_answer=_answer())
+    a = agent.build_agent(ctx(), llm=record["llm"])
+    calls = []
+
+    class Llm:
+        def with_structured_output(self, schema):
+            return self
+
+        def invoke(self, msgs):
+            calls.append(1)
+            if len(calls) == 1:
+                raise RuntimeError(BAD_TOOL)
+            return _answer()
+
+    a.llm = Llm()
+    result = agent.run_agent(a, "How do I apply?")
+    assert len(calls) == 2 and result.answer.answer == "ok"
