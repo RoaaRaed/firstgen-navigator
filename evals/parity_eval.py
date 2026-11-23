@@ -67,14 +67,24 @@ def compare(en: dict, ar: dict) -> dict:
     else:
         status = "same" if en["sources"][:1] and en["sources"][:1] == ar["sources"][:1] else "different"
     shared = sorted(set(en.get("sources", [])) & set(ar.get("sources", [])))
-    return {"status": status, "same_top": status == "same", "shared": shared}
+    verdict = {"status": status, "same_top": status == "same", "shared": shared}
+    # Retrieval mode also keeps each language's top-5 documents. That allows a softer reading of
+    # the same pair: does each language's best document at least appear in the other's top 5?
+    if en.get("top5") and ar.get("top5") and status != "error":
+        en5, ar5 = [d for d, _ in en["top5"]], [d for d, _ in ar["top5"]]
+        verdict["top5_overlap"] = len(set(en5) & set(ar5))
+        verdict["soft_same"] = en5[0] in ar5 and ar5[0] in en5
+    return verdict
 
 
 def summarize(rows: list[dict], target: int = TARGET) -> dict:
     same = sum(1 for r in rows if r["verdict"]["status"] == "same")
     errors = sum(1 for r in rows if r["verdict"]["status"] == "error")
-    return {"pairs": len(rows), "same_top": same, "errors": errors,
-            "target": target, "passed": same >= target}
+    out = {"pairs": len(rows), "same_top": same, "errors": errors,
+           "target": target, "passed": same >= target}
+    if any("soft_same" in r["verdict"] for r in rows):
+        out["soft_same"] = sum(1 for r in rows if r["verdict"].get("soft_same"))
+    return out
 
 
 # ---- the two ways to get the sources for one question ----
@@ -82,7 +92,12 @@ def summarize(rows: list[dict], target: int = TARGET) -> dict:
 def retrieval_runner(ctx):
     def run(question: str, language: str) -> dict:
         hits = ctx.retriever.search(question, k=SEARCH_K)
-        return {"sources": answer_sources([h.chunk_id for h in hits[:1]]), "fallback": False,
+        top5: list = []                                  # the best 5 distinct documents with their best score
+        for h in hits:
+            doc = base_source(h.chunk_id)
+            if doc and all(doc != d for d, _ in top5):
+                top5.append([doc, round(h.score, 3)])
+        return {"sources": answer_sources([h.chunk_id for h in hits[:1]]), "top5": top5[:5], "fallback": False,
                 "seconds": 0.0, "detail": [(h.chunk_id, round(h.score, 3)) for h in hits[:3]]}
     return run
 
@@ -137,13 +152,20 @@ def render_report(rows: list[dict], summary: dict, mode: str, today: str) -> str
              f"(target: at least {summary['target']}). "
              f"{'PASSED' if summary['passed'] else 'NOT PASSED'}."
              + (f" {summary['errors']} pair(s) had an error and count as not passing." if summary["errors"] else ""),
-             "", "| Pair | Question (EN) | Top source EN | Top source AR | Result |", "|---|---|---|---|---|"]
+             ]
+    soft = "soft_same" in summary
+    if soft:
+        lines += ["", f"Softer reading: in **{summary['soft_same']} of {summary['pairs']}** pairs each language's best "
+                      "document also appears in the other language's top 5 (the pass rule above is unchanged)."]
+    head = "| Pair | Question (EN) | Top source EN | Top source AR | Result |" + (" Top-5 shared |" if soft else "")
+    lines += ["", head, "|---|---|---|---|---|" + ("---|" if soft else "")]
     for r in rows:
         p = r["pair"]
-        lines.append("| {} | {} | {} | {} | {} |".format(
+        lines.append("| {} | {} | {} | {} | {} |{}".format(
             p["pair"], p["en_question"].replace("|", "/"),
             (r["en"]["sources"][:1] or ["-"])[0], (r["ar"]["sources"][:1] or ["-"])[0],
-            mark[r["verdict"]["status"]]))
+            mark[r["verdict"]["status"]],
+            (" {}/5 |".format(r["verdict"].get("top5_overlap", "-")) if soft else "")))
     diffs = [r for r in rows if r["verdict"]["status"] == "different"]
     if diffs:
         lines += ["", "## Pairs that differ", ""]
@@ -152,6 +174,9 @@ def render_report(rows: list[dict], summary: dict, mode: str, today: str) -> str
                       f"  - EN cited: {', '.join(r['en']['sources']) or '-'}",
                       f"  - AR cited: {', '.join(r['ar']['sources']) or '-'}",
                       f"  - cited in both: {', '.join(r['verdict']['shared']) or 'nothing'}"]
+            for lang in ("en", "ar"):
+                if r[lang].get("top5"):
+                    lines.append(f"  - {lang.upper()} top 5: " + ", ".join(f"{d} ({sc})" for d, sc in r[lang]["top5"]))
     return "\n".join(lines) + "\n"
 
 

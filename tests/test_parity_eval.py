@@ -118,3 +118,43 @@ def test_run_stops_at_once_when_the_daily_token_limit_is_hit():
     with pytest.raises(pe.DailyLimitReached):
         pe.run_pairs(fake_pairs(3), runner, {}, log=lambda *_: None)
     assert len(calls) == 1                                        # no more wasted runs
+
+
+# ---- retrieval mode keeps the top 5 documents so the pairs can be read more softly ----
+
+def test_retrieval_runner_keeps_the_top_five_distinct_documents_with_scores():
+    from types import SimpleNamespace
+
+    hit = lambda cid, s: SimpleNamespace(chunk_id=cid, score=s)
+    hits = [hit("a::01", .9), hit("a::02", .88), hit("b::01", .8), hit("c::03", .7),
+            hit("d::01", .6), hit("e::01", .5), hit("f::01", .4)]
+    ctx = SimpleNamespace(retriever=SimpleNamespace(search=lambda q, k=8, **kw: hits))
+    out = pe.retrieval_runner(ctx)("q", "en")
+    assert out["top5"] == [["a", .9], ["b", .8], ["c", .7], ["d", .6], ["e", .5]]
+
+
+def test_compare_reads_the_top_five_overlap_and_the_soft_verdict():
+    en = {"sources": ["a"], "fallback": False, "top5": [["a", .9], ["b", .8], ["c", .7]]}
+    ar = {"sources": ["b"], "fallback": False, "top5": [["b", .9], ["x", .8], ["a", .7]]}
+    v = pe.compare(en, ar)
+    assert v["status"] == "different" and v["top5_overlap"] == 2 and v["soft_same"] is True
+    far = {"sources": ["z"], "fallback": False, "top5": [["z", .9], ["y", .8]]}
+    v2 = pe.compare(en, far)
+    assert v2["top5_overlap"] == 0 and v2["soft_same"] is False
+    assert "top5_overlap" not in pe.compare({"sources": ["a"], "fallback": False}, {"sources": ["a"], "fallback": False})
+
+
+def test_report_shows_the_soft_reading_and_the_top_five_of_pairs_that_differ():
+    pair = {"pair": "p9", "en_question": "Q?", "ar_question": "س؟"}
+    en = {"sources": ["a"], "fallback": False, "top5": [["a", .9], ["b", .8]]}
+    ar = {"sources": ["b"], "fallback": False, "top5": [["b", .85], ["a", .8]]}
+    rows = [{"pair": pair, "en": en, "ar": ar, "verdict": pe.compare(en, ar)}]
+    summary = pe.summarize(rows)
+    assert summary["soft_same"] == 1 and summary["same_top"] == 0
+    text = pe.render_report(rows, summary, "retrieval", "2026-11-23")
+    assert "Softer reading" in text and "Top-5 shared" in text and "2/5" in text
+    assert "EN top 5: a (0.9), b (0.8)" in text and "AR top 5: b (0.85), a (0.8)" in text
+    # without top-5 data (answer mode) the report is as before
+    plain = [{"pair": pair, "en": {"sources": ["a"], "fallback": False}, "ar": {"sources": ["b"], "fallback": False},
+              "verdict": pe.compare({"sources": ["a"], "fallback": False}, {"sources": ["b"], "fallback": False})}]
+    assert "Softer reading" not in pe.render_report(plain, pe.summarize(plain), "answer", "2026-11-23")
