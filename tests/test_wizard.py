@@ -144,9 +144,12 @@ def test_clear_answers_resets_everything(qs):
     s["answers"] = {"stage": "applying", "needs": ["paying"]}
     s["q_index"] = 5
     s[wizard.widget_key("needs")] = ["paying"]
+    s["messages"] = [{"role": "user", "content": "I live at ..."}]
+    s["pending_question"] = "a question"
     wizard.clear_answers(s, qs)
     assert s["answers"] == {} and s["q_index"] == 0 and s["page"] == "questionnaire"
     assert wizard.widget_key("needs") not in s
+    assert s["messages"] == [] and "pending_question" not in s      # the chat is forgotten too
 
 
 def test_a_full_walkthrough_ends_with_the_right_profile(qs):

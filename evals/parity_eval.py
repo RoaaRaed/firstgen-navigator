@@ -145,7 +145,19 @@ def run_pairs(pairs, runner, cache: dict, save=lambda c: None, delay: float = 0.
     return rows
 
 
-def render_report(rows: list[dict], summary: dict, mode: str, today: str) -> str:
+def drop_cached(cache: dict, pair_ids) -> list[str]:
+    """Forget the saved runs (both languages) of the given pairs so they are run again; returns the pairs found."""
+    found = []
+    for pid in pair_ids:
+        hit = [k for k in (f"{pid}:en", f"{pid}:ar") if k in cache]
+        for k in hit:
+            del cache[k]
+        if hit:
+            found.append(pid)
+    return found
+
+
+def render_report(rows: list[dict], summary: dict, mode: str, today: str, redone=()) -> str:
     mark = {"same": "same", "different": "DIFFERENT", "error": "ERROR (retry)"}
     lines = [f"# Language parity ({mode} mode, {today})", "",
              f"**{summary['same_top']} of {summary['pairs']} pairs have the same top source** "
@@ -153,6 +165,9 @@ def render_report(rows: list[dict], summary: dict, mode: str, today: str) -> str
              f"{'PASSED' if summary['passed'] else 'NOT PASSED'}."
              + (f" {summary['errors']} pair(s) had an error and count as not passing." if summary["errors"] else ""),
              ]
+    if redone:
+        lines += ["", f"Note: pair(s) {', '.join(redone)} were run again after the first full run (after the tool-limit "
+                      "change). Re-running only some pairs favours the result, so read this number with that in mind."]
     soft = "soft_same" in summary
     if soft:
         lines += ["", f"Softer reading: in **{summary['soft_same']} of {summary['pairs']}** pairs each language's best "
@@ -187,6 +202,8 @@ def main(argv=None) -> int:
     ap.add_argument("--mode", choices=["retrieval", "answer"], default="retrieval")
     ap.add_argument("--delay", type=float, default=15.0, help="seconds to wait between answer runs")
     ap.add_argument("--fresh", action="store_true", help="ignore saved answer results")
+    ap.add_argument("--redo", nargs="+", metavar="PAIR", default=[],
+                    help="run these pairs again (e.g. --redo p03 p08 p11); the other saved results are kept")
     args = ap.parse_args(argv)
 
     from dotenv import load_dotenv
@@ -202,6 +219,14 @@ def main(argv=None) -> int:
         cache = {} if args.fresh or not RESULTS.exists() else json.loads(RESULTS.read_text(encoding="utf-8"))
         save = lambda c: RESULTS.write_text(json.dumps(c, ensure_ascii=False, indent=1), encoding="utf-8")
         runner, delay = answer_runner(ctx), args.delay
+    redone = drop_cached(cache, args.redo) if args.mode == "answer" else []
+    if args.redo and args.mode == "answer":
+        unknown = [p for p in args.redo if p not in {x["pair"] for x in pairs}]
+        if unknown:
+            print("Unknown pair(s):", ", ".join(unknown))
+            return 2
+        save(cache)
+        print("Running again:", ", ".join(args.redo))
     print(f"{len(pairs)} pairs, mode={args.mode}")
     try:
         rows = run_pairs(pairs, runner, cache, save=save, delay=delay)
@@ -218,7 +243,7 @@ def main(argv=None) -> int:
     import datetime as dt
 
     out = REPORT if args.mode == "answer" else REPORT.with_name("parity_report_retrieval.md")
-    out.write_text(render_report(rows, summary, args.mode, dt.date.today().isoformat()), encoding="utf-8")
+    out.write_text(render_report(rows, summary, args.mode, dt.date.today().isoformat(), redone=args.redo), encoding="utf-8")
     print(f"\n{summary['same_top']}/{summary['pairs']} same top source "
           f"(target {summary['target']}): {'PASSED' if summary['passed'] else 'NOT PASSED'}"
           + (f"  [{summary['errors']} errors - run again to retry them]" if summary["errors"] else ""))

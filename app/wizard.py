@@ -85,8 +85,11 @@ def open_chat(state) -> None:
 
 
 def clear_answers(state, questions: list[dict]) -> None:
-    """'Clear my answers': forget everything and go back to the first question."""
+    """'Clear my answers': forget everything (the answers AND the chat, which may repeat them) and go
+    back to the first question."""
     state["answers"] = {}
+    state["messages"] = []
+    state.pop("pending_question", None)
     for q in questions:
         _forget_widgets(state, q["id"])
     state["q_index"] = 0

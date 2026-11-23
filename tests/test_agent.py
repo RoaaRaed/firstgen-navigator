@@ -547,3 +547,53 @@ def test_a_made_up_tool_in_the_final_call_is_retried():
     a.llm = Llm()
     result = agent.run_agent(a, "How do I apply?")
     assert len(calls) == 2 and result.answer.answer == "ok"
+
+
+# ---- a question gets a limited number of tool calls (each extra one re-sends the whole conversation) ----
+
+def test_a_third_search_and_a_fifth_call_get_the_stop_message_not_a_result():
+    budget = {"used": 0, "searches": 0}
+    search_t, deadlines_t, programs_t, escalate_t = agent.build_langchain_tools(ctx(), {"on": False}, budget)
+    assert search_t(query="MAP")[1].get("skipped") is None
+    assert search_t(query="MAP again")[1].get("skipped") is None
+    text, out = search_t(query="a third time")
+    assert text == agent.TOOL_LIMIT_TEXT and out == {"results": [], "skipped": "tool limit reached"}
+    deadlines_t(term="Spring 2027")                 # 3rd real call
+    programs_t(categories=["food"])                 # 4th real call
+    assert budget["used"] == agent.MAX_TOOL_CALLS == 4
+    text, out = deadlines_t(term="Spring 2027")
+    assert text == agent.TOOL_LIMIT_TEXT and out["skipped"] == "tool limit reached"
+
+
+def test_escalate_to_human_is_never_blocked_by_the_tool_limit():
+    budget = {"used": agent.MAX_TOOL_CALLS, "searches": agent.MAX_SEARCHES}
+    *_, escalate_t = agent.build_langchain_tools(ctx(), {"on": False}, budget)
+    text, out = escalate_t(topic="immigration")
+    assert text != agent.TOOL_LIMIT_TEXT and "skipped" not in out
+
+
+def test_every_run_of_the_loop_starts_with_a_full_budget():
+    from types import SimpleNamespace
+
+    seen = []
+    a = SimpleNamespace(budget={"used": 4, "searches": 2},
+                        runnable=SimpleNamespace(invoke=lambda p: seen.append(dict(a.budget)) or {"messages": []}))
+    agent._once(a, {"messages": []})
+    assert seen == [{"used": 0, "searches": 0}]
+
+
+def test_tool_calls_are_listed_on_one_line_without_the_students_words(capsys, monkeypatch):
+    monkeypatch.delenv("ADVISOR_DEBUG_QUERIES", raising=False)
+    ai = FakeMsg("ai", "", tool_calls=[{"id": "1", "name": "search_knowledge_base", "args": {"query": "my name is Sara and I live at 5 Main St"}},
+                                        {"id": "2", "name": "lookup_deadlines", "args": {"term": "Spring 2027"}}])
+    agent._print_tools([ai, FakeMsg("ai", "done")])
+    out = capsys.readouterr().out
+    assert out.strip() == "[tools] search_knowledge_base, lookup_deadlines"
+    assert "Sara" not in out and "Spring" not in out
+
+
+def test_debug_switch_shows_the_first_words_of_the_arguments(capsys, monkeypatch):
+    monkeypatch.setenv("ADVISOR_DEBUG_QUERIES", "1")
+    ai = FakeMsg("ai", "", tool_calls=[{"id": "1", "name": "search_knowledge_base", "args": {"query": "how do I apply"}}])
+    agent._print_tools([ai])
+    assert capsys.readouterr().out.strip() == "[tools] search_knowledge_base('how do I apply')"

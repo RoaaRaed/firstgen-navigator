@@ -158,3 +158,31 @@ def test_report_shows_the_soft_reading_and_the_top_five_of_pairs_that_differ():
     plain = [{"pair": pair, "en": {"sources": ["a"], "fallback": False}, "ar": {"sources": ["b"], "fallback": False},
               "verdict": pe.compare({"sources": ["a"], "fallback": False}, {"sources": ["b"], "fallback": False})}]
     assert "Softer reading" not in pe.render_report(plain, pe.summarize(plain), "answer", "2026-11-23")
+
+
+def test_show_run_prints_a_saved_run_and_says_when_one_is_missing(tmp_path, monkeypatch, capsys):
+    import importlib.util
+    import sys as _sys
+
+    spec = importlib.util.spec_from_file_location("show_run", "scripts/show_run.py")
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    (tmp_path / "r.json").write_text(json.dumps(
+        {"p08:ar": {"sources": [], "confidence": "Low", "seconds": 12.5, "answer": "لم أجد"}}), encoding="utf-8")
+    monkeypatch.setattr(mod, "RESULTS", tmp_path / "r.json")
+    assert mod.main(["p08:ar", "p99:en"]) == 0
+    out = capsys.readouterr().out
+    assert "p08:ar" in out and "(none)" in out and "Low" in out and "لم أجد" in out
+    assert "p99:en: not saved" in out
+
+
+def test_redo_forgets_only_the_named_pairs_and_the_report_says_so():
+    cache = {"p03:en": {"x": 1}, "p03:ar": {"x": 2}, "p08:ar": {"x": 3}, "p01:en": {"x": 4}}
+    assert pe.drop_cached(cache, ["p03", "p08", "p99"]) == ["p03", "p08"]
+    assert list(cache) == ["p01:en"]
+    pair = {"pair": "p1", "en_question": "Q?", "ar_question": "س؟"}
+    run = {"sources": ["a"], "fallback": False}
+    rows = [{"pair": pair, "en": run, "ar": run, "verdict": pe.compare(run, run)}]
+    text = pe.render_report(rows, pe.summarize(rows), "answer", "2026-11-23", redone=["p03"])
+    assert "p03 were run again" in text
+    assert "run again" not in pe.render_report(rows, pe.summarize(rows), "answer", "2026-11-23")

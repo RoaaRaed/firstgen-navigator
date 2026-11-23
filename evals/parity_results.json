@@ -43,16 +43,6 @@
   "confidence": "High",
   "answer": "نعم، إلينوي تقدم نموذجًا بديلاً للطلب المالي يُسمى **Alternative Application** للطلاب الذين لا يستطيعون إكمال FAFSA لأنهم غير مؤهلين للمساعدة الفدرالية. هذا النموذج يتيح لك التقدم للحصول على منح ومساعدات مالية من الولاية مثل برنامج Illinois Monetary Award Program (MAP) وغيرها. \n\n**من يمكنه الاستفادة"
  },
- "p03:en": {
-  "sources": [
-   "institution-ccc-registration",
-   "institution-ccc-admissions"
-  ],
-  "fallback": false,
-  "seconds": 76.0,
-  "confidence": "High",
-  "answer": "To apply to City Colleges of Chicago you should:\n1. **Complete the online application** – go to ccc.edu/apply and fill out the electronic admission form. This is the first step before you can register for classes.\n2. **Create a student‑portal account** – after submitting the application you’ll recei"
- },
  "p04:en": {
   "sources": [
    "institution-ccc-star-scholarship"
@@ -130,22 +120,6 @@
   "confidence": "High",
   "answer": "نعم، يمكنك تعبئة نموذج FAFSA حتى إذا لم يكن لدى والديك رقم ضمان اجتماعي. يسمح نظام FAFSA بإدخال الرقم 000‑00‑0000 كبديل عندما لا يتوفر رقم الضمان الاجتماعي للوالد/الوالدة. \n\nخطوات سريعة:\n1. أنشئ حسابًا على StudentAid.gov وابدأ نموذج FAFSA للعام الدراسي المطلوب. \n2. عندما يُطلب رقم الضمان الاجتماعي ل"
  },
- "p08:en": {
-  "sources": [
-   "institution-ccc-tuition"
-  ],
-  "fallback": false,
-  "seconds": 27.1,
-  "confidence": "High",
-  "answer": "For students who live in Chicago (in‑district), tuition is $163 per credit hour for the FY 2027 academic year. The pre‑credit (half‑hour) rate is $82 per credit hour."
- },
- "p08:ar": {
-  "sources": [],
-  "fallback": false,
-  "seconds": 3.3,
-  "confidence": "Low",
-  "answer": "لم أتمكن من العثور على معلومات حول كلفة الساعة المعتمدة في شيكاغو في المستندات المتاحة."
- },
  "p09:en": {
   "sources": [
    "institution-ccc-student-resources",
@@ -185,13 +159,6 @@
   "confidence": "High",
   "answer": "منحة Pell الفدرالية هي منحة مالية غير مستردة تُمنح للطلاب الجامعيين ذوي الحاجة المالية لتغطية تكاليف التعليم العالي. يمكن لأي طالب جامعي لم يحصل بعد على درجة البكالوريوس أو أي درجة دراسات عليا أو مهنية، ويكون مواطنًا أمريكيًا أو غير أمريكي مؤهلاً، ويُظهر حاجة مالية من خلال إكمال نموذج FAFSA، ويسجل في برنامج دراسي مؤهل في مؤسسة معتمدة، ويحافظ على التقدم الأكاديمي المرضي، أن يحصل على هذه المنحة."
  },
- "p11:en": {
-  "sources": [],
-  "fallback": false,
-  "seconds": 199.5,
-  "confidence": "Low",
-  "answer": "I wasn’t able to locate a specific rule in the documents about whether working 35 hours a week will affect your ability to remain a full‑time student and keep your financial aid. The federal work‑study program is limited to part‑time jobs, but that guidance does not cover other employment. To get a definitive answer, you should speak directly with your college’s Financial Aid Office."
- },
  "p12:en": {
   "sources": [
    "deadlines:ccc-spring27-first-day-16wk",
@@ -212,5 +179,85 @@
   "seconds": 65.9,
   "confidence": "High",
   "answer": "يبدأ الفصل الربيعي 2027 في ثلاثة تواريخ حسب الجلسة التي تسجل فيها:\n- الجلسة العادية (16 أسبوع) وجلسة الـ 8 أسابيع الأولى يبدأان في **11 يناير 2027**.\n- الجلسة الـ 12 أسبوعاً تبدأ في **8 فبراير 2027**.\n\nآخر يوم لسحب مادة (الانسحاب الطالب‑مبادَر) هو:\n- جلسة الـ 8 أسابيع الأولى: **21 فبراير 2027 (الأحد)**.\n- الجلسة العادية (16 أسبوع): **8 أبريل 2027 (الخميس)**.\n- جلسة الـ 12 أسبوعاً: التاريخ المحدد للانسحاب موجود في نفس التقويم الرسمي (انظر المصدر) ويقع بعد 8 فبراير.\n\n**ما يجب فعله**\n1. تحقق من الجلسة التي سجلت فيها عبر بوابة الطالب.\n2. إذا قررت الانسحاب، قدّم طلب السحب عبر نظام التسجيل قبل تاريخ"
+ },
+ "p05:ar": {
+  "sources": [
+   "institution-ccc-apply-financial-aid",
+   "institution-ccc-registration",
+   "programs:ccc-financial-aid-offices"
+  ],
+  "fallback": false,
+  "seconds": 134.6,
+  "confidence": "Medium",
+  "answer": "وضع طلبك للمساعدة المالية تحت \"التحقق\" (Verification) يعني أن مكتب المساعدة المالية يحتاج إلى تأكيد بعض المعلومات التي قدمتها في نموذج FAFSA أو في طلبك داخل الكلية، مثل دخل الأسرة أو الضرائب أو حالة الإقامة. لا يتم صرف أي منح أو قروض حتى يكتمل هذا التحقق.\n\n**ما عليك فعله الآن**\n1. **سجّل الدخول إلى بوابة الطالب** على موقع City Colleges (www.ccc.edu/payforcollege) وتحقق من قسم \"Verification\" لمعرفة المستندات المطلوبة بالضبط.\n2. **اجمع المستندات المطلوبة** عادةً تشمل:\n   - نسخة من إقرار الضريبة الفيدرالي (IRS 1040) أو نسخة مختصرة.\n   - نماذج W‑2 أو إيصالات الدخل إذا كنت تعمل.\n   - أي وثائق تثبت "
+ },
+ "p13:en": {
+  "sources": [
+   "deadlines:fed-fafsa-federal-deadline-2026-27",
+   "deadlines:state-map-priority-2027-28",
+   "deadlines:state-map-suspension-2026-27"
+  ],
+  "fallback": false,
+  "seconds": 25.4,
+  "confidence": "High",
+  "answer": "The three key FAFSA dates you need to know are:\n1. **Federal FAFSA deadline** – June 30 2027 for the 2026‑27 award year.\n2. **State MAP priority deadline** – February 1 2027 for students who received MAP aid in 2026‑27 and plan to attend in 2027‑28.\n3. **State MAP suspension deadline** – April 23 2026 is the last day to apply for MAP before the award goes into suspense for the 2026‑27 year."
+ },
+ "p13:ar": {
+  "sources": [
+   "deadlines:fed-fafsa-federal-deadline-2026-27",
+   "deadlines:state-map-priority-2027-28",
+   "deadlines:state-map-suspension-2026-27"
+  ],
+  "fallback": false,
+  "seconds": 7.5,
+  "confidence": "High",
+  "answer": "المواعيد الثلاثة الأساسية التي يجب أن تعرفها لتقديم FAFSA هي:\n1️⃣ 30 يونيو 2026‑27 – الموعد النهائي الفيدرالي لتقديم FAFSA للعام الدراسي 2026‑27.\n2️⃣ 1 فبراير 2027 – تاريخ أولوية برنامج MAP للمتقدمين الذين استلموا MAP في العام السابق ويرغبون في الاستمرار للعام 2027‑28.\n3️⃣ 23 أبريل 2026 – آخر يوم لتقديم طلب MAP للعام 2026‑27 قبل أن تُوضع الطلبات في قائمة الانتظار.\n\nهذه المواعيد تساعدك على تقديم طلبك في الوقت المناسب لضمان حصولك على المساعدة المالية الفيدرالية والولائية."
+ },
+ "p14:en": {
+  "sources": [
+   "federal-financial-aid-glossary",
+   "federal-work-study"
+  ],
+  "fallback": false,
+  "seconds": 34.6,
+  "confidence": "High",
+  "answer": "Federal Work‑Study (FWS) is a need‑based federal program that gives eligible students part‑time jobs—on‑campus or with approved off‑campus employers—to earn money for everyday expenses such as food, transportation, or books. The award you receive for work‑study is a separate component of your financial‑aid package and the earnings do **not** reduce the amount of federal, state, or institutional aid you may be eligible for in future years."
+ },
+ "p14:ar": {
+  "sources": [
+   "federal-work-study"
+  ],
+  "fallback": false,
+  "seconds": 10.0,
+  "confidence": "High",
+  "answer": "برنامج Federal Work‑Study (FWS) هو برنامج مساعدات فيدرالي يوفّر للطلاب فرص عمل بدوام جزئي تُدفع لهم أجرًا يمكنهم استخدامه لتغطية نفقاتهم اليومية مثل الطعام والنقل. لتكون مؤهلاً يجب أن تُقدِّم طلب FAFSA كل سنة؛ بعد قبولك للمنحة يمكنك اختيار وظيفة من بين الوظائف المتاحة في كليتك. الأرباح التي تحصل عليها من هذا البرنامج لا تُخصم من أي مساعدات مالية مستقبلية تُمنح لك عبر FAFSA أو أي برنامج آخر، لذا لا يؤثر على مساعدتك المالية في السنوات القادمة.\n\n**خطوات للانضمام إلى البرنامج**\n1. قدّم طلب FAFSA قبل الموعد النهائي للمنح في كليتك.\n2. بعد قبولك للمنحة، تواصل مع مكتب المساعدات المالية لتحديد الوظائف "
+ },
+ "p15:en": {
+  "sources": [
+   "deadlines:state-alt-app-2027-28-opens"
+  ],
+  "fallback": false,
+  "seconds": 22.6,
+  "confidence": "High",
+  "answer": "The 2027‑28 Alternative Application (including the Supplemental Section) opened on October 1, 2026."
+ },
+ "p15:ar": {
+  "sources": [
+   "deadlines:state-alt-app-2027-28-opens"
+  ],
+  "fallback": false,
+  "seconds": 23.0,
+  "confidence": "High",
+  "answer": "يفتح الطلب البديل (Alternative Application) للعام الدراسي 2027‑28 في 1 أكتوبر 2026."
+ },
+ "p03:en": {
+  "sources": [
+   "institution-ccc-admissions",
+   "institution-ccc-registration"
+  ],
+  "fallback": false,
+  "seconds": 210.5,
+  "confidence": "High",
+  "answer": "**How to apply to City Colleges of Chicago**\n\n1. **Start an online application** – Go to the CCC apply page (ccc.edu/apply) and fill out the admission form. [source 02]\n2. **Create a student‑portal account** – After you submit the application you’ll receive a username to log in at my.ccc.edu. [source 00]\n3. **Explore programs** – While you wait, browse the college catalog to see which credit programs or certificates match your goals. [source 01]\n4. **Gather the required documents**\n   - Government‑issued photo ID (driver’s license, state ID, or passport)\n   - Proof of Illinois residency (utili"
  }
 }
