@@ -103,7 +103,8 @@ def build_langchain_tools(ctx, lean: dict | None = None, budget: dict | None = N
         eligible, what steps to take, or what a term means.
 
         Args:
-            query: the question in the student's own words.
+            query: a short search phrase IN ENGLISH (the documents are English); translate it
+                if the student wrote Arabic.
             language: "en" or "ar" - the language of the student's question.
             layer: optional: "federal", "state" or "institution". Leave empty otherwise.
         """
@@ -275,6 +276,23 @@ TOOL_REMINDER = ("\n\n(Call only these tools: search_knowledge_base, lookup_dead
                  "escalate_to_human. There is no tool that opens files; a source_id is only for citations.)")
 
 
+VALIDATION_REMINDER = ("Your last answer was rejected: {reason}. Write it again and fix exactly that. "
+                       "Copy every citation source_id exactly as a tool returned it, including its prefix "
+                       "('programs:...', 'deadlines:...' or 'doc::NN'), and keep at most 3 next steps.")
+
+
+def is_validation_error(exc) -> bool:
+    """The structured answer came back but broke one of AdvisorAnswer's rules (for example a
+    source_id without its 'programs:' prefix). Asking the model once more usually fixes it."""
+    text = str(exc)
+    return "validation error" in text.lower() and "AdvisorAnswer" in text
+
+
+def _validation_reason(exc) -> str:
+    m = re.search(r"Value error, (.*?) \[type=", str(exc), re.S)
+    return " ".join(m.group(1).split())[:300] if m else "it did not fit the required format"
+
+
 def is_tool_use_error(exc) -> bool:
     """Groq's 400 "tool_use_failed": the model called a tool that does not exist (it once tried
     "open_file") or wrote a malformed call. It is random, so trying again almost always works."""
@@ -345,7 +363,8 @@ def _print_tools(messages) -> None:
         if getattr(m, "type", None) == "ai":
             for c in getattr(m, "tool_calls", None) or []:
                 if show_args:
-                    first = next(iter((c.get("args") or {}).values()), "")
+                    args = c.get("args") or {}
+                    first = args.get("query") or next(iter(args.values()), "")
                     names.append(f"{c.get('name')}({str(first)[:40]!r})")
                 else:
                     names.append(str(c.get("name")))
@@ -396,8 +415,15 @@ def run_agent(agent: Agent, question: str, language: str = "en", profile: str = 
                 return _call_with_rate_limit_retry(
                     lambda: agent.llm.with_structured_output(AdvisorAnswer).invoke(msgs))
             except Exception as e:
-                if not is_tool_use_error(e) or attempt == TOOL_USE_RETRIES - 1:
+                if attempt == TOOL_USE_RETRIES - 1:
                     raise
+                if is_tool_use_error(e):
+                    continue
+                if is_validation_error(e):
+                    print("[advisor] the answer did not fit the required format; asking once more")
+                    msgs = list(msgs) + [{"role": "user", "content": VALIDATION_REMINDER.format(reason=_validation_reason(e))}]
+                    continue
+                raise
 
     try:
         try:

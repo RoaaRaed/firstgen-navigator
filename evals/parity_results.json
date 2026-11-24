@@ -12,15 +12,6 @@
   "confidence": "High",
   "answer": "The Illinois Monetary Award Program (MAP) is a state‑funded grant for eligible Illinois residents who attend an approved Illinois college. The grant does not need to be repaid and can be used only for tuition and mandatory fees. Eligibility is determined automatically when you submit the FAFSA or th"
  },
- "p01:ar": {
-  "sources": [
-   "state-isac-map"
-  ],
-  "fallback": false,
-  "seconds": 90.7,
-  "confidence": "High",
-  "answer": "منحة **Monetary Award Program (MAP)** هي منحة مالية غير مستردة تُقدَّم للمقيمين في إلينوي الذين يدرسون في كليات إلينوي المعتمدة (مثل City Colleges of Chicago). تُستخدم المنحة فقط لتغطية الرسوم الدراسية والرسوم الإلزامية للكلية. الموعد النهائي لتقديم طلب المنحة للعام الدراسي 2026‑27 هو **23 أبريل 202"
- },
  "p02:en": {
   "sources": [
    "state-isac-alternative-application",
@@ -32,17 +23,6 @@
   "confidence": "High",
   "answer": "You may be able to apply for Illinois state aid through the **Alternative Application** offered by the Illinois Student Assistance Commission (ISAC). This application is designed for students who are **not eligible for federal student aid** and therefore cannot complete the FAFSA. If you meet that c"
  },
- "p02:ar": {
-  "sources": [
-   "state-isac-alternative-application-faqs",
-   "state-isac-alternative-application",
-   "state-isac-non-eligible-noncitizens"
-  ],
-  "fallback": false,
-  "seconds": 62.5,
-  "confidence": "High",
-  "answer": "نعم، إلينوي تقدم نموذجًا بديلاً للطلب المالي يُسمى **Alternative Application** للطلاب الذين لا يستطيعون إكمال FAFSA لأنهم غير مؤهلين للمساعدة الفدرالية. هذا النموذج يتيح لك التقدم للحصول على منح ومساعدات مالية من الولاية مثل برنامج Illinois Monetary Award Program (MAP) وغيرها. \n\n**من يمكنه الاستفادة"
- },
  "p04:en": {
   "sources": [
    "institution-ccc-star-scholarship"
@@ -51,15 +31,6 @@
   "seconds": 7.2,
   "confidence": "High",
   "answer": "The Chicago Star Scholarship is a City Colleges of Chicago program that provides tuition‑free education (including books) for eligible students and offers pathways to transfer scholarships at four‑year universities. To qualify, you must be a graduating senior from a Chicago Public High School or fro"
- },
- "p04:ar": {
-  "sources": [
-   "institution-ccc-star-scholarship"
-  ],
-  "fallback": false,
-  "seconds": 41.5,
-  "confidence": "High",
-  "answer": "منحة Star Scholarship (منحة نجمة شيكاغو) هي منحة تغطي الرسوم الدراسية والكتب للطلاب الذين يحصلون على شهادة associate أو شهادة مهنية في أحد كليات City Colleges of Chicago. لا تُعتمد على الحاجة المالية؛ أي أن الطالب لا يحتاج أن يكون من ذوي الدخل المنخفض لتأهيله. تُمنح للخريجين من المدارس الثانوية الذي"
  },
  "p05:en": {
   "sources": [
@@ -71,30 +42,6 @@
   "seconds": 64.5,
   "confidence": "High",
   "answer": "Verification means the college needs to confirm the information you reported on your FAFSA (or Illinois FAFSA). The school will ask you to provide supporting documents—usually tax returns, W‑2s, and any other income records—so it can verify that the data you entered is correct. Until you finish veri"
- },
- "p06:en": {
-  "sources": [
-   "programs:ccc-food-pantries",
-   "programs:ccc-food-security-initiative",
-   "programs:ccc-wellness-centers"
-  ],
-  "fallback": false,
-  "seconds": 34.6,
-  "confidence": "High",
-  "answer": "You can get food and emergency‑cost assistance through the Wellness Center at your City College. Every college has a food pantry you can walk into for groceries or free grab‑and‑go snacks, and the Food Security for Life Initiative adds ready‑to‑take‑home meals and market options. The Wellness Center"
- },
- "p06:ar": {
-  "sources": [
-   "programs:ccc-food-pantries",
-   "programs:ccc-food-security-initiative",
-   "programs:ccc-snap-work-requirement-help",
-   "programs:ccc-financial-aid-offices",
-   "programs:ccc-star-scholarship"
-  ],
-  "fallback": false,
-  "seconds": 35.0,
-  "confidence": "High",
-  "answer": "**مساعدة الطعام**\n1. كل كلية من كليات City Colleges of Chicago لديها مخزن طعام (Food Pantry). يمكنك زيارة مركز العافية (Wellness Center) في كليتك للحصول على تفاصيل الساعات والموقع. 【programs:ccc-food-pantries】\n2. مبادرة *Food Security for Life* توفّر وجبات جاهزة للمنزل في كليات Malcolm X، Kennedy‑Ki"
  },
  "p07:en": {
   "sources": [
@@ -108,18 +55,6 @@
   "confidence": "High",
   "answer": "Yes. You can still complete the FAFSA even if your parents do not have Social Security numbers. The FAFSA allows a parent to enter an Individual Taxpayer Identification Number (ITIN) in place of an SSN, so a missing SSN does not prevent you from filing. Gather any ITINs your parents have (or be prep"
  },
- "p07:ar": {
-  "sources": [
-   "federal-fafsa-parent-steps",
-   "federal-fafsa-checklist",
-   "federal-fafsa-student-steps",
-   "federal-dependency-status"
-  ],
-  "fallback": false,
-  "seconds": 113.3,
-  "confidence": "High",
-  "answer": "نعم، يمكنك تعبئة نموذج FAFSA حتى إذا لم يكن لدى والديك رقم ضمان اجتماعي. يسمح نظام FAFSA بإدخال الرقم 000‑00‑0000 كبديل عندما لا يتوفر رقم الضمان الاجتماعي للوالد/الوالدة. \n\nخطوات سريعة:\n1. أنشئ حسابًا على StudentAid.gov وابدأ نموذج FAFSA للعام الدراسي المطلوب. \n2. عندما يُطلب رقم الضمان الاجتماعي ل"
- },
  "p09:en": {
   "sources": [
    "institution-ccc-student-resources",
@@ -129,16 +64,6 @@
   "seconds": 43.3,
   "confidence": "High",
   "answer": "Transferring from City Colleges of Chicago (CCC) to a four‑year university follows a set of steps that the CCC Transfer Centers help you plan and complete.\n\n1. **Meet with a Transfer Center advisor** – The Transfer Centers will work with you to choose possible four‑year schools, review your academic record, and map out the courses you need. 【institution-ccc-student-resources::01】\n2. **Earn an associate degree or complete the required coursework** – Most universities require a completed associate degree (often an AA or AS) and a minimum GPA (usually 2.5 or higher) before they will accept transf"
- },
- "p09:ar": {
-  "sources": [
-   "institution-ccc-student-resources",
-   "institution-ccc-transfer-services"
-  ],
-  "fallback": false,
-  "seconds": 54.1,
-  "confidence": "High",
-  "answer": "**خطوات الانتقال من كليات المدينة إلى جامعة أربع سنوات**\n\n1. **زيارة مركز النقل (Transfer Center).**\n   - يساعدك المركز في اختيار الجامعة المناسبة، يوضح المتطلبات الأكاديمية، ويقدم ورش عمل وإرشادات حول عملية النقل. 【institution-ccc-student-resources::01】\n\n2. **التحقق من متطلبات القبول للجامعة المستهدفة.**\n   - عادةً تحتاج إلى إكمال حوالي 60–64 ساعة دراسية مع معدل GPA لا يقل عن 2.5 (أو حسب الجامعة). 【institution-ccc-transfer-services::14】\n   - تأكد من إكمال المقررات الأساسية المطلوبة (رياضيات، علوم، لغة إنجليزية). 【institution-ccc-transfer-services::00】\n\n3. **الاستفادة من برنامج “Transfer Admis"
  },
  "p10:en": {
   "sources": [
@@ -150,15 +75,6 @@
   "confidence": "High",
   "answer": "A Federal Pell Grant is a need‑based grant that provides money to help undergraduate students cover college‑related costs such as tuition, fees, books, and supplies. The grant does not have to be repaid. Eligibility is limited to undergraduate students who have not yet earned a bachelor’s, graduate, or professional degree and who demonstrate financial need as calculated by the FAFSA (Expected Family Contribution and other criteria). Age does not affect eligibility.\n\n**Next steps**\n1. Complete the FAFSA for the 2026‑27 award year as soon as it opens; the FAFSA determines your EFC and Pell Grant"
  },
- "p10:ar": {
-  "sources": [
-   "federal-pell-grants"
-  ],
-  "fallback": false,
-  "seconds": 152.1,
-  "confidence": "High",
-  "answer": "منحة Pell الفدرالية هي منحة مالية غير مستردة تُمنح للطلاب الجامعيين ذوي الحاجة المالية لتغطية تكاليف التعليم العالي. يمكن لأي طالب جامعي لم يحصل بعد على درجة البكالوريوس أو أي درجة دراسات عليا أو مهنية، ويكون مواطنًا أمريكيًا أو غير أمريكي مؤهلاً، ويُظهر حاجة مالية من خلال إكمال نموذج FAFSA، ويسجل في برنامج دراسي مؤهل في مؤسسة معتمدة، ويحافظ على التقدم الأكاديمي المرضي، أن يحصل على هذه المنحة."
- },
  "p12:en": {
   "sources": [
    "deadlines:ccc-spring27-first-day-16wk",
@@ -168,28 +84,6 @@
   "seconds": 28.3,
   "confidence": "High",
   "answer": "The Spring 2027 semester begins on January 11 2027 (first day of the regular 16‑week session). The last day you can drop (student‑initiated withdrawal) a regular 16‑week class is April 8 2027."
- },
- "p12:ar": {
-  "sources": [
-   "deadlines:ccc-spring27-first-day-16wk",
-   "deadlines:ccc-spring27-first-day-12wk",
-   "institution-ccc-academic-calendar"
-  ],
-  "fallback": false,
-  "seconds": 65.9,
-  "confidence": "High",
-  "answer": "يبدأ الفصل الربيعي 2027 في ثلاثة تواريخ حسب الجلسة التي تسجل فيها:\n- الجلسة العادية (16 أسبوع) وجلسة الـ 8 أسابيع الأولى يبدأان في **11 يناير 2027**.\n- الجلسة الـ 12 أسبوعاً تبدأ في **8 فبراير 2027**.\n\nآخر يوم لسحب مادة (الانسحاب الطالب‑مبادَر) هو:\n- جلسة الـ 8 أسابيع الأولى: **21 فبراير 2027 (الأحد)**.\n- الجلسة العادية (16 أسبوع): **8 أبريل 2027 (الخميس)**.\n- جلسة الـ 12 أسبوعاً: التاريخ المحدد للانسحاب موجود في نفس التقويم الرسمي (انظر المصدر) ويقع بعد 8 فبراير.\n\n**ما يجب فعله**\n1. تحقق من الجلسة التي سجلت فيها عبر بوابة الطالب.\n2. إذا قررت الانسحاب، قدّم طلب السحب عبر نظام التسجيل قبل تاريخ"
- },
- "p05:ar": {
-  "sources": [
-   "institution-ccc-apply-financial-aid",
-   "institution-ccc-registration",
-   "programs:ccc-financial-aid-offices"
-  ],
-  "fallback": false,
-  "seconds": 134.6,
-  "confidence": "Medium",
-  "answer": "وضع طلبك للمساعدة المالية تحت \"التحقق\" (Verification) يعني أن مكتب المساعدة المالية يحتاج إلى تأكيد بعض المعلومات التي قدمتها في نموذج FAFSA أو في طلبك داخل الكلية، مثل دخل الأسرة أو الضرائب أو حالة الإقامة. لا يتم صرف أي منح أو قروض حتى يكتمل هذا التحقق.\n\n**ما عليك فعله الآن**\n1. **سجّل الدخول إلى بوابة الطالب** على موقع City Colleges (www.ccc.edu/payforcollege) وتحقق من قسم \"Verification\" لمعرفة المستندات المطلوبة بالضبط.\n2. **اجمع المستندات المطلوبة** عادةً تشمل:\n   - نسخة من إقرار الضريبة الفيدرالي (IRS 1040) أو نسخة مختصرة.\n   - نماذج W‑2 أو إيصالات الدخل إذا كنت تعمل.\n   - أي وثائق تثبت "
  },
  "p13:en": {
   "sources": [
@@ -202,17 +96,6 @@
   "confidence": "High",
   "answer": "The three key FAFSA dates you need to know are:\n1. **Federal FAFSA deadline** – June 30 2027 for the 2026‑27 award year.\n2. **State MAP priority deadline** – February 1 2027 for students who received MAP aid in 2026‑27 and plan to attend in 2027‑28.\n3. **State MAP suspension deadline** – April 23 2026 is the last day to apply for MAP before the award goes into suspense for the 2026‑27 year."
  },
- "p13:ar": {
-  "sources": [
-   "deadlines:fed-fafsa-federal-deadline-2026-27",
-   "deadlines:state-map-priority-2027-28",
-   "deadlines:state-map-suspension-2026-27"
-  ],
-  "fallback": false,
-  "seconds": 7.5,
-  "confidence": "High",
-  "answer": "المواعيد الثلاثة الأساسية التي يجب أن تعرفها لتقديم FAFSA هي:\n1️⃣ 30 يونيو 2026‑27 – الموعد النهائي الفيدرالي لتقديم FAFSA للعام الدراسي 2026‑27.\n2️⃣ 1 فبراير 2027 – تاريخ أولوية برنامج MAP للمتقدمين الذين استلموا MAP في العام السابق ويرغبون في الاستمرار للعام 2027‑28.\n3️⃣ 23 أبريل 2026 – آخر يوم لتقديم طلب MAP للعام 2026‑27 قبل أن تُوضع الطلبات في قائمة الانتظار.\n\nهذه المواعيد تساعدك على تقديم طلبك في الوقت المناسب لضمان حصولك على المساعدة المالية الفيدرالية والولائية."
- },
  "p14:en": {
   "sources": [
    "federal-financial-aid-glossary",
@@ -223,15 +106,6 @@
   "confidence": "High",
   "answer": "Federal Work‑Study (FWS) is a need‑based federal program that gives eligible students part‑time jobs—on‑campus or with approved off‑campus employers—to earn money for everyday expenses such as food, transportation, or books. The award you receive for work‑study is a separate component of your financial‑aid package and the earnings do **not** reduce the amount of federal, state, or institutional aid you may be eligible for in future years."
  },
- "p14:ar": {
-  "sources": [
-   "federal-work-study"
-  ],
-  "fallback": false,
-  "seconds": 10.0,
-  "confidence": "High",
-  "answer": "برنامج Federal Work‑Study (FWS) هو برنامج مساعدات فيدرالي يوفّر للطلاب فرص عمل بدوام جزئي تُدفع لهم أجرًا يمكنهم استخدامه لتغطية نفقاتهم اليومية مثل الطعام والنقل. لتكون مؤهلاً يجب أن تُقدِّم طلب FAFSA كل سنة؛ بعد قبولك للمنحة يمكنك اختيار وظيفة من بين الوظائف المتاحة في كليتك. الأرباح التي تحصل عليها من هذا البرنامج لا تُخصم من أي مساعدات مالية مستقبلية تُمنح لك عبر FAFSA أو أي برنامج آخر، لذا لا يؤثر على مساعدتك المالية في السنوات القادمة.\n\n**خطوات للانضمام إلى البرنامج**\n1. قدّم طلب FAFSA قبل الموعد النهائي للمنح في كليتك.\n2. بعد قبولك للمنحة، تواصل مع مكتب المساعدات المالية لتحديد الوظائف "
- },
  "p15:en": {
   "sources": [
    "deadlines:state-alt-app-2027-28-opens"
@@ -240,15 +114,6 @@
   "seconds": 22.6,
   "confidence": "High",
   "answer": "The 2027‑28 Alternative Application (including the Supplemental Section) opened on October 1, 2026."
- },
- "p15:ar": {
-  "sources": [
-   "deadlines:state-alt-app-2027-28-opens"
-  ],
-  "fallback": false,
-  "seconds": 23.0,
-  "confidence": "High",
-  "answer": "يفتح الطلب البديل (Alternative Application) للعام الدراسي 2027‑28 في 1 أكتوبر 2026."
  },
  "p03:en": {
   "sources": [
@@ -259,5 +124,191 @@
   "seconds": 210.5,
   "confidence": "High",
   "answer": "**How to apply to City Colleges of Chicago**\n\n1. **Start an online application** – Go to the CCC apply page (ccc.edu/apply) and fill out the admission form. [source 02]\n2. **Create a student‑portal account** – After you submit the application you’ll receive a username to log in at my.ccc.edu. [source 00]\n3. **Explore programs** – While you wait, browse the college catalog to see which credit programs or certificates match your goals. [source 01]\n4. **Gather the required documents**\n   - Government‑issued photo ID (driver’s license, state ID, or passport)\n   - Proof of Illinois residency (utili"
+ },
+ "p08:en": {
+  "sources": [
+   "institution-ccc-tuition"
+  ],
+  "fallback": false,
+  "seconds": 36.0,
+  "confidence": "High",
+  "answer": "Tuition for students who live in Chicago (in‑district):\n- Credit‑hour tuition: $163 per credit hour for the FY 27 academic year.\n- Pre‑credit (half‑hour) tuition: $82 per credit hour (half of the credit‑hour rate).\nThese rates apply if you have lived in the City of Chicago for at least 30 days before the term starts."
+ },
+ "p11:en": {
+  "sources": [
+   "federal-financial-aid-glossary",
+   "federal-work-study",
+   "institution-ccc-tuition"
+  ],
+  "fallback": false,
+  "seconds": 90.8,
+  "confidence": "Medium",
+  "answer": "Working 35 hours a week does not automatically disqualify you from federal or state financial aid. Eligibility for most aid (Pell Grant, MAP, loans, etc.) is based on your FAFSA information, citizenship status, and enrollment status (full‑time = usually 12 credit hours), not on how many hours you work. The only federal program that limits work hours is Federal Work‑Study, which is intended to be part‑time; you must stay within the part‑time limit for that job, but you can still be a full‑time student and hold other jobs outside of Work‑Study. The City Colleges of Chicago policy documents do no"
+ },
+ "p01:ar": {
+  "sources": [
+   "state-isac-map"
+  ],
+  "fallback": false,
+  "seconds": 25.1,
+  "confidence": "High",
+  "answer": "منحة MAP (Monetary Award Program) هي منحة مالية غير مستردة تُقدَّم للمقيمين في إلينوي الذين يدرسون في كليات إلينوي المعتمدة. تُمنح للطلاب المؤهلين تلقائيًا عند تقديم طلب المساعدة المالية وتُستخدم لتغطية الرسوم الدراسية والرسوم الإلزامية فقط. الموعد النهائي لتقديم طلب المنحة للسنة المالية 2026‑27 هو 23 أبريل 2026؛ يجب أن يُستلم طلبك الأولي قبل هذا التاريخ لتكون مؤهلاً للحصول على المنحة."
+ },
+ "p02:ar": {
+  "sources": [
+   "state-isac-alternative-application-faqs",
+   "state-isac-alternative-application",
+   "state-isac-map",
+   "state-isac-non-eligible-noncitizens"
+  ],
+  "fallback": false,
+  "seconds": 42.8,
+  "confidence": "High",
+  "answer": "إذا لم تستطع تعبئة طلب FAFSA، يمكنك التقدّم إلى برنامج المساعدة المالية للولاية عبر **الطلب البديل للمنحة المالية للولاية (Alternative Application)**. هذا الطلب يتيح لك التقدّم للحصول على منح ولاية إلينوي مثل **منحة MAP** حتى وإن لم تكن مؤهلاً للمنح الفدرالية.\n\n**ما يجب فعله:**\n1. **قدّم الطلب البديل** عبر موقع ISAC (Illinois Student Assistance Commission). النموذج متاح على الإنترنت ولا يتطلب انتظار التخرج. [ state‑isac‑alternative‑application‑faqs::05 ]\n2. **تحقق من أهليتك لمنحة MAP** – بعد إكمال الطلب البديل، سيحدّد النظام تلقائيًا ما إذا كنت مؤهلاً لمنحة MAP؛ لا تحتاج إلى طلب منفصل. [ state"
+ },
+ "p03:ar": {
+  "sources": [
+   "institution-ccc-transfer-services",
+   "institution-ccc-admissions",
+   "institution-ccc-registration"
+  ],
+  "fallback": false,
+  "seconds": 130.7,
+  "confidence": "Medium",
+  "answer": "لتقديم طلب التحاق بكليات مدينة شيكاغو (City Colleges of Chicago) اتبع الخطوات التالية:\n\n1. **التقديم عبر الإنترنت** – ادخل إلى صفحة التقديم الإلكترونية على الرابط ccc.edu/apply [المصدر institution-ccc-transfer-services::53] واملأ استمارة القبول المجانية [المصدر institution-ccc-admissions::02].\n2. **رفع المستندات المطلوبة** – بعد إكمال الاستمارة سيُطلب منك رفع المستندات التالية:\n   - نسخة رسمية من شهادة الثانوية العامة أو شهادة GED، أو نسخة من السجل الأكاديمي إذا كنت تنتقل من كلية أو جامعة أخرى [المصدر institution-ccc-admissions::04].\n   - هوية صالحة (بطاقة هوية حكومية أو جواز سفر) لإثبات هويتك"
+ },
+ "p04:ar": {
+  "sources": [
+   "institution-ccc-star-scholarship"
+  ],
+  "fallback": false,
+  "seconds": 30.0,
+  "confidence": "High",
+  "answer": "منحة **Star Scholarship** هي برنامج منحة يغطي جميع تكاليف الدراسة (الرسوم، الكتب، والرسوم الإضافية) في City Colleges of Chicago، ويهدف إلى تمكين الطلاب من الحصول على درجة جامعية أو شهادة دون ديون. \n\n**من يحق له الحصول على المنحة؟**\n1. خريجو المدارس الثانوية العامة في Chicago Public Schools أو الخريجون من إحدى مدارس الشركاء التابعة لـ Big Shoulders Fund في شيكاغو. \n2. يجب أن يسجلوا في City Colleges of Chicago (يمكن أن يكونوا طلابًا بدوام كامل أو جزئي). \n3. يتطلب التقديم إكمال نموذج FAFSA لتأكيد عدم وجود حاجة مالية أخرى.\n\n**مميزات إضافية** تشمل فرص نقل إلى جامعات أربع سنوات وربط الطلاب بفرص توظي"
+ },
+ "p05:ar": {
+  "sources": [
+   "institution-ccc-star-scholarship",
+   "programs:ccc-financial-aid-offices"
+  ],
+  "fallback": false,
+  "seconds": 48.4,
+  "confidence": "Medium",
+  "answer": "حالة «التحقق» (Verification) تعني أن مكتب المساعدات المالية يحتاج إلى تأكيد بعض المعلومات التي قدمتها في نموذج FAFSA أو طلب المساعدة داخل الكلية، مثل الدخل أو الضرائب أو عدد أفراد الأسرة. لا يمكن إكمال معالجة المساعدة المالية حتى تُستكمل هذه العملية.\n\nما عليك فعله:\n1. افتح بوابة الطالب (MyCCC) أو بريدك الجامعي وتحقق من الإشعار الذي يوضح الوثائق المطلوبة (مثلاً نسخة من إقرار الضريبة، نموذج W‑2، أو إيصالات الدخل).\n2. اجمع الوثائق المطلوبة وتأكد من وضوحها.\n3. ارفع الوثائق عبر البوابة الإلكترونية أو قدمها شخصيًا في مكتب المساعدات المالية في كليتك.\n4. راقب الموعد النهائي لتسليم الوثائق؛ إذا فاتك ال"
+ },
+ "p07:ar": {
+  "sources": [
+   "state-isac-non-eligible-noncitizens",
+   "federal-dependency-status",
+   "federal-fafsa-checklist"
+  ],
+  "fallback": false,
+  "seconds": 40.4,
+  "confidence": "High",
+  "answer": "نعم، يمكنك تعبئة نموذج FAFSA حتى إذا لم يكن لدى والديك رقم ضمان اجتماعي. في قسم معلومات الوالدين لا يُطلب إدخال رقم الضمان الاجتماعي؛ يمكنك ترك الحقل فارغًا أو كتابة “0”. إذا رفض الوالدين تقديم معلوماتهم، لا يعني ذلك أنك غير مؤهل؛ يمكنك المتابعة وإكمال باقي النموذج وستُعامل كطالب يعتمد على نفسه فقط في حالة رفض الوالدين تقديم معلوماتهم. \n\n**خطوات عملية**\n1. أنشئ حسابًا على StudentAid.gov (FAFSA). \n2. ابدأ النموذج واختر السنة الدراسية المطلوبة. \n3. عند الوصول إلى قسم “Parent Demographics”، اترك حقل “Social Security Number” فارغًا أو أدخل “0”. \n4. أكمل باقي الأسئلة باستخدام المعلومات المتوفرة لدي"
+ },
+ "p08:ar": {
+  "sources": [
+   "institution-ccc-tuition"
+  ],
+  "fallback": false,
+  "seconds": 12.0,
+  "confidence": "High",
+  "answer": "تكلفة الساعة المعتمدة للطلاب المقيمين داخل مدينة شيكاغو (In‑District) للعام الدراسي FY 27 هي 163 دولارًا لكل ساعة معتمدة."
+ },
+ "p09:ar": {
+  "sources": [
+   "institution-ccc-student-resources",
+   "institution-ccc-transfer-services"
+  ],
+  "fallback": false,
+  "seconds": 77.5,
+  "confidence": "High",
+  "answer": "إليك خطوات الانتقال من كليات المدينة إلى جامعة مدتها أربع سنوات:\n1️⃣ زر مركز النقل (Transfer Center) في كليات المدينة للحصول على استشارة شخصية ومساعدة في اختيار الجامعات المناسبة. [المصدر: institution-ccc-student-resources::01]\n2️⃣ حدد الجامعات المستهدفة وتأكد من متطلبات القبول (مثل المعدل GPA) من خلال ورش العمل التي يقدمها المركز. [المصدر: institution-ccc-transfer-services::14] [المصدر: institution-ccc-transfer-services::21]\n3️⃣ حافظ على معدل GPA يلبي متطلبات الجامعة (عادةً 2.5‑3.0). المركز سيساعدك في تقييم مستواك وتقديم نصائح للتحسين. [المصدر: institution-ccc-transfer-services::00]\n4️⃣ قدّم "
+ },
+ "p10:ar": {
+  "sources": [
+   "federal-pell-grants",
+   "federal-financial-aid-glossary",
+   "federal-dependency-status"
+  ],
+  "fallback": false,
+  "seconds": 49.9,
+  "confidence": "High",
+  "answer": "منحة Pell الفدرالية هي منحة مالية تُمنح من الحكومة الفيدرالية للطلاب الجامعيين لتساعدهم في تغطية تكاليف التعليم. تُصرف كمنحة لا تحتاج إلى سدادها وتُحدد قيمتها بناءً على الحاجة المالية التي تُحسب من خلال نموذج FAFSA.\n\nمن يمكنه الحصول على المنحة؟\n- أي طالب جامعي (undergraduate) لم يحصل بعد على درجة البكالوريوس أو درجة دراسات عليا أو مهنية.\n- يجب أن يكون الطالب مؤهلاً للحصول على مساعدة مالية فيدرالية (FAFSA) وأن يكون دخله وعائلته ضمن حدود الدخل التي تحددها الحكومة، أي أن Expected Family Contribution (EFC) أقل من الحد الأقصى المؤهل للمنحة.\n- لا يهم عمر الطالب أو ما إذا كان طالبًا بدوام كامل أو جزئ"
+ },
+ "p11:ar": {
+  "sources": [
+   "federal-work-study",
+   "federal-financial-aid-glossary"
+  ],
+  "fallback": false,
+  "seconds": 106.7,
+  "confidence": "Medium",
+  "answer": "حسب تعريف المساعدات الفدرالية، حالة الطالب بدوام كامل تُحدَّد بعدد الساعات الدراسية (credits) التي تسجلها في الفصل، وليس بعدد ساعات العمل التي تقوم بها خارج الجامعة. لذلك، العمل 35 ساعة في الأسبوع لا يغيّر تلقائيًا وضعك كطالب بدوام كامل إذا كنت مسجَّلاً على الأقل 12 ساعة معتمدة (credit) في الفصل. \n\nوظائف برنامج Work‑Study تُصمم لتكون بدوام جزئي فقط، لذا إذا كان عملك خارج برنامج Work‑Study يمكنك العمل أكثر من 20 ساعة أسبوعيًا، لكن عليك التأكد أن ذلك لا يعيق إكمال الساعات الدراسية المطلوبة والحفاظ على التقدم الأكاديمي المرضي (SAP). \n\nللحفاظ على مساعدتك المالية:\n1. تحقق من عدد الساعات المعتمدة ال"
+ },
+ "p12:ar": {
+  "sources": [
+   "deadlines:ccc-spring27-first-day-16wk",
+   "deadlines:ccc-spring27-first-day-12wk",
+   "deadlines:ccc-spring27-withdrawal-16wk"
+  ],
+  "fallback": false,
+  "seconds": 7.5,
+  "confidence": "High",
+  "answer": "يبدأ الفصل الربيعي 2027 للجلسة العادية (16 أسبوعًا) في 11 يناير 2027، وللجلسة القصيرة (12 أسبوعًا) في 8 فبراير 2027. آخر يوم لسحب مادة من الفصل الربيعي (الجلسة 16‑أسبوع) هو 8 أبريل 2027."
+ },
+ "p13:ar": {
+  "sources": [
+   "deadlines:fed-fafsa-federal-deadline-2026-27",
+   "deadlines:state-map-priority-2027-28",
+   "deadlines:state-map-suspension-2026-27"
+  ],
+  "fallback": false,
+  "seconds": 8.4,
+  "confidence": "High",
+  "answer": "المواعيد الثلاثة الأساسية التي يجب أن تعرفها بخصوص FAFSA هي:\n1. **الموعد النهائي الفيدرالي لتقديم FAFSA** – آخر يوم لتقديم نموذج FAFSA للعام الدراسي 2026‑27 هو 30 يونيو 2027.\n2. **موعد أولوية برنامج MAP** – للطلاب المستفيدين من برنامج MAP للعام الدراسي 2027‑28، يجب تقديم FAFSA أو طلب بديل بحلول 1 فبراير 2027 لتكون ضمن أولوية المنحة.\n3. **آخر موعد لتجنب وضع FAFSA في حالة الانتظار (Suspension) لبرنامج MAP** – إذا تم تقديم FAFSA بعد 23 أبريل 2026 للعام الدراسي 2026‑27، سيُوضع الطلب في حالة انتظار ولن يحصل الطالب على أموال MAP إلا إذا توفرت تمويلات إضافية.\n\n**ملخص عملي**\n- أكمل FAFSA قبل 30 يونيو "
+ },
+ "p14:ar": {
+  "sources": [
+   "federal-financial-aid-glossary",
+   "federal-work-study"
+  ],
+  "fallback": false,
+  "seconds": 32.0,
+  "confidence": "High",
+  "answer": "برنامج Federal Work‑Study (FWS) هو نوع من المساعدات المالية الفيدرالية القائمة على الحاجة يوفّر للطلاب وظائف بدوام جزئي داخل أو خارج الحرم الجامعي لتغطية جزء من تكاليف التعليم. لتأهيلك للبرنامج يجب أن تُقدِّم طلب FAFSA كل سنة؛ بناءً على نتائج FAFSA تُحدِّد الكلية ما إذا كان لك رصيد Work‑Study ومقدار الأموال المتاحة لك. الوظائف عادةً ما تكون بدوام جزئي (10‑20 ساعة أسبوعيًا) وتُحدَّد عدد الساعات المسموح بها من قبل الكلية.\n\nبالنسبة لتأثيره على المساعدات المالية المستقبلية: أرباح Work‑Study لا تُحتسب كدخل يُخصم من “Expected Family Contribution” (EFC) في طلبات FAFSA للسنوات القادمة، وبالتالي لا تقل"
+ },
+ "p15:ar": {
+  "sources": [
+   "deadlines:state-alt-app-2027-28-opens"
+  ],
+  "fallback": false,
+  "seconds": 3.3,
+  "confidence": "High",
+  "answer": "يُفتح الطلب البديل (Alternative Application) للعام الدراسي 2027‑28 في 1 أكتوبر 2026."
+ },
+ "p06:en": {
+  "sources": [
+   "programs:ccc-food-pantries",
+   "programs:ccc-food-security-initiative",
+   "programs:ccc-wellness-centers"
+  ],
+  "fallback": false,
+  "seconds": 4.0,
+  "confidence": "High",
+  "answer": "You can get food and emergency‑cost help through the Wellness Center at your college. Every City College has a food pantry you can walk into for free groceries or meals (programs:ccc-food-pantries). The Food Security for Life Initiative also provides free grab‑and‑go snacks at all campuses and ready‑to‑take‑home meals at Malcolm X, Kennedy‑King, and Olive‑Harvey Colleges (programs:ccc-food-security-initiative). In addition, the Wellness Center can refer you to emergency housing, grocery assistance, and other urgent resources (programs:ccc-wellness-centers)."
+ },
+ "p06:ar": {
+  "sources": [
+   "programs:ccc-food-pantries",
+   "programs:ccc-food-security-initiative",
+   "programs:ccc-financial-aid-offices",
+   "programs:ccc-snap-work-requirement-help"
+  ],
+  "fallback": false,
+  "seconds": 5.2,
+  "confidence": "High",
+  "answer": "يمكنك الحصول على مساعدة في الطعام من مخازن الطعام (Food Pantries) الموجودة في كل كلية داخل مركز العافية (Wellness Center) وكذلك من مبادرة “Food Security for Life” التي توفّر وجبات جاهزة للمنزل في بعض الكليات. للمساعدة في التكاليف الطارئة، تواصل مع مكتب المساعدات المالية (Financial Aid Office) الذي يقدم منحًا أو قروضًا طارئة للطلاب. إذا كنت تستفيد من برنامج SNAP أو تحتاج إلى إرشاد إضافي حول الدعم الغذائي، يمكنك الاتصال بوزارة خدمات الإنسان في إلينوي (IDHS) أو المتطوعين من AmeriCorps VISTA في الحرم الجامعي."
  }
 }

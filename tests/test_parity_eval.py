@@ -176,13 +176,45 @@ def test_show_run_prints_a_saved_run_and_says_when_one_is_missing(tmp_path, monk
     assert "p99:en: not saved" in out
 
 
-def test_redo_forgets_only_the_named_pairs_and_the_report_says_so():
+def test_redo_forgets_only_the_named_pairs_and_languages_and_the_report_says_so(tmp_path):
     cache = {"p03:en": {"x": 1}, "p03:ar": {"x": 2}, "p08:ar": {"x": 3}, "p01:en": {"x": 4}}
     assert pe.drop_cached(cache, ["p03", "p08", "p99"]) == ["p03", "p08"]
     assert list(cache) == ["p01:en"]
+    cache = {"p01:en": 1, "p01:ar": 2, "p02:ar": 3}
+    assert pe.drop_language(cache, "ar") == 2 and list(cache) == ["p01:en"]
+    notes = tmp_path / "notes.txt"
+    assert pe.read_notes(notes) == []
+    pe.add_note("first note", notes)
+    pe.add_note("first note", notes)          # no duplicates
+    pe.add_note("second note", notes)
+    assert pe.read_notes(notes) == ["first note", "second note"]
     pair = {"pair": "p1", "en_question": "Q?", "ar_question": "س؟"}
     run = {"sources": ["a"], "fallback": False}
     rows = [{"pair": pair, "en": run, "ar": run, "verdict": pe.compare(run, run)}]
-    text = pe.render_report(rows, pe.summarize(rows), "answer", "2026-11-23", redone=["p03"])
-    assert "p03 were run again" in text
-    assert "run again" not in pe.render_report(rows, pe.summarize(rows), "answer", "2026-11-23")
+    text = pe.render_report(rows, pe.summarize(rows), "answer", "2026-11-24", notes=pe.read_notes(notes))
+    assert "- first note" in text and "- second note" in text and "favours the result" in text
+    assert "favours the result" not in pe.render_report(rows, pe.summarize(rows), "answer", "2026-11-24")
+
+
+def test_show_retrieval_prints_both_languages_of_a_pair_from_the_pairs_file(capsys):
+    import importlib.util
+    from types import SimpleNamespace
+
+    spec = importlib.util.spec_from_file_location("show_retrieval", "scripts/show_retrieval.py")
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+
+    class Fake:
+        def __init__(self):
+            self.asked = []
+
+        def search(self, q, k=5):
+            self.asked.append((q, k))
+            return [SimpleNamespace(score=0.8765, chunk_id="institution-ccc-tuition::02", section="Rates", text="word " * 50)]
+
+    fake = Fake()
+    assert mod.main(["p08", "-k", "3"], retriever=fake) == 0
+    out = capsys.readouterr().out
+    assert "=== p08 ===" in out and "[en]" in out and "[ar]" in out and "institution-ccc-tuition::02" in out
+    assert [k for _, k in fake.asked] == [3, 3] and "كلفة الساعة" in fake.asked[1][0]
+    assert mod.main(["p99"], retriever=fake) == 2

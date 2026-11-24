@@ -26,6 +26,7 @@ import time
 from pathlib import Path
 
 PAIRS = Path("institutions/demo-ccc/parity_pairs.csv")
+NOTES = Path("evals/parity_notes.txt")
 RESULTS = Path("evals/parity_results.json")
 REPORT = Path("evals/parity_report.md")
 TARGET = 12
@@ -157,7 +158,27 @@ def drop_cached(cache: dict, pair_ids) -> list[str]:
     return found
 
 
-def render_report(rows: list[dict], summary: dict, mode: str, today: str, redone=()) -> str:
+def drop_language(cache: dict, language: str) -> int:
+    """Forget every saved run of one language ("en" or "ar"); returns how many were dropped."""
+    keys = [k for k in cache if k.endswith(f":{language}")]
+    for k in keys:
+        del cache[k]
+    return len(keys)
+
+
+def read_notes(path=None) -> list[str]:
+    path = Path(path or NOTES)
+    return [l.strip() for l in path.read_text(encoding="utf-8").splitlines() if l.strip()] if path.exists() else []
+
+
+def add_note(text: str, path=None) -> None:
+    path = Path(path or NOTES)
+    if text not in read_notes(path):
+        with open(path, "a", encoding="utf-8") as f:
+            f.write(text + "\n")
+
+
+def render_report(rows: list[dict], summary: dict, mode: str, today: str, notes=()) -> str:
     mark = {"same": "same", "different": "DIFFERENT", "error": "ERROR (retry)"}
     lines = [f"# Language parity ({mode} mode, {today})", "",
              f"**{summary['same_top']} of {summary['pairs']} pairs have the same top source** "
@@ -165,9 +186,9 @@ def render_report(rows: list[dict], summary: dict, mode: str, today: str, redone
              f"{'PASSED' if summary['passed'] else 'NOT PASSED'}."
              + (f" {summary['errors']} pair(s) had an error and count as not passing." if summary["errors"] else ""),
              ]
-    if redone:
-        lines += ["", f"Note: pair(s) {', '.join(redone)} were run again after the first full run (after the tool-limit "
-                      "change). Re-running only some pairs favours the result, so read this number with that in mind."]
+    if notes:
+        lines += ["", "Notes on how this result was produced (re-running only some runs favours the result, "
+                      "so read the number with that in mind):"] + [f"- {n}" for n in notes]
     soft = "soft_same" in summary
     if soft:
         lines += ["", f"Softer reading: in **{summary['soft_same']} of {summary['pairs']}** pairs each language's best "
@@ -204,6 +225,8 @@ def main(argv=None) -> int:
     ap.add_argument("--fresh", action="store_true", help="ignore saved answer results")
     ap.add_argument("--redo", nargs="+", metavar="PAIR", default=[],
                     help="run these pairs again (e.g. --redo p03 p08 p11); the other saved results are kept")
+    ap.add_argument("--redo-lang", choices=["en", "ar"], default=None,
+                    help="run every pair of this language again (use after a change that affects that language)")
     args = ap.parse_args(argv)
 
     from dotenv import load_dotenv
@@ -219,14 +242,22 @@ def main(argv=None) -> int:
         cache = {} if args.fresh or not RESULTS.exists() else json.loads(RESULTS.read_text(encoding="utf-8"))
         save = lambda c: RESULTS.write_text(json.dumps(c, ensure_ascii=False, indent=1), encoding="utf-8")
         runner, delay = answer_runner(ctx), args.delay
-    redone = drop_cached(cache, args.redo) if args.mode == "answer" else []
-    if args.redo and args.mode == "answer":
+    if args.mode == "answer" and (args.redo or args.redo_lang):
         unknown = [p for p in args.redo if p not in {x["pair"] for x in pairs}]
         if unknown:
             print("Unknown pair(s):", ", ".join(unknown))
             return 2
+        if args.redo:
+            drop_cached(cache, args.redo)
+            add_note(f"Pair(s) {', '.join(args.redo)} were run again after the first full run.")
+            print("Running again:", ", ".join(args.redo))
+        if args.redo_lang:
+            n = drop_language(cache, args.redo_lang)
+            add_note(f"All {args.redo_lang.upper()} runs were repeated after the search prompt changed (the search "
+                     "query is now always written in English). The other language's runs are from the earlier run. "
+                     "The change was made after seeing the 2026-11-24 results.")
+            print(f"Running all {n} saved {args.redo_lang.upper()} runs again")
         save(cache)
-        print("Running again:", ", ".join(args.redo))
     print(f"{len(pairs)} pairs, mode={args.mode}")
     try:
         rows = run_pairs(pairs, runner, cache, save=save, delay=delay)
@@ -243,7 +274,8 @@ def main(argv=None) -> int:
     import datetime as dt
 
     out = REPORT if args.mode == "answer" else REPORT.with_name("parity_report_retrieval.md")
-    out.write_text(render_report(rows, summary, args.mode, dt.date.today().isoformat(), redone=args.redo), encoding="utf-8")
+    out.write_text(render_report(rows, summary, args.mode, dt.date.today().isoformat(),
+                                    notes=read_notes() if args.mode == "answer" else ()), encoding="utf-8")
     print(f"\n{summary['same_top']}/{summary['pairs']} same top source "
           f"(target {summary['target']}): {'PASSED' if summary['passed'] else 'NOT PASSED'}"
           + (f"  [{summary['errors']} errors - run again to retry them]" if summary["errors"] else ""))

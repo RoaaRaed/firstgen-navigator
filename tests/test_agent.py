@@ -597,3 +597,59 @@ def test_debug_switch_shows_the_first_words_of_the_arguments(capsys, monkeypatch
     ai = FakeMsg("ai", "", tool_calls=[{"id": "1", "name": "search_knowledge_base", "args": {"query": "how do I apply"}}])
     agent._print_tools([ai])
     assert capsys.readouterr().out.strip() == "[tools] search_knowledge_base('how do I apply')"
+
+
+def test_debug_switch_shows_the_query_even_when_the_language_argument_comes_first(capsys, monkeypatch):
+    monkeypatch.setenv("ADVISOR_DEBUG_QUERIES", "1")
+    ai = FakeMsg("ai", "", tool_calls=[{"id": "1", "name": "search_knowledge_base",
+                                         "args": {"language": "ar", "query": "tuition per credit hour"}}])
+    agent._print_tools([ai])
+    assert capsys.readouterr().out.strip() == "[tools] search_knowledge_base('tuition per credit hour')"
+
+
+BAD_CITATION = ("1 validation error for AdvisorAnswer\n  Value error, citation source_id 'ccc-food-pantries' does "
+                "not look like a real tool id (expected 'doc::NN', 'deadlines:id' or 'programs:id') "
+                "[type=value_error, input_value={'answer': 'x'}, input_type=dict]")
+
+
+def test_validation_errors_are_recognised_and_the_reason_is_extracted():
+    assert agent.is_validation_error(RuntimeError(BAD_CITATION))
+    assert not agent.is_validation_error(RuntimeError("Error code: 413 - Request too large"))
+    assert "ccc-food-pantries" in agent._validation_reason(RuntimeError(BAD_CITATION))
+    assert "input_value" not in agent._validation_reason(RuntimeError(BAD_CITATION))
+
+
+def test_an_answer_that_breaks_a_rule_is_asked_for_again_with_the_reason():
+    record = install(agent_trace=[FakeMsg("ai", "draft")], structured_answer=_answer())
+    a = agent.build_agent(ctx(), llm=record["llm"])
+    seen = []
+
+    class Llm:
+        def with_structured_output(self, schema):
+            return self
+
+        def invoke(self, msgs):
+            seen.append(list(msgs))
+            if len(seen) == 1:
+                raise RuntimeError(BAD_CITATION)
+            return _answer()
+
+    a.llm = Llm()
+    result = agent.run_agent(a, "Where can I get food help?")
+    assert len(seen) == 2 and result.answer.answer == "ok"
+    assert "ccc-food-pantries" in seen[1][-1]["content"] and "programs:" in seen[1][-1]["content"]
+
+
+def test_an_answer_that_keeps_breaking_the_rules_ends_in_the_safe_fallback():
+    record = install(agent_trace=[FakeMsg("ai", "draft")], structured_answer=_answer())
+    a = agent.build_agent(ctx(), llm=record["llm"])
+
+    class Llm:
+        def with_structured_output(self, schema):
+            return self
+
+        def invoke(self, msgs):
+            raise RuntimeError(BAD_CITATION)
+
+    a.llm = Llm()
+    assert agent.run_agent(a, "q").answer.answer.startswith("Something went wrong")

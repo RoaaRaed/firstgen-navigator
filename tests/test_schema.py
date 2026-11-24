@@ -35,9 +35,10 @@ def test_low_confidence_without_citation_is_allowed_for_not_found():
     assert a.citations == []
 
 
-def test_more_than_three_next_steps_is_rejected():
-    with pytest.raises(ValidationError):
-        make(next_steps=["a", "b", "c", "d"])
+def test_more_than_three_next_steps_are_cut_to_the_first_three_not_rejected():
+    # a fourth step from the model used to turn a good Arabic answer into the "something went wrong" page
+    a = make(next_steps=["a", "b", "c", "d", "e"])
+    assert a.next_steps == ["a", "b", "c"]
 
 
 def test_three_next_steps_is_fine():

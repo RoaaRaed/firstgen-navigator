@@ -1,0 +1,3 @@
+Pair(s) p03, p08, p11 were run again after the first full run (after the tool-limit change).
+All AR runs were repeated after the search prompt changed (the search query is now always written in English). The other language's runs are from the earlier run. The change was made after seeing the 2026-11-24 results.
+Pair(s) p06 were run again after the first full run.

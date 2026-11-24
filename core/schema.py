@@ -8,7 +8,7 @@ from __future__ import annotations
 
 from typing import Literal, Optional
 
-from pydantic import BaseModel, Field, model_validator
+from pydantic import BaseModel, Field, field_validator, model_validator
 
 Confidence = Literal["High", "Medium", "Low"]
 
@@ -50,11 +50,12 @@ class AdvisorAnswer(BaseModel):
             )
         return self
 
-    @model_validator(mode="after")
-    def next_steps_stay_short(self):
-        if len(self.next_steps) > 3:
-            raise ValueError("next_steps should be at most 3 items")
-        return self
+    @field_validator("next_steps", mode="before")
+    @classmethod
+    def next_steps_stay_short(cls, value):
+        """At most 3. A model that writes a fourth step should not turn a good answer into an error
+        page (it happened in an Arabic answer), so the extra steps are cut, not rejected."""
+        return value[:3] if isinstance(value, list) else value
 
     @model_validator(mode="after")
     def citation_ids_look_real(self):

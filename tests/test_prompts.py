@@ -68,3 +68,16 @@ def test_not_found_is_distinct_from_low_confidence():
 def test_eight_results_minimum_matches_week2_decision():
     for lang in LANGUAGES:
         assert "8" in load_system_prompt(lang)
+
+
+def test_both_prompts_tell_the_model_to_search_in_english():
+    # Arabic questions are searched with an English phrase: the documents are English and the
+    # same English query makes the two languages find the same sources (issue #26).
+    assert "in English" in load_system_prompt("en")
+    assert "بالإنجليزي" in load_system_prompt("ar")
+
+
+def test_the_search_tool_description_asks_for_an_english_query():
+    from core.tools import search_knowledge_base
+
+    assert "IN ENGLISH" in search_knowledge_base.__doc__

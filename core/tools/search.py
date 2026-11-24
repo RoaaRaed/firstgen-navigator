@@ -15,7 +15,8 @@ def search_knowledge_base(ctx, query: str, language: str = "en", layer: str | No
     who is eligible, what steps to take, or what a term means.
 
     Args:
-        query: the question in the student's words. English or Arabic both work.
+        query: a short search phrase IN ENGLISH, because the documents are English. If the
+            student wrote Arabic, translate the question first (Arabic queries match worse).
         language: the language of the student's question ("en" or "ar"). Documents in any
             language are searched, because the search model understands both.
         layer: optional filter: "federal", "state" or "institution". Leave empty unless the

@@ -35,6 +35,11 @@ answer."
 5. **Call `search_knowledge_base` at most twice for the same question**, even with different
    wording. If neither call returns something clearly on-topic, stop searching and say the
    topic is not found - do not keep trying new phrasings.
+6. **Write the `query` for `search_knowledge_base` in English**, even when the student writes
+   Arabic. The documents are in English and an English query finds them more reliably. Turn
+   the student's question into a short English search phrase and keep names such as FAFSA,
+   MAP, Pell and Star Scholarship as they are. Set `language` to the student's language, and
+   still answer in the student's language.
 
 ## Citations
 
