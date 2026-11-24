@@ -206,3 +206,57 @@ def test_report_only_makes_no_api_calls_and_writes_the_report(tmp_path, monkeypa
     assert "1 of 62 questions run" in capsys.readouterr().out
     assert "Evaluation report" in (tmp_path / "report.md").read_text(encoding="utf-8")
     assert ev.main(["--report-only", "--only", "g999"]) == 2
+
+
+# ---- step 24: the judge model and --judge-only
+
+def test_default_judge_model_is_not_the_retired_one():
+    assert judge.DEFAULT_JUDGE_MODEL != "llama-3.3-70b-versatile"
+    assert judge.DEFAULT_JUDGE_MODEL != "openai/gpt-oss-120b"      # the advisor must not grade itself
+
+
+def test_judge_only_makes_no_advisor_calls(tmp_path, monkeypatch, capsys):
+    import sys
+    import types
+
+    saved = {"g001": run(judge={"error": "NotFoundError", "model": "old"})}
+    monkeypatch.setattr(ev, "RESULTS", tmp_path / "r.json")
+    monkeypatch.setattr(ev, "REPORT", tmp_path / "rep.md")
+    ev.RESULTS.write_text(json.dumps(saved), encoding="utf-8")
+    monkeypatch.setattr(ev, "load_golden", lambda path=ev.GOLDEN: [row("g001")])
+    monkeypatch.setattr(ev, "known_source_ids", lambda root: KNOWN)
+    seen = {}
+    monkeypatch.setattr(ev, "judge_all", lambda todo, cache, llm, model, **kw: seen.setdefault("model", model))
+    monkeypatch.setattr(judge, "get_judge_llm", lambda model=None: object())
+    monkeypatch.setitem(sys.modules, "dotenv", types.SimpleNamespace(load_dotenv=lambda *a, **k: None))
+
+    def boom(*a, **k):
+        raise AssertionError("the advisor must not be called")
+
+    monkeypatch.setattr(ev, "run_questions", boom)
+    monkeypatch.setattr(ev, "answer_runner", boom)
+    assert ev.main(["--judge-only", "--judge-model", "m-x"]) == 0
+    assert seen["model"] == "m-x" and ev.REPORT.exists()
+
+
+def test_judge_run_asks_again_once_when_the_reply_is_not_json():
+    replies = iter(["", '{"total_claims": 2, "supported_claims": 1, "unsupported": ["x"]}'])
+
+    class Llm:
+        calls = 0
+
+        def invoke(self, messages):
+            Llm.calls += 1
+            return SimpleNamespace(content=next(replies))
+
+    out = judge.judge_run(Llm(), "Q", {"answer": "A", "evidence": []}, "m")
+    assert out["score"] == 0.5 and Llm.calls == 2 and out["model"] == "m"
+
+
+def test_judge_run_error_shows_what_the_model_said():
+    class Llm:
+        def invoke(self, messages):
+            return SimpleNamespace(content="I think the answer is fine.")
+
+    out = judge.judge_run(Llm(), "Q", {"answer": "A", "evidence": []}, "m")
+    assert "error" in out and "I think the answer is fine" in out["error"]

@@ -5,6 +5,7 @@
     python -m evals.run_eval --only g041 g053   # only these questions
     python -m evals.run_eval --redo g041        # forget the saved run of g041 and run it again
     python -m evals.run_eval --report-only      # no API calls: rebuild evals/eval_report.md from what is saved
+    python -m evals.run_eval --judge-only       # only judge what is saved (no advisor calls)
     python -m evals.run_eval --no-judge         # skip the LLM judge
 
 Every finished run is saved in evals/eval_results.json, so a second run continues where the first
@@ -349,6 +350,7 @@ def main(argv=None) -> int:
     ap.add_argument("--redo", nargs="+", metavar="ID", default=[], help="forget these saved runs and run them again")
     ap.add_argument("--limit", type=int, default=None, help="run at most this many new questions now")
     ap.add_argument("--delay", type=float, default=10.0, help="seconds to wait between questions")
+    ap.add_argument("--judge-only", action="store_true", help="only judge the saved answers, no advisor calls")
     ap.add_argument("--no-judge", action="store_true", help="skip the LLM judge")
     ap.add_argument("--rejudge", action="store_true", help="judge every answer again")
     ap.add_argument("--judge-model", default=None)
@@ -376,11 +378,12 @@ def main(argv=None) -> int:
 
         load_dotenv()
         try:
-            from app import advisor
-
-            ctx = advisor.get_context()
             print(f"{len(todo)} questions selected, {sum(1 for r in todo if r['id'] in cache)} already saved")
-            run_questions(todo, answer_runner(ctx), cache, save=save, limit=args.limit, delay=args.delay)
+            if not args.judge_only:
+                from app import advisor
+
+                ctx = advisor.get_context()
+                run_questions(todo, answer_runner(ctx), cache, save=save, limit=args.limit, delay=args.delay)
         except StopForToday as e:
             stopped = True
             print("\nGroq's daily token limit for the advisor model is used up. Finished questions are saved "

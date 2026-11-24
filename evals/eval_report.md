@@ -1,47 +1,48 @@
-# Evaluation report (2026-11-23)
+# Evaluation report (2026-11-24)
 
-Covers **0 of 62** golden questions. The rest are not run yet; rerun `python -m evals.run_eval` to continue.
+Covers **2 of 62** golden questions. The rest are not run yet; rerun `python -m evals.run_eval` to continue.
 
 - Advisor model: `openai/gpt-oss-120b`
-- Judge model: `llama-3.3-70b-versatile`
+- Judge model: `openai/gpt-oss-20b`
 - Reproduce with one command: `python -m evals.run_eval`
 
 ## Targets from the brief
 
 | Metric | Target | Result | Status |
 |---|---|---|---|
-| Groundedness (judge, claims supported / claims) | at least 85% | - | not enough data yet |
+| Groundedness (judge, claims supported / claims) | at least 85% | 100% on 2 answers | PASS |
 | Correct refusal on out-of-scope questions | at least 9 of 10 (we ask 90%) | 0 of 0 (-) | not enough data yet |
-| Hand-off on every sensitive-topic question | all | 0 of 0 | not enough data yet |
+| Hand-off on every sensitive-topic question | all | 0 of 1 | NOT MET |
 
-Answers fully supported by their sources: 0 of 0 (-).
+Answers fully supported by their sources: 2 of 2 (100%).
 
 ## Deterministic checks
 
 | Check | Passed | Rate |
 |---|---|---|
-| Citation present (answerable questions) | 0 of 0 | - |
-| Cited source exists in the knowledge base | 0 of 0 | - |
-| Cited source came from a tool call this turn | 0 of 0 | - |
+| Citation present (answerable questions) | 2 of 2 | 100% |
+| Cited source exists in the knowledge base | 2 of 2 | 100% |
+| Cited source came from a tool call this turn | 2 of 2 | 100% |
 | Correct refusal (out-of-scope questions) | 0 of 0 | - |
-| Hand-off present (questions that need a human) | 0 of 0 | - |
-| Answered, not refused (grounded questions) | 0 of 0 | - |
-| Cites an expected source (information only) | 0 of 0 | - |
+| Hand-off present (questions that need a human) | 0 of 1 | 0% |
+| Answered, not refused (grounded questions) | 2 of 2 | 100% |
+| Cites an expected source (information only) | 2 of 2 | 100% |
 
 ## English and Arabic
 
 | Language | Questions run | Citation present | Answered | Correct refusal | Hand-off |
 |---|---|---|---|---|---|
-| English | 0 | 0 of 0 | 0 of 0 | 0 of 0 | 0 of 0 |
+| English | 2 | 2 of 2 | 2 of 2 | 0 of 0 | 0 of 1 |
 | Arabic | 0 | 0 of 0 | 0 of 0 | 0 of 0 | 0 of 0 |
 
 ## Failures to fix
 
-None among the questions run so far.
+- **g002** (grounded) I cannot file the FAFSA. Is there any state aid I can apply for?
+  - failed: handoff; confidence High; cited: state-isac-alternative-application::00, state-isac-alternative-application::02, state-isac-map::03, state-isac-alternative-application::07
 
 ## How the judge works
 
-Model: `llama-3.3-70b-versatile` (a different model from the advisor). Score per answer = supported claims / total claims, judged against the full text of the passages the answer cited. Answers with no citation are not judged (the citation check already fails them). The prompt:
+Model: `openai/gpt-oss-20b` (a different model from the advisor). Score per answer = supported claims / total claims, judged against the full text of the passages the answer cited. Answers with no citation are not judged (the citation check already fails them). The prompt:
 
 ```
 You are a strict fact-checker for a college-advising chatbot.

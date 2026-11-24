@@ -1,0 +1,132 @@
+{
+ "g001": {
+  "question": "What is the Illinois MAP grant and is there a deadline I should know about?",
+  "language": "en",
+  "behavior": "grounded",
+  "answer": "The Illinois MAP (Monetary Award Program) grant is a need‑based, non‑repayable award for eligible Illinois residents who attend an approved Illinois college. It can be used only for tuition and mandatory fees and eligibility is automatically determined when you submit a FAFSA or the Illinois Alternative Application; there is no separate MAP application. \n\nKey deadlines:\n- **April 23, 2026** – last day to apply for the 2026‑27 MAP award before applications are placed in suspense (waiting list). \n- **March 1, 2026** – priority filing date for returning MAP recipients for the 2026‑27 award year. \n- **February 1, 2027** – priority filing date for returning MAP recipients for the upcoming 2027‑28 award year. \n\nIf you miss the April 23 deadline you can still apply, but you will be on the waiting list and will receive MAP money only if additional funding becomes available.",
+  "confidence": "High",
+  "citations": [
+   "state-isac-map::02",
+   "state-isac-map::05",
+   "deadlines:state-map-suspension-2026-27",
+   "deadlines:state-map-priority-2026-27",
+   "deadlines:state-map-priority-2027-28"
+  ],
+  "has_contact": false,
+  "contact": "",
+  "tools": [
+   "search_knowledge_base",
+   "lookup_deadlines"
+  ],
+  "returned_ids": [
+   "deadlines:state-map-priority-2026-27",
+   "deadlines:state-map-priority-2027-28",
+   "deadlines:state-map-suspension-2026-27",
+   "state-isac-alternative-application::07",
+   "state-isac-map::01",
+   "state-isac-map::02",
+   "state-isac-map::05",
+   "state-isac-map::09",
+   "state-isac-map::11",
+   "state-isac-map::13",
+   "state-isac-student-family-faqs-2026-27::00"
+  ],
+  "evidence": [
+   {
+    "source_id": "state-isac-map::02",
+    "text": "## Program Description MAP grants, which do not need to be repaid, are available to eligible Illinois residents who attend approved Illinois colleges and demonstrate financial need, based on the information provided on the Free Application for Federal Student Aid (FAFSA®). You are not required to submit high school grades or test scores when applying for a MAP grant. MAP grants are not limited to traditional college-aged students. If all eligibility requirements are met, adult and non-traditional students (older than recent high school graduates) may also qualify. MAP grants can be applied only toward tuition and mandatory fees. Colleges use the MAP formula to determine eligibility. The formula distributes the appropriated funds so that the neediest students receive grant assistance. Several components are used to determine eligibility, including: information provided on your FAFSA [from which your Student Aid Index (SAI) is calculated], the cost of attendance at the college you plan to attend, and the amount of other financial aid you are receiving. Because MAP funding is historically insufficient to meet the demand, several allocation measures have been put into place to provide for as many awards as possible. One of those is limiting MAP awards to fall and spring terms only; there are no summer term MAP awards. Additionally, a suspension date is typically implemented early in the spring term each year, after which time no further awards are announced."
+   },
+   {
+    "source_id": "state-isac-map::05",
+    "text": "## How to Apply Your eligibility for the MAP grant will be automatically determined if the approved Illinois college at which you plan to use the award is listed on your FAFSA, or, for some students, on the Alternative Application for Illinois Financial Aid (Alternative Application). More information is available at the Illinois Alternative Application page. Regardless of the application used, 2024 income tax information for you (and your contributors, as necessary) is used for the 2026-27 application. Verification of eligibility, and announcement of an estimated award amount (if any), is performed by the college each academic year. Only if you are eligible will an estimated MAP grant appear on a financial aid award notification from your college. If you are a MAP recipient, refer to the Monetary Award Program (MAP) Rights & Responsibilities document for the appropriate academic year to obtain more detailed information regarding the program."
+   },
+   {
+    "source_id": "deadlines:state-map-suspension-2026-27",
+    "text": "Last day to apply for 2026-27 MAP before awards go into suspense (waiting list): 2026-04-23 (2026-27). Applies to: applying. FAFSAs received after April 23, 2026 are placed in suspense for 2026-27 MAP, with no MAP money unless more funding becomes available. The FAFSA is still needed for other aid."
+   },
+   {
+    "source_id": "deadlines:state-map-priority-2026-27",
+    "text": "Priority access date for returning MAP recipients (2026-27): 2026-03-01 (2026-27). Applies to: enrolled. Returning MAP recipients who applied by this date get priority access to MAP funds. Applying after it does not disqualify a student if funds remain."
+   },
+   {
+    "source_id": "deadlines:state-map-priority-2027-28",
+    "text": "Example MAP priority date: returning MAP recipients file the FAFSA or Alternative Application by this date: 2027-02-01 (2027-28). Applies to: enrolled. ISAC FAQ gives February 1, 2027 as the example for students who received MAP in 2026-27 and plan to attend in 2027-28. ISAC announces the priority date each year; confirm on isac.org."
+   }
+  ],
+  "fallback": false,
+  "seconds": 178.4,
+  "model": "openai/gpt-oss-120b",
+  "judge": {
+   "total": 7,
+   "supported": 7,
+   "score": 1.0,
+   "unsupported": [],
+   "model": "openai/gpt-oss-20b"
+  }
+ },
+ "g002": {
+  "question": "I cannot file the FAFSA. Is there any state aid I can apply for?",
+  "language": "en",
+  "behavior": "grounded",
+  "answer": "You can apply for Illinois state aid without filing the FAFSA by using the Illinois Alternative Application. This alternative application is run by the Illinois Student Assistance Commission (ISAC) and lets you be considered for state‑funded programs such as the Monetary Award Program (MAP) grants. MAP grants are need‑based awards for Illinois residents who attend an approved Illinois college; eligibility requires you to be a U.S. citizen or eligible non‑citizen and to complete the Alternative Application. After you submit the Alternative Application, ISAC automatically determines whether you qualify for MAP. \n\n**Next steps**\n1. Go to the ISAC website and start the Illinois Alternative Application (search “Illinois Alternative Application”).\n2. Submit the application; ISAC will evaluate you for MAP grants.\n3. If you have questions or run into problems, contact the ISAC Financial Aid Office by phone or visit the office on campus.",
+  "confidence": "High",
+  "citations": [
+   "state-isac-alternative-application::00",
+   "state-isac-alternative-application::02",
+   "state-isac-map::03",
+   "state-isac-alternative-application::07"
+  ],
+  "has_contact": false,
+  "contact": "",
+  "tools": [
+   "search_knowledge_base",
+   "search_knowledge_base"
+  ],
+  "returned_ids": [
+   "state-isac-alternative-application-faqs::00",
+   "state-isac-alternative-application-faqs::01",
+   "state-isac-alternative-application-faqs::02",
+   "state-isac-alternative-application-faqs::03",
+   "state-isac-alternative-application-faqs::04",
+   "state-isac-alternative-application-faqs::05",
+   "state-isac-alternative-application-faqs::14",
+   "state-isac-alternative-application::00",
+   "state-isac-alternative-application::02",
+   "state-isac-alternative-application::07",
+   "state-isac-map::00",
+   "state-isac-map::02",
+   "state-isac-map::03",
+   "state-isac-map::05",
+   "state-isac-map::13",
+   "state-isac-non-eligible-noncitizens::06"
+  ],
+  "evidence": [
+   {
+    "source_id": "state-isac-alternative-application::00",
+    "text": "# Alternative Application for Illinois Financial Aid (last updated October 1, 2026) ## IMPORTANT NEWS REGARDING STATE FINANCIAL AID FOR UNDOCUMENTED STUDENTS: On July 24, 2026, a federal district court ruled that undocumented students are no longer eligible to receive financial assistance from the Illinois Student Assistance Commission (ISAC) for the 2026-2027 school year. The court’s ruling is the result of the Trump Administration suing the State of Illinois to deny college access to undocumented students who have graduated from Illinois high schools."
+   },
+   {
+    "source_id": "state-isac-alternative-application::02",
+    "text": "## What is the Alternative Application? The Retention of Illinois Students & Equity (RISE) Act allows certain students who are not eligible for federal student aid, including undocumented students, to apply for state financial aid. For these students, the Alternative Application for Illinois Financial Aid (“Alternative Application”) provides a way to apply for any state financial aid programs that would otherwise require completion of the Free Application for Federal Student Aid (FAFSA). There is also a small subset of students who will complete or have completed the FAFSA who may also be able to complete a Supplemental Section on the Alternative Application if they are ineligible for federal financial aid and meet certain Illinois educational criteria. This information can be used in consideration for ISAC programs. See below for additional details. Please note: The application is only the first step in the process - students must still meet all existing program eligibility criteria to receive an award"
+   },
+   {
+    "source_id": "state-isac-map::03",
+    "text": "## Eligibility To be eligible, you must: - be a U.S. citizen or eligible noncitizen who meets the eligibility requirements to complete the Alternative Application for Illinois Financial Aid (any program that requires the FAFSA will also accept the Alternative Application) - be an Illinois resident (if you are a dependent, the parent whose information is used on the FAFSA must be an Illinois resident) - demonstrate financial need - be enrolled a minimum of 3 hours per term at an approved Illinois college, in a degree or certificate program (includes credit bearing certificate programs that are offered at public institutions and are less than one academic year in length) - maintain satisfactory academic progress as determined by your college - not be in default on any student loan, nor owe a refund on any state or federal grant (if you are in default, you may re-establish your MAP eligibility). - not have received a bachelor's degree - not have used the equivalent of 135 MAP Paid Credit Hours* or more (MAP Paid Credit Hours usage is determined by your enrollment status each term) - not be incarcerated *Tracking Eligibility: Eligibility for a MAP grant is tracked by MAP Paid Credit Hours, which are the equivalent number of semester credit hours of MAP benefits paid on your behalf. If you are attending a quarter school, your quarter credit hours will be converted to semester MAP Paid Credit Hours. Please contact your financial aid advisor if you have questions regarding the quart ..."
+   },
+   {
+    "source_id": "state-isac-alternative-application::07",
+    "text": "## Eligibility and Application Process for MAP There is no separate application for the MAP grant. MAP eligibility is determined based on financial need, using the information that students and parents provide on the FAFSA or Alternative Application. Similar to the FAFSA, the data from the Alternative Application will be used to calculate a Student Aid Index (SAI), through a formula used by the federal government to determine your financial need. While information from the Alternative Application is not sent to the federal government, the same formula is used to determine how much state financial aid a student completing the Alternative Application may be eligible to receive. For students who complete only the Supplemental Section of the Alternative Application, this information, as well as information gathered from your FAFSA, will be used to determine eligibility for MAP. You are encouraged to complete and submit each academic year's Alternative Application as soon as possible after it becomes available, which is typically October 1 for the following academic year. The 2027-28 Alternative Application, including the Supplemental Section, will be available October 1, 2026."
+   }
+  ],
+  "fallback": false,
+  "seconds": 63.1,
+  "model": "openai/gpt-oss-120b",
+  "judge": {
+   "total": 9,
+   "supported": 9,
+   "score": 1.0,
+   "unsupported": [],
+   "model": "openai/gpt-oss-20b"
+  }
+ }
+}

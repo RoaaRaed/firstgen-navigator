@@ -16,7 +16,9 @@ import json
 import os
 import re
 
-DEFAULT_JUDGE_MODEL = "llama-3.3-70b-versatile"
+# Groq retired llama-3.3-70b-versatile (404). gpt-oss-20b is a production model with its own quota.
+# Override without editing code:  --judge-model <id>   or   JUDGE_MODEL=<id> in .env
+DEFAULT_JUDGE_MODEL = "openai/gpt-oss-20b"
 
 JUDGE_PROMPT = """You are a strict fact-checker for a college-advising chatbot.
 
@@ -59,13 +61,28 @@ def parse_judge(text: str) -> dict:
 def get_judge_llm(model: str | None = None):
     from core.agent import get_llm
 
-    return get_llm(model=model or os.getenv("JUDGE_MODEL", DEFAULT_JUDGE_MODEL), temperature=0.0, max_tokens=500)
+    return get_llm(model=model or os.getenv("JUDGE_MODEL", DEFAULT_JUDGE_MODEL), temperature=0.0, max_tokens=2000)   # gpt-oss "thinks" first, so leave room
 
 
 def judge_run(llm, question: str, run: dict, model: str) -> dict:
-    """Judge one saved advisor run. The caller handles rate limits."""
-    reply = llm.invoke([("system", JUDGE_PROMPT),
-                        ("user", build_judge_input(question, run["answer"], run["evidence"]))])
-    out = parse_judge(getattr(reply, "content", reply))
+    """Judge one saved advisor run. The caller handles rate limits.
+
+    If the reply is not the expected JSON we ask once more (with a reminder); if it fails again the
+    error keeps the start of the reply, so we can see what the model actually said."""
+    messages = [("system", JUDGE_PROMPT),
+                ("user", build_judge_input(question, run["answer"], run["evidence"]))]
+    text = ""
+    out = {"error": "no reply"}
+    for attempt in range(2):
+        reply = llm.invoke(messages)
+        text = getattr(reply, "content", reply)
+        text = text if isinstance(text, str) else str(text)
+        out = parse_judge(text)
+        if "error" not in out:
+            break
+        messages = messages + [("assistant", text or "(empty)"),
+                               ("user", "That was not valid. Reply with ONLY the JSON object, nothing else.")]
+    if "error" in out:
+        out["error"] += f" (reply started: {text.strip()[:80]!r})"
     out["model"] = model
     return out
