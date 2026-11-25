@@ -244,6 +244,9 @@ def main(argv=None) -> int:
     by_doc: dict[str, list[Chunk]] = {}
     for c in chunks:
         by_doc.setdefault(c.doc_id, []).append(c)
+    if not chunks:
+        print(f"No documents in {kb} yet. Add some (the Admin page can upload them), then run this again.")
+        return 0
     sizes = sorted(len(c.text) for c in chunks)
     print(f"{len(by_doc)} documents -> {len(chunks)} chunks "
           f"(median {sizes[len(sizes) // 2]} chars, max {sizes[-1]}, min {sizes[0]})")

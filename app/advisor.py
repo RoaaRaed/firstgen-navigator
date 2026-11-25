@@ -7,17 +7,31 @@ from __future__ import annotations
 import threading
 import time
 
-INSTITUTION = "demo-ccc"
-INSTITUTION_NAME = "City Colleges of Chicago"  # same text as core.agent.DEFAULT_INSTITUTION_NAME
 
 _warm_lock = threading.Lock()
 _warm_thread: threading.Thread | None = None
 
 
-def get_context(institution: str = INSTITUTION):
+def institution_slug() -> str:
+    """The folder this copy of the app serves: INSTITUTION in .env or Secrets (default demo-ccc)."""
+    from dotenv import load_dotenv
+
+    from core.config import active_institution
+
+    load_dotenv()
+    return active_institution()
+
+
+def institution_name(slug: str | None = None) -> str:
+    from core.config import load_config
+
+    return load_config(slug or institution_slug()).name
+
+
+def get_context(institution: str | None = None):
     from core.tools import load_context
 
-    return load_context(institution)
+    return load_context(institution or institution_slug())
 
 
 def get_ruleset(ctx):
@@ -80,7 +94,7 @@ def wait_for_warm_up(timeout: float = 300) -> None:
 def get_agent(ctx, language: str):
     from core.agent import build_agent
 
-    return build_agent(ctx, language=language)
+    return build_agent(ctx, language=language, institution_name=institution_name(ctx.institution))
 
 
 def profile_for(ctx, answers: dict, language: str) -> str:

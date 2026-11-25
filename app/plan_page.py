@@ -24,7 +24,7 @@ def render_page(strings: dict, lang: str) -> None:
     state = st.session_state
     questions = strings["questionnaire"]["questions"]
     plan = plan_mod.build_plan(_context(), _ruleset(), strings, state["answers"], lang,
-                               advisor.INSTITUTION_NAME, today=dt.date.today())
+                               advisor.institution_name(), today=dt.date.today())
 
     st.subheader(t(strings, "plan.title"))
     st.caption(t(strings, "plan.subtitle"))

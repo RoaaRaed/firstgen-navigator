@@ -1,0 +1,6 @@
+# Settings for this institution. To serve it, set INSTITUTION=demo-ccc (the default).
+name: City Colleges of Chicago
+short_name: CCC
+state: Illinois
+default_language: en
+website: https://www.ccc.edu

@@ -6,7 +6,7 @@ No Streamlit import here, so it can be tested.
 """
 import os
 
-KEYS = ("GROQ_API_KEY", "GROQ_MODEL")
+KEYS = ("GROQ_API_KEY", "GROQ_MODEL", "INSTITUTION")
 
 
 def export_secrets(secrets, environ=None, keys=KEYS) -> list[str]:
