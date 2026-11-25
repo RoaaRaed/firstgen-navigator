@@ -8,6 +8,8 @@ gatherUsageStats = false
 
 [client]
 toolbarMode = "minimal"
+# The Admin page (app/pages/9_Admin.py) is not listed in a menu; staff open it at /Admin.
+showSidebarNavigation = false
 
 # Linen and olive. Keep these in step with app/theme.py (tests/test_theme.py checks it).
 [theme]
