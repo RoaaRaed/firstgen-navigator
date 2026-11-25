@@ -260,3 +260,11 @@ def test_judge_run_error_shows_what_the_model_said():
 
     out = judge.judge_run(Llm(), "Q", {"answer": "A", "evidence": []}, "m")
     assert "error" in out and "I think the answer is fine" in out["error"]
+
+
+def test_offices_from_escalate_count_as_returned_by_a_tool():
+    calls = [{"name": "search_knowledge_base", "result": {"results": [{"source_id": "a::01"}]}},
+             {"name": "escalate_to_human",
+              "result": {"contacts": [{"source_id": "programs:ccc-financial-aid-offices"}]}},
+             {"name": "x", "result": "plain text"}]
+    assert ev.returned_source_ids(calls) == ["a::01", "programs:ccc-financial-aid-offices"]

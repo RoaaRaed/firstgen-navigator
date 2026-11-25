@@ -653,3 +653,36 @@ def test_an_answer_that_keeps_breaking_the_rules_ends_in_the_safe_fallback():
 
     a.llm = Llm()
     assert agent.run_agent(a, "q").answer.answer.startswith("Something went wrong")
+
+
+# ---- step 26: the office from escalate_to_human reaches human_contact
+
+def _escalate_trace():
+    out = {"topic": "immigration", "contacts": [{"source_id": "programs:ccc-undocumented-student-services",
+           "contact_office": "Undocumented Student Services", "contact_url": "https://example.edu/u",
+           "contact_phone": "555-0100"}]}
+    return [FakeMsg("human", "q"),
+            FakeMsg("ai", "", tool_calls=[{"id": "1", "name": "escalate_to_human", "args": {"topic": "immigration"}}]),
+            FakeMsg("tool", "short text", tool_call_id="1", name="escalate_to_human", artifact=out),
+            FakeMsg("ai", "draft")]
+
+
+def test_the_office_from_escalate_is_filled_in_when_the_model_forgot_it():
+    record = install(agent_trace=_escalate_trace(), structured_answer=_answer())
+    a = agent.build_agent(ctx(), llm=record["llm"])
+    got = agent.run_agent(a, "q").answer.human_contact
+    assert got.office == "Undocumented Student Services" and got.phone == "555-0100"
+
+
+def test_a_contact_the_model_wrote_itself_is_kept():
+    mine = AdvisorAnswer(answer="ok", citations=[], confidence="Low",
+                         human_contact={"office": "My own office"})
+    record = install(agent_trace=_escalate_trace(), structured_answer=mine)
+    a = agent.build_agent(ctx(), llm=record["llm"])
+    assert agent.run_agent(a, "q").answer.human_contact.office == "My own office"
+
+
+def test_no_contact_is_made_up_when_escalate_was_not_called():
+    record = install(agent_trace=[FakeMsg("ai", "draft")], structured_answer=_answer())
+    a = agent.build_agent(ctx(), llm=record["llm"])
+    assert agent.run_agent(a, "q").answer.human_contact is None

@@ -256,6 +256,14 @@ def collect_evidence(ctx, citation_ids: list[str], tool_calls: list) -> list[dic
     return evidence
 
 
+def returned_source_ids(tool_calls: list) -> list[str]:
+    """Every source_id a tool handed to the model this turn. Search, deadline and program results are
+    under "results"; the offices escalate_to_human returns are under "contacts"."""
+    return [i["source_id"] for c in tool_calls if isinstance(c.get("result"), dict)
+            for key in ("results", "contacts")
+            for i in (c["result"].get(key) or []) if isinstance(i, dict) and i.get("source_id")]
+
+
 def answer_runner(ctx):
     from app import advisor
     from app.render import is_system_fallback
@@ -268,8 +276,7 @@ def answer_runner(ctx):
         result, seconds = advisor.answer(agent, row["question"], language)
         a = result.answer
         ids = [c.source_id for c in a.citations]
-        returned = [i["source_id"] for c in result.tool_calls if isinstance(c.get("result"), dict)
-                    for i in (c["result"].get("results") or []) if isinstance(i, dict) and i.get("source_id")]
+        returned = returned_source_ids(result.tool_calls)
         return {
             "question": row["question"], "language": language, "behavior": row["expected_behavior"],
             "answer": a.answer, "confidence": a.confidence, "citations": ids,

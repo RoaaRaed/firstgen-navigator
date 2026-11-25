@@ -24,7 +24,7 @@ from langchain_groq import ChatGroq
 
 from core.compact import for_model
 from core.prompts import load_system_prompt
-from core.schema import AdvisorAnswer
+from core.schema import AdvisorAnswer, Contact
 from core.tools import escalate_to_human as _escalate_to_human
 from core.tools import lookup_deadlines as _lookup_deadlines
 from core.tools import match_programs as _match_programs
@@ -37,7 +37,9 @@ FINALIZE_INSTRUCTIONS = (
     "values that appeared in a tool result above - never invent one. If no tool found "
     "anything useful, set confidence to \"Low\", citations to an empty list, and say plainly "
     "in `answer` that you could not find this in the documents, with a next step to ask a "
-    "human (use escalate_to_human's result if you already called it)."
+    "human (use escalate_to_human's result if you already called it). If you called "
+    "escalate_to_human, copy the office it returned into human_contact. State only facts the "
+    "tool results contain; do not add steps or requirements from general knowledge."
 )
 
 
@@ -211,6 +213,22 @@ def _extract_tool_calls(messages) -> list:
             entry["result"] = artifact if artifact is not None else msg.content
             calls.append(entry)
     return calls
+
+
+def _contact_from_tools(tool_calls: list):
+    """The office escalate_to_human returned this turn, as a Contact (or None).
+
+    The model sometimes calls escalate_to_human and then leaves human_contact empty in the final
+    answer (the first full evaluation showed it). The tool already named the office, so the code
+    fills it in rather than hoping the model copies it."""
+    for call in tool_calls:
+        if call.get("name") != "escalate_to_human" or not isinstance(call.get("result"), dict):
+            continue
+        for c in call["result"].get("contacts") or []:
+            if isinstance(c, dict) and c.get("contact_office"):
+                return Contact(office=c["contact_office"], url=c.get("contact_url") or "",
+                               phone=c.get("contact_phone") or "")
+    return None
 
 
 def _safe_fallback(reason: str) -> AdvisorAnswer:
@@ -439,4 +457,8 @@ def run_agent(agent: Agent, question: str, language: str = "en", profile: str = 
     except Exception as e:
         traceback.print_exc()
         answer = _safe_fallback(f"{type(e).__name__}: {e}")
+    if answer.human_contact is None:
+        contact = _contact_from_tools(tool_calls)
+        if contact is not None:
+            answer = answer.model_copy(update={"human_contact": contact})
     return AgentResult(answer=answer, tool_calls=tool_calls, raw_text=raw_text)

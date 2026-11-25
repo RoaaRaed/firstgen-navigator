@@ -81,3 +81,13 @@ def test_the_search_tool_description_asks_for_an_english_query():
     from core.tools import search_knowledge_base
 
     assert "IN ENGLISH" in search_knowledge_base.__doc__
+
+
+def test_both_prompts_say_to_stay_inside_the_passages_and_to_hand_off():
+    from core.prompts import load_system_prompt
+
+    en = load_system_prompt("en", "X")
+    ar = load_system_prompt("ar", "X")
+    assert "Say only what the passages say" in en and "human_contact" in en
+    assert "قول بس اللي بتقوله المقاطع" in ar and "human_contact" in ar
+    assert "use **Low**" in en and "**Low**" in ar
