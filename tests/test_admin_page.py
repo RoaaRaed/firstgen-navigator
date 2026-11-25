@@ -23,6 +23,7 @@ def fake_st(state=None, clicked=(), upload=None, typed="", secrets=None, url="ht
     st.columns.side_effect = lambda n: [st] * (n if isinstance(n, int) else len(n))  # c1.text_input is st.text_input
     st.tabs.side_effect = lambda names: [MagicMock() for _ in names]
     st.rerun.side_effect = RuntimeError("rerun")
+    st.slider.side_effect = lambda label, lo, hi, value, **kw: value
     return st
 
 
@@ -86,7 +87,7 @@ def test_a_logged_in_advisor_sees_the_three_tabs_and_can_save_a_document(page):
     upload = SimpleNamespace(name="Late Registration.md", getvalue=lambda: DOC_META_OK.encode())
     st = fake_st(state={"admin_ok": True}, clicked=("Save document",), upload=upload)
     load(st).render()
-    assert st.tabs.call_args[0][0] == ["Documents", "Tables", "Re-index"]
+    assert st.tabs.call_args[0][0] == ["Documents", "Tables", "Re-index", "Coverage Report"]
     saved = root / "institutions" / "demo" / "kb" / "late-registration.md"
     assert saved.exists() and "source_url: https://example.edu/late" in saved.read_text(encoding="utf-8")
     assert any("late-registration" in str(c) for c in st.success.call_args_list)
@@ -129,3 +130,23 @@ def test_the_password_is_read_from_the_dotenv_file(page, monkeypatch, tmp_path):
     module = load(fake_st())            # load() points the page's ROOT at tmp_path
     assert module.ROOT == tmp_path and module._expected_password() == "from-dotenv"
     monkeypatch.delenv("ADMIN_PASSWORD", raising=False)
+
+
+def test_the_coverage_tab_shows_a_saved_report_and_a_download_button(page):
+    load, root = page
+    report = {"institution": "demo", "date": "2026-11-25", "max_age_days": 180, "documents": 1, "questions": 2,
+              "covered": 1, "weak": 1, "gap": 0, "by_language": {}, "stale": [],
+              "problems": [{"id": "g1", "language": "en", "question": "q", "status": "weak", "reason": "r",
+                            "expected": ["alpha"]}]}
+    st = fake_st(state={"admin_ok": True, "coverage_report": report})
+    load(st).render()
+    assert st.download_button.called
+    assert st.download_button.call_args.kwargs["file_name"] == "coverage-report-demo-2026-11-25.md"
+
+
+def test_running_the_report_without_golden_questions_explains_it(page):
+    load, root = page
+    st = fake_st(state={"admin_ok": True}, clicked=("Run Coverage Report",))
+    load(st).render()
+    assert any("golden_questions.csv" in str(c) for c in st.error.call_args_list)
+    assert not st.download_button.called

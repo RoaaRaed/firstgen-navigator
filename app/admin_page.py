@@ -9,7 +9,7 @@ from pathlib import Path
 
 import streamlit as st
 
-from core import admin
+from core import admin, coverage
 
 ROOT = Path(__file__).resolve().parent.parent
 LAYERS = ["institution", "state", "federal"]
@@ -122,6 +122,57 @@ def _reindex_tab(root: Path) -> None:
         st.write(f"**Unchanged**: {len(changes['unchanged'])}")
 
 
+def _show_report(report: dict) -> None:
+    n = report["questions"]
+    c1, c2, c3, c4 = st.columns(4)
+    c1.metric("Covered", f"{report['covered']} / {n}")
+    c2.metric("Weak", report["weak"])
+    c3.metric("Gaps", report["gap"])
+    c4.metric(f"Older than {report['max_age_days']} days", len(report["stale"]))
+    st.subheader("Questions the knowledge base cannot answer well")
+    if report["problems"]:
+        st.dataframe([{"status": r["status"], "id": r["id"], "language": r["language"], "question": r["question"],
+                       "why": r["reason"], "expected source": ", ".join(r["expected"])}
+                      for r in report["problems"]], use_container_width=True)
+    else:
+        st.success("None. Every test question has a source.")
+    st.subheader("Old documents")
+    if report["stale"]:
+        st.dataframe(report["stale"], use_container_width=True)
+    else:
+        st.success("No document is older than the chosen age.")
+    st.download_button("Download the report (Markdown)", coverage.render_markdown(report),
+                       file_name=f"coverage-report-{report['institution']}-{report['date']}.md",
+                       mime="text/markdown")
+
+
+def _coverage_tab(root: Path) -> None:
+    st.write("Which test questions can the knowledge base not answer, and which documents are old? "
+             "It uses search only (no AI answers), so it is free and takes seconds. "
+             "Press Re-index first if you changed documents.")
+    st.caption("Most-asked student questions are not part of this report: the app stores no record of what students type.")
+    max_age = st.slider("A document is old after this many days", 30, 730, coverage.DEFAULT_MAX_AGE_DAYS)
+    if st.button("Run Coverage Report", type="primary"):
+        if not (root / "golden_questions.csv").exists():
+            st.error("This institution has no golden_questions.csv, so there are no test questions to run.")
+        else:
+            with st.spinner("Running the test questions against the search..."):
+                try:
+                    from core.retriever import Retriever
+
+                    collection, embedder = admin.open_index(root)
+                    if set(admin.index_snapshot(collection)) != {d["id"] for d in admin.list_documents(root)}:
+                        st.warning("The search index does not match the documents yet. Press Re-index, then run this again.")
+                    report = coverage.build_report(root, Retriever(collection, embedder), max_age_days=max_age)
+                    st.session_state["coverage_report"] = report
+                except ValueError as e:
+                    st.error("The report could not run:")
+                    st.code(str(e))
+    report = st.session_state.get("coverage_report")
+    if report and report.get("institution") == root.name:
+        _show_report(report)
+
+
 def render() -> None:
     st.set_page_config(page_title="FirstGen Navigator - Admin", page_icon="🧭", layout="centered")
     st.title("Admin")
@@ -134,12 +185,14 @@ def render() -> None:
         return
     institution = st.selectbox("Institution", names)
     root = ROOT / "institutions" / institution
-    docs_tab, tables_tab, index_tab = st.tabs(["Documents", "Tables", "Re-index"])
+    docs_tab, tables_tab, index_tab, coverage_tab = st.tabs(["Documents", "Tables", "Re-index", "Coverage Report"])
     with docs_tab:
         _documents_tab(root)
     with tables_tab:
         _tables_tab(root)
     with index_tab:
         _reindex_tab(root)
+    with coverage_tab:
+        _coverage_tab(root)
     st.caption("On Streamlit Community Cloud the server's disk is erased when the app restarts. "
                "To keep an upload for good, add the file to the repository in Git.")
