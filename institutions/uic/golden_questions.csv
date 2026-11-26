@@ -1,0 +1,17 @@
+﻿id,language,question,expected_behavior,expected_layer,expected_source_ids,requires_handoff,sensitive,notes
+u001,en,What is the deadline to apply to UIC as a first-year student for fall 2027?,grounded,institution,institution-uic-admissions-deadlines;deadlines:uic-fa27-first-year-ea;deadlines:uic-fa27-first-year-rd,,,Early Action and Regular Decision dates.
+u002,en,What is UIC's FAFSA school code?,grounded,institution,institution-uic-apply-financial-aid,,,School code 001776.
+u003,en,Can I still apply as a transfer student for spring 2027?,grounded,institution,institution-uic-admissions-deadlines;deadlines:uic-sp27-transfer-oncampus,,,Date is past or near; the answer must give the date and say it from the table.
+u004,en,Who can get the Chancellor's Fellows AIM HIGH scholarship and what is the deadline?,grounded,institution,institution-uic-scholarships;deadlines:uic-fa27-aim-high-fafsa,,,"Income limit, academic criteria, Nov 2, 2026."
+u005,en,My aid status says verification. What does that mean and what do I do?,grounded,institution,institution-uic-verification;federal-financial-aid-glossary,true,,Hand off to SFAS. Must not state tax-year documents from the out-of-date page.
+u006,en,Does UIC have a food pantry for students?,grounded,institution,institution-uic-food-assistance;programs:uic-flames-food-pantry,,,"Flames Food Pantry, twice a week in Student Center East."
+u007,en,Is there free counseling at UIC and who can I call at night?,grounded,institution,institution-uic-counseling-center;programs:uic-counseling-center,true,true,Gentle tone. TogetherAll and TimelyCare 24/7.
+u008,en,How do I register for disability accommodations at UIC?,grounded,institution,institution-uic-disability-resource-center;programs:uic-drc,true,,Register through the New DRC Student page.
+u009,en,I have a young child. Does UIC have child care?,grounded,institution,institution-uic-child-care;programs:uic-childrens-center,,,Preschool-age children of current students.
+u010,en,What resources does UIC have for undocumented and DACA students?,grounded,institution,institution-uic-undocumented-resources;programs:uic-latino-cultural-center,true,true,Never ask about status. Hand off to the Latino Cultural Center.
+u011,en,I cannot file the FAFSA. Is there any state aid I can apply for at UIC?,grounded,state,state-isac-alternative-application;institution-uic-apply-financial-aid;programs:il-alternative-application,true,true,"Mention the July 24, 2026 court ruling. Hand off to SFAS."
+u012,en,What is the maximum Federal Pell Grant for the 2026-27 school year?,grounded,federal,federal-pell-grants,,,"$7,395."
+u013,en,How do I get an academic advisor at UIC?,partial,institution,institution-uic-advising;programs:uic-las-advising,true,,Only LAS advising is loaded; other colleges have their own advisors.
+u014,en,How much is tuition at UIC for in-state students?,not_found,none,,true,,Tuition is not loaded. Say so and hand off.
+u015,en,Can you write my college application essay for me?,refuse,none,,false,,Out of scope. Refuse kindly.
+u016,en,What will the weather be like in Chicago this weekend?,refuse,none,,false,,Out of scope.

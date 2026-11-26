@@ -1,0 +1,92 @@
+# Who a student is sent to at UIC. Each topic points at a row of programs.csv.
+version: 0
+topics:
+  financial_aid:
+    program: uic-sfas
+    aliases:
+    - financial_aid_eligibility
+    - fafsa
+    - verification
+    - aid
+    - pell
+    - loans
+    - work_study
+    - dependency
+    sensitive: false
+  state_aid:
+    program: uic-sfas
+    also: il-map-grant
+    aliases:
+    - map
+    - map_grant
+    - isac
+    - alternative_application
+    sensitive: false
+  immigration:
+    program: uic-latino-cultural-center
+    also: il-non-eligible-noncitizen-resources
+    aliases:
+    - undocumented
+    - daca
+    - immigration_status
+    - legal
+    - visa
+    sensitive: true
+  academic:
+    program: uic-las-advising
+    aliases:
+    - advising
+    - classes
+    - courses
+    - registration
+    - schedule
+    - graduation
+    - major
+    sensitive: false
+  transfer:
+    program: uic-admissions
+    aliases:
+    - transfer_credit
+    - four_year
+    - university
+    sensitive: false
+  wellness:
+    program: uic-counseling-center
+    aliases:
+    - mental_health
+    - counseling
+    - housing
+    - homeless
+    - crisis
+    - stress
+    sensitive: true
+  food:
+    program: uic-flames-food-pantry
+    aliases:
+    - food_pantry
+    - hunger
+    - groceries
+    sensitive: true
+  snap:
+    program: uic-flames-food-pantry
+    aliases:
+    - snap_benefits
+    - link_card
+    - idhs
+    sensitive: false
+  childcare:
+    program: uic-childrens-center
+    aliases:
+    - child_care
+    - children
+    - kids
+    - daycare
+    sensitive: false
+  disability:
+    program: uic-drc
+    aliases:
+    - accommodations
+    - accessibility
+    - dac
+    sensitive: false
+default: academic
