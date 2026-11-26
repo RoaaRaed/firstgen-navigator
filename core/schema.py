@@ -40,6 +40,12 @@ class AdvisorAnswer(BaseModel):
     confidence: Confidence
     next_steps: list[str] = Field(default_factory=list, description="0-3 short, concrete next steps.")
     human_contact: Optional[Contact] = None
+    handoff_topic: str = Field(default="", description=(
+        "Set this when the student's own situation needs a person (their own aid or eligibility, "
+        "verification, parents' or family documents, housing, immigration or law enforcement, a "
+        "crisis, disability, or something the documents cannot answer). One of: financial_aid, "
+        "state_aid, immigration, academic, transfer, wellness, food, snap, childcare, disability. "
+        "Leave empty when no person is needed."))
 
     @model_validator(mode="after")
     def high_or_medium_needs_a_citation(self):

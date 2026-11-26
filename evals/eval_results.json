@@ -1347,5 +1347,946 @@
   "fallback": false,
   "seconds": 1.7,
   "model": "openai/gpt-oss-120b"
+ },
+ "g026": {
+  "question": "Which classes should I take to become a nurse?",
+  "language": "en",
+  "behavior": "partial",
+  "answer": "I’m sorry—I couldn’t find a list of the specific courses that City Colleges of Chicago requires for a nursing program in the documents I searched.",
+  "confidence": "Low",
+  "citations": [],
+  "has_contact": false,
+  "contact": "",
+  "tools": [
+   "search_knowledge_base",
+   "search_knowledge_base",
+   "match_programs"
+  ],
+  "returned_ids": [
+   "institution-ccc-registration::05",
+   "institution-ccc-transfer-services::13",
+   "institution-ccc-transfer-services::15",
+   "institution-ccc-transfer-services::16",
+   "institution-ccc-transfer-services::17",
+   "institution-ccc-transfer-services::34",
+   "institution-ccc-transfer-services::45",
+   "institution-ccc-tuition::02",
+   "institution-ccc-tuition::05",
+   "programs:ccc-academic-advising",
+   "programs:ccc-career-centers",
+   "programs:ccc-college-libraries",
+   "programs:ccc-early-college",
+   "programs:ccc-free-esl-classes",
+   "programs:ccc-free-hs-diploma-prep"
+  ],
+  "evidence": [],
+  "fallback": false,
+  "seconds": 304.8,
+  "model": "openai/gpt-oss-120b"
+ },
+ "g027": {
+  "question": "What time does the Wright College bookstore close on Saturdays?",
+  "language": "en",
+  "behavior": "not_found",
+  "answer": "I’m sorry—I couldn’t find the Saturday closing time for the Wright College Bookstore in the documents I searched.",
+  "confidence": "Low",
+  "citations": [],
+  "has_contact": false,
+  "contact": "",
+  "tools": [
+   "search_knowledge_base",
+   "search_knowledge_base",
+   "search_knowledge_base"
+  ],
+  "returned_ids": [
+   "institution-ccc-academic-calendar::02",
+   "institution-ccc-academic-calendar::04",
+   "institution-ccc-apply-financial-aid::03",
+   "institution-ccc-registration::05",
+   "institution-ccc-student-resources::11",
+   "institution-ccc-student-resources::14",
+   "institution-ccc-transfer-services::05",
+   "institution-ccc-undocumented-student-services::12",
+   "institution-ccc-undocumented-student-services::16"
+  ],
+  "evidence": [],
+  "fallback": false,
+  "seconds": 80.2,
+  "model": "openai/gpt-oss-120b"
+ },
+ "g028": {
+  "question": "When does open registration for spring 2027 begin?",
+  "language": "en",
+  "behavior": "partial",
+  "answer": "I couldn’t locate the exact date when open registration begins for the Spring 2027 term in the documents I reviewed.",
+  "confidence": "Low",
+  "citations": [],
+  "has_contact": false,
+  "contact": "",
+  "tools": [
+   "lookup_deadlines",
+   "search_knowledge_base",
+   "search_knowledge_base",
+   "search_knowledge_base",
+   "search_knowledge_base"
+  ],
+  "returned_ids": [
+   "deadlines:ccc-spring27-late-reg-end-16wk",
+   "deadlines:ccc-spring27-open-reg-deadline-12wk",
+   "deadlines:ccc-spring27-open-reg-deadline-16wk",
+   "institution-ccc-academic-calendar::00",
+   "institution-ccc-academic-calendar::02",
+   "institution-ccc-academic-calendar::04",
+   "institution-ccc-academic-calendar::05",
+   "institution-ccc-academic-calendar::06",
+   "institution-ccc-admissions::01",
+   "institution-ccc-registration::03",
+   "institution-ccc-registration::05",
+   "institution-ccc-transfer-services::39",
+   "institution-ccc-tuition::00"
+  ],
+  "evidence": [],
+  "fallback": false,
+  "seconds": 68.9,
+  "model": "openai/gpt-oss-120b"
+ },
+ "g029": {
+  "question": "I get SNAP benefits. Do the new rules apply to me?",
+  "language": "en",
+  "behavior": "partial",
+  "answer": "The new SNAP work‑requirement rules start on December 1, 2025. They apply to most adults ages 18‑64 who do not have dependents under age 14. Those adults must complete a required number of work or volunteer hours each month and report those hours to keep their SNAP benefits. Some adults may qualify for exemptions, but the guide does not list every exemption. Because I don’t know your age or whether you have a dependent under 14, I can’t tell you definitively whether the rule applies to you.",
+  "confidence": "High",
+  "citations": [
+   "institution-ccc-food-access-snap::01"
+  ],
+  "has_contact": true,
+  "contact": "Illinois Department of Human Services (IDHS)",
+  "tools": [
+   "search_knowledge_base",
+   "search_knowledge_base",
+   "escalate_to_human"
+  ],
+  "returned_ids": [
+   "federal-dependency-status::01",
+   "institution-ccc-academic-calendar::02",
+   "institution-ccc-academic-calendar::06",
+   "institution-ccc-food-access-snap::00",
+   "institution-ccc-food-access-snap::01",
+   "institution-ccc-food-access-snap::02",
+   "institution-ccc-food-access-snap::03",
+   "institution-ccc-undocumented-student-services::16",
+   "programs:ccc-snap-work-requirement-help",
+   "state-isac-alternative-application-faqs::01",
+   "state-isac-alternative-application::00",
+   "state-isac-alternative-application::01",
+   "state-isac-map::01",
+   "state-isac-student-family-faqs-2026-27::05"
+  ],
+  "evidence": [
+   {
+    "source_id": "institution-ccc-food-access-snap::01",
+    "text": "## SNAP Work Requirement Changes Start December 1, 2025 Beginning December 1, 2025, many adults ages 18–64 who do not have dependents under the age of 14 will face new federal requirements to continue receiving SNAP benefits. These include work or volunteer requirements and monthly reporting of hours to maintain eligibility. Some adults may qualify for exemptions. If you believe you might be exempt, you can: - Use the ABE Manage My Case portal to manage your benefits. - Call the Illinois Department of Human Services at 1-800-843-6154. - Complete the SNAP Work Rules – Request for Exemption form. If you need volunteer hours to meet the new requirements, City Colleges can help. Our AmeriCorps VISTA Members Daya Stanley (dstanley8@ccc.edu) and Tanisha Garth (tgarth@ccc.edu) can connect City Colleges community members to volunteer opportunities that meet SNAP requirements."
+   }
+  ],
+  "fallback": false,
+  "seconds": 101.1,
+  "model": "openai/gpt-oss-120b",
+  "judge": {
+   "total": 5,
+   "supported": 4,
+   "score": 0.8,
+   "unsupported": [
+    "The guide does not list every exemption."
+   ],
+   "model": "openai/gpt-oss-20b"
+  }
+ },
+ "g030": {
+  "question": "Should I take out a student loan or work more hours to pay for school?",
+  "language": "en",
+  "behavior": "refuse",
+  "answer": "I can’t give personal financial‑aid advice about whether you should take a loan or work more hours. For guidance that’s specific to your situation, please contact the Financial Aid Office.",
+  "confidence": "Medium",
+  "citations": [
+   "programs:ccc-financial-aid-offices"
+  ],
+  "has_contact": true,
+  "contact": "Financial Aid Office (at your college)",
+  "tools": [
+   "escalate_to_human"
+  ],
+  "returned_ids": [
+   "programs:ccc-financial-aid-offices"
+  ],
+  "evidence": [
+   {
+    "source_id": "programs:ccc-financial-aid-offices",
+    "text": "Financial Aid Offices. Our Financial Aid Offices work closely with students and families to provide financial assistance in the form of grants, loans and work-study from federal and state resources. For help filling out the FAFSA form, visit your college’s Financial Aid Office. Contact: Financial Aid Office (at your college) https://ccc.edu/financialaid . Hours: not listed."
+   }
+  ],
+  "fallback": false,
+  "seconds": 22.7,
+  "model": "openai/gpt-oss-120b",
+  "judge": {
+   "total": 2,
+   "supported": 1,
+   "score": 0.5,
+   "unsupported": [
+    "I can’t give personal financial‑aid advice about whether you should take a loan or work more hours."
+   ],
+   "model": "openai/gpt-oss-20b"
+  }
+ },
+ "g031": {
+  "question": "ما هي منحة MAP ومتى الموعد النهائي للتقديم؟",
+  "language": "ar",
+  "behavior": "grounded",
+  "answer": "منحة **Monetary Award Program (MAP)** هي منحة مالية غير مستردة تُمنح للطلاب المقيمين في إلينوي الذين يدرسون في كليات إلينوي المعتمدة؛ تُحدَّد الأهلية تلقائيًا عند تقديم طلب المساعدة المالية ولا تحتاج إلى طلب منفصل. \n\nالموعد النهائي لتقديم طلب MAP للعام الدراسي 2026‑27 هو **23 أبريل 2026**؛ الطلبات التي تُستلم بعد هذا التاريخ تُوضع في قائمة الانتظار ولا تُصرف الأموال إلا إذا توفرت تمويلات إضافية. \n\nللطلبة الذين كانوا مستفيدين من MAP في السنوات السابقة، هناك تاريخ أولوية **1 مارس 2026** لتقديم الطلب والحصول على أولوية في الحصول على الأموال.",
+  "confidence": "High",
+  "citations": [
+   "state-isac-map::02",
+   "deadlines:state-map-suspension-2026-27",
+   "deadlines:state-map-priority-2026-27"
+  ],
+  "has_contact": false,
+  "contact": "",
+  "tools": [
+   "search_knowledge_base",
+   "lookup_deadlines"
+  ],
+  "returned_ids": [
+   "deadlines:state-map-priority-2026-27",
+   "deadlines:state-map-suspension-2026-27",
+   "state-isac-alternative-application::07",
+   "state-isac-map::01",
+   "state-isac-map::02",
+   "state-isac-map::05",
+   "state-isac-map::09",
+   "state-isac-map::11",
+   "state-isac-map::13",
+   "state-isac-student-family-faqs-2026-27::00"
+  ],
+  "evidence": [
+   {
+    "source_id": "state-isac-map::02",
+    "text": "## Program Description MAP grants, which do not need to be repaid, are available to eligible Illinois residents who attend approved Illinois colleges and demonstrate financial need, based on the information provided on the Free Application for Federal Student Aid (FAFSA®). You are not required to submit high school grades or test scores when applying for a MAP grant. MAP grants are not limited to traditional college-aged students. If all eligibility requirements are met, adult and non-traditional students (older than recent high school graduates) may also qualify. MAP grants can be applied only toward tuition and mandatory fees. Colleges use the MAP formula to determine eligibility. The formula distributes the appropriated funds so that the neediest students receive grant assistance. Several components are used to determine eligibility, including: information provided on your FAFSA [from which your Student Aid Index (SAI) is calculated], the cost of attendance at the college you plan to attend, and the amount of other financial aid you are receiving. Because MAP funding is historically insufficient to meet the demand, several allocation measures have been put into place to provide for as many awards as possible. One of those is limiting MAP awards to fall and spring terms only; there are no summer term MAP awards. Additionally, a suspension date is typically implemented early in the spring term each year, after which time no further awards are announced."
+   },
+   {
+    "source_id": "deadlines:state-map-suspension-2026-27",
+    "text": "Last day to apply for 2026-27 MAP before awards go into suspense (waiting list): 2026-04-23 (2026-27). Applies to: applying. FAFSAs received after April 23, 2026 are placed in suspense for 2026-27 MAP, with no MAP money unless more funding becomes available. The FAFSA is still needed for other aid."
+   },
+   {
+    "source_id": "deadlines:state-map-priority-2026-27",
+    "text": "Priority access date for returning MAP recipients (2026-27): 2026-03-01 (2026-27). Applies to: enrolled. Returning MAP recipients who applied by this date get priority access to MAP funds. Applying after it does not disqualify a student if funds remain."
+   }
+  ],
+  "fallback": false,
+  "seconds": 73.5,
+  "model": "openai/gpt-oss-120b",
+  "judge": {
+   "total": 5,
+   "supported": 5,
+   "score": 1.0,
+   "unsupported": [],
+   "model": "openai/gpt-oss-20b"
+  }
+ },
+ "g032": {
+  "question": "لا أستطيع تعبئة طلب FAFSA. هل هناك مساعدات من الولاية يمكنني التقديم عليها؟",
+  "language": "ar",
+  "behavior": "grounded",
+  "answer": "نعم، إلينوي تقدم برنامجاً بديلاً للطلب الفيدرالي FAFSA يُسمّى \"Alternative Application\" للطلاب الذين لا يستطيعون أو لا يحق لهم إكمال FAFSA. يمكنك تقديم هذا النموذج عبر موقع ISAC للحصول على منح MAP وغيرها من المساعدات المالية التي توفّرها الولاية. النموذج متاح للطلاب الذين تخرجوا من الثانوية أو ما زالوا فيها ولا يلزم الانتظار بعد التخرج لتعبئته. معظم الطلاب ما زالوا يُكملون FAFSA، لكن إذا كنت غير مؤهل أو تواجه صعوبة في تعبئته فالتقديم البديل هو الخيار المتاح.",
+  "confidence": "High",
+  "citations": [
+   "state-isac-alternative-application-faqs::02",
+   "state-isac-alternative-application::00",
+   "state-isac-alternative-application-faqs::04",
+   "state-isac-alternative-application-faqs::03",
+   "state-isac-alternative-application-faqs::05",
+   "state-isac-alternative-application-faqs::01",
+   "state-isac-alternative-application-faqs::00"
+  ],
+  "has_contact": false,
+  "contact": "",
+  "tools": [
+   "search_knowledge_base",
+   "search_knowledge_base"
+  ],
+  "returned_ids": [
+   "state-isac-alternative-application-faqs::00",
+   "state-isac-alternative-application-faqs::01",
+   "state-isac-alternative-application-faqs::02",
+   "state-isac-alternative-application-faqs::03",
+   "state-isac-alternative-application-faqs::04",
+   "state-isac-alternative-application-faqs::05",
+   "state-isac-alternative-application::00",
+   "state-isac-alternative-application::01",
+   "state-isac-alternative-application::02",
+   "state-isac-alternative-application::07",
+   "state-isac-non-eligible-noncitizens::06"
+  ],
+  "evidence": [
+   {
+    "source_id": "state-isac-alternative-application-faqs::02",
+    "text": "**A.** No, for most students. A student who is eligible for federal student aid should not complete the Alternative Application. The Alternative Application is for students who are not eligible to participate in federal financial aid programs and will not complete the FAFSA. If you filled out the FAFSA in error and should have completed the Alternative Application, you will need to work with ISAC and your school's financial aid office to resolve the duplicate submission after you complete your Alternative Application and receive your ISAC ID number. A student who becomes eligible to participate in federal financial aid programs after completing an Alternative Application should also contact the financial aid office at their college for further guidance. PLEASE NOTE: Some students that have completed or will complete the FAFSA and are ineligible for federal financial aid are able to complete a supplemental section of the Alternative Application that has questions specific to their situation. Students who believe they are ineligible for federal financial aid should complete the *Prescreening Questionnaire* to determine if they are eligible to complete the supplemental section after completing their FAFSA. **Q. Who should complete the Alternative Application for Illinois Financial Aid?**"
+   },
+   {
+    "source_id": "state-isac-alternative-application::00",
+    "text": "# Alternative Application for Illinois Financial Aid (last updated October 1, 2026) ## IMPORTANT NEWS REGARDING STATE FINANCIAL AID FOR UNDOCUMENTED STUDENTS: On July 24, 2026, a federal district court ruled that undocumented students are no longer eligible to receive financial assistance from the Illinois Student Assistance Commission (ISAC) for the 2026-2027 school year. The court’s ruling is the result of the Trump Administration suing the State of Illinois to deny college access to undocumented students who have graduated from Illinois high schools."
+   },
+   {
+    "source_id": "state-isac-alternative-application-faqs::04",
+    "text": "**A.** No. Being eligible to submit the Alternative Application makes it possible for you to apply for MAP grants, but like all students completing either the Alternative Application or the FAFSA, *you still must meet the eligibility requirements for MAP to receive a grant*. This is also the case if you are directed to complete the supplemental section only. **Q: When should I complete the Alternative Application for Illinois Financial Aid?** **A.** MAP funds are limited and are awarded to eligible students in date order based on the application receipt date. You are encouraged to complete the application as soon as possible after it becomes available in the academic year that you will graduate from high school. If you complete the supplemental section of the Alternative Application only, ISAC will record your official FAFSA Application Receipt Date on your Alternative Application record, regardless of when you complete the supplemental questions. Your FAFSA receipt date will serve as the date ISAC will use to determine awarding for the MAP grant. **Q: The criteria to complete the Alternative Application says I must have graduated high school to be eligible to complete it, I'm currently a senior in high school, does that mean I have to wait until after I graduate to complete the application?**"
+   },
+   {
+    "source_id": "state-isac-alternative-application-faqs::03",
+    "text": "**A.** Most students will still complete the Free Application for Federal Student Aid (FAFSA) to apply for financial aid. If you are not sure whether you should complete this Alternative Application or the FAFSA, the *Prescreening Questionnaire* at the beginning of the Alternative Application will help you to determine which application you should complete. We also encourage you to talk with your school counselor or the financial aid office at your college or university to learn which application to file. **Q. What kinds of financial aid can I receive by completing the Alternative Application for Illinois Financial Aid?** **A.** Students can use this application to apply for state financial aid, provided they meet all requirements. Students can use the Alternative Application in two ways. First, it serves as the application for the Monetary Award Program (MAP) grant. Second, when another state program requires completion of the FAFSA in addition to the specific scholarship or grant application, qualifying students can complete the Alternative Application in lieu of the FAFSA. Some colleges or universities in Illinois may also use this application in lieu of the FAFSA to award institutional aid. Most students will still complete the FAFSA to apply for both federal and state student financial aid, including MAP grants. If you complete only the supplemental section of the Alternative Application, this information, as well as information gathered from your FAFSA, will be used to  ..."
+   },
+   {
+    "source_id": "state-isac-alternative-application-faqs::05",
+    "text": "**A.** No. If you are currently a high school senior, you do not have to wait until after you have graduated from high school to complete the Alternative Application for Illinois Financial Aid. While the criteria do state that you have to be a high school graduate, that is a typical college admission requirement that you will need to meet to enroll in the college of your choice and receive the Illinois Monetary Award Program (MAP) grant as a college student. If you are currently a high school senior, don’t wait to complete the application until after you graduate. **Q. Is a student with a Type “T” Visa eligible to complete the Alternative Application for Illinois Financial Aid?** **A.** No. Students with a Type “T” Visa are NOT eligible to complete the Alternative Application for Illinois Financial Aid because they are eligible to apply for federal and state student aid. The Alternative Application for Illinois Financial Aid is for students who do not qualify for federal student aid. “T” visa holders should file a Free Application for Federal Student Aid (FAFSA) and identify themselves as eligible noncitizens. The “T” Visa is set aside for those who are or have been victims of human trafficking and allows victims to remain in the United States to assist in an investigation or prosecution of human trafficking. For information on the federal definition of “eligible noncitizen,” a category of noncitizens who may use the FAFSA to apply for federal student aid programs, visit the  ..."
+   },
+   {
+    "source_id": "state-isac-alternative-application-faqs::01",
+    "text": "## NOTICE: 2026-27 Alternative Application On July 24, 2026, a federal district court ruled that undocumented students are no longer eligible to receive state financial assistance from the Illinois Student Assistance Commission (ISAC) for the 2026-27 school year. This means that students who submitted the 2026-27 Alternative Application for Illinois Financial Aid, including Illinois undocumented students, cannot be considered for any ISAC financial aid program for the 2026-27 school year. The 2026-27 Alternative Application is no longer available. The [eligibility criteria for the 2027-28 Alternative Application](https://www.isac.org/students/before-college/financial-aid-planning/retention-of-illinois-rise-act/) have changed from prior years. For students who have questions specific to the 2026-27 Alternative Application and academic year, please see ⁠[Student and Family FAQs: 2026-27 Alternative Application](https://www.isac.org/students/before-college/financial-aid-planning/retention-of-illinois-rise-act/student-family-faqs-2026-27-school-year). **Q: Can I submit both the FAFSA® and the Alternative Application for Illinois Financial Aid?**"
+   },
+   {
+    "source_id": "state-isac-alternative-application-faqs::00",
+    "text": "## IMPORTANT NEWS REGARDING STATE FINANCIAL AID FOR UNDOCUMENTED STUDENTS: On July 24, 2026, a federal district court ruled that undocumented students are no longer eligible to receive financial assistance from the Illinois Student Assistance Commission (ISAC) for the 2026-2027 school year. The court’s ruling is the result of the Trump Administration suing the State of Illinois to deny college access to undocumented students who have graduated from Illinois high schools. We know this court decision brings tremendous uncertainty and financial challenges for Illinois undocumented students. This is a developing situation as the state explores options and students and families should check back for updates from the Commission as they become available. In the meantime, please see our [Student and Family FAQs](https://www.isac.org/students/before-college/financial-aid-planning/retention-of-illinois-rise-act/student-family-faqs-2026-27-school-year)."
+   }
+  ],
+  "fallback": false,
+  "seconds": 86.1,
+  "model": "openai/gpt-oss-120b",
+  "judge": {
+   "total": 4,
+   "supported": 4,
+   "score": 1.0,
+   "unsupported": [],
+   "model": "openai/gpt-oss-20b"
+  }
+ },
+ "g033": {
+  "question": "كيف أقدّم طلب التحاق بكليات مدينة شيكاغو وما المستندات المطلوبة؟",
+  "language": "ar",
+  "behavior": "partial",
+  "answer": "لتقديم طلب التحاق بكليات مدينة شيكاغو:\n1. ادخل إلى موقع القبول الإلكتروني [ccc.edu/apply] واملأ استمارة القبول (المصدر [institution-ccc-admissions::02]).\n2. إذا لم يكن لديك اسم مستخدم (username) للوصول إلى البوابة، احصل عليه من صفحة “Need help?” (المصدر [institution-ccc-registration::05]).\n3. إذا كان لديك سجلات دراسية سابقة من كلية أو جامعة أخرى، أرسل نسخة رسمية من السجل الأكاديمي إلى مكتب السجلات (المصدر [institution-ccc-admissions::04]).\nالمستندات المذكورة في الوثائق المتاحة هي فقط نسخة رسمية من السجل الأكاديمي للطلاب المنقولين؛ لم تُذكر مستندات أخرى مثل بطاقة الهوية أو شهادة الثانوية العامة.",
+  "confidence": "Medium",
+  "citations": [
+   "institution-ccc-admissions::02",
+   "institution-ccc-registration::05",
+   "institution-ccc-admissions::04"
+  ],
+  "has_contact": false,
+  "contact": "",
+  "tools": [
+   "search_knowledge_base",
+   "search_knowledge_base",
+   "search_knowledge_base",
+   "search_knowledge_base",
+   "search_knowledge_base"
+  ],
+  "returned_ids": [
+   "institution-ccc-admissions::02",
+   "institution-ccc-admissions::03",
+   "institution-ccc-admissions::04",
+   "institution-ccc-admissions::06",
+   "institution-ccc-apply-financial-aid::02",
+   "institution-ccc-registration::05",
+   "institution-ccc-transfer-services::39",
+   "institution-ccc-transfer-services::41",
+   "institution-ccc-transfer-services::53",
+   "institution-ccc-undocumented-student-services::02",
+   "institution-ccc-undocumented-student-services::16"
+  ],
+  "evidence": [
+   {
+    "source_id": "institution-ccc-admissions::02",
+    "text": "## Credit Students working towards a degree or certificate should visit fill out an online application for admissions. Once your application has been processed, you will receive an acceptance letter that includes your Student ID number. Once you’ve been admitted, you will need to attend the New Student Orientation. For a complete overview of the registration process, including information about taking the placement exam, residency requirements, advising, and registration, download our New Student Registration checklist [PDF]."
+   },
+   {
+    "source_id": "institution-ccc-registration::05",
+    "text": "## Need help? To obtain your student username to log in, visit our help page. Whether you’re new to City Colleges or a current student, an academic advisor can help you explore programs and register for classes. Connect with an advisor by visiting your college’s Virtual Student Services at www.ccc.edu/vss. Additional help guides are available at Portal Help Guides <!-- Copied directly from ccc.edu on 2026-10-29. Navigation, footer, quick links, \"Follow these steps\" button labels and the line \"You can find the Pre-registration Help Guide here.\" (link text only) were removed. -->"
+   },
+   {
+    "source_id": "institution-ccc-admissions::04",
+    "text": "- Your transcript is from a non-regionally accredited college/university. - You did not complete any college credit at your college/university (withdrawal) as validated by an unofficial transcript. - You did not earn any transferable grades (A, B, or Cs) at your college/university as validated by an unofficial transcript. - Your official transcript cannot be obtained due to college/university closing or natural disaster. - You have proof your official college transcript was sent to CCC. An unofficial transcript must be submitted in the interim. - You cannot obtain an official college transcript due to prior debt, and you have proof of being enrolled in a payment plan or of a recent payment transaction to that institution. However, you agree to submit an official transcript to CCC once your debt is cleared. - You have proof of an official international college/university transcript evaluation order (within the past 30 days). - You have earned multiple degrees and do not need to submit non-relevant college/university transcripts such as a masters or doctorate degree. Only undergraduate college work is required via official college transcript(s). If you think that one of the above criteria applies to you, please complete the transcript waiver form Official_College_Transcript_Waiver_Form_Final [PDF]. If you have any questions, contact your Admissions Office."
+   }
+  ],
+  "fallback": false,
+  "seconds": 119.2,
+  "model": "openai/gpt-oss-120b",
+  "judge": {
+   "total": 4,
+   "supported": 2,
+   "score": 0.5,
+   "unsupported": [
+    "ادخل إلى موقع القبول الإلكتروني [ccc.edu/apply] واملأ استمارة القبول",
+    "إذا كان لديك سجلات دراسية سابقة من كلية أو جامعة أخرى، أرسل نسخة رسمية من السجل الأكاديمي إلى مكتب السجلات"
+   ],
+   "model": "openai/gpt-oss-20b"
+  }
+ },
+ "g034": {
+  "question": "ما هي منحة Star Scholarship ومن يحق له الحصول عليها؟",
+  "language": "ar",
+  "behavior": "grounded",
+  "answer": "منحة Star Scholarship هي برنامج تقدمه City Colleges of Chicago يغطّي الرسوم الدراسية والكتب، مما يتيح للطالب الحصول على درجة جامعية أو شهادة دون ديون 【institution-ccc-star-scholarship::05】. المنحة تمنح أيضاً فرص نقل إلى جامعات شريكة، ودعم مهني، وفرص تدريبية 【institution-ccc-star-scholarship::03】【institution-ccc-star-scholarship::04】.\n\n**من يحق له الحصول على المنحة؟**\n- خريجي المدارس الثانوية العامة في نظام مدارس شيكاغو العامة (Chicago Public Schools).\n- خريجي المدارس الثانوية من إحدى مدارس شريك Big Shoulders Fund في شيكاغو 【institution-ccc-star-scholarship::06】【institution-ccc-star-scholarship::01】.\n- يجب أن يكون الطالب مؤهلاً للحصول على المساعدة الفدرالية عبر تعبئة نموذج FAFSA 【institution-ccc-star-scholarship::09】.\n- لا يُشترط أن يكون الطالب مسجلاً بدوام كامل؛ يمكن أن يكون مسجلاً بدوام جزئي أو كامل 【institution-ccc-star-scholarship::12】.\n- المنحة ليست مبنية على الحاجة المالية 【institution-ccc-star-scholarship::10】.\n\n**خطوات للبدء**\n1. إكمال نموذج FAFSA 【institution-ccc-star-scholarship::09】.\n2. التسجيل في الفصل الدراسي التالي عبر موقع my.ccc.edu 【institution-ccc-star-scholarship::10】.\n3. التواصل مع مكتب منحة Star Scholarship لأي استفسارات إضافية.",
+  "confidence": "High",
+  "citations": [
+   "institution-ccc-star-scholarship::05",
+   "institution-ccc-star-scholarship::03",
+   "institution-ccc-star-scholarship::04",
+   "institution-ccc-star-scholarship::06",
+   "institution-ccc-star-scholarship::01",
+   "institution-ccc-star-scholarship::09",
+   "institution-ccc-star-scholarship::10",
+   "institution-ccc-star-scholarship::12"
+  ],
+  "has_contact": false,
+  "contact": "",
+  "tools": [
+   "search_knowledge_base",
+   "search_knowledge_base"
+  ],
+  "returned_ids": [
+   "institution-ccc-star-scholarship::01",
+   "institution-ccc-star-scholarship::02",
+   "institution-ccc-star-scholarship::03",
+   "institution-ccc-star-scholarship::04",
+   "institution-ccc-star-scholarship::05",
+   "institution-ccc-star-scholarship::06",
+   "institution-ccc-star-scholarship::09",
+   "institution-ccc-star-scholarship::10",
+   "institution-ccc-star-scholarship::12",
+   "institution-ccc-transfer-services::15",
+   "institution-ccc-transfer-services::52"
+  ],
+  "evidence": [
+   {
+    "source_id": "institution-ccc-star-scholarship::05",
+    "text": "## Scholarship Basics You could save thousands of dollars with free tuition and books! ### What Does the Scholarship Cover? City Colleges will provide waivers for all eligible tuition, books, and class materials not covered by financial aid."
+   },
+   {
+    "source_id": "institution-ccc-star-scholarship::03",
+    "text": "### Transfer Opportunities Star Scholars can access scholarships from our partners at 4-year universities to earn a bachelor’s degree. You can even start working with 4-year universities while still at City Colleges."
+   },
+   {
+    "source_id": "institution-ccc-star-scholarship::04",
+    "text": "### Career Connections Employers all over Chicago know that Star Scholars are some of the city’s best and brightest students. Having the Star Scholarship on your resume can lead to great work opportunities."
+   },
+   {
+    "source_id": "institution-ccc-star-scholarship::06",
+    "text": "### Who Is Eligible for this Program? Chicago Public High School graduating seniors and graduating seniors from one of our Chicago-based Big Shoulders Fund partnered Catholic high schools who meet these academic requirements: - Graduate from a Chicago-based partner high school with a 3.0 or higher GPA"
+   },
+   {
+    "source_id": "institution-ccc-star-scholarship::01",
+    "text": "## Your College Education—Tuition-Free Chicago Public Schools students–and students from one of our Chicago-based Big Shoulders Fund partner schools–can pursue a degree or certificate at City Colleges at no cost as a Star Scholar."
+   },
+   {
+    "source_id": "institution-ccc-star-scholarship::09",
+    "text": "### Complete the FAFSA Fill out and submit the Free Application for Federal Student Aid (FAFSA). All financial aid verification processes must be complete and financial aid award package must be processed. If you are unable to file a FAFSA, fill out the Star Scholarship Certification of Ineligibility to File for Financial Aid form on the student portal once you’ve been admitted to City Colleges."
+   },
+   {
+    "source_id": "institution-ccc-star-scholarship::10",
+    "text": "### Register for the next semester Enroll in classes at my.ccc.edu. ### Is the Star Scholarship based on financial need? No—but students are required to complete their applicable financial aid process, as the Star Scholarship is a last-dollar scholarship which covers tuition and books not covered by financial aid from federal/state grants."
+   },
+   {
+    "source_id": "institution-ccc-star-scholarship::12",
+    "text": "### Do I have to be a full-time student at City Colleges to be a Star Scholar? No—Star Scholars may attend City Colleges on a part-time or full-time basis. However, the scholarship will be available for a maximum of 3 years from the start of the fall semester following high school graduation."
+   }
+  ],
+  "fallback": false,
+  "seconds": 65.8,
+  "model": "openai/gpt-oss-120b",
+  "judge": {
+   "error": "no JSON in the judge reply (reply started: '')",
+   "model": "openai/gpt-oss-20b"
+  }
+ },
+ "g035": {
+  "question": "تقول حالة مساعدتي المالية إنها تحت «التحقق» (Verification). ماذا يعني ذلك وماذا أفعل؟",
+  "language": "ar",
+  "behavior": "grounded",
+  "answer": "حالة المساعدة المالية التي تظهر «التحقق» تعني أن مكتب المساعدة المالية يحتاج إلى تأكيد المعلومات التي قدمتها في طلبك (FAFSA أو طلب المساعدة داخل الكلية). يجب عليك تقديم المستندات التي يطلبها المكتب (مثل إقرارات الضرائب، نماذج W‑2، أو أي مستندات مالية أخرى) لتثبت صحة البيانات. بعد رفع أو تسليم هذه المستندات، سيقوم المكتب بمراجعتها وتحديث حالة طلبك إلى «مقبول» أو «مرفوض».",
+  "confidence": "Medium",
+  "citations": [
+   "institution-ccc-star-scholarship::09",
+   "programs:ccc-financial-aid-offices"
+  ],
+  "has_contact": true,
+  "contact": "Financial Aid Office (at your college)",
+  "tools": [
+   "search_knowledge_base",
+   "search_knowledge_base",
+   "search_knowledge_base",
+   "escalate_to_human"
+  ],
+  "returned_ids": [
+   "institution-ccc-apply-financial-aid::00",
+   "institution-ccc-apply-financial-aid::01",
+   "institution-ccc-apply-financial-aid::02",
+   "institution-ccc-apply-financial-aid::03",
+   "institution-ccc-registration::04",
+   "institution-ccc-star-scholarship::09",
+   "institution-ccc-student-resources::06",
+   "institution-ccc-transfer-services::53",
+   "institution-ccc-undocumented-student-services::16",
+   "programs:ccc-financial-aid-offices"
+  ],
+  "evidence": [
+   {
+    "source_id": "institution-ccc-star-scholarship::09",
+    "text": "### Complete the FAFSA Fill out and submit the Free Application for Federal Student Aid (FAFSA). All financial aid verification processes must be complete and financial aid award package must be processed. If you are unable to file a FAFSA, fill out the Star Scholarship Certification of Ineligibility to File for Financial Aid form on the student portal once you’ve been admitted to City Colleges."
+   },
+   {
+    "source_id": "programs:ccc-financial-aid-offices",
+    "text": "Financial Aid Offices. Our Financial Aid Offices work closely with students and families to provide financial assistance in the form of grants, loans and work-study from federal and state resources. For help filling out the FAFSA form, visit your college’s Financial Aid Office. Contact: Financial Aid Office (at your college) https://ccc.edu/financialaid . Hours: not listed."
+   }
+  ],
+  "fallback": false,
+  "seconds": 98.6,
+  "model": "openai/gpt-oss-120b",
+  "judge": {
+   "total": 3,
+   "supported": 0,
+   "score": 0.0,
+   "unsupported": [
+    "حالة المساعدة المالية التي تظهر «التحقق» تعني أن مكتب المساعدة المالية يحتاج إلى تأكيد المعلومات التي قدمتها في طلبك (FAFSA أو طلب المساعدة داخل الكلية).",
+    "يجب عليك تقديم المستندات التي يطلبها المكتب (مثل إقرارات الضرائب، نماذج W‑2، أو أي مستندات مالية أخرى) لتثبت صحة البيانات.",
+    "بعد رفع أو تسليم هذه المستندات، سيقوم المكتب بمراجعتها وتحديث حالة طلبك إلى «مقبول» أو «مرفوض»."
+   ],
+   "model": "openai/gpt-oss-20b"
+  }
+ },
+ "g036": {
+  "question": "أين أجد مساعدة في الطعام أو في التكاليف الطارئة داخل الجامعة؟",
+  "language": "ar",
+  "behavior": "grounded",
+  "answer": "تقدر تحصل على مساعدة في الطعام ومساعدات طارئة للكاليف داخل الجامعة من خلال المصادر التالية:\n\n1. مخازن الطعام (Food Pantries) – كل كلية من كليات City Colleges لديها مخزن طعام. تقدر تروح إلى مركز العافية (Wellness Center) في كليتك لتعرف ساعات العمل ومكان المخزن.\n2. مبادرة “Food Security for Life” – توفر وجبات جاهزة للآخذين والوجبات الجاهزة للمنزل في كليات Malcolm X، Kennedy‑King، وOlive‑Harvey، بالإضافة إلى وجبات خفيفة مجانية في جميع الكليات.\n3. مساعدة SNAP – إذا كنت مؤهلًا لبرنامج SNAP (قسائم الطعام)، يمكن لك تتواصل مع مكتب خدمات الإنسان في إلينوي (IDHS) أو مع المتطوعين من AmeriCorps VISTA داخل City Colleges للحصول على إرشادات حول متطلبات العمل أو الإعفاءات.\n4. مكتب المساعدات المالية (Financial Aid Office) – يقدم المكتب مساعدات طارئة للطلاب تشمل منحًا صغيرة أو قروضًا قصيرة الأجل لتغطية تكاليف غير متوقعة (مثل الكتب أو المواصلات).",
+  "confidence": "High",
+  "citations": [
+   "programs:ccc-food-pantries",
+   "programs:ccc-food-security-initiative",
+   "programs:ccc-snap-work-requirement-help",
+   "programs:ccc-financial-aid-offices"
+  ],
+  "has_contact": false,
+  "contact": "",
+  "tools": [
+   "match_programs"
+  ],
+  "returned_ids": [
+   "programs:ccc-financial-aid-offices",
+   "programs:ccc-food-pantries",
+   "programs:ccc-food-security-initiative",
+   "programs:ccc-scholarship-opportunities",
+   "programs:ccc-snap-work-requirement-help",
+   "programs:ccc-star-scholarship"
+  ],
+  "evidence": [
+   {
+    "source_id": "programs:ccc-food-pantries",
+    "text": "Food pantries at every college. There is a food pantry at every City College, and students are encouraged to use them as needed. Contact your college's Wellness Center for questions, hours, locations, and additional resources. Free grab-and-go snacks are also available at every college (City Colleges guide dated November 18, 2025). Contact: Wellness Center (at your college) https://ccc.edu/wellnesscenter . Hours: not listed."
+   },
+   {
+    "source_id": "programs:ccc-food-security-initiative",
+    "text": "Food Security for Life Initiative. City Colleges expanded its partnership with the Greater Chicago Food Depository. As of November 18, 2025: free grab-and-go snacks at every college; ready-to-take-home meals at Malcolm X, Kennedy-King, and Olive-Harvey Colleges (planned for all seven); and an expanded market planned to open at Kennedy-King in January 2026, with markets planned for all seven colleges. Check with your Wellness Center for what is available now. Contact: Wellness Center (at your college) https://ccc.edu/wellnesscenter . Hours: not listed."
+   },
+   {
+    "source_id": "programs:ccc-snap-work-requirement-help",
+    "text": "Help with SNAP work requirements. Beginning December 1, 2025, many adults ages 18-64 without dependents under 14 face new federal work or volunteer requirements to keep receiving SNAP, with monthly reporting of hours. Some adults qualify for exemptions: manage your case in the ABE Manage My Case portal or call the Illinois Department of Human Services. City Colleges AmeriCorps VISTA members can connect you to volunteer opportunities that meet the requirements. Contact: Illinois Department of Human Services (IDHS); AmeriCorps VISTA members at City Colleges 1-800-843-6154. Hours: not listed."
+   },
+   {
+    "source_id": "programs:ccc-financial-aid-offices",
+    "text": "Financial Aid Offices. Our Financial Aid Offices work closely with students and families to provide financial assistance in the form of grants, loans and work-study from federal and state resources. For help filling out the FAFSA form, visit your college’s Financial Aid Office. Contact: Financial Aid Office (at your college) https://ccc.edu/financialaid . Hours: not listed."
+   }
+  ],
+  "fallback": false,
+  "seconds": 29.9,
+  "model": "openai/gpt-oss-120b",
+  "judge": {
+   "total": 5,
+   "supported": 4,
+   "score": 0.8,
+   "unsupported": [
+    "مكتب المساعدات المالية (Financial Aid Office) – يقدم المكتب مساعدات طارئة للطلاب تشمل منحًا صغيرة أو قروضًا قصيرة الأجل لتغطية تكاليف غير متوقعة (مثل الكتب أو المواصلات)."
+   ],
+   "model": "openai/gpt-oss-20b"
+  }
+ },
+ "g037": {
+  "question": "أهلي ليس لديهم أرقام ضمان اجتماعي. هل ما زال بإمكاني تعبئة FAFSA؟",
+  "language": "ar",
+  "behavior": "grounded",
+  "answer": "نعم، يمكنك تعبئة نموذج FAFSA حتى إذا لم يكن لدى والديك رقم ضمان اجتماعي. في قسم معلومات الوالدين يمكنك اختيار “ليس لدي رقم ضمان اجتماعي” أو إدخال 000‑00‑0000 ثم متابعة تعبئة النموذج. سيظل وضعك كطالب معتمد على الوالدين (dependent) وسيُعالج طلبك باستخدام المعلومات المتوفرة لديك.",
+  "confidence": "High",
+  "citations": [
+   "federal-dependency-status::08",
+   "federal-fafsa-checklist::01"
+  ],
+  "has_contact": false,
+  "contact": "",
+  "tools": [
+   "search_knowledge_base",
+   "search_knowledge_base",
+   "search_knowledge_base"
+  ],
+  "returned_ids": [
+   "federal-dependency-status::08",
+   "federal-dependency-status::09",
+   "federal-fafsa-checklist::01",
+   "federal-fafsa-parent-steps::03",
+   "federal-fafsa-parent-steps::05",
+   "federal-fafsa-parent-steps::06",
+   "federal-fafsa-parent-steps::08",
+   "federal-fafsa-parent-steps::12",
+   "federal-fafsa-parent-steps::16",
+   "federal-fafsa-student-steps::08"
+  ],
+  "evidence": [
+   {
+    "source_id": "federal-dependency-status::08",
+    "text": "## My Parents Refuse To Provide Information If your parents refuse to add their information to your FAFSA form, it doesn't make you an independent student, and you won't be eligible for a Federal Pell Grant or other types of federal student aid. You may be eligible only for a limited amount of a Direct Unsubsidized Loan. Learn what it means to apply only for a Direct Unsubsidized Loan."
+   },
+   {
+    "source_id": "federal-fafsa-checklist::01",
+    "text": "## 1. StudentAid.gov Account You’ll need to create a StudentAid.gov account to access and fill out the FAFSA form online. If you have a parent or spouse contributor, they’ll need their own StudentAid.gov account. A contributor refers to anyone (you, your spouse, your biological or adoptive parent, or your parent’s spouse) required to provide information on your FAFSA form. Your StudentAid.gov account serves as your digital signature. Since it allows you to sign legally binding documents, only you can use it. As a student, you have to enter your Social Security number (SSN) to create a StudentAid.gov account (unless you’re a citizen of the Freely Associated States). However, if your parent or spouse doesn’t have an SSN, they can still create a StudentAid.gov account to complete their sections of your FAFSA form. Tip: Find your SSN on your Social Security card. If you don’t have it handy, you can request a new or replacement Social Security card from the Social Security Administration."
+   }
+  ],
+  "fallback": false,
+  "seconds": 45.1,
+  "model": "openai/gpt-oss-120b",
+  "judge": {
+   "total": 4,
+   "supported": 1,
+   "score": 0.25,
+   "unsupported": [
+    "يمكنك تعبئة نموذج FAFSA حتى إذا لم يكن لدى والديك رقم ضمان اجتماعي.",
+    "في قسم معلومات الوالدين يمكنك اختيار “ليس لدي رقم ضمان اجتماعي” أو إدخال 000‑00‑0000 ثم متابعة تعبئة النموذج.",
+    "سيُعالج طلبك باستخدام المعلومات المتوفرة لديك."
+   ],
+   "model": "openai/gpt-oss-20b"
+  }
+ },
+ "g038": {
+  "question": "كم تبلغ كلفة الساعة المعتمدة إذا كنت أسكن في شيكاغو؟",
+  "language": "ar",
+  "behavior": "grounded",
+  "answer": "تكلفة الساعة المعتمدة للطلاب المقيمين داخل مدينة شيكاغو هي 163 دولارًا للساعة (حسب أسعار السنة المالية 2027).",
+  "confidence": "High",
+  "citations": [
+   "institution-ccc-tuition::01"
+  ],
+  "has_contact": false,
+  "contact": "",
+  "tools": [
+   "search_knowledge_base"
+  ],
+  "returned_ids": [
+   "institution-ccc-transfer-services::26",
+   "institution-ccc-transfer-services::49",
+   "institution-ccc-tuition::01",
+   "institution-ccc-tuition::02",
+   "institution-ccc-tuition::04",
+   "institution-ccc-tuition::05",
+   "institution-ccc-tuition::07",
+   "institution-ccc-tuition::09"
+  ],
+  "evidence": [
+   {
+    "source_id": "institution-ccc-tuition::01",
+    "text": "## FY27 Credit & Pre-Credit Tuition Rates (Per Credit Hour) - In-District: Credit $163; Pre-Credit (1/2 of Credit Hour Rate) $82 - Out-of-District: Credit $429; Pre-Credit (1/2 of Credit Hour Rate) $215 - Out-of-State: Credit $538; Pre-Credit (1/2 of Credit Hour Rate) $269 - International: Credit $538; Pre-Credit (1/2 of Credit Hour Rate) $269"
+   }
+  ],
+  "fallback": false,
+  "seconds": 15.5,
+  "model": "openai/gpt-oss-120b",
+  "judge": {
+   "total": 2,
+   "supported": 2,
+   "score": 1.0,
+   "unsupported": [],
+   "model": "openai/gpt-oss-20b"
+  }
+ },
+ "g039": {
+  "question": "كيف أنتقل من كليات المدينة إلى جامعة مدتها أربع سنوات؟",
+  "language": "ar",
+  "behavior": "grounded",
+  "answer": "1. اذهب إلى مركز النقل (Transfer Center) في أحد فروع كليات المدينة؛ سيساعدك المستشارون على البحث عن الجامعات التي تريد الالتحاق بها وتخطيط مسار التحويل. 2. احجز جلسة إرشادية مع مستشار النقل لتقييم الساعات التي أكملتها ومعرفة ما إذا كانت ستُعتمد في الجامعة ذات الأربع سنوات. 3. استخدم خدمات Transfer Services لمعرفة متطلبات القبول في الجامعات المستهدفة وتحديد مواعيد التقديم. 4. قدّم طلب القبول للجامعة التي اخترتها عبر نظامها الإلكتروني مع إرفاق سجل الدرجات ونصوص المقررات التي تم اعتمادها. 5. استفسر عن المنح الدراسية المتاحة للطلاب المنقولين واطلب المساعدة في التقديم لها.",
+  "confidence": "High",
+  "citations": [
+   "institution-ccc-student-resources::01",
+   "institution-ccc-transfer-services::00",
+   "institution-ccc-transfer-services::07"
+  ],
+  "has_contact": false,
+  "contact": "",
+  "tools": [
+   "search_knowledge_base",
+   "search_knowledge_base",
+   "search_knowledge_base",
+   "search_knowledge_base",
+   "search_knowledge_base",
+   "search_knowledge_base"
+  ],
+  "returned_ids": [
+   "institution-ccc-student-resources::01",
+   "institution-ccc-transfer-services::00",
+   "institution-ccc-transfer-services::07",
+   "institution-ccc-transfer-services::14",
+   "institution-ccc-transfer-services::21",
+   "institution-ccc-transfer-services::31",
+   "institution-ccc-transfer-services::35",
+   "institution-ccc-transfer-services::45",
+   "institution-ccc-transfer-services::47",
+   "institution-ccc-transfer-services::50"
+  ],
+  "evidence": [
+   {
+    "source_id": "institution-ccc-student-resources::01",
+    "text": "### Transfer to a 4-year college Our Transfer Centers can help you transition to a four-year college including researching where you want to attend, learning about transferable courses, and applying for transfer scholarships. ccc.edu/transfer"
+   },
+   {
+    "source_id": "institution-ccc-transfer-services::00",
+    "text": "# Transfer Services at City Colleges of Chicago (page timestamp shown on the source page: 2026-10-23) Transfer [Edith Mauro](https://pages.ccc.edu/author/emauro1/) 2026-10-23T11:57:12-05:00 ### Find your future with CCC: - Save thousands of dollars on your education by taking transferrable classes here, then finishing your bachelor’s degree at a four-year institution. - Take advantage of **guaranteed admissions** from City Colleges to an array of colleges and universities across the country and scholarships designed specifically for transfer students. - City Colleges is part of the **[Illinois Articulation Initiative (IAI)](https://www.ccc.edu/departments/Pages/Illinois-Articulation-Initiative-(IAI).aspx)**, which means when you take IAI classes here, they are guaranteed to transfer to any IAI college or university across the state. You can find a list of our IAI approved courses in our [Academic Catalog](https://catalog.ccc.edu/iai-gecc/)."
+   },
+   {
+    "source_id": "institution-ccc-transfer-services::07",
+    "text": "### [Scholarship Assistance](https://www.ccc.edu/departments/Pages/Transferring-to-4-Year-Institutions-Scholarship-Resources.aspx) We can teach you how to research scholarships that help you fund your college education."
+   }
+  ],
+  "fallback": false,
+  "seconds": 187.7,
+  "model": "openai/gpt-oss-120b",
+  "judge": {
+   "total": 6,
+   "supported": 3,
+   "score": 0.5,
+   "unsupported": [
+    "احجز جلسة إرشادية مع مستشار النقل لتقييم الساعات التي أكملتها ومعرفة ما إذا كانت ستُعتمد في الجامعة ذات الأربع سنوات",
+    "استخدم خدمات Transfer Services لمعرفة متطلبات القبول في الجامعات المستهدفة وتحديد مواعيد التقديم",
+    "قدّم طلب القبول للجامعة التي اخترتها عبر نظامها الإلكتروني مع إرفاق سجل الدرجات ونصوص المقررات التي تم اعتمادها"
+   ],
+   "model": "openai/gpt-oss-20b"
+  }
+ },
+ "g040": {
+  "question": "ما هي منحة Pell الفدرالية ومن يمكنه الحصول عليها؟",
+  "language": "ar",
+  "behavior": "grounded",
+  "answer": "منحة Pell الفدرالية هي منحة مالية غير مستردة تُقدَّم من الحكومة الفدرالية لتساعد في تغطية تكاليف التعليم العالي. يمكن لأي طالب جامعي (undergraduate) يحصل على المنحة طالما لم يحصل بعد على درجة البكالوريوس أو درجة دراسات عليا أو مهنية، ولا يوجد حد عمري. المبلغ السنوي للمنحة يتغير كل سنة بناءً على تحديثات الحكومة الفدرالية.",
+  "confidence": "High",
+  "citations": [
+   "federal-pell-grants::01",
+   "federal-pell-grants::03",
+   "federal-pell-grants::02",
+   "federal-pell-grants::00"
+  ],
+  "has_contact": false,
+  "contact": "",
+  "tools": [
+   "search_knowledge_base"
+  ],
+  "returned_ids": [
+   "federal-financial-aid-glossary::06",
+   "federal-pell-grants::00",
+   "federal-pell-grants::01",
+   "federal-pell-grants::02",
+   "federal-pell-grants::03",
+   "federal-pell-grants::04",
+   "federal-pell-grants::05",
+   "federal-pell-grants::06"
+  ],
+  "evidence": [
+   {
+    "source_id": "federal-pell-grants::01",
+    "text": "## What is a Federal Pell Grant? A Federal Pell Grant is a type of grant that provides funds to help pay for school. Pell Grants are typically awarded to undergraduate students who display exceptional financial need. Unlike federal student loans, Pell Grants don’t have to be paid back except under certain circumstances. Millions of Pell Grants are awarded each year to eligible undergraduate students who submit the Free Application for Federal Student Aid (FAFSA®) form. Pell Grants have been around for more than 50 years—the program started in 1972 to address the growing need for financial assistance for undergraduate students. Since then, millions of Pell Grants have been awarded to eligible students who submitted the FAFSA form each year they attended school. The Federal Pell Grant Program is the single largest source of grant aid for college, career school, and trade school."
+   },
+   {
+    "source_id": "federal-pell-grants::03",
+    "text": "## Who is eligible for Federal Pell Grants? Any undergraduate student, regardless of age, who hasn’t earned a bachelor’s, graduate, or professional degree may be eligible for a Federal Pell Grant if they have financial need and meet a few basic requirements. Note: If you’re confined or incarcerated in a federal or state facility, you may be eligible for a Federal Pell Grant if you’re enrolled in an approved prison education program. Don’t let the term “financial need” make you assume that you won’t qualify for a Pell Grant. Your eligibility for a Pell Grant is based on more than just your (or your family’s) income. The federal government will also consider your family size, tax filing status, and the federal poverty guidelines to determine your eligibility for a Pell Grant. If you already completed the FAFSA form, you’ll be able to find your estimated Pell Grant award on your FAFSA Submission Summary. If you haven’t submitted your FAFSA form yet, you can see how much in Pell Grant funds you may qualify for by using the Federal Student Aid Estimator. Keep in mind that even though the Federal Student Aid Estimator has a “Submit” button, it’s just a tool that provides an estimate of how much federal student aid you may be eligible to receive. You won’t receive any federal student aid if you don’t complete a FAFSA form."
+   },
+   {
+    "source_id": "federal-pell-grants::02",
+    "text": "## How much money could I get from a Federal Pell Grant? Every year, the federal government updates the maximum Federal Pell Grant award amount. For the 2026–27 award year, the maximum Pell Grant award is $7,395. (Note: The maximum Pell Grant award amount for the 2027–28 award year will be announced in early 2027. Check for updates at StudentAid.gov/pell-grant.) Some students may be able to receive up to 150% of their yearly Pell Grant award if they attend an additional school term within the same school year. This is often called “year-round Pell.” For example, if you were awarded a $3,000 Pell Grant, you’d likely receive $1,500 in both your fall and spring semesters. But you may qualify for another Pell Grant of up to $1,500 if you enroll during the summer semester. Pell Grant funds can be used to pay for school-related expenses at eligible two-year community colleges, career schools, trade schools, online schools, and four-year colleges and universities. You can receive Pell Grants for about six years total. The years you receive Pell Grants don’t need to be consecutive. For example, let’s say you attended college for two years and then left school. If you decided to return three years later to finish your undergraduate degree, you may still qualify for Pell Grants."
+   },
+   {
+    "source_id": "federal-pell-grants::00",
+    "text": "# Don’t Miss Out on Federal Pell Grants Millions of undergraduate students receive Federal Pell Grants every year to help pay for college, career school, or trade school. But many people miss out because they don’t think they’re eligible or don’t know how to apply. Don’t let this be you! Read on to learn what you need to know."
+   }
+  ],
+  "fallback": false,
+  "seconds": 18.7,
+  "model": "openai/gpt-oss-120b",
+  "judge": {
+   "total": 3,
+   "supported": 3,
+   "score": 1.0,
+   "unsupported": [],
+   "model": "openai/gpt-oss-20b"
+  }
+ },
+ "g041": {
+  "question": "Can I borrow a laptop from City Colleges of Chicago?",
+  "language": "en",
+  "behavior": "grounded",
+  "answer": "Yes. City Colleges of Chicago credit students can borrow a Windows laptop free of charge for up to 4 weeks.",
+  "confidence": "High",
+  "citations": [
+   "institution-ccc-student-resources::11"
+  ],
+  "has_contact": false,
+  "contact": "",
+  "tools": [
+   "search_knowledge_base"
+  ],
+  "returned_ids": [
+   "institution-ccc-student-resources::11",
+   "institution-ccc-transfer-services::13",
+   "institution-ccc-transfer-services::14",
+   "institution-ccc-transfer-services::29",
+   "institution-ccc-transfer-services::31",
+   "institution-ccc-transfer-services::54",
+   "institution-ccc-transfer-services::55",
+   "institution-ccc-undocumented-student-services::16"
+  ],
+  "evidence": [
+   {
+    "source_id": "institution-ccc-student-resources::11",
+    "text": "### Get a loaner laptop City Colleges of Chicago credit students may borrow a Windows laptop free of charge for up to 4 weeks. Laptops are issued on a first-come, first served basis. ccc.edu/borrowalaptop"
+   }
+  ],
+  "fallback": false,
+  "seconds": 26.7,
+  "model": "openai/gpt-oss-120b",
+  "judge": {
+   "total": 4,
+   "supported": 4,
+   "score": 1.0,
+   "unsupported": [],
+   "model": "openai/gpt-oss-20b"
+  }
+ },
+ "g042": {
+  "question": "Is there free tutoring at City Colleges?",
+  "language": "en",
+  "behavior": "grounded",
+  "answer": "Yes. City Colleges of Chicago has Tutoring Centers that provide free one‑on‑one and group tutoring for all students.",
+  "confidence": "High",
+  "citations": [
+   "programs:ccc-tutoring-centers"
+  ],
+  "has_contact": false,
+  "contact": "",
+  "tools": [
+   "match_programs"
+  ],
+  "returned_ids": [
+   "programs:ccc-academic-advising",
+   "programs:ccc-early-college",
+   "programs:ccc-free-esl-classes",
+   "programs:ccc-free-hs-diploma-prep",
+   "programs:ccc-loaner-laptop",
+   "programs:ccc-tutoring-centers"
+  ],
+  "evidence": [
+   {
+    "source_id": "programs:ccc-tutoring-centers",
+    "text": "Tutoring Centers. Our Tutoring Centers offer free tutoring and academic support services to assist students in achieving personal and academic success. One-on-one and group tutoring sessions are available. Contact: Tutoring Center (at your college) https://ccc.edu/tutoring . Hours: not listed."
+   }
+  ],
+  "fallback": false,
+  "seconds": 17.1,
+  "model": "openai/gpt-oss-120b",
+  "judge": {
+   "total": 4,
+   "supported": 4,
+   "score": 1.0,
+   "unsupported": [],
+   "model": "openai/gpt-oss-20b"
+  }
+ },
+ "g043": {
+  "question": "What is the maximum Federal Pell Grant for the 2026-27 school year?",
+  "language": "en",
+  "behavior": "grounded",
+  "answer": "I wasn’t able to locate the specific maximum Federal Pell Grant amount for the 2026‑27 school year in the documents I searched. The sources note that the maximum award is updated each year, but they do not list the 2026‑27 figure.",
+  "confidence": "Low",
+  "citations": [],
+  "has_contact": false,
+  "contact": "",
+  "tools": [
+   "search_knowledge_base",
+   "search_knowledge_base",
+   "search_knowledge_base",
+   "search_knowledge_base"
+  ],
+  "returned_ids": [
+   "federal-financial-aid-glossary::06",
+   "federal-pell-grants::01",
+   "federal-pell-grants::02",
+   "federal-pell-grants::04",
+   "federal-pell-grants::05",
+   "institution-ccc-academic-calendar::02",
+   "institution-ccc-academic-calendar::04",
+   "state-isac-map::07",
+   "state-isac-map::13",
+   "state-isac-map::14"
+  ],
+  "evidence": [],
+  "fallback": false,
+  "seconds": 82.3,
+  "model": "openai/gpt-oss-120b"
+ },
+ "g044": {
+  "question": "What is the deadline to apply for the Star Scholarship?",
+  "language": "en",
+  "behavior": "grounded",
+  "answer": "The Star Scholarship application must be submitted by the last day of registration for the semester you want the scholarship to cover.",
+  "confidence": "High",
+  "citations": [
+   "institution-ccc-star-scholarship::14",
+   "institution-ccc-star-scholarship::10"
+  ],
+  "has_contact": false,
+  "contact": "",
+  "tools": [
+   "lookup_deadlines",
+   "search_knowledge_base"
+  ],
+  "returned_ids": [
+   "deadlines:ccc-fy2027-rates-start",
+   "deadlines:ccc-winter26-classes-start",
+   "institution-ccc-star-scholarship::01",
+   "institution-ccc-star-scholarship::03",
+   "institution-ccc-star-scholarship::07",
+   "institution-ccc-star-scholarship::09",
+   "institution-ccc-star-scholarship::10",
+   "institution-ccc-star-scholarship::11",
+   "institution-ccc-star-scholarship::12",
+   "institution-ccc-star-scholarship::14"
+  ],
+  "evidence": [
+   {
+    "source_id": "institution-ccc-star-scholarship::14",
+    "text": "### Is there a deadline to apply for the Star Scholarship? Yes—the deadline to apply for the Star Scholarship is always the last day of registration for the upcoming semester’s 16-week credit term. If you miss the deadline, your application will be reviewed and processed for the start of the following academic semester. To view registration deadlines, please check the academic calendar."
+   },
+   {
+    "source_id": "institution-ccc-star-scholarship::10",
+    "text": "### Register for the next semester Enroll in classes at my.ccc.edu. ### Is the Star Scholarship based on financial need? No—but students are required to complete their applicable financial aid process, as the Star Scholarship is a last-dollar scholarship which covers tuition and books not covered by financial aid from federal/state grants."
+   }
+  ],
+  "fallback": false,
+  "seconds": 32.6,
+  "model": "openai/gpt-oss-120b",
+  "judge": {
+   "total": 1,
+   "supported": 1,
+   "score": 1.0,
+   "unsupported": [],
+   "model": "openai/gpt-oss-20b"
+  }
  }
 }

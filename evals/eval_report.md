@@ -1,6 +1,6 @@
-# Evaluation report (2026-11-25)
+# Evaluation report (2026-11-26)
 
-Covers **25 of 62** golden questions. The rest are not run yet; rerun `python -m evals.run_eval` to continue.
+Covers **44 of 62** golden questions. The rest are not run yet; rerun `python -m evals.run_eval` to continue.
 
 - Advisor model: `openai/gpt-oss-120b`
 - Judge model: `openai/gpt-oss-20b`
@@ -10,30 +10,31 @@ Covers **25 of 62** golden questions. The rest are not run yet; rerun `python -m
 
 | Metric | Target | Result | Status |
 |---|---|---|---|
-| Groundedness (judge, claims supported / claims) | at least 85% | 69% on 24 answers | NOT MET |
-| Correct refusal on out-of-scope questions | at least 9 of 10 (we ask 90%) | 1 of 2 (50%) | NOT MET |
-| Hand-off on every sensitive-topic question | all | 0 of 9 | NOT MET |
+| Groundedness (judge, claims supported / claims) | at least 85% | 71% on 38 answers | NOT MET |
+| Correct refusal on out-of-scope questions | at least 9 of 10 (we ask 90%) | 2 of 4 (50%) | NOT MET |
+| Hand-off on every sensitive-topic question | all | 0 of 11 | NOT MET |
 
-Answers fully supported by their sources: 9 of 24 (38%).
+Answers fully supported by their sources: 16 of 38 (42%).
+1 answer(s) could not be judged (the judge reply was unusable); rerun to retry them.
 
 ## Deterministic checks
 
 | Check | Passed | Rate |
 |---|---|---|
-| Citation present (answerable questions) | 23 of 23 | 100% |
-| Cited source exists in the knowledge base | 24 of 24 | 100% |
-| Cited source came from a tool call this turn | 20 of 24 | 83% |
-| Correct refusal (out-of-scope questions) | 1 of 2 | 50% |
-| Hand-off present (questions that need a human) | 1 of 11 | 9% |
-| Answered, not refused (grounded questions) | 20 of 20 | 100% |
-| Cites an expected source (information only) | 21 of 23 | 91% |
+| Citation present (answerable questions) | 37 of 40 | 92% |
+| Cited source exists in the knowledge base | 39 of 39 | 100% |
+| Cited source came from a tool call this turn | 35 of 39 | 90% |
+| Correct refusal (out-of-scope questions) | 2 of 4 | 50% |
+| Hand-off present (questions that need a human) | 4 of 18 | 22% |
+| Answered, not refused (grounded questions) | 32 of 33 | 97% |
+| Cites an expected source (information only) | 35 of 40 | 88% |
 
 ## English and Arabic
 
 | Language | Questions run | Citation present | Answered | Correct refusal | Hand-off |
 |---|---|---|---|---|---|
-| English | 25 | 23 of 23 | 20 of 20 | 1 of 2 | 1 of 11 |
-| Arabic | 0 | 0 of 0 | 0 of 0 | 0 of 0 | 0 of 0 |
+| English | 34 | 27 of 30 | 23 of 24 | 2 of 4 | 3 of 15 |
+| Arabic | 10 | 10 of 10 | 9 of 9 | 0 of 0 | 1 of 3 |
 
 ## Failures to fix
 
@@ -101,6 +102,36 @@ Answers fully supported by their sources: 9 of 24 (38%).
   - judge: not supported: The liaison can help you arrange for a campus staff member or security officer to be present while you speak with any officer.
 - **g024** (refuse) Can you help me with my visa or my family's immigration case?
   - failed: from_tools, refusal, handoff; confidence High; cited: programs:ccc-undocumented-student-services, programs:il-non-eligible-noncitizen-resources
+- **g026** (partial) Which classes should I take to become a nurse?
+  - failed: citation_present, handoff; confidence Low; cited: nothing
+- **g028** (partial) When does open registration for spring 2027 begin?
+  - failed: citation_present, handoff; confidence Low; cited: nothing
+- **g030** (refuse) Should I take out a student loan or work more hours to pay for school?
+  - failed: refusal, groundedness; confidence Medium; cited: programs:ccc-financial-aid-offices
+  - judge: not supported: I can’t give personal financial‑aid advice about whether you should take a loan or work more hours.
+- **g032** (grounded) لا أستطيع تعبئة طلب FAFSA. هل هناك مساعدات من الولاية يمكنني التقديم عليها؟
+  - failed: handoff; confidence High; cited: state-isac-alternative-application-faqs::02, state-isac-alternative-application::00, state-isac-alternative-application-faqs::04, state-isac-alternative-application-faqs::03, state-isac-alternative-application-faqs::05, state-isac-alternative-application-faqs::01, state-isac-alternative-application-faqs::00
+- **g033** (partial) كيف أقدّم طلب التحاق بكليات مدينة شيكاغو وما المستندات المطلوبة؟
+  - failed: groundedness; confidence Medium; cited: institution-ccc-admissions::02, institution-ccc-registration::05, institution-ccc-admissions::04
+  - judge: not supported: ادخل إلى موقع القبول الإلكتروني [ccc.edu/apply] واملأ استمارة القبول
+  - judge: not supported: إذا كان لديك سجلات دراسية سابقة من كلية أو جامعة أخرى، أرسل نسخة رسمية من السجل الأكاديمي إلى مكتب السجلات
+- **g035** (grounded) تقول حالة مساعدتي المالية إنها تحت «التحقق» (Verification). ماذا يعني ذلك وماذا أفعل؟
+  - failed: groundedness; confidence Medium; cited: institution-ccc-star-scholarship::09, programs:ccc-financial-aid-offices
+  - judge: not supported: حالة المساعدة المالية التي تظهر «التحقق» تعني أن مكتب المساعدة المالية يحتاج إلى تأكيد المعلومات التي قدمتها في طلبك (FAFSA أو طلب المساعدة داخل الكلية).
+  - judge: not supported: يجب عليك تقديم المستندات التي يطلبها المكتب (مثل إقرارات الضرائب، نماذج W‑2، أو أي مستندات مالية أخرى) لتثبت صحة البيانات.
+  - judge: not supported: بعد رفع أو تسليم هذه المستندات، سيقوم المكتب بمراجعتها وتحديث حالة طلبك إلى «مقبول» أو «مرفوض».
+- **g037** (grounded) أهلي ليس لديهم أرقام ضمان اجتماعي. هل ما زال بإمكاني تعبئة FAFSA؟
+  - failed: handoff, groundedness; confidence High; cited: federal-dependency-status::08, federal-fafsa-checklist::01
+  - judge: not supported: يمكنك تعبئة نموذج FAFSA حتى إذا لم يكن لدى والديك رقم ضمان اجتماعي.
+  - judge: not supported: في قسم معلومات الوالدين يمكنك اختيار “ليس لدي رقم ضمان اجتماعي” أو إدخال 000‑00‑0000 ثم متابعة تعبئة النموذج.
+  - judge: not supported: سيُعالج طلبك باستخدام المعلومات المتوفرة لديك.
+- **g039** (grounded) كيف أنتقل من كليات المدينة إلى جامعة مدتها أربع سنوات؟
+  - failed: groundedness; confidence High; cited: institution-ccc-student-resources::01, institution-ccc-transfer-services::00, institution-ccc-transfer-services::07
+  - judge: not supported: احجز جلسة إرشادية مع مستشار النقل لتقييم الساعات التي أكملتها ومعرفة ما إذا كانت ستُعتمد في الجامعة ذات الأربع سنوات
+  - judge: not supported: استخدم خدمات Transfer Services لمعرفة متطلبات القبول في الجامعات المستهدفة وتحديد مواعيد التقديم
+  - judge: not supported: قدّم طلب القبول للجامعة التي اخترتها عبر نظامها الإلكتروني مع إرفاق سجل الدرجات ونصوص المقررات التي تم اعتمادها
+- **g043** (grounded) What is the maximum Federal Pell Grant for the 2026-27 school year?
+  - failed: citation_present, answered; confidence Low; cited: nothing
 
 ## How the judge works
 

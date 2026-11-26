@@ -23,6 +23,7 @@ from langchain_core.tools import tool
 from langchain_groq import ChatGroq
 
 from core.compact import for_model
+from core.handoff import topic_for_question
 from core.prompts import load_system_prompt
 from core.schema import AdvisorAnswer, Contact
 from core.tools import escalate_to_human as _escalate_to_human
@@ -38,8 +39,11 @@ FINALIZE_INSTRUCTIONS = (
     "anything useful, set confidence to \"Low\", citations to an empty list, and say plainly "
     "in `answer` that you could not find this in the documents, with a next step to ask a "
     "human (use escalate_to_human's result if you already called it). If you called "
-    "escalate_to_human, copy the office it returned into human_contact. State only facts the "
-    "tool results contain; do not add steps or requirements from general knowledge."
+    "escalate_to_human, copy the office it returned into human_contact. If the student's own "
+    "situation needs a person, set handoff_topic. State only facts the tool results contain: "
+    "no steps, requirements, numbers, example values or placeholders from general knowledge. "
+    "Before you write that something was not found, re-read every tool result above: amounts "
+    "and dates are inside the passage text."
 )
 
 
@@ -174,6 +178,7 @@ class Agent:
     tools: list = field(default_factory=list)
     lean: dict = field(default_factory=lambda: {"on": False})   # shared with the tools, see run_agent
     budget: dict = field(default_factory=lambda: {"used": 0, "searches": 0})   # tool calls this question
+    ctx: object = None   # the institution context (the hand-off safety net looks the office up in it)
 
 
 def build_agent(ctx, language: str = "en", institution_name: str = DEFAULT_INSTITUTION_NAME,
@@ -189,7 +194,7 @@ def build_agent(ctx, language: str = "en", institution_name: str = DEFAULT_INSTI
     tools = build_langchain_tools(ctx, lean, budget)
     system_prompt = load_system_prompt(language, institution_name=institution_name)
     runnable = create_agent(model=loop_llm, tools=tools, system_prompt=system_prompt)
-    return Agent(runnable=runnable, llm=llm, tools=tools, lean=lean, budget=budget)
+    return Agent(runnable=runnable, llm=llm, tools=tools, lean=lean, budget=budget, ctx=ctx)
 
 
 @dataclass
@@ -229,6 +234,28 @@ def _contact_from_tools(tool_calls: list):
                 return Contact(office=c["contact_office"], url=c.get("contact_url") or "",
                                phone=c.get("contact_phone") or "")
     return None
+
+
+def _apply_handoff(agent: Agent, question: str, answer: AdvisorAnswer, tool_calls: list):
+    """Make sure a question that needs a person ends with the office named. Returns
+    (answer, tool_calls). Order: an office the model already got from escalate_to_human; then the
+    topic the model named in handoff_topic; then the keyword safety net (core/handoff.py).
+    When the code does the lookup it adds the call to tool_calls, so the office's source id counts
+    as returned by a tool (the citation checks and the evaluation read that list)."""
+    if answer.human_contact is not None:
+        return answer, tool_calls
+    contact = _contact_from_tools(tool_calls)
+    if contact is None and agent.ctx is not None:
+        topic = (answer.handoff_topic or "").strip() or topic_for_question(question)
+        if topic:
+            out = _escalate_to_human(agent.ctx, topic)
+            added = {"name": "escalate_to_human", "args": {"topic": topic, "added_by": "code"}, "result": out}
+            contact = _contact_from_tools([added])
+            if contact is not None:
+                tool_calls = tool_calls + [added]
+    if contact is not None:
+        answer = answer.model_copy(update={"human_contact": contact})
+    return answer, tool_calls
 
 
 def _safe_fallback(reason: str) -> AdvisorAnswer:
@@ -419,8 +446,8 @@ def run_agent(agent: Agent, question: str, language: str = "en", profile: str = 
         # The tool-calling phase itself failed (e.g. the free tier's per-minute token limit
         # was hit on a hard question) - return a safe low-confidence answer instead of
         # crashing the whole run; a human should answer this one.
-        return AgentResult(answer=_safe_fallback(f"{type(e).__name__}: {e}"),
-                           tool_calls=[], raw_text="")
+        answer, calls = _apply_handoff(agent, question, _safe_fallback(f"{type(e).__name__}: {e}"), [])
+        return AgentResult(answer=answer, tool_calls=calls, raw_text="")
 
     tool_calls = _extract_tool_calls(messages)
     raw_text = next((m.content for m in reversed(messages)
@@ -457,8 +484,5 @@ def run_agent(agent: Agent, question: str, language: str = "en", profile: str = 
     except Exception as e:
         traceback.print_exc()
         answer = _safe_fallback(f"{type(e).__name__}: {e}")
-    if answer.human_contact is None:
-        contact = _contact_from_tools(tool_calls)
-        if contact is not None:
-            answer = answer.model_copy(update={"human_contact": contact})
+    answer, tool_calls = _apply_handoff(agent, question, answer, tool_calls)
     return AgentResult(answer=answer, tool_calls=tool_calls, raw_text=raw_text)
