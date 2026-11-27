@@ -1,0 +1,19 @@
+# Never put secrets or local databases in the image.
+.env
+.env.*
+!.env.example
+.streamlit/secrets.toml
+chroma_db/
+.git/
+.gitignore
+.pytest_cache/
+**/__pycache__/
+*.pyc
+.venv/
+venv/
+tests/
+experiments/
+evals/eval_results*.json
+*.zip
+*.csv.bak
+.setup_started

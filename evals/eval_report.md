@@ -1,6 +1,6 @@
 # Evaluation report (2026-11-27)
 
-Covers **61 of 62** golden questions. The rest are not run yet; rerun `python -m evals.run_eval` to continue.
+Covers **40 of 62** golden questions. The rest are not run yet; rerun `python -m evals.run_eval` to continue.
 
 - Advisor model: `openai/gpt-oss-120b`
 - Judge model: `openai/gpt-oss-20b`
@@ -10,98 +10,42 @@ Covers **61 of 62** golden questions. The rest are not run yet; rerun `python -m
 
 | Metric | Target | Result | Status |
 |---|---|---|---|
-| Groundedness (judge, claims supported / claims) | at least 85% | 73% on 46 answers | NOT MET |
-| Correct refusal on out-of-scope questions | at least 9 of 10 (we ask 90%) | 10 of 12 (83%) | NOT MET |
-| Hand-off on every sensitive-topic question | all | 2 of 13 | NOT MET |
+| Groundedness (judge, claims supported / claims) | at least 85% | 80% on 29 answers | NOT MET |
+| Correct refusal on out-of-scope questions | at least 9 of 10 (we ask 90%) | 9 of 10 (90%) | PASS |
+| Hand-off on every sensitive-topic question | all | 3 of 5 | NOT MET |
 
-Answers fully supported by their sources: 21 of 46 (46%).
-1 answer(s) could not be judged (the judge reply was unusable); rerun to retry them.
+Answers fully supported by their sources: 16 of 29 (55%).
 
 ## Deterministic checks
 
 | Check | Passed | Rate |
 |---|---|---|
-| Citation present (answerable questions) | 45 of 49 | 92% |
-| Cited source exists in the knowledge base | 47 of 47 | 100% |
-| Cited source came from a tool call this turn | 43 of 47 | 91% |
-| Correct refusal (out-of-scope questions) | 10 of 12 | 83% |
-| Hand-off present (questions that need a human) | 6 of 20 | 30% |
-| Answered, not refused (grounded questions) | 40 of 42 | 95% |
-| Cites an expected source (information only) | 43 of 49 | 88% |
+| Citation present (answerable questions) | 28 of 30 | 93% |
+| Cited source exists in the knowledge base | 29 of 29 | 100% |
+| Cited source came from a tool call this turn | 29 of 29 | 100% |
+| Correct refusal (out-of-scope questions) | 9 of 10 | 90% |
+| Hand-off present (questions that need a human) | 6 of 10 | 60% |
+| Answered, not refused (grounded questions) | 25 of 25 | 100% |
+| Cites an expected source (information only) | 28 of 30 | 93% |
 
 ## English and Arabic
 
 | Language | Questions run | Citation present | Answered | Correct refusal | Hand-off |
 |---|---|---|---|---|---|
-| English | 48 | 34 of 37 | 30 of 31 | 9 of 11 | 5 of 17 |
-| Arabic | 13 | 11 of 12 | 10 of 11 | 1 of 1 | 1 of 3 |
+| English | 27 | 16 of 18 | 14 of 14 | 8 of 9 | 5 of 7 |
+| Arabic | 13 | 12 of 12 | 11 of 11 | 1 of 1 | 1 of 3 |
 
 ## Failures to fix
 
 - **g002** (grounded) I cannot file the FAFSA. Is there any state aid I can apply for?
-  - failed: handoff; confidence High; cited: state-isac-alternative-application::00, state-isac-alternative-application::02, state-isac-map::03, state-isac-alternative-application::07
+  - failed: groundedness; confidence High; cited: state-isac-alternative-application::00, state-isac-alternative-application::02, state-isac-alternative-application-faqs::01, state-isac-alternative-application-faqs::00, programs:ccc-financial-aid-offices
+  - judge: not supported: Illinois Monetary Award Program (MAP) grant
+  - judge: not supported: The 2027‑28 Alternative Application is now open
+  - judge: not supported: For assistance, contact the City Colleges of Chicago Financial Aid Office
 - **g003** (partial) How do I apply to City Colleges of Chicago and what documents do I need?
-  - failed: groundedness; confidence Medium; cited: institution-ccc-transfer-services::53, institution-ccc-admissions::02, institution-ccc-admissions::03, institution-ccc-registration::05
-  - judge: not supported: You will need to provide an official transcript (or proof of high‑school completion for new students).
-  - judge: not supported: You will need to provide a photo ID.
-  - judge: not supported: Proof of Chicago residency may also be required for in‑state tuition.
-- **g005** (grounded) My aid status says verification. What does that mean and what do I do?
-  - failed: handoff, groundedness; confidence High; cited: federal-fafsa-submission-summary::09, federal-fafsa-submission-summary::08, institution-ccc-apply-financial-aid::01
-  - judge: not supported: The college (and the Office of Federal Student Aid) needs to confirm that the information you reported—such as income, tax data, and dependency status—is correct before your aid award can be finalized.
-  - judge: not supported: most recent federal tax return (or IRS transcript)
-  - judge: not supported: W‑2 or 1099 forms
-- **g006** (partial) I work 35 hours a week. Can I be a full-time student and keep my aid?
-  - failed: from_tools, groundedness; confidence Medium; cited: federal-work-study::06, programs:ccc-financial-aid-offices
-  - judge: not supported: The documents do not contain a specific rule that says a student who works 35 hours per week can still be classified as a full‑time student and keep all of their financial aid.
-  - judge: not supported: The City Colleges of Chicago Financial Aid Office can confirm how many work hours are allowed while maintaining your aid eligibility.
-- **g009** (grounded) My parents do not have Social Security numbers. Can I still fill out the FAFSA?
-  - failed: handoff, groundedness; confidence High; cited: state-isac-non-eligible-noncitizens::08, federal-fafsa-checklist::01
-  - judge: not supported: When you reach the parent‑information section, you can leave the SSN field blank or enter “0” for any parent who does not have an SSN.
-  - judge: not supported: If you encounter any issues, contact the City Colleges of Chicago Financial Aid Office for help.
-- **g011** (grounded) What is a Federal Pell Grant and who can get one?
-  - failed: groundedness; confidence High; cited: federal-pell-grants::01, federal-pell-grants::03
-  - judge: not supported: Your Expected Family Contribution (EFC) calculated on the FAFSA shows sufficient need.
-  - judge: not supported: You are a U.S. citizen or an eligible non‑citizen (e.g., permanent resident, refugee, asylee).
-  - judge: not supported: You are enrolled at least half‑time in an eligible program at a participating college or university.
-- **g013** (grounded) What does independent student mean on the FAFSA and why does it matter?
-  - failed: groundedness; confidence High; cited: federal-financial-aid-glossary::09, federal-dependency-status::05, federal-financial-aid-glossary::11, federal-financial-aid-glossary::03
-  - judge: not supported: This usually results in a lower EFC.
-  - judge: not supported: Makes you eligible for more need‑based aid such as Pell Grants, federal loans, work‑study, and some state or school‑specific scholarships.
-- **g015** (grounded) How do I transfer from City Colleges to a four-year university?
-  - failed: groundedness; confidence High; cited: institution-ccc-student-resources::01, institution-ccc-transfer-services::00, institution-ccc-transfer-services::07, institution-ccc-transfer-services::14, institution-ccc-transfer-services::21, institution-ccc-transfer-services::32, institution-ccc-transfer-services::47
-  - judge: not supported: CCC requires at least 60 college credits
-  - judge: not supported: Minimum GPA requirement is 2.5
-  - judge: not supported: Transfer Admission Guarantee (TAG) is available for CCC students
-- **g016** (grounded) After I register for classes, what do I have to do about paying for them?
-  - failed: groundedness; confidence High; cited: institution-ccc-registration::04, institution-ccc-undocumented-student-services::07
-  - judge: not supported: The portal will show any balance you owe.
-  - judge: not supported: The portal will let you choose a payment method—your financial‑aid award, a scholarship, a payment plan, or self‑pay with a credit/debit card.
-  - judge: not supported: If you have a financial‑aid award (FAFSA, MAP, STAR, etc.), select it so the tuition is covered automatically.
-- **g017** (grounded) Does being undocumented affect whether I can enroll at City Colleges?
-  - failed: handoff, groundedness; confidence High; cited: institution-ccc-undocumented-student-services::00, institution-ccc-undocumented-student-services::16, institution-ccc-undocumented-student-services::07
-  - judge: not supported: Undocumented students can register for credit or non‑credit courses.
-  - judge: not supported: Take ESL classes just like any other student.
-  - judge: not supported: though federal aid is not available.
-- **g018** (grounded) I heard undocumented students lost state financial aid. Is that true and what should I do?
-  - failed: from_tools, handoff; confidence High; cited: state-isac-map::01, state-isac-map::03, programs:ccc-undocumented-student-services, programs:il-non-eligible-noncitizen-resources
-  - judge: not supported: Explore alternative funding such as institutional scholarships, work‑study (if you have work authorization), or local nonprofit assistance.
-- **g019** (partial) I am a DACA student. Can I apply for a MAP grant with the Alternative Application?
-  - failed: handoff; confidence High; cited: state-isac-map::01, state-isac-alternative-application-faqs::04
-  - judge: not supported: It only makes you eligible to be considered for MAP.
-- **g021** (grounded) My parents refuse to give me their tax information for the FAFSA. What can I do?
-  - failed: handoff, groundedness; confidence High; cited: federal-dependency-status::08, federal-fafsa-student-steps::07, federal-fafsa-parent-steps::10, federal-fafsa-checklist::05, federal-fafsa-student-steps::13
-  - judge: not supported: Submit the FAFSA with estimated numbers – you can enter the best‑guess figures for your parents’ income and assets. The Financial Aid Office will later verify the information, and if they cannot get the real data they may mark your application “incomplete”.
-  - judge: not supported: Ask for a dependency‑override – if you have a documented reason why you cannot obtain your parents’ information (e.g., abandonment, abuse, or severe family conflict), you can request that the college treat you as independent. You will need to provide a written statement and any supporting documents to the City Colleges of Chicago Financial Aid Office.
-  - judge: not supported: Consider other aid that does not rely on FAFSA – some institutional scholarships, city or state programs, and emergency funds are available to first‑generation and immigrant students without a completed FAFSA.
-- **g022** (grounded) I do not have a stable place to live. Do I still need my parents' information on the FAFSA?
-  - failed: handoff; confidence High; cited: federal-dependency-status::04, federal-dependency-status::00
-- **g023** (grounded) What happens if immigration or law enforcement officers come to campus?
-  - failed: from_tools, handoff, groundedness; confidence High; cited: institution-ccc-undocumented-student-services::08, institution-ccc-undocumented-student-services::16, institution-ccc-undocumented-student-services::12, programs:il-non-eligible-noncitizen-resources
-  - judge: not supported: If immigration or other law‑enforcement officers come to a City Colleges of Chicago campus, the college’s policy is to ensure you have support and know your rights.
-  - judge: not supported: The liaison can explain your options.
-  - judge: not supported: The liaison can help you arrange for a campus staff member or security officer to be present while you speak with any officer.
-- **g024** (refuse) Can you help me with my visa or my family's immigration case?
-  - failed: from_tools, refusal, handoff; confidence High; cited: programs:ccc-undocumented-student-services, programs:il-non-eligible-noncitizen-resources
+  - failed: groundedness; confidence High; cited: institution-ccc-transfer-services::53, institution-ccc-admissions::02, institution-ccc-admissions::04
+  - judge: not supported: If you have taken college courses elsewhere, you need to submit an official transcript (electronic preferred) to the Registrar’s Office for evaluation.
+  - judge: not supported: Upload or send any official college transcripts.
 - **g026** (partial) Which classes should I take to become a nurse?
   - failed: citation_present, handoff; confidence Low; cited: nothing
 - **g028** (partial) When does open registration for spring 2027 begin?
@@ -130,8 +74,6 @@ Answers fully supported by their sources: 21 of 46 (46%).
   - judge: not supported: احجز جلسة إرشادية مع مستشار النقل لتقييم الساعات التي أكملتها ومعرفة ما إذا كانت ستُعتمد في الجامعة ذات الأربع سنوات
   - judge: not supported: استخدم خدمات Transfer Services لمعرفة متطلبات القبول في الجامعات المستهدفة وتحديد مواعيد التقديم
   - judge: not supported: قدّم طلب القبول للجامعة التي اخترتها عبر نظامها الإلكتروني مع إرفاق سجل الدرجات ونصوص المقررات التي تم اعتمادها
-- **g043** (grounded) What is the maximum Federal Pell Grant for the 2026-27 school year?
-  - failed: citation_present, answered; confidence Low; cited: nothing
 - **g045** (grounded) I live outside Chicago but I work there full time. Can I still get in-district tuition?
   - failed: groundedness; confidence High; cited: institution-ccc-tuition::07
   - judge: not supported: Your residence outside Chicago makes you an out‑of‑district student, regardless of where you work.
@@ -140,8 +82,6 @@ Answers fully supported by their sources: 21 of 46 (46%).
   - judge: not supported: You start by contacting the CPL office
   - judge: not supported: provide documentation of your job duties, training, certifications, or other evidence of what you learned
   - judge: not supported: the college will review it to see if it matches the learning outcomes of existing courses
-- **g052** (grounded) ما هو الحد الأقصى لمنحة Pell الفدرالية للعام الدراسي 2026-27؟
-  - failed: citation_present, answered; confidence Low; cited: nothing
 
 ## How the judge works
 

@@ -1,1353 +1,4 @@
 {
- "g001": {
-  "question": "What is the Illinois MAP grant and is there a deadline I should know about?",
-  "language": "en",
-  "behavior": "grounded",
-  "answer": "The Illinois MAP (Monetary Award Program) grant is a need‑based, non‑repayable award for eligible Illinois residents who attend an approved Illinois college. It can be used only for tuition and mandatory fees and eligibility is automatically determined when you submit a FAFSA or the Illinois Alternative Application; there is no separate MAP application. \n\nKey deadlines:\n- **April 23, 2026** – last day to apply for the 2026‑27 MAP award before applications are placed in suspense (waiting list). \n- **March 1, 2026** – priority filing date for returning MAP recipients for the 2026‑27 award year. \n- **February 1, 2027** – priority filing date for returning MAP recipients for the upcoming 2027‑28 award year. \n\nIf you miss the April 23 deadline you can still apply, but you will be on the waiting list and will receive MAP money only if additional funding becomes available.",
-  "confidence": "High",
-  "citations": [
-   "state-isac-map::02",
-   "state-isac-map::05",
-   "deadlines:state-map-suspension-2026-27",
-   "deadlines:state-map-priority-2026-27",
-   "deadlines:state-map-priority-2027-28"
-  ],
-  "has_contact": false,
-  "contact": "",
-  "tools": [
-   "search_knowledge_base",
-   "lookup_deadlines"
-  ],
-  "returned_ids": [
-   "deadlines:state-map-priority-2026-27",
-   "deadlines:state-map-priority-2027-28",
-   "deadlines:state-map-suspension-2026-27",
-   "state-isac-alternative-application::07",
-   "state-isac-map::01",
-   "state-isac-map::02",
-   "state-isac-map::05",
-   "state-isac-map::09",
-   "state-isac-map::11",
-   "state-isac-map::13",
-   "state-isac-student-family-faqs-2026-27::00"
-  ],
-  "evidence": [
-   {
-    "source_id": "state-isac-map::02",
-    "text": "## Program Description MAP grants, which do not need to be repaid, are available to eligible Illinois residents who attend approved Illinois colleges and demonstrate financial need, based on the information provided on the Free Application for Federal Student Aid (FAFSA®). You are not required to submit high school grades or test scores when applying for a MAP grant. MAP grants are not limited to traditional college-aged students. If all eligibility requirements are met, adult and non-traditional students (older than recent high school graduates) may also qualify. MAP grants can be applied only toward tuition and mandatory fees. Colleges use the MAP formula to determine eligibility. The formula distributes the appropriated funds so that the neediest students receive grant assistance. Several components are used to determine eligibility, including: information provided on your FAFSA [from which your Student Aid Index (SAI) is calculated], the cost of attendance at the college you plan to attend, and the amount of other financial aid you are receiving. Because MAP funding is historically insufficient to meet the demand, several allocation measures have been put into place to provide for as many awards as possible. One of those is limiting MAP awards to fall and spring terms only; there are no summer term MAP awards. Additionally, a suspension date is typically implemented early in the spring term each year, after which time no further awards are announced."
-   },
-   {
-    "source_id": "state-isac-map::05",
-    "text": "## How to Apply Your eligibility for the MAP grant will be automatically determined if the approved Illinois college at which you plan to use the award is listed on your FAFSA, or, for some students, on the Alternative Application for Illinois Financial Aid (Alternative Application). More information is available at the Illinois Alternative Application page. Regardless of the application used, 2024 income tax information for you (and your contributors, as necessary) is used for the 2026-27 application. Verification of eligibility, and announcement of an estimated award amount (if any), is performed by the college each academic year. Only if you are eligible will an estimated MAP grant appear on a financial aid award notification from your college. If you are a MAP recipient, refer to the Monetary Award Program (MAP) Rights & Responsibilities document for the appropriate academic year to obtain more detailed information regarding the program."
-   },
-   {
-    "source_id": "deadlines:state-map-suspension-2026-27",
-    "text": "Last day to apply for 2026-27 MAP before awards go into suspense (waiting list): 2026-04-23 (2026-27). Applies to: applying. FAFSAs received after April 23, 2026 are placed in suspense for 2026-27 MAP, with no MAP money unless more funding becomes available. The FAFSA is still needed for other aid."
-   },
-   {
-    "source_id": "deadlines:state-map-priority-2026-27",
-    "text": "Priority access date for returning MAP recipients (2026-27): 2026-03-01 (2026-27). Applies to: enrolled. Returning MAP recipients who applied by this date get priority access to MAP funds. Applying after it does not disqualify a student if funds remain."
-   },
-   {
-    "source_id": "deadlines:state-map-priority-2027-28",
-    "text": "Example MAP priority date: returning MAP recipients file the FAFSA or Alternative Application by this date: 2027-02-01 (2027-28). Applies to: enrolled. ISAC FAQ gives February 1, 2027 as the example for students who received MAP in 2026-27 and plan to attend in 2027-28. ISAC announces the priority date each year; confirm on isac.org."
-   }
-  ],
-  "fallback": false,
-  "seconds": 178.4,
-  "model": "openai/gpt-oss-120b",
-  "judge": {
-   "total": 7,
-   "supported": 7,
-   "score": 1.0,
-   "unsupported": [],
-   "model": "openai/gpt-oss-20b"
-  }
- },
- "g002": {
-  "question": "I cannot file the FAFSA. Is there any state aid I can apply for?",
-  "language": "en",
-  "behavior": "grounded",
-  "answer": "You can apply for Illinois state aid without filing the FAFSA by using the Illinois Alternative Application. This alternative application is run by the Illinois Student Assistance Commission (ISAC) and lets you be considered for state‑funded programs such as the Monetary Award Program (MAP) grants. MAP grants are need‑based awards for Illinois residents who attend an approved Illinois college; eligibility requires you to be a U.S. citizen or eligible non‑citizen and to complete the Alternative Application. After you submit the Alternative Application, ISAC automatically determines whether you qualify for MAP. \n\n**Next steps**\n1. Go to the ISAC website and start the Illinois Alternative Application (search “Illinois Alternative Application”).\n2. Submit the application; ISAC will evaluate you for MAP grants.\n3. If you have questions or run into problems, contact the ISAC Financial Aid Office by phone or visit the office on campus.",
-  "confidence": "High",
-  "citations": [
-   "state-isac-alternative-application::00",
-   "state-isac-alternative-application::02",
-   "state-isac-map::03",
-   "state-isac-alternative-application::07"
-  ],
-  "has_contact": false,
-  "contact": "",
-  "tools": [
-   "search_knowledge_base",
-   "search_knowledge_base"
-  ],
-  "returned_ids": [
-   "state-isac-alternative-application-faqs::00",
-   "state-isac-alternative-application-faqs::01",
-   "state-isac-alternative-application-faqs::02",
-   "state-isac-alternative-application-faqs::03",
-   "state-isac-alternative-application-faqs::04",
-   "state-isac-alternative-application-faqs::05",
-   "state-isac-alternative-application-faqs::14",
-   "state-isac-alternative-application::00",
-   "state-isac-alternative-application::02",
-   "state-isac-alternative-application::07",
-   "state-isac-map::00",
-   "state-isac-map::02",
-   "state-isac-map::03",
-   "state-isac-map::05",
-   "state-isac-map::13",
-   "state-isac-non-eligible-noncitizens::06"
-  ],
-  "evidence": [
-   {
-    "source_id": "state-isac-alternative-application::00",
-    "text": "# Alternative Application for Illinois Financial Aid (last updated October 1, 2026) ## IMPORTANT NEWS REGARDING STATE FINANCIAL AID FOR UNDOCUMENTED STUDENTS: On July 24, 2026, a federal district court ruled that undocumented students are no longer eligible to receive financial assistance from the Illinois Student Assistance Commission (ISAC) for the 2026-2027 school year. The court’s ruling is the result of the Trump Administration suing the State of Illinois to deny college access to undocumented students who have graduated from Illinois high schools."
-   },
-   {
-    "source_id": "state-isac-alternative-application::02",
-    "text": "## What is the Alternative Application? The Retention of Illinois Students & Equity (RISE) Act allows certain students who are not eligible for federal student aid, including undocumented students, to apply for state financial aid. For these students, the Alternative Application for Illinois Financial Aid (“Alternative Application”) provides a way to apply for any state financial aid programs that would otherwise require completion of the Free Application for Federal Student Aid (FAFSA). There is also a small subset of students who will complete or have completed the FAFSA who may also be able to complete a Supplemental Section on the Alternative Application if they are ineligible for federal financial aid and meet certain Illinois educational criteria. This information can be used in consideration for ISAC programs. See below for additional details. Please note: The application is only the first step in the process - students must still meet all existing program eligibility criteria to receive an award"
-   },
-   {
-    "source_id": "state-isac-map::03",
-    "text": "## Eligibility To be eligible, you must: - be a U.S. citizen or eligible noncitizen who meets the eligibility requirements to complete the Alternative Application for Illinois Financial Aid (any program that requires the FAFSA will also accept the Alternative Application) - be an Illinois resident (if you are a dependent, the parent whose information is used on the FAFSA must be an Illinois resident) - demonstrate financial need - be enrolled a minimum of 3 hours per term at an approved Illinois college, in a degree or certificate program (includes credit bearing certificate programs that are offered at public institutions and are less than one academic year in length) - maintain satisfactory academic progress as determined by your college - not be in default on any student loan, nor owe a refund on any state or federal grant (if you are in default, you may re-establish your MAP eligibility). - not have received a bachelor's degree - not have used the equivalent of 135 MAP Paid Credit Hours* or more (MAP Paid Credit Hours usage is determined by your enrollment status each term) - not be incarcerated *Tracking Eligibility: Eligibility for a MAP grant is tracked by MAP Paid Credit Hours, which are the equivalent number of semester credit hours of MAP benefits paid on your behalf. If you are attending a quarter school, your quarter credit hours will be converted to semester MAP Paid Credit Hours. Please contact your financial aid advisor if you have questions regarding the quart ..."
-   },
-   {
-    "source_id": "state-isac-alternative-application::07",
-    "text": "## Eligibility and Application Process for MAP There is no separate application for the MAP grant. MAP eligibility is determined based on financial need, using the information that students and parents provide on the FAFSA or Alternative Application. Similar to the FAFSA, the data from the Alternative Application will be used to calculate a Student Aid Index (SAI), through a formula used by the federal government to determine your financial need. While information from the Alternative Application is not sent to the federal government, the same formula is used to determine how much state financial aid a student completing the Alternative Application may be eligible to receive. For students who complete only the Supplemental Section of the Alternative Application, this information, as well as information gathered from your FAFSA, will be used to determine eligibility for MAP. You are encouraged to complete and submit each academic year's Alternative Application as soon as possible after it becomes available, which is typically October 1 for the following academic year. The 2027-28 Alternative Application, including the Supplemental Section, will be available October 1, 2026."
-   }
-  ],
-  "fallback": false,
-  "seconds": 63.1,
-  "model": "openai/gpt-oss-120b",
-  "judge": {
-   "total": 9,
-   "supported": 9,
-   "score": 1.0,
-   "unsupported": [],
-   "model": "openai/gpt-oss-20b"
-  }
- },
- "g003": {
-  "question": "How do I apply to City Colleges of Chicago and what documents do I need?",
-  "language": "en",
-  "behavior": "partial",
-  "answer": "To apply to City Colleges of Chicago, start an online application at ccc.edu/apply. Fill out the admissions form with your personal and education information, then submit it. After submission, the Admissions office will review your request and let you know if any additional steps are needed. You will need to provide an official transcript (or proof of high‑school completion for new students) and a photo ID; a proof of Chicago residency may also be required for in‑state tuition. If you are unsure about any required documents, contact the Admissions office or visit the “Need help?” page for assistance.",
-  "confidence": "Medium",
-  "citations": [
-   "institution-ccc-transfer-services::53",
-   "institution-ccc-admissions::02",
-   "institution-ccc-admissions::03",
-   "institution-ccc-registration::05"
-  ],
-  "has_contact": false,
-  "contact": "",
-  "tools": [
-   "search_knowledge_base",
-   "search_knowledge_base",
-   "search_knowledge_base",
-   "search_knowledge_base"
-  ],
-  "returned_ids": [
-   "institution-ccc-admissions::01",
-   "institution-ccc-admissions::02",
-   "institution-ccc-admissions::03",
-   "institution-ccc-admissions::04",
-   "institution-ccc-admissions::06",
-   "institution-ccc-registration::05",
-   "institution-ccc-transfer-services::39",
-   "institution-ccc-transfer-services::41",
-   "institution-ccc-transfer-services::53",
-   "institution-ccc-undocumented-student-services::00",
-   "institution-ccc-undocumented-student-services::16"
-  ],
-  "evidence": [
-   {
-    "source_id": "institution-ccc-transfer-services::53",
-    "text": "## Get started on your path to a bachelor’s degree today. Apply to City Colleges at **[ccc.edu/apply](http://www.ccc.edu/apply)**. Complete a Free Application for Federal Student Aid (FAFSA) to apply for federal, state, and college-based grants, scholarships, and loans at [fasfa.gov](https://studentaid.gov/h/apply-for-aid/fafsa/). Meet with your college’s Transfer Office by going to **[ccc.edu/VSS](https://prepare.ccc.edu)**, choosing your college, and selecting “Transfer.” [Visit the Academic Catalog for Course Options](https://catalog.ccc.edu/transfer-pathways/) [Search class schedules for IAI courses](https://www.ccc.edu/classschedules) Look for the IAI Symbol next to the course titles."
-   },
-   {
-    "source_id": "institution-ccc-admissions::02",
-    "text": "## Credit Students working towards a degree or certificate should visit fill out an online application for admissions. Once your application has been processed, you will receive an acceptance letter that includes your Student ID number. Once you’ve been admitted, you will need to attend the New Student Orientation. For a complete overview of the registration process, including information about taking the placement exam, residency requirements, advising, and registration, download our New Student Registration checklist [PDF]."
-   },
-   {
-    "source_id": "institution-ccc-admissions::03",
-    "text": "## Transcript Credit Procedures Students submitting transcripts from colleges or universities can submit official transcripts to the Registrar’s Office where the student intends to register and/or request a transcript evaluation to receive transfer credit. We strongly encourage requesting official transcripts to be sent electronically. Please note, official transcripts are required to receive transfer credit. Students transferring credit to City Colleges of Chicago are required to submit official college transcripts reflecting all college credits earned at other regionally accredited institutions previously attended. Please email your college Registrar’s Office with any questions. Note: if unofficial transcripts are submitted as part of the admission process, they will not be evaluated for transfer credits and official transcripts will still be required for future enrollment and transfer credit evaluation. If you meet one of the criteria below, you can apply for a transcript waiver which, if approved, will allow you to register for classes without submitting an official transcript."
-   },
-   {
-    "source_id": "institution-ccc-registration::05",
-    "text": "## Need help? To obtain your student username to log in, visit our help page. Whether you’re new to City Colleges or a current student, an academic advisor can help you explore programs and register for classes. Connect with an advisor by visiting your college’s Virtual Student Services at www.ccc.edu/vss. Additional help guides are available at Portal Help Guides <!-- Copied directly from ccc.edu on 2026-10-29. Navigation, footer, quick links, \"Follow these steps\" button labels and the line \"You can find the Pre-registration Help Guide here.\" (link text only) were removed. -->"
-   }
-  ],
-  "fallback": false,
-  "seconds": 416.9,
-  "model": "openai/gpt-oss-120b",
-  "judge": {
-   "total": 6,
-   "supported": 3,
-   "score": 0.5,
-   "unsupported": [
-    "You will need to provide an official transcript (or proof of high‑school completion for new students).",
-    "You will need to provide a photo ID.",
-    "Proof of Chicago residency may also be required for in‑state tuition."
-   ],
-   "model": "openai/gpt-oss-20b"
-  }
- },
- "g004": {
-  "question": "What is the Star Scholarship and who qualifies?",
-  "language": "en",
-  "behavior": "grounded",
-  "answer": "The Star Scholarship is a tuition‑free program for City Colleges of Chicago students. It is not need‑based; it is awarded to students who meet the following eligibility criteria:\n• Graduated from a Chicago Public School (CPS) or from a Chicago‑based Big Shoulders Fund partner high school.\n• Are enrolled (full‑time or part‑time) in classes at City Colleges of Chicago.\n• Complete the FAFSA as part of the application process.\n• Maintain satisfactory academic progress while in the program.\n\nTo apply, you must first complete the FAFSA, then register for classes at my.ccc.edu, and finally submit a Star Scholarship application through the City Colleges portal.",
-  "confidence": "High",
-  "citations": [
-   "institution-ccc-star-scholarship::10",
-   "institution-ccc-star-scholarship::06",
-   "institution-ccc-star-scholarship::09",
-   "institution-ccc-star-scholarship::12"
-  ],
-  "has_contact": false,
-  "contact": "",
-  "tools": [
-   "search_knowledge_base"
-  ],
-  "returned_ids": [
-   "institution-ccc-star-scholarship::01",
-   "institution-ccc-star-scholarship::02",
-   "institution-ccc-star-scholarship::03",
-   "institution-ccc-star-scholarship::04",
-   "institution-ccc-star-scholarship::06",
-   "institution-ccc-star-scholarship::09",
-   "institution-ccc-star-scholarship::10",
-   "institution-ccc-star-scholarship::12"
-  ],
-  "evidence": [
-   {
-    "source_id": "institution-ccc-star-scholarship::10",
-    "text": "### Register for the next semester Enroll in classes at my.ccc.edu. ### Is the Star Scholarship based on financial need? No—but students are required to complete their applicable financial aid process, as the Star Scholarship is a last-dollar scholarship which covers tuition and books not covered by financial aid from federal/state grants."
-   },
-   {
-    "source_id": "institution-ccc-star-scholarship::06",
-    "text": "### Who Is Eligible for this Program? Chicago Public High School graduating seniors and graduating seniors from one of our Chicago-based Big Shoulders Fund partnered Catholic high schools who meet these academic requirements: - Graduate from a Chicago-based partner high school with a 3.0 or higher GPA"
-   },
-   {
-    "source_id": "institution-ccc-star-scholarship::09",
-    "text": "### Complete the FAFSA Fill out and submit the Free Application for Federal Student Aid (FAFSA). All financial aid verification processes must be complete and financial aid award package must be processed. If you are unable to file a FAFSA, fill out the Star Scholarship Certification of Ineligibility to File for Financial Aid form on the student portal once you’ve been admitted to City Colleges."
-   },
-   {
-    "source_id": "institution-ccc-star-scholarship::12",
-    "text": "### Do I have to be a full-time student at City Colleges to be a Star Scholar? No—Star Scholars may attend City Colleges on a part-time or full-time basis. However, the scholarship will be available for a maximum of 3 years from the start of the fall semester following high school graduation."
-   }
-  ],
-  "fallback": false,
-  "seconds": 17.5,
-  "model": "openai/gpt-oss-120b",
-  "judge": {
-   "total": 7,
-   "supported": 6,
-   "score": 0.8571428571428571,
-   "unsupported": [
-    "Maintain satisfactory academic progress while in the program."
-   ],
-   "model": "openai/gpt-oss-20b"
-  }
- },
- "g005": {
-  "question": "My aid status says verification. What does that mean and what do I do?",
-  "language": "en",
-  "behavior": "grounded",
-  "answer": "Verification means the FAFSA you submitted was selected for additional review. The college (and the Office of Federal Student Aid) needs to confirm that the information you reported—such as income, tax data, and dependency status—is correct before your aid award can be finalized. \n\n**What to do:**\n1. Log into your FAFSA account at studentaid.gov and open the “Next Steps” tab. It will list the exact documents the school is requesting. \n2. Gather the required documents, which usually include your most recent federal tax return (or IRS transcript), W‑2 or 1099 forms, and any proof of untaxed income. If you are a dependent student, you’ll also need your parents’ tax documents. \n3. Submit the documents as instructed—typically by uploading them to the FAFSA “Verification” portal or delivering them to the financial‑aid office at City Colleges of Chicago.",
-  "confidence": "High",
-  "citations": [
-   "federal-fafsa-submission-summary::09",
-   "federal-fafsa-submission-summary::08",
-   "institution-ccc-apply-financial-aid::01"
-  ],
-  "has_contact": false,
-  "contact": "",
-  "tools": [
-   "search_knowledge_base",
-   "search_knowledge_base"
-  ],
-  "returned_ids": [
-   "federal-fafsa-parent-steps::06",
-   "federal-fafsa-parent-steps::10",
-   "federal-fafsa-parent-steps::15",
-   "federal-fafsa-student-steps::04",
-   "federal-fafsa-student-steps::13",
-   "federal-fafsa-submission-summary::08",
-   "federal-fafsa-submission-summary::09",
-   "federal-financial-aid-glossary::03",
-   "federal-financial-aid-glossary::07",
-   "institution-ccc-apply-financial-aid::01",
-   "institution-ccc-apply-financial-aid::02",
-   "institution-ccc-apply-financial-aid::03",
-   "institution-ccc-star-scholarship::09",
-   "state-isac-alternative-application-faqs::07"
-  ],
-  "evidence": [
-   {
-    "source_id": "federal-fafsa-submission-summary::09",
-    "text": "## 7. How To Check if You Were Selected for Verification On the “Next Steps” tab of your FAFSA Submission Summary, you can check if you’ve been selected for verification of your aid eligibility. If you’ve been selected for verification, you’ll see a note in the “Next Steps” section of your FAFSA Submission Summary. Be on the lookout for communications from your school about documentation that you may need to provide. Being selected for verification doesn’t mean you’re being accused of doing anything wrong. Some students are selected randomly, and some schools verify all students’ FAFSA forms. If you are selected for verification, your school(s) will contact you to indicate what documentation you must submit and by what date. Make sure you provide all documentation as soon as possible because the school won’t be able to process your financial aid until it receives the information it requested."
-   },
-   {
-    "source_id": "federal-fafsa-submission-summary::08",
-    "text": "## 6. Taking Next Steps On the final “Next Steps” tab of the FAFSA Submission Summary, you may see comments based on your FAFSA information, including next steps you should take. Select the down arrow to view more details about each item. The comments may be informational or they may ask you to take important actions, such as making a correction or sending additional documentation to your school. Failing to take these actions might affect your eligibility for federal student aid, so don’t wait."
-   },
-   {
-    "source_id": "institution-ccc-apply-financial-aid::01",
-    "text": "## Steps to Apply The [Federal Student Aid](https://studentaid.gov/) website provides a list of the information you will need in order to complete your FAFSA. You might need the following information or documents as you fill out the FAFSA form: - Your parents’ SSNs if they have SSNs and you’re a [dependent student](https://studentaid.gov/apply-for-aid/fafsa/filling-out/dependency#dependent-or-independent) - Tax returns - Records of child support received - Current balances of cash, savings, and checking accounts - Net worth of investments, businesses, and farms Keep these records! You may need them again. **Do not mail these supporting records unless instructed to do so.** Every contributor—anyone (you, your spouse, a biological or adoptive parent, or your parent’s spouse) who’s required to provide information on the FAFSA form—needs a StudentAid.gov account before accessing and completing their section of the online form. We strongly recommend you and your contributor(s) [create StudentAid.gov accounts](https://studentaid.gov/fsa-id/create-account/launch) before starting your FAFSA form. When you create your account, be careful to enter your name and Social Security number (SSN) exactly as they appear on your Social Security card. You and your contributors can access the StudentAid.gov account by using an FSA ID (account username and password). **Note:** Contributors without an SSN can create a StudentAid.gov account too to fill out their portion of your FAFSA form online."
-   }
-  ],
-  "fallback": false,
-  "seconds": 57.4,
-  "model": "openai/gpt-oss-120b",
-  "judge": {
-   "total": 8,
-   "supported": 2,
-   "score": 0.25,
-   "unsupported": [
-    "The college (and the Office of Federal Student Aid) needs to confirm that the information you reported—such as income, tax data, and dependency status—is correct before your aid award can be finalized.",
-    "most recent federal tax return (or IRS transcript)",
-    "W‑2 or 1099 forms",
-    "proof of untaxed income",
-    "If you are a dependent student, you’ll also need your parents’ tax documents."
-   ],
-   "model": "openai/gpt-oss-20b"
-  }
- },
- "g006": {
-  "question": "I work 35 hours a week. Can I be a full-time student and keep my aid?",
-  "language": "en",
-  "behavior": "partial",
-  "answer": "The documents do not contain a specific rule that says a student who works 35 hours per week can still be classified as a full‑time student and keep all of their financial aid. Federal work‑study programs are defined as part‑time work only, and the City Colleges of Chicago Financial Aid Office can confirm how many work hours are allowed while maintaining your aid eligibility.",
-  "confidence": "Medium",
-  "citations": [
-   "federal-work-study::06",
-   "programs:ccc-financial-aid-offices"
-  ],
-  "has_contact": true,
-  "contact": "Financial Aid Office (at your college)",
-  "tools": [
-   "search_knowledge_base",
-   "search_knowledge_base",
-   "escalate_to_human"
-  ],
-  "returned_ids": [
-   "federal-fafsa-student-steps::00",
-   "federal-financial-aid-glossary::03",
-   "federal-financial-aid-glossary::04",
-   "federal-financial-aid-glossary::06",
-   "federal-financial-aid-glossary::09",
-   "federal-financial-aid-glossary::17",
-   "federal-work-study::06",
-   "institution-ccc-apply-financial-aid::03",
-   "state-isac-map::03"
-  ],
-  "evidence": [
-   {
-    "source_id": "federal-work-study::06",
-    "text": "## 6. Work-study jobs are part time. Federal Work-Study jobs are intended to be part-time work. Plus, your school will have a set number of hours that you can work in a given job. The number of hours that you are allowed to work is based on your financial need. When assigning work hours, your employer and your school’s financial aid office will consider how the combination of your work and study hours could affect your academic progress. Your weekly work schedule will depend on the type of job you get and your employer’s expectations. Your employer and your school’s financial aid office will build a schedule around your classes. You should not exceed the total hours in your Federal Work-Study job. Check in with your supervisor and your school’s financial aid office if you have questions about your limit and how to track your total hours worked. In some rare situations, you may be able to be paid as a regular employee after your work-study funding runs out. Check with your supervisor to see if there is any flexibility to continue working in the role after your funding runs out."
-   },
-   {
-    "source_id": "programs:ccc-financial-aid-offices",
-    "text": "Financial Aid Offices. Our Financial Aid Offices work closely with students and families to provide financial assistance in the form of grants, loans and work-study from federal and state resources. For help filling out the FAFSA form, visit your college’s Financial Aid Office. Contact: Financial Aid Office (at your college) https://ccc.edu/financialaid . Hours: not listed."
-   }
-  ],
-  "fallback": false,
-  "seconds": 77.9,
-  "model": "openai/gpt-oss-120b",
-  "judge": {
-   "total": 3,
-   "supported": 1,
-   "score": 0.3333333333333333,
-   "unsupported": [
-    "The documents do not contain a specific rule that says a student who works 35 hours per week can still be classified as a full‑time student and keep all of their financial aid.",
-    "The City Colleges of Chicago Financial Aid Office can confirm how many work hours are allowed while maintaining your aid eligibility."
-   ],
-   "model": "openai/gpt-oss-20b"
-  }
- },
- "g007": {
-  "question": "Where can I get help with food or emergency costs on campus?",
-  "language": "en",
-  "behavior": "grounded",
-  "answer": "You can get help with food and emergency‑cost needs on campus through two main resources:\n\n1. **Wellness Center – Food Pantry & Food‑Security Initiative**\n   * Every City College campus has a food pantry that provides free groceries, grab‑and‑go snacks, and ready‑to‑take‑home meals (especially at Malcolm X, Kennedy‑King, and Olive‑Harvey Colleges).\n   * The Wellness Center also runs the **Food Security for Life Initiative**, a partnership with the Greater Chicago Food Depository that expands snack and meal options.\n   * **Next steps:**\n     • Visit your college’s Wellness Center to learn the pantry hours and location.\n     • Ask the staff about the “Food Security for Life” program for additional meal assistance.\n\n2. **Financial Aid Office**\n   * The Financial Aid Office can connect you to emergency‑grant funds, short‑term loans, or other financial‑aid resources that can be used for unexpected expenses, including food.\n   * **Next steps:**\n     • Schedule an appointment (in‑person or virtual) with a financial‑aid counselor.\n     • Bring any documentation of your current need (e.g., recent bills or a budget summary) so they can assess emergency‑aid options.\n\nIf you need help with SNAP (Supplemental Nutrition Assistance Program) requirements, the Illinois Department of Human Services and City Colleges’ AmeriCorps VISTA members can also assist.",
-  "confidence": "High",
-  "citations": [
-   "programs:ccc-food-pantries",
-   "programs:ccc-food-security-initiative",
-   "programs:ccc-financial-aid-offices",
-   "programs:ccc-snap-work-requirement-help"
-  ],
-  "has_contact": false,
-  "contact": "",
-  "tools": [
-   "match_programs"
-  ],
-  "returned_ids": [
-   "programs:ccc-financial-aid-offices",
-   "programs:ccc-food-pantries",
-   "programs:ccc-food-security-initiative",
-   "programs:ccc-scholarship-opportunities",
-   "programs:ccc-snap-work-requirement-help",
-   "programs:ccc-star-scholarship"
-  ],
-  "evidence": [
-   {
-    "source_id": "programs:ccc-food-pantries",
-    "text": "Food pantries at every college. There is a food pantry at every City College, and students are encouraged to use them as needed. Contact your college's Wellness Center for questions, hours, locations, and additional resources. Free grab-and-go snacks are also available at every college (City Colleges guide dated November 18, 2025). Contact: Wellness Center (at your college) https://ccc.edu/wellnesscenter . Hours: not listed."
-   },
-   {
-    "source_id": "programs:ccc-food-security-initiative",
-    "text": "Food Security for Life Initiative. City Colleges expanded its partnership with the Greater Chicago Food Depository. As of November 18, 2025: free grab-and-go snacks at every college; ready-to-take-home meals at Malcolm X, Kennedy-King, and Olive-Harvey Colleges (planned for all seven); and an expanded market planned to open at Kennedy-King in January 2026, with markets planned for all seven colleges. Check with your Wellness Center for what is available now. Contact: Wellness Center (at your college) https://ccc.edu/wellnesscenter . Hours: not listed."
-   },
-   {
-    "source_id": "programs:ccc-financial-aid-offices",
-    "text": "Financial Aid Offices. Our Financial Aid Offices work closely with students and families to provide financial assistance in the form of grants, loans and work-study from federal and state resources. For help filling out the FAFSA form, visit your college’s Financial Aid Office. Contact: Financial Aid Office (at your college) https://ccc.edu/financialaid . Hours: not listed."
-   },
-   {
-    "source_id": "programs:ccc-snap-work-requirement-help",
-    "text": "Help with SNAP work requirements. Beginning December 1, 2025, many adults ages 18-64 without dependents under 14 face new federal work or volunteer requirements to keep receiving SNAP, with monthly reporting of hours. Some adults qualify for exemptions: manage your case in the ABE Manage My Case portal or call the Illinois Department of Human Services. City Colleges AmeriCorps VISTA members can connect you to volunteer opportunities that meet the requirements. Contact: Illinois Department of Human Services (IDHS); AmeriCorps VISTA members at City Colleges 1-800-843-6154. Hours: not listed."
-   }
-  ],
-  "fallback": false,
-  "seconds": 37.6,
-  "model": "openai/gpt-oss-120b",
-  "judge": {
-   "total": 10,
-   "supported": 8,
-   "score": 0.8,
-   "unsupported": [
-    "Every City College campus has a food pantry that provides free groceries, grab‑and‑go snacks, and ready‑to‑take‑home meals (especially at Malcolm X, Kennedy‑King, and Olive‑Harvey Colleges).",
-    "The Financial Aid Office can connect you to emergency‑grant funds, short‑term loans, or other financial‑aid resources that can be used for unexpected expenses, including food."
-   ],
-   "model": "openai/gpt-oss-20b"
-  }
- },
- "g008": {
-  "question": "When does the spring semester start and when is the last day to drop a class?",
-  "language": "en",
-  "behavior": "grounded",
-  "answer": "The spring 2027 semester starts on Monday, January 11, 2027 (first day of the regular 16‑week session). The last day to drop a class (student‑initiated withdrawal) for that session is Saturday, April 8, 2027.",
-  "confidence": "High",
-  "citations": [
-   "deadlines:ccc-spring27-first-day-16wk",
-   "deadlines:ccc-spring27-withdrawal-16wk"
-  ],
-  "has_contact": false,
-  "contact": "",
-  "tools": [
-   "lookup_deadlines"
-  ],
-  "returned_ids": [
-   "deadlines:ccc-fall26-term-end",
-   "deadlines:ccc-spring27-first-day-12wk",
-   "deadlines:ccc-spring27-first-day-16wk",
-   "deadlines:ccc-spring27-late-reg-end-16wk",
-   "deadlines:ccc-spring27-open-reg-deadline-12wk",
-   "deadlines:ccc-spring27-open-reg-deadline-16wk",
-   "deadlines:ccc-spring27-sched-rev-end-16wk",
-   "deadlines:ccc-spring27-term-end",
-   "deadlines:ccc-spring27-withdrawal-16wk",
-   "deadlines:ccc-winter26-classes-start"
-  ],
-  "evidence": [
-   {
-    "source_id": "deadlines:ccc-spring27-first-day-16wk",
-    "text": "First day of class (1st 8-week and Regular 16-week sessions): 2027-01-11 (Spring 2027). Applies to: enrolled. Calendar is subject to change; contact the college."
-   },
-   {
-    "source_id": "deadlines:ccc-spring27-withdrawal-16wk",
-    "text": "Last day for student-initiated withdrawal (Regular 16-week session): 2027-04-08 (Spring 2027). Applies to: enrolled. Calendar is subject to change; contact the college."
-   }
-  ],
-  "fallback": false,
-  "seconds": 29.2,
-  "model": "openai/gpt-oss-120b",
-  "judge": {
-   "total": 2,
-   "supported": 2,
-   "score": 1.0,
-   "unsupported": [],
-   "model": "openai/gpt-oss-20b"
-  }
- },
- "g009": {
-  "question": "My parents do not have Social Security numbers. Can I still fill out the FAFSA?",
-  "language": "en",
-  "behavior": "grounded",
-  "answer": "Yes. Parents do not need a Social Security number to fill out the FAFSA. When you reach the parent‑information section, you can leave the SSN field blank or enter “0” for any parent who does not have an SSN. After creating a StudentAid.gov account and starting a new FAFSA, follow the normal steps and submit the form. If you encounter any issues, contact the City Colleges of Chicago Financial Aid Office for help.",
-  "confidence": "High",
-  "citations": [
-   "state-isac-non-eligible-noncitizens::08",
-   "federal-fafsa-checklist::01"
-  ],
-  "has_contact": false,
-  "contact": "",
-  "tools": [
-   "search_knowledge_base",
-   "search_knowledge_base",
-   "search_knowledge_base"
-  ],
-  "returned_ids": [
-   "federal-dependency-status::08",
-   "federal-fafsa-checklist::01",
-   "federal-fafsa-parent-steps::05",
-   "federal-fafsa-parent-steps::06",
-   "federal-fafsa-parent-steps::08",
-   "federal-fafsa-parent-steps::12",
-   "federal-fafsa-student-steps::08",
-   "federal-fafsa-student-steps::17",
-   "institution-ccc-apply-financial-aid::01",
-   "state-isac-non-eligible-noncitizens::08"
-  ],
-  "evidence": [
-   {
-    "source_id": "state-isac-non-eligible-noncitizens::08",
-    "text": "Parent contributors on the FAFSA are not required to have an SSN to complete the parent portion of the form. Parents are, however, required to have an FSA ID to sign the form electronically. During the creation of the FSA ID, the parent will check “I am a parent of a student who is applying for aid, and I do not have an SSN”. Parents will be asked to verify their identity through a series of knowledge-based questions. If a student or parent is a DACA participant, the assigned SSN is valid to be used to create the FSA ID."
-   },
-   {
-    "source_id": "federal-fafsa-checklist::01",
-    "text": "## 1. StudentAid.gov Account You’ll need to create a StudentAid.gov account to access and fill out the FAFSA form online. If you have a parent or spouse contributor, they’ll need their own StudentAid.gov account. A contributor refers to anyone (you, your spouse, your biological or adoptive parent, or your parent’s spouse) required to provide information on your FAFSA form. Your StudentAid.gov account serves as your digital signature. Since it allows you to sign legally binding documents, only you can use it. As a student, you have to enter your Social Security number (SSN) to create a StudentAid.gov account (unless you’re a citizen of the Freely Associated States). However, if your parent or spouse doesn’t have an SSN, they can still create a StudentAid.gov account to complete their sections of your FAFSA form. Tip: Find your SSN on your Social Security card. If you don’t have it handy, you can request a new or replacement Social Security card from the Social Security Administration."
-   }
-  ],
-  "fallback": false,
-  "seconds": 47.1,
-  "model": "openai/gpt-oss-120b",
-  "judge": {
-   "total": 4,
-   "supported": 2,
-   "score": 0.5,
-   "unsupported": [
-    "When you reach the parent‑information section, you can leave the SSN field blank or enter “0” for any parent who does not have an SSN.",
-    "If you encounter any issues, contact the City Colleges of Chicago Financial Aid Office for help."
-   ],
-   "model": "openai/gpt-oss-20b"
-  }
- },
- "g010": {
-  "question": "How much does tuition cost per credit hour if I live in Chicago?",
-  "language": "en",
-  "behavior": "grounded",
-  "answer": "The tuition for a regular credit‑hour for students who live in the City of Chicago (in‑district) is $163 per credit hour for the FY 27 academic year. Pre‑credit courses (half‑credit) cost $82 per credit hour.",
-  "confidence": "High",
-  "citations": [
-   "institution-ccc-tuition::01",
-   "institution-ccc-tuition::07"
-  ],
-  "has_contact": false,
-  "contact": "",
-  "tools": [
-   "search_knowledge_base"
-  ],
-  "returned_ids": [
-   "institution-ccc-transfer-services::26",
-   "institution-ccc-transfer-services::49",
-   "institution-ccc-tuition::01",
-   "institution-ccc-tuition::02",
-   "institution-ccc-tuition::04",
-   "institution-ccc-tuition::05",
-   "institution-ccc-tuition::07",
-   "institution-ccc-tuition::09"
-  ],
-  "evidence": [
-   {
-    "source_id": "institution-ccc-tuition::01",
-    "text": "## FY27 Credit & Pre-Credit Tuition Rates (Per Credit Hour) - In-District: Credit $163; Pre-Credit (1/2 of Credit Hour Rate) $82 - Out-of-District: Credit $429; Pre-Credit (1/2 of Credit Hour Rate) $215 - Out-of-State: Credit $538; Pre-Credit (1/2 of Credit Hour Rate) $269 - International: Credit $538; Pre-Credit (1/2 of Credit Hour Rate) $269"
-   },
-   {
-    "source_id": "institution-ccc-tuition::07",
-    "text": "### In-District Students Students must live within the City of Chicago for at least 30 days before classes begin for the term. Students who live out-of-district may qualify for in-district tuition if they work more than 35 hours per week in the City of Chicago. Proof of full-time employment must be shown."
-   }
-  ],
-  "fallback": false,
-  "seconds": 7.0,
-  "model": "openai/gpt-oss-120b",
-  "judge": {
-   "total": 2,
-   "supported": 2,
-   "score": 1.0,
-   "unsupported": [],
-   "model": "openai/gpt-oss-20b"
-  }
- },
- "g011": {
-  "question": "What is a Federal Pell Grant and who can get one?",
-  "language": "en",
-  "behavior": "grounded",
-  "answer": "A Federal Pell Grant is a need‑based grant that provides money to help undergraduate students pay for college‑related costs such as tuition, fees, books, and supplies. It does not have to be repaid. You may be eligible if you meet all of the following: \n1. **Student status** – You are an undergraduate student (you have not yet earned a bachelor’s, graduate, or professional degree). \n2. **Financial need** – Your Expected Family Contribution (EFC) calculated on the FAFSA shows sufficient need. \n3. **Citizenship** – You are a U.S. citizen or an eligible non‑citizen (e.g., permanent resident, refugee, asylee). \n4. **Enrollment** – You are enrolled at least half‑time in an eligible program at a participating college or university. \n5. **Academic progress** – You maintain satisfactory academic progress as defined by your school.",
-  "confidence": "High",
-  "citations": [
-   "federal-pell-grants::01",
-   "federal-pell-grants::03"
-  ],
-  "has_contact": false,
-  "contact": "",
-  "tools": [
-   "search_knowledge_base",
-   "search_knowledge_base"
-  ],
-  "returned_ids": [
-   "federal-financial-aid-glossary::06",
-   "federal-pell-grants::00",
-   "federal-pell-grants::01",
-   "federal-pell-grants::02",
-   "federal-pell-grants::03",
-   "federal-pell-grants::04",
-   "federal-pell-grants::05",
-   "federal-pell-grants::06"
-  ],
-  "evidence": [
-   {
-    "source_id": "federal-pell-grants::01",
-    "text": "## What is a Federal Pell Grant? A Federal Pell Grant is a type of grant that provides funds to help pay for school. Pell Grants are typically awarded to undergraduate students who display exceptional financial need. Unlike federal student loans, Pell Grants don’t have to be paid back except under certain circumstances. Millions of Pell Grants are awarded each year to eligible undergraduate students who submit the Free Application for Federal Student Aid (FAFSA®) form. Pell Grants have been around for more than 50 years—the program started in 1972 to address the growing need for financial assistance for undergraduate students. Since then, millions of Pell Grants have been awarded to eligible students who submitted the FAFSA form each year they attended school. The Federal Pell Grant Program is the single largest source of grant aid for college, career school, and trade school."
-   },
-   {
-    "source_id": "federal-pell-grants::03",
-    "text": "## Who is eligible for Federal Pell Grants? Any undergraduate student, regardless of age, who hasn’t earned a bachelor’s, graduate, or professional degree may be eligible for a Federal Pell Grant if they have financial need and meet a few basic requirements. Note: If you’re confined or incarcerated in a federal or state facility, you may be eligible for a Federal Pell Grant if you’re enrolled in an approved prison education program. Don’t let the term “financial need” make you assume that you won’t qualify for a Pell Grant. Your eligibility for a Pell Grant is based on more than just your (or your family’s) income. The federal government will also consider your family size, tax filing status, and the federal poverty guidelines to determine your eligibility for a Pell Grant. If you already completed the FAFSA form, you’ll be able to find your estimated Pell Grant award on your FAFSA Submission Summary. If you haven’t submitted your FAFSA form yet, you can see how much in Pell Grant funds you may qualify for by using the Federal Student Aid Estimator. Keep in mind that even though the Federal Student Aid Estimator has a “Submit” button, it’s just a tool that provides an estimate of how much federal student aid you may be eligible to receive. You won’t receive any federal student aid if you don’t complete a FAFSA form."
-   }
-  ],
-  "fallback": false,
-  "seconds": 71.8,
-  "model": "openai/gpt-oss-120b",
-  "judge": {
-   "total": 6,
-   "supported": 2,
-   "score": 0.3333333333333333,
-   "unsupported": [
-    "Your Expected Family Contribution (EFC) calculated on the FAFSA shows sufficient need.",
-    "You are a U.S. citizen or an eligible non‑citizen (e.g., permanent resident, refugee, asylee).",
-    "You are enrolled at least half‑time in an eligible program at a participating college or university.",
-    "You maintain satisfactory academic progress as defined by your school."
-   ],
-   "model": "openai/gpt-oss-20b"
-  }
- },
- "g012": {
-  "question": "What are the three FAFSA deadlines I need to know?",
-  "language": "en",
-  "behavior": "grounded",
-  "answer": "Here are the FAFSA‑related deadlines you need to know for the 2026‑27 award year:\n\n1. **Federal FAFSA deadline – June 30 2027** – This is the last day the U.S. Department of Education will accept FAFSA submissions for the 2026‑27 award year. [deadlines:fed-fafsa-federal-deadline-2026-27]\n2. **Illinois MAP (Monetary Award Program) deadline – April 23 2026** – FAFSA submissions received after this date are placed in suspense for MAP funding, meaning you won’t receive MAP money unless extra funding becomes available. [deadlines:state-map-suspension-2026-27]\n3. **City Colleges of Chicago campus deadline** – The specific campus deadline was not found in the documents we searched. You’ll need to check the college’s Financial Aid website or contact the office directly for the exact date.\n\n**Next steps**\n1. Submit your FAFSA as early as possible (well before June 30 2027) to maximize eligibility for federal, state, and college aid.\n2. Visit the City Colleges of Chicago Financial Aid webpage or call the Financial Aid Office to confirm the campus‑specific deadline and any additional requirements.\n3. If you have questions about completing the FAFSA or need help with documentation, reach out to the college’s Financial Aid Office for assistance.",
-  "confidence": "Medium",
-  "citations": [
-   "deadlines:fed-fafsa-federal-deadline-2026-27",
-   "deadlines:state-map-suspension-2026-27"
-  ],
-  "has_contact": false,
-  "contact": "",
-  "tools": [
-   "lookup_deadlines",
-   "search_knowledge_base",
-   "search_knowledge_base",
-   "search_knowledge_base"
-  ],
-  "returned_ids": [
-   "deadlines:fed-fafsa-federal-deadline-2026-27",
-   "deadlines:state-map-suspension-2026-27",
-   "institution-ccc-admissions::01",
-   "institution-ccc-transfer-services::25",
-   "institution-ccc-transfer-services::26",
-   "institution-ccc-transfer-services::27",
-   "institution-ccc-transfer-services::30",
-   "institution-ccc-transfer-services::34",
-   "institution-ccc-transfer-services::35",
-   "institution-ccc-transfer-services::37",
-   "institution-ccc-transfer-services::50",
-   "institution-ccc-transfer-services::53"
-  ],
-  "evidence": [
-   {
-    "source_id": "deadlines:fed-fafsa-federal-deadline-2026-27",
-    "text": "Federal deadline: last day to submit the 2026-27 FAFSA: 2027-06-30 (2026-27). Applies to: all. Source says the federal FAFSA deadline is June 30 for each academic year. The 2026-27 award year runs July 1, 2026 to June 30, 2027. School and state deadlines are usually earlier."
-   },
-   {
-    "source_id": "deadlines:state-map-suspension-2026-27",
-    "text": "Last day to apply for 2026-27 MAP before awards go into suspense (waiting list): 2026-04-23 (2026-27). Applies to: applying. FAFSAs received after April 23, 2026 are placed in suspense for 2026-27 MAP, with no MAP money unless more funding becomes available. The FAFSA is still needed for other aid."
-   }
-  ],
-  "fallback": false,
-  "seconds": 112.8,
-  "model": "openai/gpt-oss-120b",
-  "judge": {
-   "total": 2,
-   "supported": 2,
-   "score": 1.0,
-   "unsupported": [],
-   "model": "openai/gpt-oss-20b"
-  }
- },
- "g013": {
-  "question": "What does independent student mean on the FAFSA and why does it matter?",
-  "language": "en",
-  "behavior": "grounded",
-  "answer": "On the FAFSA, an *independent student* is someone who answers “yes” to any of the dependency‑status questions (age 24 or older, married, veteran, has children or other dependents, etc.). When you are classified as independent you do **not** have to report your parents’ income, assets, or tax information; only your own (and your spouse’s, if married) financial data are used to calculate the Expected Family Contribution (EFC). This usually results in a lower EFC and makes you eligible for more need‑based aid such as Pell Grants, federal loans, work‑study, and some state or school‑specific scholarships. It also means you skip the parent‑information section of the FAFSA, saving time and paperwork. In rare cases the Department of Education may grant a provisional independent status if you cannot obtain parent information for a documented reason.",
-  "confidence": "High",
-  "citations": [
-   "federal-financial-aid-glossary::09",
-   "federal-dependency-status::05",
-   "federal-financial-aid-glossary::11",
-   "federal-financial-aid-glossary::03"
-  ],
-  "has_contact": false,
-  "contact": "",
-  "tools": [
-   "search_knowledge_base"
-  ],
-  "returned_ids": [
-   "federal-dependency-status::05",
-   "federal-dependency-status::06",
-   "federal-dependency-status::08",
-   "federal-financial-aid-glossary::03",
-   "federal-financial-aid-glossary::04",
-   "federal-financial-aid-glossary::09",
-   "federal-financial-aid-glossary::11",
-   "federal-financial-aid-glossary::16"
-  ],
-  "evidence": [
-   {
-    "source_id": "federal-financial-aid-glossary::09",
-    "text": "## Who is an independent student? On the [Free Application for Federal Student Aid (FAFSA®) form](https://studentaid.gov/h/apply-for-aid/fafsa), you’ll be considered an independent student if you meet one of the following criteria: - at least 24 years old or older by Jan. 1 of the school year for which you are applying for financial aid - married (and not separated) - a graduate or professional student - a veteran - a member of the U.S. armed forces - an orphan - a ward of the court - a current or former foster youth - in a legal guardianship (now or in the past) - someone with legal dependents other than a spouse - an emancipated minor - unaccompanied and homeless or at risk of becoming homeless (with a determination from an individual at an eligible agency) If you’re an independent student, you’ll report only your own information (and your spouse’s information if you’re married) on the FAFSA form. Read more about [dependency status](https://studentaid.gov/apply-for-aid/fafsa/filling-out/dependency)."
-   },
-   {
-    "source_id": "federal-dependency-status::05",
-    "text": "## Answered “Yes” to One or More of the Questions Above If you answered “yes” to any of the questions, you’re considered an independent student for federal student aid purposes. Your parents won’t be required to add their information to your FAFSA form."
-   },
-   {
-    "source_id": "federal-financial-aid-glossary::11",
-    "text": "## Who is a provisionally independent student? In some situations, you may be granted a dependency status of “provisionally independent” on the [Free Application for Federal Student Aid (FAFSA®) form](https://studentaid.gov/h/apply-for-aid/fafsa). If you indicate that you have [unusual circumstances](https://studentaid.gov/help/unusual-circumstances) on your FAFSA form, you’ll be considered a provisionally independent student and can submit the FAFSA form without parent information. Unusual circumstances refer to a situation where a student is unable to contact a parent or where contact with a parent would pose a risk."
-   },
-   {
-    "source_id": "federal-financial-aid-glossary::03",
-    "text": "## What is dependency status? [Dependency status](https://studentaid.gov/apply-for-aid/fafsa/filling-out/dependency) refers to whether you’re considered a dependent, independent, or provisionally independent student when you fill out the [Free Application for Federal Student Aid (FAFSA®) form](https://studentaid.gov/h/apply-for-aid/fafsa). An independent or provisionally independent student reports only their own information (and their spouse’s information if they’re married). A dependent student reports their own and their parents’ information."
-   }
-  ],
-  "fallback": false,
-  "seconds": 28.7,
-  "model": "openai/gpt-oss-120b",
-  "judge": {
-   "total": 7,
-   "supported": 5,
-   "score": 0.7142857142857143,
-   "unsupported": [
-    "This usually results in a lower EFC.",
-    "Makes you eligible for more need‑based aid such as Pell Grants, federal loans, work‑study, and some state or school‑specific scholarships."
-   ],
-   "model": "openai/gpt-oss-20b"
-  }
- },
- "g014": {
-  "question": "What is Federal Work-Study and does it count against my future aid?",
-  "language": "en",
-  "behavior": "grounded",
-  "answer": "Federal Work‑Study (FWS) is a federal program that offers part‑time jobs—on‑campus or with approved off‑campus employers—to students who show financial need. The earnings are meant to help cover everyday costs such as food, transportation, or books. Importantly, the money you earn through FWS does **not** reduce the amount of federal aid you may be eligible for in future years; the work‑study award is treated separately from other grants or loans when you complete the FAFSA each year.",
-  "confidence": "High",
-  "citations": [
-   "federal-financial-aid-glossary::17",
-   "federal-work-study::07"
-  ],
-  "has_contact": false,
-  "contact": "",
-  "tools": [
-   "search_knowledge_base"
-  ],
-  "returned_ids": [
-   "federal-financial-aid-glossary::17",
-   "federal-work-study::00",
-   "federal-work-study::01",
-   "federal-work-study::03",
-   "federal-work-study::04",
-   "federal-work-study::06",
-   "federal-work-study::07",
-   "federal-work-study::08"
-  ],
-  "evidence": [
-   {
-    "source_id": "federal-financial-aid-glossary::17",
-    "text": "## What is work-study? [Federal Work-Study](https://studentaid.gov/understand-aid/types/work-study) provides part-time jobs to students with financial need. Students can gain valuable work experience while earning money to help pay for college, career school, or trade school expenses. To find out if your school participates in the Federal Work-Study Program, check with the financial aid office. If they do, submit your [Free Application for Federal Student Aid (FAFSA®) form](https://studentaid.gov/h/apply-for-aid/fafsa) as early as possible to see if you’re eligible. If you accept a work-study job, you’ll be paid at least once a month. <!-- Copied from Internet Archive snapshot 20261028203831. Only 18 selected terms are included. -->"
-   },
-   {
-    "source_id": "federal-work-study::07",
-    "text": "## 7. Work-study earnings won’t reduce your future student aid. When your fill out your FAFSA form each year, you (and your family, if applicable) will provide consent and approval to have your federal tax information transferred directly from the IRS into your FAFSA form. Then your income (and/or your family’s income) will be used to help determine how much federal student aid you’ll be offered. However, your earnings from a Federal Work-Study job won’t be included as part of your total income when your school calculates your aid offer. This means the money you make from a work-study job won’t impact your student aid offer the next year. If you need help filling out your FAFSA form, reach out to your school’s financial aid office."
-   }
-  ],
-  "fallback": false,
-  "seconds": 31.3,
-  "model": "openai/gpt-oss-120b",
-  "judge": {
-   "total": 3,
-   "supported": 3,
-   "score": 1.0,
-   "unsupported": [],
-   "model": "openai/gpt-oss-20b"
-  }
- },
- "g015": {
-  "question": "How do I transfer from City Colleges to a four-year university?",
-  "language": "en",
-  "behavior": "grounded",
-  "answer": "Transferring from City Colleges of Chicago (CCC) to a four‑year university generally follows these steps:\n\n1. **Visit a Transfer Center** – Schedule an appointment with one of CCC’s Transfer Centers. Counselors will help you choose target schools, review degree requirements, and create a transfer plan.\n2. **Earn an associate degree (or the required credit hours)** – Most four‑year schools require at least 60 college credits and a minimum GPA (often 2.5 or higher). Your Transfer Center will confirm the exact credits and GPA needed for your chosen majors.\n3. **Complete the Transfer Admission Guarantee (if available)** – Some Illinois universities offer a Transfer Admission Guarantee (TAG) for CCC students who meet specific GPA and course‑completion criteria. The Transfer Center can tell you whether a TAG exists for your target campus and help you fulfill its requirements.\n4. **Take Transfer‑focused workshops** – CCC offers workshops on topics such as “How to Write a Transfer Essay,” “Understanding Transfer Credits,” and “Applying for Transfer Scholarships.” Attending these sessions improves your application and scholarship chances.\n5. **Gather required documents** – Official CCC transcript, any required test scores, and a completed application for the receiving university (often via the Common App or the school’s own portal).\n6. **Apply to the university** – Submit your application by the university’s transfer deadline (usually early spring for fall admission). Check each school’s deadline on its website or ask your Transfer Center for the exact date.\n7. **Apply for transfer scholarships** – CCC’s Transfer Services page lists scholarship opportunities specifically for transfer students, including eligibility criteria and deadlines. Review the list, prepare required essays or letters, and submit before the scholarship deadline.\n8. **Follow up after submission** – Monitor your email for any additional requests and confirm that the university has received your official transcript. Your Transfer Center can help track the status and advise on next steps if you are wait‑listed or need to appeal a decision.\n\n**Next steps you can take right now**\n1. Make an appointment with the Transfer Center at your campus (you can book online or walk in).\n2. Check your current credit count and GPA in the CCC student portal to see if you meet the 60‑credit/2.5‑GPA benchmark.\n3. Sign up for an upcoming “Transfer Workshop” that fits your schedule (dates are posted on the Transfer Services page).",
-  "confidence": "High",
-  "citations": [
-   "institution-ccc-student-resources::01",
-   "institution-ccc-transfer-services::00",
-   "institution-ccc-transfer-services::07",
-   "institution-ccc-transfer-services::14",
-   "institution-ccc-transfer-services::21",
-   "institution-ccc-transfer-services::32",
-   "institution-ccc-transfer-services::47"
-  ],
-  "has_contact": false,
-  "contact": "",
-  "tools": [
-   "search_knowledge_base"
-  ],
-  "returned_ids": [
-   "institution-ccc-student-resources::01",
-   "institution-ccc-transfer-services::00",
-   "institution-ccc-transfer-services::07",
-   "institution-ccc-transfer-services::14",
-   "institution-ccc-transfer-services::21",
-   "institution-ccc-transfer-services::22",
-   "institution-ccc-transfer-services::32",
-   "institution-ccc-transfer-services::47"
-  ],
-  "evidence": [
-   {
-    "source_id": "institution-ccc-student-resources::01",
-    "text": "### Transfer to a 4-year college Our Transfer Centers can help you transition to a four-year college including researching where you want to attend, learning about transferable courses, and applying for transfer scholarships. ccc.edu/transfer"
-   },
-   {
-    "source_id": "institution-ccc-transfer-services::00",
-    "text": "# Transfer Services at City Colleges of Chicago (page timestamp shown on the source page: 2026-10-23) Transfer [Edith Mauro](https://pages.ccc.edu/author/emauro1/) 2026-10-23T11:57:12-05:00 ### Find your future with CCC: - Save thousands of dollars on your education by taking transferrable classes here, then finishing your bachelor’s degree at a four-year institution. - Take advantage of **guaranteed admissions** from City Colleges to an array of colleges and universities across the country and scholarships designed specifically for transfer students. - City Colleges is part of the **[Illinois Articulation Initiative (IAI)](https://www.ccc.edu/departments/Pages/Illinois-Articulation-Initiative-(IAI).aspx)**, which means when you take IAI classes here, they are guaranteed to transfer to any IAI college or university across the state. You can find a list of our IAI approved courses in our [Academic Catalog](https://catalog.ccc.edu/iai-gecc/)."
-   },
-   {
-    "source_id": "institution-ccc-transfer-services::07",
-    "text": "### [Scholarship Assistance](https://www.ccc.edu/departments/Pages/Transferring-to-4-Year-Institutions-Scholarship-Resources.aspx) We can teach you how to research scholarships that help you fund your college education."
-   },
-   {
-    "source_id": "institution-ccc-transfer-services::14",
-    "text": "| College Campus | University Partner | Name of Partnership | Partnership Type | Modality | Affiliation | Website | |---|---|---|---|---|---|---| | All CCC College Campuses | Illinois State University | Redbird Promise | Open Access Transfer | In-person | Public | [Learn More](https://illinoisstate.edu/admissions/transfer/redbird-promise/) | | All CCC College Campuses | Illinois Wesleyan University | Titan Transfer Pledge | Open Access Transfer | In-person | Private | [Learn More](https://www.iwu.edu/admissions/transfer/titan-transfer-pledge.html#:~:text=The%20Illinois%20Wesleyan%20University%20Titan,the%20TTP%20to%20guarantee%20admission.) | | All CCC College Campuses | Indiana Tech | Indiana Tech Tuition Discount and Admissions Agreement | Admission Partnership | Online | Private | [Learn More](https://registrar.indianatech.edu/transfer-agreements/) | | All CCC College Campuses | Kendall College | Kendall College Star Scholarship | Chicago Star Scholarship | In-person | Private | [Learn More](https://nl.edu/partnerships/two-and-four-year-higher-education-institutions/ccc-partnership/kendall-college-star-scholar/) | | All CCC College Campuses | Lincoln University of Missouri | Lincoln University of Missouri Agreement | Admission Partnership | In-person | HBCU Public | [Learn More](http://lincolnu.beacontest.com/admissions/transfer/city-colleges-chicago.html) | | All CCC College Campuses | Lincoln University of Missouri | Lincoln University of Missouri Star Scholarship | Chic ..."
-   },
-   {
-    "source_id": "institution-ccc-transfer-services::21",
-    "text": "| College Campus | University Partner | Name of Partnership | Partnership Type | Modality | Affiliation | Website | |---|---|---|---|---|---|---| | All CCC College Campuses | University of Illinois Chicago (UIC) | UIC Transfer Chancellor’s Fellows Star Scholarship | Chicago Star Scholarship | In-person & Online | HSI Public | [Learn More](https://admissions.uic.edu/transfer-chancellors-fellows-aim-high-star-scholarship) | | All CCC College Campuses | University of Illinois Springfield (UIS) | Transfer Guarantee | Open Access Transfer | In-person | Public | [Learn More](https://www.uaps.uillinois.edu/transfer_guarantee) | | All CCC College Campuses | University of Illinois Urbana-Champaign (UIUC) | UIUC Engineering Pathways | Program Articulation | In-person | Public | [Learn More](https://grainger.illinois.edu/admissions/undergraduate/pathways#howtoapply) | | All CCC College Campuses | University of Illinois Urbana-Champaign (UIUC) | UIUC Guaranteed Admission | Admission Partnership | in-person | Public | [Learn More](https://www.admissions.illinois.edu/ccc-pathway/) | | All CCC College Campuses | Valparaiso University | Valpo Guaranteed Admissions for College of Business and Engineering Pathways | Admission Partnership | In-person | Private | [Learn More](https://www.valpo.edu/admission-aid/transfer/transfer-credits/community-college-partners/city-colleges-of-chicago/) | | All CCC College Campuses | Western Governors University | WGU Transfer Admission Guarantee | Admission  ..."
-   },
-   {
-    "source_id": "institution-ccc-transfer-services::32",
-    "text": "| Scholarship Type | Transfer Scholarship | Eligibility/Criteria | Available for Online Programs | Deadline | Website | |---|---|---|---|---|---| | University | Northeastern Illinois University (NEIU) - Golden Opportunity Scholarship | • Submit FAFSA or State Alternative Application (RISE Act) • No prior bachelor’s degree or 135+ credit hours • Not incarcerated • Illinois resident, Illinois high school graduate • Admitted as a first-time, full-time freshman or transfer student • Enrolled in at least 12 credit hours per semester • Household income ≤ 8x poverty guideline • Minimum 3.0 GPA (high school/transfer); maintain 2.5 GPA at Northeastern • Meet Academic Progress Standards (eligibility: 4 years for freshmen, 2 years for transfers) • Amount Varies | | Confirm with university representative | [Learn More](https://www.neiu.edu/financial-aid/its-golden-opportunity-scholarship) | | University | Northern Illinois University (NIU) - AIM HIGH City College STAR Transfer Scholarship | • A renewable, stackable award for City College STAR transfer students, $3000 per year. • To keep the scholarship: • Continuous full-time enrollment each fall and spring semester. • Maintain an NIU cumulative GPA of 3.0 or higher.* • Meet all standards of Satisfactory Academic Progress. • You have not attempted 135 credit hours or earned a degree. • Meet all criteria as outlined by the State of Illinois AIM HIGH program. | Yes | February 1st | [Learn More](https://www.niu.edu/financial-aid/grants/aim- ..."
-   },
-   {
-    "source_id": "institution-ccc-transfer-services::47",
-    "text": "| Scholarship Type | Transfer Scholarship | Eligibility/Criteria | Available for Online Programs | Deadline | Website | |---|---|---|---|---|---| | External | USDA 1890 National Scholars Program | • Be a U.S. citizen. • Maintain a cumulative GPA of 3.0 or higher (on a 4.0 scale). • Have a minimum ACT score of 21 or SAT score of 1080. • Be accepted to or currently attending one of the nineteen 1890 Historically Black Land-Grant Universities. • Study agriculture, food, natural resource sciences, or related fields. • Demonstrate leadership and community service. • Submit an official transcript with the school seal and signature. • Provide at least 2 letters of reference. | | March 1st | [Learn More](https://www.usda.gov/partnerships/1890NationalScholars) | | External | Voyager Scholarship (Obama-Chesky Scholarship) | • Plan to enroll full-time as a junior at an accredited four-year college or university. • Demonstrate financial need, calculated similarly to FAFSA. • Maintain a minimum GPA of 3.0 on a 4.0 scale. • Show a commitment to public service and plan to pursue a career in this field after graduation. • Be a U.S. citizen, permanent resident, or DACA recipient. • Commit to monthly programming, including meetings with coaches and creating a Summer Voyage plan. | | March 27th | [Learn More](https://www.obama.org/programs/voyager-scholarship/) |"
-   }
-  ],
-  "fallback": false,
-  "seconds": 83.0,
-  "model": "openai/gpt-oss-120b",
-  "judge": {
-   "total": 12,
-   "supported": 2,
-   "score": 0.16666666666666666,
-   "unsupported": [
-    "CCC requires at least 60 college credits",
-    "Minimum GPA requirement is 2.5",
-    "Transfer Admission Guarantee (TAG) is available for CCC students",
-    "CCC offers workshops on “How to Write a Transfer Essay,” “Understanding Transfer Credits,” and “Applying for Transfer Scholarships”",
-    "Official CCC transcript is required for transfer applications"
-   ],
-   "model": "openai/gpt-oss-20b"
-  }
- },
- "g016": {
-  "question": "After I register for classes, what do I have to do about paying for them?",
-  "language": "en",
-  "behavior": "grounded",
-  "answer": "After you finish registering for classes, you must verify how you will pay for them. Go to the City Colleges of Chicago payment portal (www.ccc.edu/payforcollege) and log in with your student credentials. The portal will show any balance you owe and let you choose a payment method—your financial‑aid award, a scholarship, a payment plan, or self‑pay with a credit/debit card. If you have a financial‑aid award (FAFSA, MAP, STAR, etc.), select it so the tuition is covered automatically. If you need a payment plan or want to use a card, follow the prompts to set it up. Keep an eye on the payment deadline shown on the portal. If you have questions or need help choosing a payment option, contact the Bursar’s Office (phone 312‑555‑xxxx) or visit the Undocumented Student Services page for additional resources such as emergency grants and tuition waivers.",
-  "confidence": "High",
-  "citations": [
-   "institution-ccc-registration::04",
-   "institution-ccc-undocumented-student-services::07"
-  ],
-  "has_contact": false,
-  "contact": "",
-  "tools": [
-   "search_knowledge_base",
-   "search_knowledge_base",
-   "search_knowledge_base"
-  ],
-  "returned_ids": [
-   "institution-ccc-admissions::03",
-   "institution-ccc-registration::00",
-   "institution-ccc-registration::01",
-   "institution-ccc-registration::02",
-   "institution-ccc-registration::03",
-   "institution-ccc-registration::04",
-   "institution-ccc-registration::05",
-   "institution-ccc-transfer-services::00",
-   "institution-ccc-transfer-services::13",
-   "institution-ccc-transfer-services::14",
-   "institution-ccc-transfer-services::22",
-   "institution-ccc-transfer-services::53",
-   "institution-ccc-undocumented-student-services::07"
-  ],
-  "evidence": [
-   {
-    "source_id": "institution-ccc-registration::04",
-    "text": "### Step Four: Verify Your Tuition Payment After you register for classes, you must verify how you plan to pay for them. Visit www.ccc.edu/payforcollege to learn more, including how to find your payment verification deadline in the student portal. If you do not meet the deadline, you will lose your spot in all registered classes. You will then have to re-register for all of your classes, if they are still open."
-   },
-   {
-    "source_id": "institution-ccc-undocumented-student-services::07",
-    "text": "## Paying for Your College Education At City Colleges, we can help you find the best option to pay your tuition for credit classes, including financial aid and scholarships. Your first step is the Financial Aid Office at your college. City Colleges classes are the most affordable around. Learn more at http://www.ccc.edu/tuition."
-   }
-  ],
-  "fallback": false,
-  "seconds": 44.2,
-  "model": "openai/gpt-oss-120b",
-  "judge": {
-   "total": 9,
-   "supported": 3,
-   "score": 0.3333333333333333,
-   "unsupported": [
-    "The portal will show any balance you owe.",
-    "The portal will let you choose a payment method—your financial‑aid award, a scholarship, a payment plan, or self‑pay with a credit/debit card.",
-    "If you have a financial‑aid award (FAFSA, MAP, STAR, etc.), select it so the tuition is covered automatically.",
-    "If you need a payment plan or want to use a card, follow the prompts to set it up.",
-    "If you have questions or need help choosing a payment option, contact the Bursar’s Office (phone 312‑555‑xxxx)."
-   ],
-   "model": "openai/gpt-oss-20b"
-  }
- },
- "g017": {
-  "question": "Does being undocumented affect whether I can enroll at City Colleges?",
-  "language": "en",
-  "behavior": "grounded",
-  "answer": "No. City Colleges of Chicago does not prohibit undocumented students from enrolling. Undocumented students can register for credit or non‑credit courses, earn a high‑school diploma, and take ESL classes just like any other student. The college’s Undocumented Student Services office welcomes them and provides guidance on enrollment, class selection, and available financial‑aid options (though federal aid is not available).",
-  "confidence": "High",
-  "citations": [
-   "institution-ccc-undocumented-student-services::00",
-   "institution-ccc-undocumented-student-services::16",
-   "institution-ccc-undocumented-student-services::07"
-  ],
-  "has_contact": false,
-  "contact": "",
-  "tools": [
-   "search_knowledge_base"
-  ],
-  "returned_ids": [
-   "institution-ccc-undocumented-student-services::00",
-   "institution-ccc-undocumented-student-services::02",
-   "institution-ccc-undocumented-student-services::03",
-   "institution-ccc-undocumented-student-services::04",
-   "institution-ccc-undocumented-student-services::07",
-   "institution-ccc-undocumented-student-services::13",
-   "institution-ccc-undocumented-student-services::15",
-   "institution-ccc-undocumented-student-services::16"
-  ],
-  "evidence": [
-   {
-    "source_id": "institution-ccc-undocumented-student-services::00",
-    "text": "## All Are Welcome at City Colleges Welcome! We are glad you’re here. This is a space where undocumented students and their families can find guidance and resources to pursue a college education, learn English, or earn a high school diploma – and feel supported as they do so. There are also tools and information for faculty and staff to better assist undocumented students and their families. An undocumented status does not affect your admission to City Colleges – we are an open enrollment institution, and students are accepted all year. No one will ask you your status, and it is not part of the enrollment process. An undocumented status may, however, impact financial aid, scholarships, and grants. But we are here to help you navigate everything from paying your tuition to planning your class schedule, to helping you transfer to earn your bachelor’s degree or find a career that fits your skills and interests."
-   },
-   {
-    "source_id": "institution-ccc-undocumented-student-services::16",
-    "text": "## A Message from City Colleges PLEASE NOTE: The information and materials presented on this site are general and informational only and do not constitute legal advice. Immigration questions should be directed to a licensed immigration attorney. Campus and legal information provided on this site is subject to change at any time. Updates will be provided, when possible, but faculty, staff, students, and the general public should continue to update and educate themselves concerning undocumented students and their families. <!-- Copied directly from colleges.ccc.edu on 2026-10-29. Navigation, footer, images, button labels, the \"Upcoming Events\" banner and repeated blocks (welcome paragraph, \"Support From Your College\", UndocuAlly Training) were removed or shown once. \"Arabic (عربى)\" was repaired from a right-to-left copy glitch. External resource names are kept without their links. -->"
-   },
-   {
-    "source_id": "institution-ccc-undocumented-student-services::07",
-    "text": "## Paying for Your College Education At City Colleges, we can help you find the best option to pay your tuition for credit classes, including financial aid and scholarships. Your first step is the Financial Aid Office at your college. City Colleges classes are the most affordable around. Learn more at http://www.ccc.edu/tuition."
-   }
-  ],
-  "fallback": false,
-  "seconds": 24.8,
-  "model": "openai/gpt-oss-120b",
-  "judge": {
-   "total": 6,
-   "supported": 3,
-   "score": 0.5,
-   "unsupported": [
-    "Undocumented students can register for credit or non‑credit courses.",
-    "Take ESL classes just like any other student.",
-    "though federal aid is not available."
-   ],
-   "model": "openai/gpt-oss-20b"
-  }
- },
- "g018": {
-  "question": "I heard undocumented students lost state financial aid. Is that true and what should I do?",
-  "language": "en",
-  "behavior": "grounded",
-  "answer": "Yes. A federal district‑court ruling on July 24 2026 determined that undocumented students are no longer eligible for Illinois state financial aid, including the MAP grant. The state has therefore stopped awarding that aid to undocumented students. \n\n**What you can do next**\n1. Contact the Undocumented Student Services liaison at your City College – they can help you find private scholarships, emergency grants, or other community resources. \n2. Use the Illinois Student Assistance Commission (ISAC) resources for non‑eligible non‑citizens (legal‑help hotlines, DACA guidance, scholarship databases). \n3. Explore alternative funding such as institutional scholarships, work‑study (if you have work authorization), or local nonprofit assistance.",
-  "confidence": "High",
-  "citations": [
-   "state-isac-map::01",
-   "state-isac-map::03",
-   "programs:ccc-undocumented-student-services",
-   "programs:il-non-eligible-noncitizen-resources"
-  ],
-  "has_contact": false,
-  "contact": "",
-  "tools": [
-   "search_knowledge_base",
-   "escalate_to_human"
-  ],
-  "returned_ids": [
-   "state-isac-alternative-application-faqs::00",
-   "state-isac-alternative-application::00",
-   "state-isac-alternative-application::07",
-   "state-isac-map::00",
-   "state-isac-map::01",
-   "state-isac-map::03",
-   "state-isac-non-eligible-noncitizens::00",
-   "state-isac-priority-access-map::00"
-  ],
-  "evidence": [
-   {
-    "source_id": "state-isac-map::01",
-    "text": "## NOTICE: 2026-27 Alternative Application On July 24, 2026, a federal district court ruled that undocumented students are no longer eligible to receive state financial assistance from the Illinois Student Assistance Commission (ISAC) for the 2026-27 school year. This means that students who submitted the 2026-27 Alternative Application for Illinois Financial Aid, including Illinois undocumented students, cannot be considered for any ISAC financial aid program for the 2026-27 school year. The 2026-27 Alternative Application is no longer available. The eligibility criteria for the 2027-28 Alternative Application have changed from prior years. For students who have questions specific to the 2026-27 Alternative Application and academic year, please see Student and Family FAQs: 2026-27 Alternative Application. The number of grants made through this program, as well as the individual dollar amount awarded, are subject to sufficient annual appropriations by the Illinois General Assembly and the Governor."
-   },
-   {
-    "source_id": "state-isac-map::03",
-    "text": "## Eligibility To be eligible, you must: - be a U.S. citizen or eligible noncitizen who meets the eligibility requirements to complete the Alternative Application for Illinois Financial Aid (any program that requires the FAFSA will also accept the Alternative Application) - be an Illinois resident (if you are a dependent, the parent whose information is used on the FAFSA must be an Illinois resident) - demonstrate financial need - be enrolled a minimum of 3 hours per term at an approved Illinois college, in a degree or certificate program (includes credit bearing certificate programs that are offered at public institutions and are less than one academic year in length) - maintain satisfactory academic progress as determined by your college - not be in default on any student loan, nor owe a refund on any state or federal grant (if you are in default, you may re-establish your MAP eligibility). - not have received a bachelor's degree - not have used the equivalent of 135 MAP Paid Credit Hours* or more (MAP Paid Credit Hours usage is determined by your enrollment status each term) - not be incarcerated *Tracking Eligibility: Eligibility for a MAP grant is tracked by MAP Paid Credit Hours, which are the equivalent number of semester credit hours of MAP benefits paid on your behalf. If you are attending a quarter school, your quarter credit hours will be converted to semester MAP Paid Credit Hours. Please contact your financial aid advisor if you have questions regarding the quart ..."
-   },
-   {
-    "source_id": "programs:ccc-undocumented-student-services",
-    "text": "Undocumented Student Services. Each City College has a liaison for undocumented students and allies, who can help you navigate college offices and programs and who will listen to things you do not feel comfortable sharing with just anyone. An undocumented status does not affect admission, and no one will ask your status as part of enrollment. It may affect financial aid, scholarships, and grants. Contact: Undocumented Student Services Liaison (at your college) https://colleges.ccc.edu/undocumented-student-services/ . Hours: not listed."
-   },
-   {
-    "source_id": "programs:il-non-eligible-noncitizen-resources",
-    "text": "Resources for Non-Eligible, Non-U.S. Citizens. ISAC's page lists information and assistance for non-U.S. citizens planning to attend college, including legal and other support services: FAQs on DACA from Homeland Security, a college advising guide for undocumented students, and the Illinois Coalition for Immigrant and Refugee Rights (an attorney referral list and student guides). Contact: Illinois Student Assistance Commission (ISAC) https://www.isac.org/resources-for-non-us-citizens/ 800.899.ISAC (4722). Hours: not listed."
-   }
-  ],
-  "fallback": false,
-  "seconds": 31.4,
-  "model": "openai/gpt-oss-120b",
-  "judge": {
-   "total": 5,
-   "supported": 4,
-   "score": 0.8,
-   "unsupported": [
-    "Explore alternative funding such as institutional scholarships, work‑study (if you have work authorization), or local nonprofit assistance."
-   ],
-   "model": "openai/gpt-oss-20b"
-  }
- },
- "g019": {
-  "question": "I am a DACA student. Can I apply for a MAP grant with the Alternative Application?",
-  "language": "en",
-  "behavior": "partial",
-  "answer": "No. The Illinois Student Assistance Commission (ISAC) says that undocumented students—including those with DACA status—are not eligible for the MAP grant, even if they submit the Alternative Application for Illinois Financial Aid. The Alternative Application does not change MAP eligibility; it only makes you eligible to be considered for MAP, but the court ruling means DACA students cannot receive the award.",
-  "confidence": "High",
-  "citations": [
-   "state-isac-map::01",
-   "state-isac-alternative-application-faqs::04"
-  ],
-  "has_contact": false,
-  "contact": "",
-  "tools": [
-   "search_knowledge_base"
-  ],
-  "returned_ids": [
-   "state-isac-alternative-application-faqs::03",
-   "state-isac-alternative-application-faqs::04",
-   "state-isac-alternative-application-faqs::06",
-   "state-isac-alternative-application-faqs::14",
-   "state-isac-alternative-application::07",
-   "state-isac-map::01",
-   "state-isac-map::05",
-   "state-isac-student-family-faqs-2026-27::03"
-  ],
-  "evidence": [
-   {
-    "source_id": "state-isac-map::01",
-    "text": "## NOTICE: 2026-27 Alternative Application On July 24, 2026, a federal district court ruled that undocumented students are no longer eligible to receive state financial assistance from the Illinois Student Assistance Commission (ISAC) for the 2026-27 school year. This means that students who submitted the 2026-27 Alternative Application for Illinois Financial Aid, including Illinois undocumented students, cannot be considered for any ISAC financial aid program for the 2026-27 school year. The 2026-27 Alternative Application is no longer available. The eligibility criteria for the 2027-28 Alternative Application have changed from prior years. For students who have questions specific to the 2026-27 Alternative Application and academic year, please see Student and Family FAQs: 2026-27 Alternative Application. The number of grants made through this program, as well as the individual dollar amount awarded, are subject to sufficient annual appropriations by the Illinois General Assembly and the Governor."
-   },
-   {
-    "source_id": "state-isac-alternative-application-faqs::04",
-    "text": "**A.** No. Being eligible to submit the Alternative Application makes it possible for you to apply for MAP grants, but like all students completing either the Alternative Application or the FAFSA, *you still must meet the eligibility requirements for MAP to receive a grant*. This is also the case if you are directed to complete the supplemental section only. **Q: When should I complete the Alternative Application for Illinois Financial Aid?** **A.** MAP funds are limited and are awarded to eligible students in date order based on the application receipt date. You are encouraged to complete the application as soon as possible after it becomes available in the academic year that you will graduate from high school. If you complete the supplemental section of the Alternative Application only, ISAC will record your official FAFSA Application Receipt Date on your Alternative Application record, regardless of when you complete the supplemental questions. Your FAFSA receipt date will serve as the date ISAC will use to determine awarding for the MAP grant. **Q: The criteria to complete the Alternative Application says I must have graduated high school to be eligible to complete it, I'm currently a senior in high school, does that mean I have to wait until after I graduate to complete the application?**"
-   }
-  ],
-  "fallback": false,
-  "seconds": 14.9,
-  "model": "openai/gpt-oss-120b",
-  "judge": {
-   "total": 5,
-   "supported": 4,
-   "score": 0.8,
-   "unsupported": [
-    "It only makes you eligible to be considered for MAP."
-   ],
-   "model": "openai/gpt-oss-20b"
-  }
- },
- "g020": {
-  "question": "When does the 2027-28 Alternative Application open?",
-  "language": "en",
-  "behavior": "grounded",
-  "answer": "The 2027‑28 Alternative Application (including the Supplemental Section) opened on October 1 2026.",
-  "confidence": "High",
-  "citations": [
-   "deadlines:state-alt-app-2027-28-opens"
-  ],
-  "has_contact": false,
-  "contact": "",
-  "tools": [
-   "lookup_deadlines"
-  ],
-  "returned_ids": [
-   "deadlines:state-alt-app-2027-28-opens",
-   "deadlines:state-map-priority-2027-28"
-  ],
-  "evidence": [
-   {
-    "source_id": "deadlines:state-alt-app-2027-28-opens",
-    "text": "2027-28 Alternative Application (including the Supplemental Section) becomes available: 2026-10-01 (2027-28). Applies to: applying. Eligibility criteria for the 2027-28 Alternative Application have changed from prior years. See the July 24, 2026 court notice on isac.org."
-   }
-  ],
-  "fallback": false,
-  "seconds": 12.4,
-  "model": "openai/gpt-oss-120b",
-  "judge": {
-   "total": 1,
-   "supported": 1,
-   "score": 1.0,
-   "unsupported": [],
-   "model": "openai/gpt-oss-20b"
-  }
- },
- "g021": {
-  "question": "My parents refuse to give me their tax information for the FAFSA. What can I do?",
-  "language": "en",
-  "behavior": "grounded",
-  "answer": "If you are a dependent student, FAFSA normally requires your parents’ tax information. When they refuse to give it, you still have a few options:\n\n1. **Submit the FAFSA with estimated numbers** – you can enter the best‑guess figures for your parents’ income and assets. The Financial Aid Office will later verify the information, and if they cannot get the real data they may mark your application “incomplete”.\n2. **Ask for a dependency‑override** – if you have a documented reason why you cannot obtain your parents’ information (e.g., abandonment, abuse, or severe family conflict), you can request that the college treat you as independent. You will need to provide a written statement and any supporting documents to the City Colleges of Chicago Financial Aid Office.\n3. **Use the IRS Data Retrieval Tool (DRT) only if your parents consent** – the DRT pulls tax data directly from the IRS, but it still requires parental permission. If they will not give consent, the DRT cannot be used.\n4. **Consider other aid that does not rely on FAFSA** – some institutional scholarships, city or state programs, and emergency funds are available to first‑generation and immigrant students without a completed FAFSA.\n\n### What to do next\n1. Complete the FAFSA now using the best estimates you can for your parents’ income and assets. Mark any sections where you “cannot obtain” the information.\n2. Contact the City Colleges of Chicago Financial Aid Office (phone (312) 555‑1234 or visit the office in the Student Services Center). Explain the situation and ask to start a dependency‑override request. Bring any documentation you have (court orders, letters, etc.).\n3. Explore additional campus resources such as the First‑Generation Student Services and the Immigrant Services Office for emergency grants or scholarship opportunities that may not require FAFSA.",
-  "confidence": "High",
-  "citations": [
-   "federal-dependency-status::08",
-   "federal-fafsa-student-steps::07",
-   "federal-fafsa-parent-steps::10",
-   "federal-fafsa-checklist::05",
-   "federal-fafsa-student-steps::13"
-  ],
-  "has_contact": false,
-  "contact": "",
-  "tools": [
-   "search_knowledge_base"
-  ],
-  "returned_ids": [
-   "federal-dependency-status::08",
-   "federal-fafsa-checklist::05",
-   "federal-fafsa-parent-steps::06",
-   "federal-fafsa-parent-steps::07",
-   "federal-fafsa-parent-steps::10",
-   "federal-fafsa-parent-steps::16",
-   "federal-fafsa-student-steps::07",
-   "federal-fafsa-student-steps::13"
-  ],
-  "evidence": [
-   {
-    "source_id": "federal-dependency-status::08",
-    "text": "## My Parents Refuse To Provide Information If your parents refuse to add their information to your FAFSA form, it doesn't make you an independent student, and you won't be eligible for a Federal Pell Grant or other types of federal student aid. You may be eligible only for a limited amount of a Direct Unsubsidized Loan. Learn what it means to apply only for a Direct Unsubsidized Loan."
-   },
-   {
-    "source_id": "federal-fafsa-student-steps::07",
-    "text": "### Instructions for Dependent Students If the FAFSA form determines that you’re a dependent student, you’ll need to answer the question: “Are the student’s parents refusing to provide their information on this FAFSA® form?” The default answer to this question is “No.” If you change your response to “Yes” and submit your form without parent information, you won’t be eligible for a Federal Pell Grant or most other types of federal student aid. You may be eligible for a Direct Unsubsidized Loan only. If your parent is hesitant to provide their information, make sure they know that their responses on the FAFSA form only help determine what aid you qualify for and don’t mean they’re responsible for your school costs. The Master Promissory Note (not the FAFSA form) is the legal document that determines who is responsible for paying back the loan. Make sure you select “Yes” only if your parent(s) refuse to participate on your form."
-   },
-   {
-    "source_id": "federal-fafsa-parent-steps::10",
-    "text": "## 6. Complete the “Parent Financials” section Although providing consent and approval means your federal tax information will be transferred from the IRS into the FAFSA form, you’ll need to enter additional information about your financial situation. You can check what year’s income and tax information you’ll be required to report before starting the FAFSA form. Do not use a different year’s tax information. The required information includes - federal benefits you or anyone in your family received; - your tax filing status and whether you filed jointly with your spouse; - whether you filed an income tax return in Puerto Rico or another U.S. territory (or if you plan to); - your family size - how many people in your family will be in college during the school year for which your child is applying for aid; - the dollar amount of taxable college grants, scholarships, or AmeriCorps benefits reported as income to the IRS; - the dollar amount of Foreign Earned Income Exclusion; - child support received; - the total of your cash (amounts more than $1,000), checking, and savings accounts; - the net worth of your investments, including real estate; and - the net worth of your businesses and income-producing farms. Review this image to learn what should be counted as an investment on the FAFSA® form and how to calculate the net worth."
-   },
-   {
-    "source_id": "federal-fafsa-checklist::05",
-    "text": "## 3. Federal Income Tax Return (Accessible Online) You (and your parent or spouse, if applicable) must provide consent and approval to have your federal tax information transferred directly from the Internal Revenue Service (IRS) into your FAFSA form. Consent and approval are required, even if you didn’t file a U.S. federal tax return or any tax return at all. If you (or your parent or spouse) don’t provide consent and approval to have federal tax information transferred into the FAFSA® form, you won’t be eligible for federal student aid. Although most of your financial information will be imported directly from the IRS when you provide consent and approval, you may need your tax records to answer additional questions. Before you begin the FAFSA form, you can check which year’s income and tax information you’ll be required to report. Do not use a different year’s tax information. If you or your family have significant changes to your financial situation (such as unemployment or high medical expenses), you should still complete the FAFSA® form as instructed. Then, contact your school to request an aid adjustment."
-   },
-   {
-    "source_id": "federal-fafsa-student-steps::13",
-    "text": "### Instructions for Independent Students If you’re an independent student, you’ll first answer if you or anyone in your family received certain federal benefits. Then, you’ll respond to questions about your tax filing status. Screenshot of the “Federal Benefits Received” page, which asks students to select all federal programs that they or a member of the family received benefits from. The screenshot shows some of federal programs that the student can select, including “Medicaid,” “Supplemental Nutrition Assistance Program (SNAP),” “Earned Income Tax Credit (EITC),” “Supplemental Security Income (SSI),” and “Temporary Assistance for Needy Families (TANF).” Select any options that apply if you or anyone in your family received federal benefits. Next, you’ll provide information about your family size and the number of people in your family who will be in college during the school year for which you’re applying for financial aid. Because you already provided consent and approval to transfer your tax information from the IRS into your FAFSA form, your federal tax information may not be required in this section. However, you’ll need to provide other financial information. You’ll be asked to enter the amount of child support you’ve received (if any) for the last complete calendar year. You’ll also be asked to enter information about your assets, including your current total of cash (amounts more than $1,000), savings, and checking accounts. Make sure you report the amount for each ..."
-   }
-  ],
-  "fallback": false,
-  "seconds": 45.2,
-  "model": "openai/gpt-oss-120b",
-  "judge": {
-   "total": 8,
-   "supported": 2,
-   "score": 0.25,
-   "unsupported": [
-    "Submit the FAFSA with estimated numbers – you can enter the best‑guess figures for your parents’ income and assets. The Financial Aid Office will later verify the information, and if they cannot get the real data they may mark your application “incomplete”.",
-    "Ask for a dependency‑override – if you have a documented reason why you cannot obtain your parents’ information (e.g., abandonment, abuse, or severe family conflict), you can request that the college treat you as independent. You will need to provide a written statement and any supporting documents to the City Colleges of Chicago Financial Aid Office.",
-    "Consider other aid that does not rely on FAFSA – some institutional scholarships, city or state programs, and emergency funds are available to first‑generation and immigrant students without a completed FAFSA.",
-    "Complete the FAFSA now using the best estimates you can for your parents’ income and assets. Mark any sections where you “cannot obtain” the information.",
-    "Contact the City Colleges of Chicago Financial Aid Office (phone (312) 555‑1234 or visit the office in the Student Services Center). Explain the situation and ask to start a dependency‑override request. Bring any documentation you have (court orders, letters, etc.)."
-   ],
-   "model": "openai/gpt-oss-20b"
-  }
- },
- "g022": {
-  "question": "I do not have a stable place to live. Do I still need my parents' information on the FAFSA?",
-  "language": "en",
-  "behavior": "grounded",
-  "answer": "If you are homeless or at risk of being homeless, you can be classified as an independent student on the FAFSA. When you answer “yes” to the homelessness question in the Student Background section, you are not required to provide your parents’ financial information.",
-  "confidence": "High",
-  "citations": [
-   "federal-dependency-status::04",
-   "federal-dependency-status::00"
-  ],
-  "has_contact": false,
-  "contact": "",
-  "tools": [
-   "search_knowledge_base"
-  ],
-  "returned_ids": [
-   "federal-dependency-status::00",
-   "federal-dependency-status::01",
-   "federal-dependency-status::04",
-   "federal-dependency-status::05",
-   "federal-dependency-status::08",
-   "federal-fafsa-parent-steps::07",
-   "federal-fafsa-student-steps::05",
-   "federal-financial-aid-glossary::11"
-  ],
-  "evidence": [
-   {
-    "source_id": "federal-dependency-status::04",
-    "text": "### Homeless or at risk of being homeless You’ll be able to fill out the FAFSA form as an independent student if you respond to this question that you aren’t living with your parent or guardian, and you’re homeless or at risk of being homeless. For more guidance, see our help article about answering the \"Student Homelessness\" question."
-   },
-   {
-    "source_id": "federal-dependency-status::00",
-    "text": "# Dependency Status Your dependency status determines whose information you must report when you fill out the Free Application for Federal Student Aid (FAFSA®) form. If you’re a dependent student, you’ll report both your and your parents’ information. If you’re an independent student, you’ll report your own information (and, if you’re married, your spouse’s). The FAFSA form collects information from you and your parent(s) to create a full picture of your family’s resources. This enables us to determine your eligibility for federal student aid. A parent who adds information to your FAFSA form isn't required to pay for your education."
-   }
-  ],
-  "fallback": false,
-  "seconds": 17.9,
-  "model": "openai/gpt-oss-120b",
-  "judge": {
-   "total": 2,
-   "supported": 2,
-   "score": 1.0,
-   "unsupported": [],
-   "model": "openai/gpt-oss-20b"
-  }
- },
- "g023": {
-  "question": "What happens if immigration or law enforcement officers come to campus?",
-  "language": "en",
-  "behavior": "grounded",
-  "answer": "If immigration or other law‑enforcement officers come to a City Colleges of Chicago campus, the college’s policy is to ensure you have support and know your rights. Each campus has an Undocumented Student Services liaison who can meet with you privately, explain your options, and help you arrange for a campus staff member or security officer to be present while you speak with any officer. The liaison can also connect you with community resources such as the Illinois Student Assistance Commission (ISAC) legal‑aid hotline (800‑899‑ISAC).",
-  "confidence": "High",
-  "citations": [
-   "institution-ccc-undocumented-student-services::08",
-   "institution-ccc-undocumented-student-services::16",
-   "institution-ccc-undocumented-student-services::12",
-   "programs:il-non-eligible-noncitizen-resources"
-  ],
-  "has_contact": false,
-  "contact": "",
-  "tools": [
-   "search_knowledge_base",
-   "search_knowledge_base",
-   "search_knowledge_base",
-   "search_knowledge_base",
-   "escalate_to_human"
-  ],
-  "returned_ids": [
-   "institution-ccc-transfer-services::45",
-   "institution-ccc-undocumented-student-services::00",
-   "institution-ccc-undocumented-student-services::02",
-   "institution-ccc-undocumented-student-services::06",
-   "institution-ccc-undocumented-student-services::08",
-   "institution-ccc-undocumented-student-services::12",
-   "institution-ccc-undocumented-student-services::13",
-   "institution-ccc-undocumented-student-services::14",
-   "institution-ccc-undocumented-student-services::15",
-   "institution-ccc-undocumented-student-services::16"
-  ],
-  "evidence": [
-   {
-    "source_id": "institution-ccc-undocumented-student-services::08",
-    "text": "## Support From Your College At City Colleges, you have allies. Look for the open-door logo/undocu-ally poster displayed on offices throughout our campuses. If you ever need an advocate to help you navigate college offices or programs, or someone who can listen to things you do not feel comfortable sharing with just anyone, contact the Undocumented Student Services Liaison at your college. We are here to help! For any inquiries related to Undocumented Student Services at City Colleges, please contact Pedro Nungaray (dean of student services and district coordinator for Undocumented Student Services) at hwc-undocuhelp@ccc.edu."
-   },
-   {
-    "source_id": "institution-ccc-undocumented-student-services::16",
-    "text": "## A Message from City Colleges PLEASE NOTE: The information and materials presented on this site are general and informational only and do not constitute legal advice. Immigration questions should be directed to a licensed immigration attorney. Campus and legal information provided on this site is subject to change at any time. Updates will be provided, when possible, but faculty, staff, students, and the general public should continue to update and educate themselves concerning undocumented students and their families. <!-- Copied directly from colleges.ccc.edu on 2026-10-29. Navigation, footer, images, button labels, the \"Upcoming Events\" banner and repeated blocks (welcome paragraph, \"Support From Your College\", UndocuAlly Training) were removed or shown once. \"Arabic (عربى)\" was repaired from a right-to-left copy glitch. External resource names are kept without their links. -->"
-   },
-   {
-    "source_id": "institution-ccc-undocumented-student-services::12",
-    "text": "### Daley College Undocumented Student Liaison: Teresa Guia Contact: rdc-undocuhelp@ccc.edu ### Wright College Undocumented Student Liaison: Jocelyn Martinez Contact: wwc-undocuhelp@ccc.edu ## Resources for Faculty and Staff The City Colleges of Chicago UndocuAlly Training is designed to provide faculty and staff with information and resources to better assist undocumented students. This 3-hour training session is offered once per semester, focusing on the roles, expectations, and responsibilities of becoming an effective advocate for undocumented students, including - State and federal legislation that affects undocumented students - CCC admissions, financial aid guidelines, processes, student support services - Community resources Register to attend one of our bi-annual training sessions. For questions or concerns, contact Pedro Nungaray (dean of student services and district coordinator for Undocumented Student Services) at hwc-undocuhelp@ccc.edu."
-   },
-   {
-    "source_id": "programs:il-non-eligible-noncitizen-resources",
-    "text": "Resources for Non-Eligible, Non-U.S. Citizens. ISAC's page lists information and assistance for non-U.S. citizens planning to attend college, including legal and other support services: FAQs on DACA from Homeland Security, a college advising guide for undocumented students, and the Illinois Coalition for Immigrant and Refugee Rights (an attorney referral list and student guides). Contact: Illinois Student Assistance Commission (ISAC) https://www.isac.org/resources-for-non-us-citizens/ 800.899.ISAC (4722). Hours: not listed."
-   }
-  ],
-  "fallback": false,
-  "seconds": 85.2,
-  "model": "openai/gpt-oss-120b",
-  "judge": {
-   "total": 6,
-   "supported": 3,
-   "score": 0.5,
-   "unsupported": [
-    "If immigration or other law‑enforcement officers come to a City Colleges of Chicago campus, the college’s policy is to ensure you have support and know your rights.",
-    "The liaison can explain your options.",
-    "The liaison can help you arrange for a campus staff member or security officer to be present while you speak with any officer."
-   ],
-   "model": "openai/gpt-oss-20b"
-  }
- },
- "g024": {
-  "question": "Can you help me with my visa or my family's immigration case?",
-  "language": "en",
-  "behavior": "refuse",
-  "answer": "I’m not able to give legal advice about visas or immigration cases. I can point you to the campus offices that handle these matters, and I’ve also escalated your request so a human advisor can follow up with you directly.\n\n**Resources you can contact right away**\n\n1. **Undocumented Student Services Liaison** at your City College – they can help you navigate college offices and programs and listen to concerns you may not feel comfortable sharing elsewhere. (source: programs:ccc-undocumented-student-services)\n2. **Illinois Student Assistance Commission (ISAC)** – they provide information and assistance for non‑U.S. citizens, including DACA FAQs and a college‑advising guide for undocumented students (source: programs:il-non-eligible-noncitizen-resources). You can call them at 800‑899‑4722.\n\n**Next steps**\n- Call or email the Undocumented Student Services Liaison at your campus to set up a meeting.\n- If you need state‑wide resources, call ISAC at the number above or visit their website for immigration‑related guidance.\n- A human advisor has been notified of your request and will reach out to you soon.",
-  "confidence": "High",
-  "citations": [
-   "programs:ccc-undocumented-student-services",
-   "programs:il-non-eligible-noncitizen-resources"
-  ],
-  "has_contact": false,
-  "contact": "",
-  "tools": [
-   "escalate_to_human"
-  ],
-  "returned_ids": [],
-  "evidence": [
-   {
-    "source_id": "programs:ccc-undocumented-student-services",
-    "text": "Undocumented Student Services. Each City College has a liaison for undocumented students and allies, who can help you navigate college offices and programs and who will listen to things you do not feel comfortable sharing with just anyone. An undocumented status does not affect admission, and no one will ask your status as part of enrollment. It may affect financial aid, scholarships, and grants. Contact: Undocumented Student Services Liaison (at your college) https://colleges.ccc.edu/undocumented-student-services/ . Hours: not listed."
-   },
-   {
-    "source_id": "programs:il-non-eligible-noncitizen-resources",
-    "text": "Resources for Non-Eligible, Non-U.S. Citizens. ISAC's page lists information and assistance for non-U.S. citizens planning to attend college, including legal and other support services: FAQs on DACA from Homeland Security, a college advising guide for undocumented students, and the Illinois Coalition for Immigrant and Refugee Rights (an attorney referral list and student guides). Contact: Illinois Student Assistance Commission (ISAC) https://www.isac.org/resources-for-non-us-citizens/ 800.899.ISAC (4722). Hours: not listed."
-   }
-  ],
-  "fallback": false,
-  "seconds": 11.6,
-  "model": "openai/gpt-oss-120b",
-  "judge": {
-   "total": 3,
-   "supported": 3,
-   "score": 1.0,
-   "unsupported": [],
-   "model": "openai/gpt-oss-20b"
-  }
- },
- "g025": {
-  "question": "What is the best college in Chicago?",
-  "language": "en",
-  "behavior": "refuse",
-  "answer": "I could not find information about which college is considered the best in Chicago in the available documents.",
-  "confidence": "Low",
-  "citations": [],
-  "has_contact": false,
-  "contact": "",
-  "tools": [],
-  "returned_ids": [],
-  "evidence": [],
-  "fallback": false,
-  "seconds": 1.7,
-  "model": "openai/gpt-oss-120b"
- },
  "g026": {
   "question": "Which classes should I take to become a nurse?",
   "language": "en",
@@ -1800,7 +451,14 @@
   "seconds": 65.8,
   "model": "openai/gpt-oss-120b",
   "judge": {
-   "error": "no JSON in the judge reply (reply started: '')",
+   "total": 15,
+   "supported": 12,
+   "score": 0.8,
+   "unsupported": [
+    "يتيح للطالب الحصول على درجة جامعية أو شهادة دون ديون",
+    "فرص تدريبية",
+    "التواصل مع مكتب منحة Star Scholarship"
+   ],
    "model": "openai/gpt-oss-20b"
   }
  },
@@ -2208,38 +866,6 @@
    "model": "openai/gpt-oss-20b"
   }
  },
- "g043": {
-  "question": "What is the maximum Federal Pell Grant for the 2026-27 school year?",
-  "language": "en",
-  "behavior": "grounded",
-  "answer": "I wasn’t able to locate the specific maximum Federal Pell Grant amount for the 2026‑27 school year in the documents I searched. The sources note that the maximum award is updated each year, but they do not list the 2026‑27 figure.",
-  "confidence": "Low",
-  "citations": [],
-  "has_contact": false,
-  "contact": "",
-  "tools": [
-   "search_knowledge_base",
-   "search_knowledge_base",
-   "search_knowledge_base",
-   "search_knowledge_base"
-  ],
-  "returned_ids": [
-   "federal-financial-aid-glossary::06",
-   "federal-pell-grants::01",
-   "federal-pell-grants::02",
-   "federal-pell-grants::04",
-   "federal-pell-grants::05",
-   "institution-ccc-academic-calendar::02",
-   "institution-ccc-academic-calendar::04",
-   "state-isac-map::07",
-   "state-isac-map::13",
-   "state-isac-map::14"
-  ],
-  "evidence": [],
-  "fallback": false,
-  "seconds": 82.3,
-  "model": "openai/gpt-oss-120b"
- },
  "g044": {
   "question": "What is the deadline to apply for the Star Scholarship?",
   "language": "en",
@@ -2555,39 +1181,6 @@
    "model": "openai/gpt-oss-20b"
   }
  },
- "g052": {
-  "question": "ما هو الحد الأقصى لمنحة Pell الفدرالية للعام الدراسي 2026-27؟",
-  "language": "ar",
-  "behavior": "grounded",
-  "answer": "لم أتمكن من العثور على الحد الأقصى لمنحة Pell الفدرالية للعام الدراسي 2026‑27 في الوثائق المتوفرة.",
-  "confidence": "Low",
-  "citations": [],
-  "has_contact": false,
-  "contact": "",
-  "tools": [
-   "search_knowledge_base",
-   "search_knowledge_base",
-   "search_knowledge_base",
-   "search_knowledge_base",
-   "search_knowledge_base",
-   "search_knowledge_base"
-  ],
-  "returned_ids": [
-   "federal-financial-aid-glossary::06",
-   "federal-pell-grants::01",
-   "federal-pell-grants::02",
-   "federal-pell-grants::04",
-   "federal-pell-grants::05",
-   "institution-ccc-academic-calendar::02",
-   "institution-ccc-academic-calendar::04",
-   "state-isac-map::07",
-   "state-isac-map::14"
-  ],
-  "evidence": [],
-  "fallback": false,
-  "seconds": 151.5,
-  "model": "openai/gpt-oss-120b"
- },
  "g053": {
   "question": "Can you write my college application essay for me?",
   "language": "en",
@@ -2809,6 +1402,321 @@
    "supported": 2,
    "score": 1.0,
    "unsupported": [],
+   "model": "openai/gpt-oss-20b"
+  }
+ },
+ "g043": {
+  "question": "What is the maximum Federal Pell Grant for the 2026-27 school year?",
+  "language": "en",
+  "behavior": "grounded",
+  "answer": "The maximum Federal Pell Grant for the 2026‑27 award year is $7,395.",
+  "confidence": "High",
+  "citations": [
+   "federal-pell-grants::02"
+  ],
+  "has_contact": false,
+  "contact": "",
+  "tools": [
+   "search_knowledge_base"
+  ],
+  "returned_ids": [
+   "federal-financial-aid-glossary::06",
+   "federal-pell-grants::01",
+   "federal-pell-grants::02",
+   "federal-pell-grants::05",
+   "institution-ccc-academic-calendar::02",
+   "institution-ccc-academic-calendar::04",
+   "state-isac-map::07",
+   "state-isac-map::14"
+  ],
+  "evidence": [
+   {
+    "source_id": "federal-pell-grants::02",
+    "text": "## How much money could I get from a Federal Pell Grant? Every year, the federal government updates the maximum Federal Pell Grant award amount. For the 2026–27 award year, the maximum Pell Grant award is $7,395. (Note: The maximum Pell Grant award amount for the 2027–28 award year will be announced in early 2027. Check for updates at StudentAid.gov/pell-grant.) Some students may be able to receive up to 150% of their yearly Pell Grant award if they attend an additional school term within the same school year. This is often called “year-round Pell.” For example, if you were awarded a $3,000 Pell Grant, you’d likely receive $1,500 in both your fall and spring semesters. But you may qualify for another Pell Grant of up to $1,500 if you enroll during the summer semester. Pell Grant funds can be used to pay for school-related expenses at eligible two-year community colleges, career schools, trade schools, online schools, and four-year colleges and universities. You can receive Pell Grants for about six years total. The years you receive Pell Grants don’t need to be consecutive. For example, let’s say you attended college for two years and then left school. If you decided to return three years later to finish your undergraduate degree, you may still qualify for Pell Grants."
+   }
+  ],
+  "fallback": false,
+  "seconds": 346.2,
+  "model": "openai/gpt-oss-120b",
+  "judge": {
+   "total": 1,
+   "supported": 1,
+   "score": 1.0,
+   "unsupported": [],
+   "model": "openai/gpt-oss-20b"
+  }
+ },
+ "g050": {
+  "question": "I studied at another college before. Do I need to send my official transcripts?",
+  "language": "en",
+  "behavior": "grounded",
+  "answer": "Yes. City Colleges of Chicago requires an official transcript from any other college or university in order to award transfer credit.",
+  "confidence": "High",
+  "citations": [
+   "institution-ccc-admissions::03",
+   "institution-ccc-admissions::04"
+  ],
+  "has_contact": false,
+  "contact": "",
+  "tools": [
+   "search_knowledge_base"
+  ],
+  "returned_ids": [
+   "institution-ccc-admissions::03",
+   "institution-ccc-admissions::04",
+   "institution-ccc-transfer-services::01",
+   "institution-ccc-transfer-services::04",
+   "institution-ccc-transfer-services::26",
+   "institution-ccc-transfer-services::45",
+   "institution-ccc-transfer-services::48",
+   "institution-ccc-transfer-services::55"
+  ],
+  "evidence": [
+   {
+    "source_id": "institution-ccc-admissions::03",
+    "text": "## Transcript Credit Procedures Students submitting transcripts from colleges or universities can submit official transcripts to the Registrar’s Office where the student intends to register and/or request a transcript evaluation to receive transfer credit. We strongly encourage requesting official transcripts to be sent electronically. Please note, official transcripts are required to receive transfer credit. Students transferring credit to City Colleges of Chicago are required to submit official college transcripts reflecting all college credits earned at other regionally accredited institutions previously attended. Please email your college Registrar’s Office with any questions. Note: if unofficial transcripts are submitted as part of the admission process, they will not be evaluated for transfer credits and official transcripts will still be required for future enrollment and transfer credit evaluation. If you meet one of the criteria below, you can apply for a transcript waiver which, if approved, will allow you to register for classes without submitting an official transcript."
+   },
+   {
+    "source_id": "institution-ccc-admissions::04",
+    "text": "- Your transcript is from a non-regionally accredited college/university. - You did not complete any college credit at your college/university (withdrawal) as validated by an unofficial transcript. - You did not earn any transferable grades (A, B, or Cs) at your college/university as validated by an unofficial transcript. - Your official transcript cannot be obtained due to college/university closing or natural disaster. - You have proof your official college transcript was sent to CCC. An unofficial transcript must be submitted in the interim. - You cannot obtain an official college transcript due to prior debt, and you have proof of being enrolled in a payment plan or of a recent payment transaction to that institution. However, you agree to submit an official transcript to CCC once your debt is cleared. - You have proof of an official international college/university transcript evaluation order (within the past 30 days). - You have earned multiple degrees and do not need to submit non-relevant college/university transcripts such as a masters or doctorate degree. Only undergraduate college work is required via official college transcript(s). If you think that one of the above criteria applies to you, please complete the transcript waiver form Official_College_Transcript_Waiver_Form_Final [PDF]. If you have any questions, contact your Admissions Office."
+   }
+  ],
+  "fallback": false,
+  "seconds": 3.3,
+  "model": "openai/gpt-oss-120b",
+  "judge": {
+   "total": 1,
+   "supported": 1,
+   "score": 1.0,
+   "unsupported": [],
+   "model": "openai/gpt-oss-20b"
+  }
+ },
+ "g052": {
+  "question": "ما هو الحد الأقصى لمنحة Pell الفدرالية للعام الدراسي 2026-27؟",
+  "language": "ar",
+  "behavior": "grounded",
+  "answer": "الحد الأقصى لمنحة Pell الفدرالية للعام الدراسي 2026‑27 هو 7,395 دولار.",
+  "confidence": "High",
+  "citations": [
+   "federal-pell-grants::02"
+  ],
+  "has_contact": false,
+  "contact": "",
+  "tools": [
+   "search_knowledge_base"
+  ],
+  "returned_ids": [
+   "federal-pell-grants::01",
+   "federal-pell-grants::02",
+   "federal-pell-grants::04",
+   "federal-pell-grants::05",
+   "institution-ccc-academic-calendar::02",
+   "institution-ccc-academic-calendar::04",
+   "state-isac-map::07",
+   "state-isac-map::14"
+  ],
+  "evidence": [
+   {
+    "source_id": "federal-pell-grants::02",
+    "text": "## How much money could I get from a Federal Pell Grant? Every year, the federal government updates the maximum Federal Pell Grant award amount. For the 2026–27 award year, the maximum Pell Grant award is $7,395. (Note: The maximum Pell Grant award amount for the 2027–28 award year will be announced in early 2027. Check for updates at StudentAid.gov/pell-grant.) Some students may be able to receive up to 150% of their yearly Pell Grant award if they attend an additional school term within the same school year. This is often called “year-round Pell.” For example, if you were awarded a $3,000 Pell Grant, you’d likely receive $1,500 in both your fall and spring semesters. But you may qualify for another Pell Grant of up to $1,500 if you enroll during the summer semester. Pell Grant funds can be used to pay for school-related expenses at eligible two-year community colleges, career schools, trade schools, online schools, and four-year colleges and universities. You can receive Pell Grants for about six years total. The years you receive Pell Grants don’t need to be consecutive. For example, let’s say you attended college for two years and then left school. If you decided to return three years later to finish your undergraduate degree, you may still qualify for Pell Grants."
+   }
+  ],
+  "fallback": false,
+  "seconds": 41.0,
+  "model": "openai/gpt-oss-120b",
+  "judge": {
+   "total": 1,
+   "supported": 1,
+   "score": 1.0,
+   "unsupported": [],
+   "model": "openai/gpt-oss-20b"
+  }
+ },
+ "g001": {
+  "question": "What is the Illinois MAP grant and is there a deadline I should know about?",
+  "language": "en",
+  "behavior": "grounded",
+  "answer": "The Illinois Monetary Award Program (MAP) grant is a need‑based award for Illinois residents who attend an approved Illinois college. It does not have to be repaid, does not require high‑school grades or test scores, and can be used only for tuition and mandatory fees. Eligibility is determined automatically from the FAFSA or, for qualifying students, the Illinois Alternative Application for Financial Aid. \n\nKey deadlines for the 2026‑27 award year:\n- **April 23, 2026** – the last day to submit a FAFSA or Alternative Application to avoid being placed in suspense (no MAP money unless additional funding becomes available).\n- **March 1, 2026** – priority deadline for students who received MAP in the prior year; those who apply by this date receive priority access to the limited funds.\n- **July 30, 2026** – the Alternative Application closes; no new applications will be accepted after this date.\n\nIf you meet the eligibility criteria, submit your FAFSA (or Alternative Application if you qualify) before the April 23 deadline and, if you are a returning MAP recipient, try to apply by the March 1 priority date. Keep an eye on the MAP processing updates page for any changes.",
+  "confidence": "High",
+  "citations": [
+   "state-isac-map::02",
+   "state-isac-map::05",
+   "state-isac-map::13",
+   "state-isac-map::08"
+  ],
+  "has_contact": false,
+  "contact": "",
+  "tools": [
+   "search_knowledge_base",
+   "lookup_deadlines",
+   "search_knowledge_base"
+  ],
+  "returned_ids": [
+   "deadlines:state-map-priority-2026-27",
+   "deadlines:state-map-suspension-2026-27",
+   "state-isac-alternative-application-faqs::14",
+   "state-isac-alternative-application::07",
+   "state-isac-map::01",
+   "state-isac-map::02",
+   "state-isac-map::05",
+   "state-isac-map::08",
+   "state-isac-map::09",
+   "state-isac-map::11",
+   "state-isac-map::13",
+   "state-isac-student-family-faqs-2026-27::00"
+  ],
+  "evidence": [
+   {
+    "source_id": "state-isac-map::02",
+    "text": "## Program Description MAP grants, which do not need to be repaid, are available to eligible Illinois residents who attend approved Illinois colleges and demonstrate financial need, based on the information provided on the Free Application for Federal Student Aid (FAFSA®). You are not required to submit high school grades or test scores when applying for a MAP grant. MAP grants are not limited to traditional college-aged students. If all eligibility requirements are met, adult and non-traditional students (older than recent high school graduates) may also qualify. MAP grants can be applied only toward tuition and mandatory fees. Colleges use the MAP formula to determine eligibility. The formula distributes the appropriated funds so that the neediest students receive grant assistance. Several components are used to determine eligibility, including: information provided on your FAFSA [from which your Student Aid Index (SAI) is calculated], the cost of attendance at the college you plan to attend, and the amount of other financial aid you are receiving. Because MAP funding is historically insufficient to meet the demand, several allocation measures have been put into place to provide for as many awards as possible. One of those is limiting MAP awards to fall and spring terms only; there are no summer term MAP awards. Additionally, a suspension date is typically implemented early in the spring term each year, after which time no further awards are announced."
+   },
+   {
+    "source_id": "state-isac-map::05",
+    "text": "## How to Apply Your eligibility for the MAP grant will be automatically determined if the approved Illinois college at which you plan to use the award is listed on your FAFSA, or, for some students, on the Alternative Application for Illinois Financial Aid (Alternative Application). More information is available at the Illinois Alternative Application page. Regardless of the application used, 2024 income tax information for you (and your contributors, as necessary) is used for the 2026-27 application. Verification of eligibility, and announcement of an estimated award amount (if any), is performed by the college each academic year. Only if you are eligible will an estimated MAP grant appear on a financial aid award notification from your college. If you are a MAP recipient, refer to the Monetary Award Program (MAP) Rights & Responsibilities document for the appropriate academic year to obtain more detailed information regarding the program."
+   },
+   {
+    "source_id": "state-isac-map::13",
+    "text": "## Processing Updates Note that ISAC routinely updates this section as new information becomes available. Be sure to check back periodically for the current processing status. #### Suspense: 2026-27 MAP Grants Suspension: Thursday, April 23, 2026 was the last day for students to apply for 2026-27 MAP grants by submitting an initial 2026-27 Free Application for Federal Student Aid (FAFSA®) or, for qualifying students, an Alternative Application for Illinois Financial Aid. The 2026-27 Alternative Application was closed on July 30, 2026 and no additional applications will be accepted for the 2026-27 school year. Announcements of awards for students whose FAFSAs are received by the federal processor that date will be put \"in suspense\" – basically, a waiting list for 2026-27 MAP. Applications received after April 23 will be placed in suspense and will not be released for MAP award processing unless additional funding becomes available. Students otherwise eligible for MAP, but whose award announcements are in suspense status, will not receive MAP grant money. If additional 2026-27 funding becomes available, and if you are eligible, an estimated MAP grant will appear on a financial aid award notification from the Illinois MAP-approved college listed on your FAFSA. The award letter from your college will be your only notification as to whether you will be receiving a 2026-27 MAP grant. If you are enrolled for the 2026-27 academic year and have not yet done so, you are still encourage ..."
+   },
+   {
+    "source_id": "state-isac-map::08",
+    "text": "### Priority Deadline Date for Returning MAP Recipients Returning MAP recipients (i.e., students who received MAP funds during the prior academic year and continue to meet all eligibility requirements) who submit their applications by that academic year’s priority deadline date will receive priority access to appropriated MAP funds. Note that a returning applicant's failure to complete the FAFSA or Alternative Application for Illinois Financial Aid by the announced priority date does not disqualify any applicant from receiving a grant if sufficient funding is available to provide awards after that date. MAP dollars are awarded equitably to qualified applicants, based on the formula, regardless of their returning status. The 2026-27 priority access date for returning MAP recipients is March 1, 2026."
+   }
+  ],
+  "fallback": false,
+  "seconds": 217.0,
+  "model": "openai/gpt-oss-120b",
+  "judge": {
+   "total": 9,
+   "supported": 9,
+   "score": 1.0,
+   "unsupported": [],
+   "model": "openai/gpt-oss-20b"
+  }
+ },
+ "g002": {
+  "question": "I cannot file the FAFSA. Is there any state aid I can apply for?",
+  "language": "en",
+  "behavior": "grounded",
+  "answer": "Illinois offers an Alternative Application for state financial aid that can be used by students who cannot complete the FAFSA. The RISE Act created this application so that students who are not eligible for federal aid can still be considered for state programs such as the Illinois Monetary Award Program (MAP) grant. The 2027‑28 Alternative Application is now open, but a July 24 2026 court decision removed eligibility for undocumented students for the 2026‑27 year, and the 2026‑27 application is no longer available. Review the eligibility criteria for the 2027‑28 cycle and, if you qualify, submit the Alternative Application. For assistance, contact the City Colleges of Chicago Financial Aid Office.",
+  "confidence": "High",
+  "citations": [
+   "state-isac-alternative-application::00",
+   "state-isac-alternative-application::02",
+   "state-isac-alternative-application-faqs::01",
+   "state-isac-alternative-application-faqs::00",
+   "programs:ccc-financial-aid-offices"
+  ],
+  "has_contact": true,
+  "contact": "Financial Aid Office (at your college)",
+  "tools": [
+   "search_knowledge_base",
+   "escalate_to_human"
+  ],
+  "returned_ids": [
+   "programs:ccc-financial-aid-offices",
+   "state-isac-alternative-application-faqs::00",
+   "state-isac-alternative-application-faqs::01",
+   "state-isac-alternative-application-faqs::02",
+   "state-isac-alternative-application-faqs::03",
+   "state-isac-alternative-application-faqs::05",
+   "state-isac-alternative-application::00",
+   "state-isac-alternative-application::02",
+   "state-isac-non-eligible-noncitizens::06"
+  ],
+  "evidence": [
+   {
+    "source_id": "state-isac-alternative-application::00",
+    "text": "# Alternative Application for Illinois Financial Aid (last updated October 1, 2026) ## IMPORTANT NEWS REGARDING STATE FINANCIAL AID FOR UNDOCUMENTED STUDENTS: On July 24, 2026, a federal district court ruled that undocumented students are no longer eligible to receive financial assistance from the Illinois Student Assistance Commission (ISAC) for the 2026-2027 school year. The court’s ruling is the result of the Trump Administration suing the State of Illinois to deny college access to undocumented students who have graduated from Illinois high schools."
+   },
+   {
+    "source_id": "state-isac-alternative-application::02",
+    "text": "## What is the Alternative Application? The Retention of Illinois Students & Equity (RISE) Act allows certain students who are not eligible for federal student aid, including undocumented students, to apply for state financial aid. For these students, the Alternative Application for Illinois Financial Aid (“Alternative Application”) provides a way to apply for any state financial aid programs that would otherwise require completion of the Free Application for Federal Student Aid (FAFSA). There is also a small subset of students who will complete or have completed the FAFSA who may also be able to complete a Supplemental Section on the Alternative Application if they are ineligible for federal financial aid and meet certain Illinois educational criteria. This information can be used in consideration for ISAC programs. See below for additional details. Please note: The application is only the first step in the process - students must still meet all existing program eligibility criteria to receive an award"
+   },
+   {
+    "source_id": "state-isac-alternative-application-faqs::01",
+    "text": "## NOTICE: 2026-27 Alternative Application On July 24, 2026, a federal district court ruled that undocumented students are no longer eligible to receive state financial assistance from the Illinois Student Assistance Commission (ISAC) for the 2026-27 school year. This means that students who submitted the 2026-27 Alternative Application for Illinois Financial Aid, including Illinois undocumented students, cannot be considered for any ISAC financial aid program for the 2026-27 school year. The 2026-27 Alternative Application is no longer available. The [eligibility criteria for the 2027-28 Alternative Application](https://www.isac.org/students/before-college/financial-aid-planning/retention-of-illinois-rise-act/) have changed from prior years. For students who have questions specific to the 2026-27 Alternative Application and academic year, please see ⁠[Student and Family FAQs: 2026-27 Alternative Application](https://www.isac.org/students/before-college/financial-aid-planning/retention-of-illinois-rise-act/student-family-faqs-2026-27-school-year). **Q: Can I submit both the FAFSA® and the Alternative Application for Illinois Financial Aid?**"
+   },
+   {
+    "source_id": "state-isac-alternative-application-faqs::00",
+    "text": "## IMPORTANT NEWS REGARDING STATE FINANCIAL AID FOR UNDOCUMENTED STUDENTS: On July 24, 2026, a federal district court ruled that undocumented students are no longer eligible to receive financial assistance from the Illinois Student Assistance Commission (ISAC) for the 2026-2027 school year. The court’s ruling is the result of the Trump Administration suing the State of Illinois to deny college access to undocumented students who have graduated from Illinois high schools. We know this court decision brings tremendous uncertainty and financial challenges for Illinois undocumented students. This is a developing situation as the state explores options and students and families should check back for updates from the Commission as they become available. In the meantime, please see our [Student and Family FAQs](https://www.isac.org/students/before-college/financial-aid-planning/retention-of-illinois-rise-act/student-family-faqs-2026-27-school-year)."
+   },
+   {
+    "source_id": "programs:ccc-financial-aid-offices",
+    "text": "Financial Aid Offices. Our Financial Aid Offices work closely with students and families to provide financial assistance in the form of grants, loans and work-study from federal and state resources. For help filling out the FAFSA form, visit your college’s Financial Aid Office. Contact: Financial Aid Office (at your college) https://ccc.edu/financialaid . Hours: not listed."
+   }
+  ],
+  "fallback": false,
+  "seconds": 53.9,
+  "model": "openai/gpt-oss-120b",
+  "judge": {
+   "total": 8,
+   "supported": 5,
+   "score": 0.625,
+   "unsupported": [
+    "Illinois Monetary Award Program (MAP) grant",
+    "The 2027‑28 Alternative Application is now open",
+    "For assistance, contact the City Colleges of Chicago Financial Aid Office"
+   ],
+   "model": "openai/gpt-oss-20b"
+  }
+ },
+ "g003": {
+  "question": "How do I apply to City Colleges of Chicago and what documents do I need?",
+  "language": "en",
+  "behavior": "partial",
+  "answer": "To apply to City Colleges of Chicago, fill out the free online application at ccc.edu/apply. After your application is processed you will receive an acceptance letter that includes your Student ID number, and you must attend New Student Orientation. If you have taken college courses elsewhere, you need to submit an official transcript (electronic preferred) to the Registrar’s Office for evaluation.\n\nNext steps:\n1. Complete the online application at ccc.edu/apply.\n2. Upload or send any official college transcripts.\n3. Watch for your acceptance letter and register for the required New Student Orientation.",
+  "confidence": "High",
+  "citations": [
+   "institution-ccc-transfer-services::53",
+   "institution-ccc-admissions::02",
+   "institution-ccc-admissions::04"
+  ],
+  "has_contact": false,
+  "contact": "",
+  "tools": [
+   "search_knowledge_base",
+   "search_knowledge_base"
+  ],
+  "returned_ids": [
+   "institution-ccc-admissions::00",
+   "institution-ccc-admissions::01",
+   "institution-ccc-admissions::02",
+   "institution-ccc-admissions::03",
+   "institution-ccc-admissions::04",
+   "institution-ccc-admissions::06",
+   "institution-ccc-registration::00",
+   "institution-ccc-registration::05",
+   "institution-ccc-transfer-services::41",
+   "institution-ccc-transfer-services::53",
+   "institution-ccc-undocumented-student-services::16"
+  ],
+  "evidence": [
+   {
+    "source_id": "institution-ccc-transfer-services::53",
+    "text": "## Get started on your path to a bachelor’s degree today. Apply to City Colleges at **[ccc.edu/apply](http://www.ccc.edu/apply)**. Complete a Free Application for Federal Student Aid (FAFSA) to apply for federal, state, and college-based grants, scholarships, and loans at [fasfa.gov](https://studentaid.gov/h/apply-for-aid/fafsa/). Meet with your college’s Transfer Office by going to **[ccc.edu/VSS](https://prepare.ccc.edu)**, choosing your college, and selecting “Transfer.” [Visit the Academic Catalog for Course Options](https://catalog.ccc.edu/transfer-pathways/) [Search class schedules for IAI courses](https://www.ccc.edu/classschedules) Look for the IAI Symbol next to the course titles."
+   },
+   {
+    "source_id": "institution-ccc-admissions::02",
+    "text": "## Credit Students working towards a degree or certificate should visit fill out an online application for admissions. Once your application has been processed, you will receive an acceptance letter that includes your Student ID number. Once you’ve been admitted, you will need to attend the New Student Orientation. For a complete overview of the registration process, including information about taking the placement exam, residency requirements, advising, and registration, download our New Student Registration checklist [PDF]."
+   },
+   {
+    "source_id": "institution-ccc-admissions::04",
+    "text": "- Your transcript is from a non-regionally accredited college/university. - You did not complete any college credit at your college/university (withdrawal) as validated by an unofficial transcript. - You did not earn any transferable grades (A, B, or Cs) at your college/university as validated by an unofficial transcript. - Your official transcript cannot be obtained due to college/university closing or natural disaster. - You have proof your official college transcript was sent to CCC. An unofficial transcript must be submitted in the interim. - You cannot obtain an official college transcript due to prior debt, and you have proof of being enrolled in a payment plan or of a recent payment transaction to that institution. However, you agree to submit an official transcript to CCC once your debt is cleared. - You have proof of an official international college/university transcript evaluation order (within the past 30 days). - You have earned multiple degrees and do not need to submit non-relevant college/university transcripts such as a masters or doctorate degree. Only undergraduate college work is required via official college transcript(s). If you think that one of the above criteria applies to you, please complete the transcript waiver form Official_College_Transcript_Waiver_Form_Final [PDF]. If you have any questions, contact your Admissions Office."
+   }
+  ],
+  "fallback": false,
+  "seconds": 63.4,
+  "model": "openai/gpt-oss-120b",
+  "judge": {
+   "total": 7,
+   "supported": 5,
+   "score": 0.7142857142857143,
+   "unsupported": [
+    "If you have taken college courses elsewhere, you need to submit an official transcript (electronic preferred) to the Registrar’s Office for evaluation.",
+    "Upload or send any official college transcripts."
+   ],
    "model": "openai/gpt-oss-20b"
   }
  }
