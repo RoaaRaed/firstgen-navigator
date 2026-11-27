@@ -50,7 +50,9 @@ docker run --rm -p 8502:8501 --env-file .env -e INSTITUTION=uic firstgen-navigat
 - **Daily limit:** the free Groq tier has a daily token limit. When it is used up, the app says so and asks the student
   to try again tomorrow or contact an advisor.
 
-## Not tested here
+## How it is checked
 
-This Dockerfile was written and checked by reading and by a test of its contents. It has not yet been built on
-the author's machine. If the build fails, send the last 20 lines of the error.
+Every change to the Docker files runs the "Docker build" workflow on GitHub (`.github/workflows/docker.yml`). It builds
+the image, checks that the image holds no secrets and does not run as root, starts the app with dummy keys, waits for
+it to report healthy, and checks that the search index was built. The first run passed on 2026-11-27 (build and start
+in under 4 minutes). It does not ask the AI a question, so it does not use any Groq quota.
