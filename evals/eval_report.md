@@ -1,6 +1,6 @@
-# Evaluation report (2026-11-26)
+# Evaluation report (2026-11-27)
 
-Covers **44 of 62** golden questions. The rest are not run yet; rerun `python -m evals.run_eval` to continue.
+Covers **61 of 62** golden questions. The rest are not run yet; rerun `python -m evals.run_eval` to continue.
 
 - Advisor model: `openai/gpt-oss-120b`
 - Judge model: `openai/gpt-oss-20b`
@@ -10,31 +10,31 @@ Covers **44 of 62** golden questions. The rest are not run yet; rerun `python -m
 
 | Metric | Target | Result | Status |
 |---|---|---|---|
-| Groundedness (judge, claims supported / claims) | at least 85% | 71% on 38 answers | NOT MET |
-| Correct refusal on out-of-scope questions | at least 9 of 10 (we ask 90%) | 2 of 4 (50%) | NOT MET |
-| Hand-off on every sensitive-topic question | all | 0 of 11 | NOT MET |
+| Groundedness (judge, claims supported / claims) | at least 85% | 73% on 46 answers | NOT MET |
+| Correct refusal on out-of-scope questions | at least 9 of 10 (we ask 90%) | 10 of 12 (83%) | NOT MET |
+| Hand-off on every sensitive-topic question | all | 2 of 13 | NOT MET |
 
-Answers fully supported by their sources: 16 of 38 (42%).
+Answers fully supported by their sources: 21 of 46 (46%).
 1 answer(s) could not be judged (the judge reply was unusable); rerun to retry them.
 
 ## Deterministic checks
 
 | Check | Passed | Rate |
 |---|---|---|
-| Citation present (answerable questions) | 37 of 40 | 92% |
-| Cited source exists in the knowledge base | 39 of 39 | 100% |
-| Cited source came from a tool call this turn | 35 of 39 | 90% |
-| Correct refusal (out-of-scope questions) | 2 of 4 | 50% |
-| Hand-off present (questions that need a human) | 4 of 18 | 22% |
-| Answered, not refused (grounded questions) | 32 of 33 | 97% |
-| Cites an expected source (information only) | 35 of 40 | 88% |
+| Citation present (answerable questions) | 45 of 49 | 92% |
+| Cited source exists in the knowledge base | 47 of 47 | 100% |
+| Cited source came from a tool call this turn | 43 of 47 | 91% |
+| Correct refusal (out-of-scope questions) | 10 of 12 | 83% |
+| Hand-off present (questions that need a human) | 6 of 20 | 30% |
+| Answered, not refused (grounded questions) | 40 of 42 | 95% |
+| Cites an expected source (information only) | 43 of 49 | 88% |
 
 ## English and Arabic
 
 | Language | Questions run | Citation present | Answered | Correct refusal | Hand-off |
 |---|---|---|---|---|---|
-| English | 34 | 27 of 30 | 23 of 24 | 2 of 4 | 3 of 15 |
-| Arabic | 10 | 10 of 10 | 9 of 9 | 0 of 0 | 1 of 3 |
+| English | 48 | 34 of 37 | 30 of 31 | 9 of 11 | 5 of 17 |
+| Arabic | 13 | 11 of 12 | 10 of 11 | 1 of 1 | 1 of 3 |
 
 ## Failures to fix
 
@@ -131,6 +131,16 @@ Answers fully supported by their sources: 16 of 38 (42%).
   - judge: not supported: استخدم خدمات Transfer Services لمعرفة متطلبات القبول في الجامعات المستهدفة وتحديد مواعيد التقديم
   - judge: not supported: قدّم طلب القبول للجامعة التي اخترتها عبر نظامها الإلكتروني مع إرفاق سجل الدرجات ونصوص المقررات التي تم اعتمادها
 - **g043** (grounded) What is the maximum Federal Pell Grant for the 2026-27 school year?
+  - failed: citation_present, answered; confidence Low; cited: nothing
+- **g045** (grounded) I live outside Chicago but I work there full time. Can I still get in-district tuition?
+  - failed: groundedness; confidence High; cited: institution-ccc-tuition::07
+  - judge: not supported: Your residence outside Chicago makes you an out‑of‑district student, regardless of where you work.
+- **g049** (grounded) Can I get college credit for what I learned at work?
+  - failed: groundedness; confidence High; cited: institution-ccc-transfer-services::54
+  - judge: not supported: You start by contacting the CPL office
+  - judge: not supported: provide documentation of your job duties, training, certifications, or other evidence of what you learned
+  - judge: not supported: the college will review it to see if it matches the learning outcomes of existing courses
+- **g052** (grounded) ما هو الحد الأقصى لمنحة Pell الفدرالية للعام الدراسي 2026-27؟
   - failed: citation_present, answered; confidence Low; cited: nothing
 
 ## How the judge works

@@ -3,9 +3,15 @@ from __future__ import annotations
 from core.retriever import LAYERS
 
 SEARCH_K = 8          # Week 2: three of four misses were in the top 10, so we take 8, not 5
-MAX_CHARS = 150       # per chunk - kept small so 8 results (+ system prompt) stay under the
-                      # free Groq tier's 8000-tokens-per-minute cap even on a question that
-                      # needs more than one search call
+# How much of each passage the model gets to read. The first version cut EVERY passage to 150
+# characters to stay under the free Groq tier's 8000-tokens-per-minute cap. The evaluation then
+# showed the cost: the model could not see a number that sat after character 150 (the maximum
+# Pell Grant), and it filled the gaps from general knowledge (invented steps and documents).
+# Now the best-ranked passages are shown in much more detail and the rest stay short, which
+# adds only about 300 tokens to a search while giving the model the text it must answer from.
+TOP_PASSAGES = 4      # how many of the best-ranked passages get the long limit
+MAX_CHARS_TOP = 600   # characters shown for each of those
+MAX_CHARS = 150       # characters shown for the lower-ranked passages
 
 
 def search_knowledge_base(ctx, query: str, language: str = "en", layer: str | None = None,
@@ -36,9 +42,10 @@ def search_knowledge_base(ctx, query: str, language: str = "en", layer: str | No
 
     hits = ctx.retriever.search(query, k=k, layer=layer)
     results = []
-    for h in hits:
+    for rank, h in enumerate(hits):
         m = h.metadata
         text = " ".join(h.text.split())
+        limit = MAX_CHARS_TOP if rank < TOP_PASSAGES else MAX_CHARS
         results.append({
             "source_id": h.chunk_id,
             "title": m.get("title", ""),
@@ -48,7 +55,7 @@ def search_knowledge_base(ctx, query: str, language: str = "en", layer: str | No
             "retrieved_date": m.get("retrieved_date", ""),
             "effective_term": m.get("effective_term", "") or "not stated",
             "score": round(float(h.score), 3),
-            "text": text if len(text) <= MAX_CHARS else text[:MAX_CHARS] + " ...",
+            "text": text if len(text) <= limit else text[:limit] + " ...",
         })
     return {"found": bool(results), "query": query, "language": language,
             "layer": layer or "all", "results": results}

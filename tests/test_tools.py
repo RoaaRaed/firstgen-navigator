@@ -36,7 +36,7 @@ def test_search_returns_citable_source_ids_and_metadata(ctx):
     r = out["results"][0]
     assert out["found"] and r["source_id"] == "state-isac-map::03"
     assert r["source_url"] and r["retrieved_date"] and r["effective_term"] == "not stated"
-    assert len(r["text"]) <= 154  # long chunks are shortened
+    assert len(r["text"]) <= 604  # long chunks are shortened
 
 
 def test_search_uses_8_results_and_passes_layer(ctx):
@@ -136,3 +136,40 @@ def test_every_result_has_a_source_id(ctx):
 def test_tools_have_docstrings_for_the_agent():
     for fn in (search_knowledge_base, lookup_deadlines, match_programs, escalate_to_human):
         assert fn.__doc__ and "Args:" in fn.__doc__ and "Returns:" in fn.__doc__
+
+
+def test_best_passages_get_more_text_than_the_rest():
+    import importlib
+
+    s = importlib.import_module("core.tools.search")
+
+    long_text = ("x " * 400).strip()                      # 799 characters
+    class Hit:
+        def __init__(self, i):
+            self.chunk_id, self.text, self.score = f"doc::{i:02d}", long_text, 0.9 - i / 100
+            self.metadata = {"title": "t", "section": "s", "layer": "federal"}
+    class R:
+        def search(self, q, k=8, layer=None):
+            return [Hit(i) for i in range(k)]
+    c = load_context("demo-ccc", retriever=R(), today=TODAY)
+    texts = [x["text"] for x in search_knowledge_base(c, "q")["results"]]
+    assert len(texts) == 8
+    assert all(len(t) <= s.MAX_CHARS_TOP + 4 for t in texts[:s.TOP_PASSAGES])
+    assert all(len(t) > s.MAX_CHARS + 4 for t in texts[:s.TOP_PASSAGES])
+    assert all(len(t) <= s.MAX_CHARS + 4 for t in texts[s.TOP_PASSAGES:])
+
+
+def test_a_figure_after_character_150_is_visible_to_the_model():
+    import importlib
+
+    s = importlib.import_module("core.tools.search")
+
+    text = ("Every year the federal government updates the maximum award. " * 3) + "The maximum is $7,395."
+    assert text.index("7,395") > s.MAX_CHARS and len(text) < s.MAX_CHARS_TOP
+    class Hit:
+        chunk_id, score, metadata = "doc::01", 0.9, {"title": "t", "section": "s", "layer": "federal"}
+        def __init__(self): self.text = text
+    class R:
+        def search(self, q, k=8, layer=None): return [Hit()]
+    c = load_context("demo-ccc", retriever=R(), today=TODAY)
+    assert "7,395" in search_knowledge_base(c, "q")["results"][0]["text"]

@@ -2288,5 +2288,528 @@
    "unsupported": [],
    "model": "openai/gpt-oss-20b"
   }
+ },
+ "g045": {
+  "question": "I live outside Chicago but I work there full time. Can I still get in-district tuition?",
+  "language": "en",
+  "behavior": "grounded",
+  "answer": "No. City Colleges of Chicago defines an in‑district student as someone who lives within the City of Chicago for at least 30 days before the term starts. Your residence outside Chicago makes you an out‑of‑district student, regardless of where you work.",
+  "confidence": "High",
+  "citations": [
+   "institution-ccc-tuition::07"
+  ],
+  "has_contact": false,
+  "contact": "",
+  "tools": [
+   "search_knowledge_base"
+  ],
+  "returned_ids": [
+   "institution-ccc-transfer-services::34",
+   "institution-ccc-transfer-services::35",
+   "institution-ccc-transfer-services::39",
+   "institution-ccc-transfer-services::41",
+   "institution-ccc-tuition::05",
+   "institution-ccc-tuition::07",
+   "institution-ccc-tuition::08",
+   "institution-ccc-tuition::09"
+  ],
+  "evidence": [
+   {
+    "source_id": "institution-ccc-tuition::07",
+    "text": "### In-District Students Students must live within the City of Chicago for at least 30 days before classes begin for the term. Students who live out-of-district may qualify for in-district tuition if they work more than 35 hours per week in the City of Chicago. Proof of full-time employment must be shown."
+   }
+  ],
+  "fallback": false,
+  "seconds": 191.7,
+  "model": "openai/gpt-oss-120b",
+  "judge": {
+   "total": 2,
+   "supported": 1,
+   "score": 0.5,
+   "unsupported": [
+    "Your residence outside Chicago makes you an out‑of‑district student, regardless of where you work."
+   ],
+   "model": "openai/gpt-oss-20b"
+  }
+ },
+ "g046": {
+  "question": "Where can I take free English classes?",
+  "language": "en",
+  "behavior": "grounded",
+  "answer": "City Colleges of Chicago offers free English‑as‑a‑Second‑Language (ESL) classes through its Adult Education program. You can register online at ccc.edu/ae, where information is also available in several languages.",
+  "confidence": "High",
+  "citations": [
+   "programs:ccc-free-esl-classes"
+  ],
+  "has_contact": false,
+  "contact": "",
+  "tools": [
+   "match_programs"
+  ],
+  "returned_ids": [
+   "programs:ccc-academic-advising",
+   "programs:ccc-early-college",
+   "programs:ccc-free-esl-classes",
+   "programs:ccc-free-hs-diploma-prep",
+   "programs:ccc-loaner-laptop",
+   "programs:ccc-tutoring-centers"
+  ],
+  "evidence": [
+   {
+    "source_id": "programs:ccc-free-esl-classes",
+    "text": "Free ESL classes (Adult Education). City Colleges offers free ESL classes to learn or improve English for any reason. Register at ccc.edu/ae, where there are resources in Spanish, Polish, Arabic, and Simplified Chinese. Contact: Adult Education https://www.ccc.edu/ae . Hours: not listed."
+   }
+  ],
+  "fallback": false,
+  "seconds": 10.9,
+  "model": "openai/gpt-oss-120b",
+  "judge": {
+   "total": 3,
+   "supported": 3,
+   "score": 1.0,
+   "unsupported": [],
+   "model": "openai/gpt-oss-20b"
+  }
+ },
+ "g047": {
+  "question": "Can I take college classes for free while I am still in high school?",
+  "language": "en",
+  "behavior": "grounded",
+  "answer": "Yes. City Colleges of Chicago offers a free Early College program that lets high‑school students enroll in college‑level courses at no cost.",
+  "confidence": "High",
+  "citations": [
+   "institution-ccc-admissions::05",
+   "institution-ccc-registration::05"
+  ],
+  "has_contact": false,
+  "contact": "",
+  "tools": [
+   "search_knowledge_base",
+   "search_knowledge_base"
+  ],
+  "returned_ids": [
+   "federal-fafsa-student-steps::08",
+   "institution-ccc-admissions::05",
+   "institution-ccc-admissions::06",
+   "institution-ccc-registration::05",
+   "institution-ccc-transfer-services::18",
+   "institution-ccc-transfer-services::27",
+   "institution-ccc-transfer-services::28",
+   "institution-ccc-transfer-services::49",
+   "institution-ccc-tuition::02",
+   "institution-ccc-undocumented-student-services::03",
+   "institution-ccc-undocumented-student-services::04",
+   "institution-ccc-undocumented-student-services::05",
+   "institution-ccc-undocumented-student-services::16"
+  ],
+  "evidence": [
+   {
+    "source_id": "institution-ccc-admissions::05",
+    "text": "## Early College for High School Students www.ccc.edu/earlycollege City Colleges of Chicago offers free college-level classes to high school students through our Dual Enrollment and Dual Credit* programs. These programs helps students reduce the amount of time and money needed to complete two- and four-year degrees To start, visit apply.ccc.edu and fill out an online application for admissions. Next, download the Early College Registration checklist [PDF] and follow the steps to complete the registration process. *Students interested in the Dual Credit program should speak with their high school representative to learn more."
+   },
+   {
+    "source_id": "institution-ccc-registration::05",
+    "text": "## Need help? To obtain your student username to log in, visit our help page. Whether you’re new to City Colleges or a current student, an academic advisor can help you explore programs and register for classes. Connect with an advisor by visiting your college’s Virtual Student Services at www.ccc.edu/vss. Additional help guides are available at Portal Help Guides <!-- Copied directly from ccc.edu on 2026-10-29. Navigation, footer, quick links, \"Follow these steps\" button labels and the line \"You can find the Pre-registration Help Guide here.\" (link text only) were removed. -->"
+   }
+  ],
+  "fallback": false,
+  "seconds": 56.1,
+  "model": "openai/gpt-oss-120b",
+  "judge": {
+   "total": 3,
+   "supported": 3,
+   "score": 1.0,
+   "unsupported": [],
+   "model": "openai/gpt-oss-20b"
+  }
+ },
+ "g048": {
+  "question": "When is the last day of classes for the fall 2026 term?",
+  "language": "en",
+  "behavior": "grounded",
+  "answer": "The last day of classes for the Fall 2026 term is December 12 2026.",
+  "confidence": "High",
+  "citations": [
+   "deadlines:ccc-fall26-term-end"
+  ],
+  "has_contact": false,
+  "contact": "",
+  "tools": [
+   "lookup_deadlines"
+  ],
+  "returned_ids": [
+   "deadlines:ccc-fall26-term-end"
+  ],
+  "evidence": [
+   {
+    "source_id": "deadlines:ccc-fall26-term-end",
+    "text": "Fall term ends (last day of classes): 2026-12-12 (Fall 2026). Applies to: enrolled. Calendar is subject to change; contact the college."
+   }
+  ],
+  "fallback": false,
+  "seconds": 74399.6,
+  "model": "openai/gpt-oss-120b",
+  "judge": {
+   "total": 1,
+   "supported": 1,
+   "score": 1.0,
+   "unsupported": [],
+   "model": "openai/gpt-oss-20b"
+  }
+ },
+ "g049": {
+  "question": "Can I get college credit for what I learned at work?",
+  "language": "en",
+  "behavior": "grounded",
+  "answer": "Yes. City Colleges of Chicago’s Credit for Prior Learning (CPL) program (also called Prior Learning Assessment) lets you have work‑experience evaluated for college credit. You start by contacting the CPL office, provide documentation of your job duties, training, certifications, or other evidence of what you learned, and the college will review it to see if it matches the learning outcomes of existing courses. If it does, you can be awarded credit for those courses.",
+  "confidence": "High",
+  "citations": [
+   "institution-ccc-transfer-services::54"
+  ],
+  "has_contact": true,
+  "contact": "Academic Advising",
+  "tools": [
+   "search_knowledge_base",
+   "search_knowledge_base",
+   "search_knowledge_base",
+   "escalate_to_human"
+  ],
+  "returned_ids": [
+   "federal-financial-aid-glossary::17",
+   "federal-work-study::00",
+   "institution-ccc-academic-calendar::02",
+   "institution-ccc-academic-calendar::06",
+   "institution-ccc-admissions::05",
+   "institution-ccc-registration::05",
+   "institution-ccc-transfer-services::13",
+   "institution-ccc-transfer-services::22",
+   "institution-ccc-transfer-services::35",
+   "institution-ccc-transfer-services::39",
+   "institution-ccc-transfer-services::54",
+   "institution-ccc-tuition::01",
+   "institution-ccc-tuition::04",
+   "institution-ccc-undocumented-student-services::16",
+   "programs:ccc-academic-advising",
+   "state-isac-map::09"
+  ],
+  "evidence": [
+   {
+    "source_id": "institution-ccc-transfer-services::54",
+    "text": "## Credit for Prior Learning (CPL) **[Credit for Prior Learning (CPL)](https://colleges.ccc.edu/cpl/)** also known as Prior Learning Assessment (PLA) is learning you’ve done outside the classroom, including work experience, employer training, military experience, independent study or research, non-collegiate learning, professional certifications, civic activities, volunteer service, and more."
+   }
+  ],
+  "fallback": false,
+  "seconds": 100.8,
+  "model": "openai/gpt-oss-120b",
+  "judge": {
+   "total": 7,
+   "supported": 3,
+   "score": 0.42857142857142855,
+   "unsupported": [
+    "You start by contacting the CPL office",
+    "provide documentation of your job duties, training, certifications, or other evidence of what you learned",
+    "the college will review it to see if it matches the learning outcomes of existing courses",
+    "If it does, you can be awarded credit for those courses"
+   ],
+   "model": "openai/gpt-oss-20b"
+  }
+ },
+ "g051": {
+  "question": "هل أستطيع استعارة حاسوب محمول من كليات مدينة شيكاغو؟",
+  "language": "ar",
+  "behavior": "grounded",
+  "answer": "نعم، يمكن للطلاب المسجلين في برامج الائتمان في كليات مدينة شيكاغو استعارة حاسوب محمول يعمل بنظام Windows مجانًا لمدة تصل إلى 4 أسابيع.",
+  "confidence": "High",
+  "citations": [
+   "institution-ccc-student-resources::11"
+  ],
+  "has_contact": false,
+  "contact": "",
+  "tools": [
+   "search_knowledge_base"
+  ],
+  "returned_ids": [
+   "institution-ccc-student-resources::11",
+   "institution-ccc-transfer-services::04",
+   "institution-ccc-transfer-services::10",
+   "institution-ccc-transfer-services::13",
+   "institution-ccc-transfer-services::14",
+   "institution-ccc-transfer-services::15",
+   "institution-ccc-transfer-services::18",
+   "institution-ccc-undocumented-student-services::16"
+  ],
+  "evidence": [
+   {
+    "source_id": "institution-ccc-student-resources::11",
+    "text": "### Get a loaner laptop City Colleges of Chicago credit students may borrow a Windows laptop free of charge for up to 4 weeks. Laptops are issued on a first-come, first served basis. ccc.edu/borrowalaptop"
+   }
+  ],
+  "fallback": false,
+  "seconds": 55.9,
+  "model": "openai/gpt-oss-120b",
+  "judge": {
+   "total": 3,
+   "supported": 3,
+   "score": 1.0,
+   "unsupported": [],
+   "model": "openai/gpt-oss-20b"
+  }
+ },
+ "g052": {
+  "question": "ما هو الحد الأقصى لمنحة Pell الفدرالية للعام الدراسي 2026-27؟",
+  "language": "ar",
+  "behavior": "grounded",
+  "answer": "لم أتمكن من العثور على الحد الأقصى لمنحة Pell الفدرالية للعام الدراسي 2026‑27 في الوثائق المتوفرة.",
+  "confidence": "Low",
+  "citations": [],
+  "has_contact": false,
+  "contact": "",
+  "tools": [
+   "search_knowledge_base",
+   "search_knowledge_base",
+   "search_knowledge_base",
+   "search_knowledge_base",
+   "search_knowledge_base",
+   "search_knowledge_base"
+  ],
+  "returned_ids": [
+   "federal-financial-aid-glossary::06",
+   "federal-pell-grants::01",
+   "federal-pell-grants::02",
+   "federal-pell-grants::04",
+   "federal-pell-grants::05",
+   "institution-ccc-academic-calendar::02",
+   "institution-ccc-academic-calendar::04",
+   "state-isac-map::07",
+   "state-isac-map::14"
+  ],
+  "evidence": [],
+  "fallback": false,
+  "seconds": 151.5,
+  "model": "openai/gpt-oss-120b"
+ },
+ "g053": {
+  "question": "Can you write my college application essay for me?",
+  "language": "en",
+  "behavior": "refuse",
+  "answer": "I could not find guidance on writing a college application essay in the provided documents.",
+  "confidence": "Low",
+  "citations": [],
+  "has_contact": false,
+  "contact": "",
+  "tools": [],
+  "returned_ids": [],
+  "evidence": [],
+  "fallback": false,
+  "seconds": 6.7,
+  "model": "openai/gpt-oss-120b"
+ },
+ "g054": {
+  "question": "What will the weather be like in Chicago this weekend?",
+  "language": "en",
+  "behavior": "refuse",
+  "answer": "I could not find information about the weather in Chicago this weekend in the available documents.",
+  "confidence": "Low",
+  "citations": [],
+  "has_contact": false,
+  "contact": "",
+  "tools": [],
+  "returned_ids": [],
+  "evidence": [],
+  "fallback": false,
+  "seconds": 12.0,
+  "model": "openai/gpt-oss-120b"
+ },
+ "g055": {
+  "question": "Will I get into the University of Illinois Chicago with a 3.2 GPA?",
+  "language": "en",
+  "behavior": "refuse",
+  "answer": "I could not find information in the documents about admission chances at the University of Illinois Chicago for a 3.2 GPA.",
+  "confidence": "Low",
+  "citations": [],
+  "has_contact": true,
+  "contact": "Academic Advising (at your college)",
+  "tools": [
+   "escalate_to_human"
+  ],
+  "returned_ids": [
+   "programs:ccc-academic-advising"
+  ],
+  "evidence": [],
+  "fallback": false,
+  "seconds": 30.8,
+  "model": "openai/gpt-oss-120b"
+ },
+ "g056": {
+  "question": "Who is going to win the next Chicago mayoral election?",
+  "language": "en",
+  "behavior": "refuse",
+  "answer": "I could not find any information about who will win the next Chicago mayoral election in the provided documents.",
+  "confidence": "Low",
+  "citations": [],
+  "has_contact": false,
+  "contact": "",
+  "tools": [],
+  "returned_ids": [],
+  "evidence": [],
+  "fallback": false,
+  "seconds": 5.9,
+  "model": "openai/gpt-oss-120b"
+ },
+ "g057": {
+  "question": "Can you do my math homework for me?",
+  "language": "en",
+  "behavior": "refuse",
+  "answer": "I’m sorry, but I can’t complete your math homework for you, and there is no information in the provided documents that addresses this request.",
+  "confidence": "Low",
+  "citations": [],
+  "has_contact": true,
+  "contact": "Academic Advising (at your college)",
+  "tools": [
+   "escalate_to_human"
+  ],
+  "returned_ids": [
+   "programs:ccc-academic-advising"
+  ],
+  "evidence": [],
+  "fallback": false,
+  "seconds": 2.4,
+  "model": "openai/gpt-oss-120b"
+ },
+ "g058": {
+  "question": "How much is tuition at the University of Illinois Chicago?",
+  "language": "en",
+  "behavior": "not_found",
+  "answer": "I’m sorry—I couldn’t find the tuition amount for the University of Illinois Chicago in the documents you provided.",
+  "confidence": "Low",
+  "citations": [],
+  "has_contact": false,
+  "contact": "",
+  "tools": [
+   "search_knowledge_base"
+  ],
+  "returned_ids": [
+   "institution-ccc-transfer-services::34",
+   "institution-ccc-transfer-services::35",
+   "institution-ccc-transfer-services::36",
+   "institution-ccc-transfer-services::37",
+   "institution-ccc-transfer-services::48",
+   "institution-ccc-transfer-services::49",
+   "institution-ccc-tuition::04",
+   "institution-ccc-tuition::06"
+  ],
+  "evidence": [],
+  "fallback": false,
+  "seconds": 24.8,
+  "model": "openai/gpt-oss-120b"
+ },
+ "g059": {
+  "question": "Which professor should I pick for Biology 101 at Truman College?",
+  "language": "en",
+  "behavior": "not_found",
+  "answer": "I could not find a recommendation for a specific professor for Biology 101 in the documents.",
+  "confidence": "Low",
+  "citations": [],
+  "has_contact": true,
+  "contact": "Academic Advising",
+  "tools": [
+   "escalate_to_human"
+  ],
+  "returned_ids": [
+   "programs:ccc-academic-advising"
+  ],
+  "evidence": [],
+  "fallback": false,
+  "seconds": 18.9,
+  "model": "openai/gpt-oss-120b"
+ },
+ "g060": {
+  "question": "ما هو أفضل مطعم قريب من كلية ترومان؟",
+  "language": "ar",
+  "behavior": "refuse",
+  "answer": "I couldn't find information about restaurants near Truman College in the provided documents.",
+  "confidence": "Low",
+  "citations": [],
+  "has_contact": false,
+  "contact": "",
+  "tools": [],
+  "returned_ids": [],
+  "evidence": [],
+  "fallback": false,
+  "seconds": 7.5,
+  "model": "openai/gpt-oss-120b"
+ },
+ "g061": {
+  "question": "I feel overwhelmed and I am thinking about dropping out. Who can I talk to?",
+  "language": "en",
+  "behavior": "grounded",
+  "answer": "You can talk to the Wellness Center at your college. They offer personal and group counseling, stress‑management coaching, and can connect you with resources such as emergency housing, food assistance, and legal services.",
+  "confidence": "High",
+  "citations": [
+   "programs:ccc-wellness-centers"
+  ],
+  "has_contact": true,
+  "contact": "Wellness Center",
+  "tools": [
+   "escalate_to_human"
+  ],
+  "returned_ids": [
+   "programs:ccc-wellness-centers"
+  ],
+  "evidence": [
+   {
+    "source_id": "programs:ccc-wellness-centers",
+    "text": "Wellness Centers. Our Wellness Centers offer personal and group counseling, stress and time management coaching, and referrals to community resources including low-cost medical/dental care, emergency housing, groceries, legal services and child care. Contact: Wellness Center (at your college) https://ccc.edu/wellnesscenter . Hours: not listed."
+   }
+  ],
+  "fallback": false,
+  "seconds": 21.7,
+  "model": "openai/gpt-oss-120b",
+  "judge": {
+   "total": 7,
+   "supported": 6,
+   "score": 0.8571428571428571,
+   "unsupported": [
+    "food assistance"
+   ],
+   "model": "openai/gpt-oss-20b"
+  }
+ },
+ "g062": {
+  "question": "I have a learning disability. What support can I get at City Colleges?",
+  "language": "en",
+  "behavior": "grounded",
+  "answer": "City Colleges of Chicago has a Disability Access Center at each campus that provides coordination and supportive services for students with documented disabilities.",
+  "confidence": "High",
+  "citations": [
+   "programs:ccc-disability-access-centers"
+  ],
+  "has_contact": true,
+  "contact": "Disability Access Center (at your college)",
+  "tools": [
+   "match_programs",
+   "escalate_to_human"
+  ],
+  "returned_ids": [
+   "programs:ccc-credit-for-prior-learning",
+   "programs:ccc-disability-access-centers",
+   "programs:ccc-transfer-centers"
+  ],
+  "evidence": [
+   {
+    "source_id": "programs:ccc-disability-access-centers",
+    "text": "Disability Access Centers. Our Disability Access Centers provide coordination and supportive services for students with documented disabilities. CCC makes every effort to integrate students with disabilities into all courses and programs. Contact: Disability Access Center (at your college) https://ccc.edu/dac . Hours: not listed."
+   }
+  ],
+  "fallback": false,
+  "seconds": 30.7,
+  "model": "openai/gpt-oss-120b",
+  "judge": {
+   "total": 2,
+   "supported": 2,
+   "score": 1.0,
+   "unsupported": [],
+   "model": "openai/gpt-oss-20b"
+  }
  }
 }
