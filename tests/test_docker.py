@@ -45,3 +45,10 @@ def test_the_requirements_file_is_copied_before_the_code_so_the_install_layer_is
 
 def test_the_docs_page_exists():
     assert (ROOT / "docs" / "docker.md").exists()
+
+
+def test_the_github_workflow_builds_and_starts_the_image_without_real_keys():
+    wf = (ROOT / ".github" / "workflows" / "docker.yml").read_text(encoding="utf-8")
+    assert "docker build" in wf and "/_stcore/health" in wf
+    assert "GROQ_API_KEY=dummy" in wf
+    assert "${{ secrets" not in wf  # it must not touch the repository's real secrets

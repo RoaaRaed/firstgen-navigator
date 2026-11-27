@@ -1,0 +1,46 @@
+# Builds the Docker image and checks that the app really starts inside it.
+# Runs when the Docker files change, and on demand (Actions tab -> "Docker build" -> Run workflow).
+name: Docker build
+
+on:
+  push:
+    paths:
+      - Dockerfile
+      - .dockerignore
+      - requirements.txt
+      - .github/workflows/docker.yml
+  workflow_dispatch:
+
+jobs:
+  build-and-start:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build the image
+        run: docker build -t firstgen-navigator .
+
+      - name: The image holds no secrets and does not run as root
+        run: |
+          docker run --rm --entrypoint sh firstgen-navigator -c 'test ! -f /app/.env && test ! -f /app/.streamlit/secrets.toml && test "$(id -u)" != 0'
+
+      - name: Start the app (dummy keys; no AI question is asked)
+        run: |
+          docker run -d --name fgn -p 8501:8501 \
+            -e GROQ_API_KEY=dummy -e ADMIN_PASSWORD=ci-only firstgen-navigator
+
+      - name: Wait for the app to report healthy
+        run: |
+          for i in $(seq 1 60); do
+            if curl -fsS http://localhost:8501/_stcore/health; then echo; echo "healthy after about $((i*5)) s"; exit 0; fi
+            sleep 5
+          done
+          echo "The app did not become healthy in 5 minutes"; docker logs fgn; exit 1
+
+      - name: The search index was built
+        run: docker logs fgn 2>&1 | grep -E "collection 'demo-ccc' now holds [0-9]+ chunks"
+
+      - name: Show the container log
+        if: always()
+        run: docker logs fgn || true
